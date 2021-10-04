@@ -1225,7 +1225,7 @@ function contestantProgress() {
     header.appendChild(th_2);
     var winner = document.createElement("tr");
     var name = document.createElement("td");
-    name.setAttribute("style", "background-color: #f5ebf5; font-weight: bold;");
+    name.setAttribute("style", "background-color: #f5ebf5; font-weight: bold; height: 100px;");
     var winnerQueen;
     if (!top4)
         winnerQueen = currentCast[0];
@@ -1318,7 +1318,7 @@ function contestantProgress() {
     for (var i = 0; i < eliminatedCast.length; i++) {
         var contestant = document.createElement("tr");
         var name_1 = document.createElement("td");
-        name_1.setAttribute("style", "background-color: #f5ebf5; font-weight: bold;");
+        name_1.setAttribute("style", "background-color: #f5ebf5; font-weight: bold;  height: 100px;");
         name_1.innerHTML = eliminatedCast[i].getName();
         contestant.appendChild(name_1);
         var photo = document.createElement("td");
