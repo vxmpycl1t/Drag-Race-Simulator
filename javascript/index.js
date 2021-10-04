@@ -2636,7 +2636,7 @@ var us_season12 = [aiden, brita, crystal, dahlia, gigi, heidi, jackie, jaida, ja
 var allstars_5 = [alexis, blair, derrick, india, jujubee, mariah, mayhem, miz, ongina, shea];
 //SEASON 13
 var denali = new Queen("Denali", 4, 7, 13, 7, 9, 9, 14, "img/US13/DenaliS13Cast.jpg");
-var elliott = new Queen("Elliott With 2 Ts", 4, 5, 10, 7, 3, 7, 10, "img/US13/Elliottwith2TsS13Cast.jpg");
+var elliott = new Queen("Elliott With 2 Ts", 4, 5, 10, 7, 3, 7, 10, "img/US13/ElliottWith2TsS13Cast.jpg");
 var mik = new Queen("Gottmik", 8, 9, 4, 13, 9, 10, 6, "img/US13/GottmikS13Cast.jpg");
 var joey = new Queen("Joey Jay", 5, 7, 8, 6, 4, 8, 7, "img/US13/JoeyJayS13Cast.jpg");
 var kahmora = new Queen("Kahmora Hall", 3, 4, 3, 7, 3, 10, 4, "img/US13/KahmoraHallS13Cast.jpg");
