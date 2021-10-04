@@ -1293,6 +1293,9 @@ function contestantProgress() {
         else if (placement.innerHTML == "OUT ") {
                 placement.setAttribute("style", "background-color: purple; color:white;");
         }
+        else if (placement.innerHTML == "OUT ") {
+                placement.setAttribute("style", "background-color: purple; color:white;");
+        }
         else if (placement.innerHTML == " WIN") {
             placement.setAttribute("style", "font-weight: bold; background-color: darkblue; color: white;");
         }
@@ -2925,6 +2928,7 @@ function LaLaPaRuZa(){
     screen.createHeader("Let the Lipsync Smackdown begin!!");
     screen.createParagraph("The eliminated queens are back to compete in an epic Lipsync Smackdown and a chance to return to the competition.");
     var smack = eliminatedCast.slice();
+    var capitulo = 2;
     for (var i = 0; i < eliminatedCast.length - 1; i++) {
         screen.createHorizontalLine();
         if (smack.length == 2) {
@@ -2945,15 +2949,28 @@ function LaLaPaRuZa(){
         }
         lipSync.sort(function (a, b) { return (b.lipsyncScore - a.lipsyncScore); });
         screen.createBold(lipSync[0].getName() + ", shantay you stay! " /*+ lipSync[0].lipsyncScore +")"*/);
+        if (eliminatedCast.length - i != 2) {
+            lipSync[0].trackRecord[capitulo] = " WIN ";
+            lipSync[1].trackRecord[capitulo] = ("LOSS");
+        }
         screen.createBold(lipSync[1].getName() + ", sashay away. "/* + lipSync[1].lipsyncScore + ")"*/);
+        capitulo++;
         if (lipSync[0] == queen1) {
             smack.splice(smack.indexOf(queen2), 1);
         }else{
             smack.splice(smack.indexOf(queen1), 1);
         }
     }
+    for (var o = 0; o <= currentCast.length - 1; o++) {
+        currentCast[o].addToTrackRecord("RUN ");
+    }
+    lipSync[0].addToTrackRecord("RTRN");
     currentCast.push(lipSync[0]);
     eliminatedCast.splice(eliminatedCast.indexOf(lipSync[0]), 1);
+    for (var i = 0; i <= eliminatedCast.length - 1; i++) {
+        eliminatedCast[i].addToTrackRecord("OUT ");
+    }
+    episodeChallenges.push("Smackdown");
 }
 function LaLaPaRuZa(){
     var screen = new Scene();
