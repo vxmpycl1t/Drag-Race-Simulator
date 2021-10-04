@@ -2893,42 +2893,6 @@ function lsSmackD(){
     screen.createHeader("Let the Lipsync Smackdown begin!!");
     screen.createParagraph("The eliminated queens are back to compete in an epic Lipsync Smackdown and a chance to return to the competition.");
     var smack = eliminatedCast.slice();
-    for (var i = 0; i < eliminatedCast.length - 1; i++) {
-        screen.createHorizontalLine();
-        if (smack.length == 2) {
-            var queen1 = smack[0];
-            var queen2 = smack[1];
-        }else{
-        var queen1 = smack[smack.length - 1];
-        var queen2 = smack[smack.length - 2];
-        }
-        screen.createBold(queen1.getName() + " and " + queen2.getName() + " will lipsync...");
-        screen.createBold("The time has come for you to lip-sync... for your rudemption! Good luck, and don't fuck it up.");
-        lsSong();
-        //screen.createHorizontalLine();
-        screen.createBold("I've made my decision.");
-        var lipSync = [queen1, queen2];
-        for (var i_1 = 0; i_1 < lipSync.length; i_1++) {
-            lipSync[i_1].getASLipsync();
-        }
-        lipSync.sort(function (a, b) { return (b.lipsyncScore - a.lipsyncScore); });
-        screen.createBold(lipSync[0].getName() + ", shantay you stay! " /*+ lipSync[0].lipsyncScore +")"*/);
-        screen.createBold(lipSync[1].getName() + ", sashay away. "/* + lipSync[1].lipsyncScore + ")"*/);
-        if (lipSync[0] == queen1) {
-            smack.splice(smack.indexOf(queen2), 1);
-        }else{
-            smack.splice(smack.indexOf(queen1), 1);
-        }
-    }
-    currentCast.push(lipSync[0]);
-    eliminatedCast.splice(eliminatedCast.indexOf(lipSync[0]), 1);
-}
-function LaLaPaRuZa(){
-    var screen = new Scene();
-    screen.clean();
-    screen.createHeader("Let the Lipsync Smackdown begin!!");
-    screen.createParagraph("The eliminated queens are back to compete in an epic Lipsync Smackdown and a chance to return to the competition.");
-    var smack = eliminatedCast.slice();
     var capitulo = 2;
     for (var i = 0; i < eliminatedCast.length - 1; i++) {
         screen.createHorizontalLine();
