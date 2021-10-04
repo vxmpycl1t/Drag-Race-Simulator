@@ -2823,18 +2823,19 @@ function CheckForReturning() {
             return false;
         }
     }
-    if (eliminatedCast.length == 0 && currentCast.length > totalCastSize - 3 && currentCast.length < 6)
+    if (eliminatedCast.length == 0 && currentCast.length > totalCastSize - 3 && currentCast.length < 6){
         return false;
+    }
     else if (!lipsync_assassin) {
         if (doubleSashay == false) {
-            if (randomNumber(0, 100) <= 5 && returningQueen == false) {
+            if (randomNumber(0, 100) <= 5 && returningQueen == false && !all_stars && !lipsync_assassin) {
                 returningQueen = true;
                 return true;
             }
             return false;
         }
         else {
-            if (randomNumber(0, 100) <= 85 && returningQueen == false) {
+            if (randomNumber(0, 100) <= 85 && returningQueen == false && !all_stars && !lipsync_assassin) {
                 returningQueen = true;
                 return true;
             }
