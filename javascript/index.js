@@ -2559,7 +2559,7 @@ var violet = new Queen("Violet Chachki", 8, 7, 7, 14, 7, 10, 8, "img/US7/VioletC
 var us_season7 = [ginger, jaidynn, jasmine, kandy, katya, kennedy, max, fame, kasha, pearl, sashab, tempest, trixie, violet];
 //SEASON 8:
 var acid = new Queen("Acid Betty", 8, 3, 7, 9, 2, 8, 7, "img/US8/AcidBettyS8Cast.jpg");
-var bob = new Queen("Bob The Drag Queen", 15, 15, 8, 7, 13, 7, 12, "img/US8/BobtheDragQueenS8Cast.jpg");
+var bob = new Queen("Bob The Drag Queen", 15, 15, 8, 7, 13, 7, 12, "img/US8/BobTheDragQueenS8Cast.jpg");
 var chichi = new Queen("Chi Chi DeVayne", 7, 8, 12, 3, 5, 7, 11, "img/AS3/ChiChiDeVayneAS3Cast.png");
 var cynthia = new Queen("Cynthia Lee Fontaine", 5, 4, 8, 6, 4, 7, 6, "img/US9/CynthiaLeeFontaineS9Cast.jpg");
 var dax = new Queen("Dax ExclamationPoint", 5, 6, 6, 7, 6, 7, 4, "img/US8/DaxExclamationPointS8Cast.jpg");
@@ -2739,7 +2739,7 @@ var kana = new Queen("Kana Warrior", 8, 8, 8, 7, 7, 9, 13, "img/THA2/KanaWarrior
 var kandyz = new Queen("Kandy Zyanide", 9, 9, 9, 9, 9, 12, 7, "img/THA2/KandyZyanideDRT2Cast.png");
 var katy = new Queen("Katy Killer", 7, 8, 7, 8, 7, 10, 8, "img/THA2/KatyKillerDRT2Cast.png");
 var m = new Queen("M Stranger Fox", 5, 6, 5, 6, 6, 8, 8, "img/THA2/MStrangerFoxDRT2Cast.png");
-var maya = new Queen("Maya B'haro", 9, 8, 6, 9, 9, 10, 7, "img/THA2/MayaBharoDRT2Cast.png");
+var maya = new Queen("Maya B'haro", 9, 8, 6, 9, 9, 10, 7, "img/THA2/MayaBHaroDRT2Cast.png");
 var mocha = new Queen("Mocha Diva", 9, 9, 6, 10, 9, 7, 9, "img/THA2/MochaDivaDRT2Cast.png");
 var gimhuay = new Queen("Miss Gimhuay", 8, 9, 7, 11, 10, 12, 8, "img/THA2/MissGimhuayDRT2Cast.png");
 var silver = new Queen("Silver Sonic", 5, 5, 7, 6, 7, 7, 8, "img/THA2/SilverSonicDRT2Cast.png");
