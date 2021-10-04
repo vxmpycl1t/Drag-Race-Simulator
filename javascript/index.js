@@ -2061,11 +2061,11 @@ function topAndBtm() {
     topQueens.sort(function (a, b) { return (a.performanceScore - b.performanceScore); });
     top2.push(topQueens[0]);
     topQueens.splice(0, 1);
-    screen.createBold(top2[0].getName() + " (" + top2[0].performanceScore + "), condragulations, you're the Top All Star of the week!");
+    screen.createBold(top2[0].getName() + ", condragulations, you're the Top All Star of the week!");
     screen.createParagraph("", "highs");
     var highs = document.querySelector("p#highs");
     for (var i = 0; i < topQueens.length; i++) {
-        highs.innerHTML += topQueens[i].getName() + " (" + topQueens[i].performanceScore + "), ";
+        highs.innerHTML += topQueens[i].getName() + ", ";
         topQueens[i].addToTrackRecord("HIGH");
         topQueens[i].favoritism += 1;
     }
@@ -2075,7 +2075,7 @@ function topAndBtm() {
     screen.createBold("", "bottoms");
     var bottoms = document.querySelector("b#bottoms");
     for (var i = 0; i < bottomQueens.length; i++) {
-        bottoms.innerHTML += bottomQueens[i].getName() + " (" + bottomQueens[i].performanceScore + "), ";
+        bottoms.innerHTML += bottomQueens[i].getName() + ", ";
     }
     bottoms.innerHTML += "I'm sorry my dears but you're the bottoms of the week.";
     for (var i = 0; i < bottomQueens.length; i++) {
