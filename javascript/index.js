@@ -1288,6 +1288,12 @@ function contestantProgress() {
         else if (placement.innerHTML == "SAFE ") {
                 placement.setAttribute("style", "background-color: palegreen; color:#000;");
         }
+        else if (placement.innerHTML == " SAFE ") {
+                placement.setAttribute("style", "background-color: #7D1935; color:#000;");
+        }
+        else if (placement.innerHTML == "RUN") {
+                placement.setAttribute("style", "background-color: magenta; color:white;");
+        }
         else if (placement.innerHTML == "OUT ") {
                 placement.setAttribute("style", "background-color: purple; color:white;");
         }
@@ -1373,6 +1379,12 @@ function contestantProgress() {
             }
             else if (placement.innerHTML == "SAFE ") {
                 placement.setAttribute("style", "background-color: palegreen; color:#000;");
+            }
+            else if (placement.innerHTML == " SAFE ") {
+                placement.setAttribute("style", "background-color: #7D1935; color:#000;");
+            }
+            else if (placement.innerHTML == "RUN") {
+                    placement.setAttribute("style", "background-color: magenta; color:white;");
             }
             else if (placement.innerHTML == "OUT ") {
                 placement.setAttribute("style", "background-color: purple; color:white;");
@@ -2984,8 +2996,9 @@ function LaLaPaRuZa(){
                 currentCast.push(lipSync_1[0]);
                 lipSync_1[0].addToTrackRecord("RTRN");
                 eliminatedCast.splice(eliminatedCast.indexOf(lipSync_1[0]), 1);
-                lipSync_1[1].addToTrackRecord("SAFE ");
-                lipSync_1[1].unfavoritism += 2;
+                queen2.addToTrackRecord(" SAFE ");
+                queen2.unfavoritism += 2;
+                queen3.addToTrackRecord("OUT ");
             }else{
                 lipSync_1[0].addToTrackRecord("SAFE ");
                 queen1.addToTrackRecord("OUT ");
@@ -3008,7 +3021,7 @@ function LaLaPaRuZa(){
                 currentCast.push(lipSync[0]);
                 lipSync[0].addToTrackRecord("RTRN");
                 eliminatedCast.splice(eliminatedCast.indexOf(lipSync[0]), 1);
-                lipSync[1].addToTrackRecord("SAFE ");
+                lipSync[1].addToTrackRecord(" SAFE ");
                 lipSync[1].unfavoritism += 2;
             }else{
                 lipSync[0].addToTrackRecord("SAFE ");
@@ -3017,7 +3030,7 @@ function LaLaPaRuZa(){
         }
     }
     for (var o = 0; o <= smack1.length - 1; o++) {
-        smack1[o].addToTrackRecord("SAFE ");
+        smack1[o].addToTrackRecord("RUN");
     }
     episodeChallenges.push("LaLaPaRuZa");
 }
