@@ -2017,7 +2017,7 @@ function top2AndBtm() {
     screen.createBold("", "bottoms");
     var bottoms = document.querySelector("b#bottoms");
     for (var i = 0; i < bottomQueens.length; i++) {
-        bottoms.innerHTML += bottomQueens[i].getName() + " (" + bottomQueens[i].performanceScore +"), ";
+        bottoms.innerHTML += bottomQueens[i].getName() + ", ";
     }
     bottoms.innerHTML += "I'm sorry my dears but you're the bottoms of the week.";
     for (var i = 0; i < bottomQueens.length; i++) {
@@ -2745,7 +2745,7 @@ var vanda = new Queen("Vanda Miss Joaquim", 9, 8, 9, 7, 7, 11, 10, "img/THA2/Van
 var drt_season2 = [angele, bandit, genie, kana, kandyz, katy, m, maya, mocha, gimhuay, silver, srimala, tormai, vanda];
 //SPECIAL
 var pangina = new Queen("Pangina Heals", 10, 10, 9, 12, 9, 13, 11, "img/THA1/PanginaHealsDRT1.jpg");
-var international_as = [baga, blu, cheryl, janey, jimbo, jujubee, lemon, monique];
+var international_as = [baga, blu, cheryl, janey, jimbo, jujubee, lemon, monique, pangina];
 //DRAG RACE DOWN UNDER
 var anita = new Queen("Anita Wigl'it", 9, 9, 8, 7, 8, 7, 7, "img/DU1/AnitaWiglitDRDU1Cast.jpg");
 var art = new Queen("Art Simone", 5, 4, 5, 10, 4, 10, 6, "img/DU1/ArtSimoneDRDU1Cast.jpg");
