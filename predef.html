@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drag Race Simulator</title>
+    <link href="icofont/icofont.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.5.5/css/simple-line-icons.min.css" rel="stylesheet" />
+    <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/x-icon" href="img/favicon.ico">
+    <link rel="stylesheet" href="css/style.light.css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <a class="menu-toggle rounded" href="#"><i class="fas fa-bars"></i></a>
+        <nav id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">This simulator was created by <a href="https://edssb.github.io/rupauls-drag-race-simulator/index.html" target=_blank>edssb/JustALittleKiller</a></li>
+                <li class="sidebar-nav-item"><a href="index.html">Star your simulation</a></li>
+                <li class="sidebar-nav-item"><a href="predef.html">Predef Casts</a></li>
+                <li class="sidebar-nav-item"><a href="custom.html">Custom</a></li>
+            </ul>
+        </nav>
+    <div id ="MainBlock">
+        <h1>Predefined casts</h1>
+        <big>Simulate a season with the original casts of each season!</big>
+
+        <h2>RPDR US Seasons</h2>
+        <div>
+            <button onclick="predefCast(us_season1, 'top3')">US Season 1</button>
+            <button onclick="predefCast(us_season2, 'top3')">US Season 2</button>
+            <button onclick="predefCast(us_season3, 'top3')">US Season 3</button>
+            <button onclick="predefCast(us_season4, 'top3')">US Season 4</button>
+            <button onclick="predefCast(us_season5, 'top3')">US Season 5</button>
+            <button onclick="predefCast(us_season6, 'top3')">US Season 6</button>
+            <button onclick="predefCast(us_season7, 'top3')">US Season 7</button>
+            <button onclick="predefCast(us_season8, 'top3')">US Season 8</button>
+            <button onclick="predefCast(us_season9, 'top4')">US Season 9</button>
+            <button onclick="predefCast(us_season10, 'top4')">US Season 10</button>
+            <button onclick="predefCast(us_season11, 'top4')">US Season 11</button>
+            <button onclick="predefCast(us_season12, 'top4')">US Season 12</button>
+            <button onclick="predefCast(us_season13, 'top4')">US Season 13</button>
+        </div>
+        
+        <h2>All Stars</h2>
+        <div>
+            <button onclick="predefCast(allstars_1, 'top3')">All Stars Season 1</button>
+            <button onclick="predefCast(allstars_2, 'all-stars')">All Stars Season 2</button>
+            <button onclick="predefCast(allstars_3, 'all-stars')">All Stars Season 3</button>
+            <button onclick="predefCast(allstars_4, 'all-stars')">All Stars Season 4</button>
+            <button onclick="predefCast(allstars_5, 'lipsync-assassin')">All Stars Season 5</button>
+            <button onclick="predefCast(allstars_6, 'lipsync-assassin')">All Stars Season 6</button>
+        </div>
+
+        <h2>Drag Race UK</h2>
+        <div>
+            <button onclick="predefCast(uk_season1, 'top3')">UK Season 1</button>
+            <button onclick="predefCast(uk_season2, 'top3')">UK Season 2</button>
+        </div>
+
+        <h2>Drag Race Thailand</h2>
+        <div>
+            <button onclick="predefCast(drt_season1, 'top3')">DRT Season 1</button>
+            <button onclick="predefCast(drt_season2, 'top3')">DRT Season 2</button>
+        </div>
+
+        <h2>Canada's Drag Race</h2>
+        <div>
+            <button onclick="predefCast(can_season1, 'top3')">CAN Season 1</button>
+        </div>
+
+        <h2>Drag Race Holland</h2>
+        <div>
+            <button onclick="predefCast(hol_season1, 'top3')">HOL Season 1</button>
+            <button onclick="predefCast(hol_season2, 'top3')">HOL Season 2</button>
+        </div>
+
+        <h2>Drag Race España</h2>
+        <div>
+            <button onclick="predefCast(dres, 'top3')">Drag Race España</button>
+        </div>
+
+        <h2>Drag Race Down Under</h2>
+        <div>
+            <button onclick="predefCast(drdu, 'top3')">Drag Race Down Under</button>
+        </div>
+
+        <h2>Other</h2>
+        <div>
+            <button onclick="predefCast(international_as, 'all-stars')">All Stars International</button>
+        </div>
+
+        <hr>
+
+        <div>
+            <h2>Options</h2>
+
+            <p><input type="checkbox" id="disableDouble"> Disable double shantays and sashays</p>
+            <p><input type="checkbox" id="disableReturn"> Disable queens returning</p>
+        </div>
+
+        <div>
+            <p>
+                <big><a class="BackMain" href="index.html">Back to main page</a></big>
+            </p>
+        </div>
+    </div>
+    <script src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
+    <script>
+    kofiWidgetOverlay.draw('rupaulssimulator', {
+        'type': 'floating-chat',
+        'floating-chat.donateButton.text': 'Tip edssb',
+        'floating-chat.donateButton.background-color': '#5bc0de',
+        'floating-chat.donateButton.text-color': '#323842'
+    });
+    </script>
+</body>
+
+<script src="javascript/index.js"></script>
+</html>
