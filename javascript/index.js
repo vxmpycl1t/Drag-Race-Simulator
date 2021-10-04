@@ -1234,11 +1234,7 @@ function contestantProgress() {
     name.innerHTML = winnerQueen.getName();
     winner.appendChild(name);
     var photow = document.createElement("td");
-    photow.setAttribute("style", "background-color: #f5ebf5; font-weight: bold;");
-    var photow_1 = document.createElement("img");
-    photow_1.setAttribute("width", "100px", "heigth", "100px");
-    photow_1.src = winnerQueen.getImg();
-    photow.appendChild(photow_1);
+    photow.setAttribute("style", "background: url("+ winnerQueen.getImg() +"); background-size: 106px 106px; background-position: center;");
     winner.appendChild(photow);
     for (var i = 0; i < winnerQueen.trackRecord.length+1; i++) {
         var placement = document.createElement("td");
@@ -1326,11 +1322,7 @@ function contestantProgress() {
         name_1.innerHTML = eliminatedCast[i].getName();
         contestant.appendChild(name_1);
         var photo = document.createElement("td");
-        photo.setAttribute("style", "background-color: #f5ebf5; font-weight: bold;");
-        var photo_1 = document.createElement("img");
-        photo_1.setAttribute("width", "100px", "heigth", "100px");
-        photo_1.src = eliminatedCast[i].getImg();
-        photo.appendChild(photo_1);
+        photo.setAttribute("style", "background: url("+ eliminatedCast[i].getImg() +"); background-size: 106px 106px; background-position: center;");
         contestant.appendChild(photo);
         for (var k = 0; k < eliminatedCast[i].trackRecord.length+1; k++) {
             var placement = document.createElement("td");
