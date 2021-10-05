@@ -2900,6 +2900,8 @@ function lsSmackD(){
     screen.createParagraph("The eliminated queens are back to compete in an epic Lipsync Smackdown and a chance to return to the competition.");
     var smack = eliminatedCast.slice();
     var capitulo = 2;
+    var cappork = 5;
+    var caps6 = 4;
     for (var i = 0; i < eliminatedCast.length - 1; i++) {
         screen.createHorizontalLine();
         if (smack.length == 2) {
@@ -2921,11 +2923,21 @@ function lsSmackD(){
         lipSync.sort(function (a, b) { return (b.lipsyncScore - a.lipsyncScore); });
         screen.createBold(lipSync[0].getName() + ", shantay you stay! " /*+ lipSync[0].lipsyncScore +")"*/);
         if (eliminatedCast.length - i != 2) {
+            if (porkchopPremiere) {
+                lipSync[0].trackRecord[cappork] = " WIN ";
+                lipSync[1].trackRecord[cappork] = ("LOSS");
+             }else if(s12Premiere){
+                lipSync[0].trackRecord[caps6] = " WIN ";
+                lipSync[1].trackRecord[caps6] = ("LOSS");
+             }else{
             lipSync[0].trackRecord[capitulo] = " WIN ";
             lipSync[1].trackRecord[capitulo] = ("LOSS");
+            }
         }
         screen.createBold(lipSync[1].getName() + ", sashay away. "/* + lipSync[1].lipsyncScore + ")"*/);
         capitulo++;
+        cappork++;
+        caps6++;
         if (lipSync[0] == queen1) {
             smack.splice(smack.indexOf(queen2), 1);
         }else{
