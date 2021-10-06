@@ -1308,6 +1308,9 @@ function contestantProgress() {
         else if (placement.innerHTML == "RTRN") {
             placement.setAttribute("style", "font-weight: bold; background-color: magenta;");
         }
+        else if (placement.innerHTML == "RTRN ") {
+            placement.setAttribute("style", "font-weight: bold; background-color: orange;");
+        }
         else if (placement.innerHTML == " WIN ") {
             placement.setAttribute("style", "background-color: lightskyblue;");
         }
@@ -1398,6 +1401,9 @@ function contestantProgress() {
             }
             else if (placement.innerHTML == "RTRN") {
                 placement.setAttribute("style", "font-weight: bold; background-color: magenta;");
+            }
+            else if (placement.innerHTML == "RTRN ") {
+            placement.setAttribute("style", "font-weight: bold; background-color: orange;");
             }
             else if (placement.innerHTML == " WIN ") {
                 placement.setAttribute("style", "background-color: lightskyblue;");
@@ -2986,7 +2992,7 @@ function LaLaPaRuZa(){
             screen.createBold(lipSync_1[1].getName() + " and " + lipSync_1[2].getName() + ", sashay away...");
             if (queen1 == lipSync[0]) {
                 currentCast.push(lipSync_1[0]);
-                lipSync_1[0].addToTrackRecord("RTRN");
+                lipSync_1[0].addToTrackRecord("RTRN ");
                 eliminatedCast.splice(eliminatedCast.indexOf(lipSync_1[0]), 1);
                 queen2.addToTrackRecord("ELIM");
                 eliminatedCast.unshift(queen2);
@@ -3013,7 +3019,7 @@ function LaLaPaRuZa(){
             screen.createBold(lipSync[1].getName() + ", sashay away. "/* + lipSync[1].lipsyncScore + ")"*/);
             if (queen1 == lipSync[0]) {
                 currentCast.push(lipSync[0]);
-                lipSync[0].addToTrackRecord("RTRN");
+                lipSync[0].addToTrackRecord("RTRN ");
                 eliminatedCast.splice(eliminatedCast.indexOf(lipSync[0]), 1);
                 lipSync[1].addToTrackRecord("ELIM");
                 eliminatedCast.unshift(lipSync[1]);
