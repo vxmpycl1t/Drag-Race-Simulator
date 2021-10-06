@@ -2988,8 +2988,10 @@ function LaLaPaRuZa(){
                 currentCast.push(lipSync_1[0]);
                 lipSync_1[0].addToTrackRecord("RTRN");
                 eliminatedCast.splice(eliminatedCast.indexOf(lipSync_1[0]), 1);
-                queen2.addToTrackRecord(" SAFE ");
-                queen2.unfavoritism += 2;
+                queen2.addToTrackRecord("ELIM");
+                eliminatedCast.unshift(queen2);
+                currentCast.splice(currentCast.indexOf(queen2), 1);
+                queen2.unfavoritism += 5;
                 queen3.addToTrackRecord("OUT ");
             }else{
                 lipSync_1[0].addToTrackRecord("SAFE ");
@@ -3013,8 +3015,10 @@ function LaLaPaRuZa(){
                 currentCast.push(lipSync[0]);
                 lipSync[0].addToTrackRecord("RTRN");
                 eliminatedCast.splice(eliminatedCast.indexOf(lipSync[0]), 1);
-                lipSync[1].addToTrackRecord(" SAFE ");
-                lipSync[1].unfavoritism += 2;
+                lipSync[1].addToTrackRecord("ELIM");
+                eliminatedCast.unshift(lipSync[1]);
+                currentCast.splice(currentCast.indexOf(lipSync[1]), 1);
+                lipSync[1].unfavoritism += 5;
             }else{
                 lipSync[0].addToTrackRecord("SAFE ");
                 lipSync[1].addToTrackRecord("OUT ");
