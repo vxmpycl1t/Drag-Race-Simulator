@@ -714,7 +714,9 @@ function removeQueen() {
     }
     list.options[list.selectedIndex].remove();
 }
+var custommode = false;
 function customStartSimulation() {
+    custommode = true;
     if (customCast.length == 0) {
         window.alert("Your cast is empty!");
         return;
@@ -1209,10 +1211,12 @@ function contestantProgress() {
     th.innerHTML = "Queen";
     th.setAttribute("style", "background-color: #e9dfe9; font-weight: bold;");
     header.appendChild(th);
-    var th_i = document.createElement("th");
-    th_i.innerHTML = "Photo";
-    th_i.setAttribute("style", "background-color: #e9dfe9; font-weight: bold;");
-    header.appendChild(th_i);
+    if (!custommode) {
+        var th_i = document.createElement("th");
+        th_i.innerHTML = "Photo";
+        th_i.setAttribute("style", "background-color: #e9dfe9; font-weight: bold;");
+        header.appendChild(th_i);
+    }
     for (var i = 0; i < episodeChallenges.length; i++) {
         var th_1 = document.createElement("th");
         th_1.innerHTML = episodeChallenges[i];
@@ -1233,9 +1237,11 @@ function contestantProgress() {
         winnerQueen = finalLS[0];
     name.innerHTML = winnerQueen.getName();
     winner.appendChild(name);
-    var photow = document.createElement("td");
-    photow.setAttribute("style", "background: url("+ winnerQueen.getImg() +"); background-size: 106px 106px; background-position: center;");
-    winner.appendChild(photow);
+    if (!custommode) {
+        var photow = document.createElement("td");
+        photow.setAttribute("style", "background: url("+ winnerQueen.getImg() +"); background-size: 106px 106px; background-position: center;");
+        winner.appendChild(photow);
+    }
     for (var i = 0; i < winnerQueen.trackRecord.length+1; i++) {
         var placement = document.createElement("td");
         placement.innerHTML = winnerQueen.trackRecord[i];
@@ -1330,9 +1336,11 @@ function contestantProgress() {
         name_1.setAttribute("style", "background-color: #f5ebf5; font-weight: bold;  height: 100px;");
         name_1.innerHTML = eliminatedCast[i].getName();
         contestant.appendChild(name_1);
-        var photo = document.createElement("td");
-        photo.setAttribute("style", "background: url("+ eliminatedCast[i].getImg() +"); background-size: 106px 106px; background-position: center;");
-        contestant.appendChild(photo);
+        if (!custommode) {
+            var photo = document.createElement("td");
+            photo.setAttribute("style", "background: url("+ eliminatedCast[i].getImg() +"); background-size: 106px 106px; background-position: center;");
+            contestant.appendChild(photo);
+        }
         for (var k = 0; k < eliminatedCast[i].trackRecord.length+1; k++) {
             var placement = document.createElement("td");
             placement.innerHTML = eliminatedCast[i].trackRecord[k];
