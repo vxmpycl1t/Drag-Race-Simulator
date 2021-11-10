@@ -2704,6 +2704,19 @@ var tayce = new Queen("Tayce", 9, 9, 12, 5, 9, 9, 14, "img/UK2/TayceDRUK2Cast.jp
 var tia = new Queen("Tia Kofi", 9, 11, 8, 3, 6, 5, 11, "img/UK2/TiaKofiDRUK2Cast.jpg");
 var veronica = new Queen("Veronica Green", 7, 7, 11, 8, 5, 10, 7, "img/UK3/VeronicaGreenDRUK3Cast.jpg");
 var uk_season2 = [awhora, asttina, bimini, cherry, ellie, ginny, joe, lawrence, sister, tayce, tia, veronica];
+//DRUK SEASON 3
+var anubis = new Queen("Anubis", 5, 6, 4, 6, 5, 4, 7, "img/UK3/AnubisDRUK3Cast.jpg");
+var charity = new Queen("Charity Kase", 8, 7, 5, 9, 7, 13, 9, "img/UK3/CharityKaseDRUK3Cast.jpg");
+var choriza = new Queen("Choriza May", 8, 10, 7, 6, 6, 8, 6, "img/UK3/ChorizaMayDRUK3Cast.jpg");
+var elektraF = new Queen("Elektra Fence", 8, 7, 12, 6, 6, 7, 12, "img/UK3/ElektraFenceDRUK3Cast.jpg");
+var ella = new Queen("Ella Vaday", 7, 9, 7, 10, 9, 10, 9, "img/UK3/EllaVadayDRUK3Cast.jpg");
+var kitty = new Queen("Kitty Scott-Claus", 10, 10, 5, 7, 8, 9, 7, "img/UK3/KittyScottClausDRUK3Cast.jpg");
+var krystal = new Queen("Krystal Versace", 7, 7, 11, 10, 8, 14, 11, "img/UK3/KrystalVersaceDRUK3Cast.jpg");
+var river = new Queen("River Medway", 7, 8, 6, 9, 6, 7, 6, "img/UK3/RiverMedwayDRUK3Cast.jpg");
+var scarlettH = new Queen("Scarlett Harlett", 7, 8, 8, 10, 7, 10, 9, "img/UK3/ScarlettHarlettDRUK3Cast.jpg");
+var vanity = new Queen("Vanity Milan", 10, 7, 12, 6, 7, 8, 14, "img/UK3/VanityMilanDRUK3Cast.jpg");
+var victoriaS = new Queen("Victoria Scone", 8, 11, 8, 6, 7, 10, 8, "img/UK3/VictoriaSconeDRUK3Cast.jpg");
+var uk_season3 = [anubis, charity, choriza, elektraF, ella, kitty, krystal, river, scarlettH, vanity, veronica, victoriaS];
 //CAN SEASON 1
 var anastarzia = new Queen("Anastarzia Anaquway", 7, 7, 6, 10, 8, 9, 10, "img/CAN1/AnastarziaAnaquwayCDR1Cast.jpg");
 var boa = new Queen("BOA", 6, 9, 6, 7, 6, 8, 8, "img/CAN1/BOACDR1Cast.jpg");
