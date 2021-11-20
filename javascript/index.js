@@ -2359,6 +2359,7 @@ function lsaLipSync() {
     screen.createBold(top2[0].lipstick.getName() + ", you will always be an All Star, now, sashay away...");
     top2[0].lipstick.addToTrackRecord("ELIM");
     top2[0].lipstick.unfavoritism += 5;
+    top2[0].lipstick.votes = 0;
     eliminatedCast.unshift(top2[0].lipstick);
     bottomQueens.splice(bottomQueens.indexOf(top2[0].lipstick), 1);
     currentCast.splice(currentCast.indexOf(top2[0].lipstick), 1);
