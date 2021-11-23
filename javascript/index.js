@@ -2824,7 +2824,16 @@ var pupi = new Queen("Pupi Poisson", 10, 13, 8, 6, 9, 9, 9, "img/ES1/PupiPoisson
 var sagittaria = new Queen("Sagittaria", 7, 8, 9, 9, 8, 10, 8, "img/ES1/SagittariaDRE1Cast.jpg");
 var macarena = new Queen("The Macarena", 6, 7, 6, 5, 5, 7, 7, "img/ES1/TheMacarenaDRE1Cast.jpg");
 var dres = [arantxa, carmenf, dovima, drag, hugaceo, inti, killer, pupi, sagittaria, macarena];
-
+//DRAG RACE ITALIA
+var ava = new Queen("Ava Hangar", 8, 7, 8, 6, 8, 7, 8, "img/ITA1/AvaHangarDRI1Cast.jpg");
+var divinity = new Queen("Divinity", 8, 7, 8, 7, 8, 7, 8, "img/ITA1/DivinityDRI1Cast.jpg");
+var bionic = new Queen("Elecktra Bionic", 8, 7, 8, 8, 8, 7, 8, "img/ITA1/ElecktraBionicDRI1Cast.jpg");
+var enorma = new Queen("Enorma Jean", 8, 7, 8, 6, 8, 7, 8, "img/ITA1/EnormaJeanDRI1Cast.jpg");
+var farida = new Queen("Farida Kant", 8, 7, 8, 10, 8, 7, 8, "img/ITA1/FaridaKantDRI1Cast.jpg");
+var ivana = new Queen("Ivana Vamp", 8, 7, 8, 5, 8, 7, 8, "img/ITA1/IvanaVampDRI1Cast.jpg");
+var riche = new Queen("Le Riche", 8, 7, 8, 8, 8, 7, 8, "img/ITA1/LeRicheDRI1Cast.jpg");
+var luquisha = new Queen("Luquisha Lubamba", 8, 7, 8, 5, 8, 7, 8, "img/ITA1/LuquishaLubambaDRI1Cast.jpg");
+var drita = [ava, divinity, bionic, enorma, farida, ivana, riche, luquisha];
 //all possible queens:
 var allQueens = [
     akashia, bebe, jade, ninaf, ongina, rebecca, shannel, tammie, victoria,
@@ -2843,10 +2852,12 @@ var allQueens = [
     baga, blu, cheryl, crystaluk, divina, gothy, scaredy, sumting, viv, vinegar,
     awhora, asttina, bimini, cherry, ellie, ginny, joe, lawrence, sister, tayce, tia, veronica,
     anastarzia, boa, ilona, jimbo, juice, kiara, kyne, lemon, priyanka, rita, bobo, tynomi,
+    adriana, beth, eve, giaM, icesis, kendall, kimoraA, oceane, pythia, stephanie, suki, synthia,
     chelsea, envy, janey, madamem, mama, megan, abby, patty, roem, sederginne,
     ivyelyse, juicy, keta, lovemasisi, mylittlepuny, reggy, tabitha, countess, vanessavancartier, vivaldi,
     anita, art, cocoj, elektra, etc, jojo, karen, kita, maxi,
     arantxa, carmenf, dovima, drag, hugaceo, inti, killer, pupi, sagittaria, macarena,
+    ava, divinity, bionic, enorma, farida, ivana, riche, luquisha,
     amadiva, annee, b, bunny, dearis, jaja, meannie, morrigan, natalia, petchra,
     angele, bandit, genie, kana, kandyz, katy, m, maya, mocha, gimhuay, silver, srimala, tormai, vanda,
     pangina
