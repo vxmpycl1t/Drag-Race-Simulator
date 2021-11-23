@@ -2732,6 +2732,20 @@ var rita = new Queen("Rita Baga", 10, 9, 5, 10, 9, 12, 12, "img/CAN1/RitaBagaCDR
 var bobo = new Queen("Scarlett BoBo", 9, 9, 9, 9, 9, 10, 9, "img/CAN1/ScarlettBoBoCDR1Cast.jpg");
 var tynomi = new Queen("Tynomi Banks", 5, 7, 7, 8, 5, 9, 11, "img/CAN1/TynomiBanksCDR1Cast.jpg");
 var can_season1 = [anastarzia, boa, ilona, jimbo, juice, kiara, kyne, lemon, priyanka, rita, bobo, tynomi];
+//CAN SEASON 2
+var adriana = new Queen("Adriana", 11, 7, 7, 5, 5, 8, 7, "img/CAN2/AdrianaCDR2Cast.jpg");
+var beth = new Queen("Beth", 7, 7, 7, 5, 4, 6, 7, "img/CAN2/BethCDR2Cast.jpg");
+var eve = new Queen("Eve 6000", 9, 7, 6, 5, 5, 8, 7, "img/CAN2/Eve6000CDR2Cast.jpg");
+var giaM = new Queen("Gia Metric", 8, 7, 11, 8, 8, 8, 11, "img/CAN2/GiaMetricCDR2Cast.jpg");
+var icesis = new Queen("Icesis Couture", 7, 7, 7, 12, 7, 10, 8, "img/CAN2/IcesisCoutureCDR2Cast.jpg");
+var kendall = new Queen("Kendall Gender", 6, 5, 10, 7, 7, 7, 8, "img/CAN2/KendallGenderCDR2Cast.jpg");
+var kimoraA = new Queen("Kimora Amour", 7, 7, 7, 6, 7, 8, 7, "img/CAN2/KimoraAmourCDR2Cast.jpg");
+var oceane = new Queen("Océane Aqua-Black", 7, 6, 5, 7, 4, 8, 8, "img/CAN2/OceaneAqua-BlackCDR2Cast.jpg");
+var pythia = new Queen("Pythia", 8, 8, 10, 10, 8, 10, 8, "img/CAN2/PythiaCDR2Cast.jpg");
+var stephanie = new Queen("Stephanie Prince", 5, 6, 7, 10, 7, 9, 8, "img/CAN2/StephaniePrinceCDR2Cast.jpg");
+var suki = new Queen("Suki Doll", 7, 7, 6, 9, 5, 8, 7, "img/CAN2/SukiDollCDR2Cast.jpg");
+var synthia = new Queen("Synthia Kiss", 6, 7, 10, 6, 12, 8, 11, "img/CAN2/SynthiaKissCDR2Cast.jpg");
+var can_season2 = [adriana, beth, eve, giaM, icesis, kendall, kimoraA, oceane, pythia, stephanie, suki, synthia];
 //DRAG RACE HOLLAND 1
 var chelsea = new Queen("Chelsea Boy", 8, 9, 6, 9, 9, 11, 5, "img/HOLL1/ChelseaBoyDRH1Cast.jpg");
 var envy = new Queen("Envy Peru", 10, 10, 9, 10, 9, 13, 9, "img/HOLL1/EnvyPeruDRH1Cast.jpg");
