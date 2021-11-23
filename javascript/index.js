@@ -2990,6 +2990,18 @@ function LaLaPaRuZa(){
     screen.createParagraph("All of the eliminated All Stars get a chance to return to the competition. But first they have to send home a competing All Star in a shocking mid season lip sync smackdown.");
     var smack = eliminatedCast.slice();
     var smack1 = currentCast.slice();
+    for (var i = 0; i < smack1.length; i++){
+        var trds = smack1[i].trackRecord.length - 1;
+        if (smack1[i].trackRecord[trds] == "WIN") {
+            smack1[i].addToTrackRecord("RUN");
+            smack1.splice(i, 1);
+            i--;
+        }else if (smack1[i].trackRecord[trds] == "TOP2") {
+            smack1[i].addToTrackRecord("RUN");
+            smack1.splice(i, 1);
+            i--;
+        }
+    }
     for (var i = 0; i < smack.length; i++) {
         screen.createHorizontalLine();
         var queen1 = smack[i];
@@ -2999,8 +3011,8 @@ function LaLaPaRuZa(){
         if (smack.length == 2) {
             i++;
         }
-        if (smack1.length == 1 && smack.length == 0) {
-            var queen3 = smack1[0];
+        if (smack1.length == 0) {
+            var queen3 = smack[i+1];
            //  smack1.splice(smack1.indexOf(queen3), 1);
             screen.createBold(queen1.getName() + ", " + queen2.getName() + " and " + queen3.getName() + " will lipsync...");
             lsSong();
@@ -3009,10 +3021,11 @@ function LaLaPaRuZa(){
                 lipSync_1[i_1].getASLipsync();
             }
             queen1.lipsyncScore -= 4;
+            queen3.lipsyncScore -= 4;
             lipSync_1.sort(function (a, b) { return (b.lipsyncScore - a.lipsyncScore); });
             screen.createBold(lipSync_1[0].getName() + ", shantay you stay!");
             screen.createBold(lipSync_1[1].getName() + " and " + lipSync_1[2].getName() + ", sashay away...");
-            if (queen1 == lipSync[0]) {
+            if (queen1 == lipSync_1[0]) {
                 currentCast.push(lipSync_1[0]);
                 lipSync_1[0].addToTrackRecord("RTRN ");
                 eliminatedCast.splice(eliminatedCast.indexOf(lipSync_1[0]), 1);
@@ -3021,10 +3034,21 @@ function LaLaPaRuZa(){
                 currentCast.splice(currentCast.indexOf(queen2), 1);
                 queen2.unfavoritism += 5;
                 queen3.addToTrackRecord("OUT ");
+            }else if(queen3 == lipSync_1[0]){
+                currentCast.push(lipSync_1[0]);
+                lipSync_1[0].addToTrackRecord("RTRN ");
+                eliminatedCast.splice(eliminatedCast.indexOf(lipSync_1[0]), 1);
+                queen2.addToTrackRecord("ELIM");
+                eliminatedCast.unshift(queen2);
+                currentCast.splice(currentCast.indexOf(queen2), 1);
+                queen2.unfavoritism += 5;
+                queen1.addToTrackRecord("OUT ");
             }else{
                 lipSync_1[0].addToTrackRecord("SAFE ");
                 queen1.addToTrackRecord("OUT ");
+                queen3.addToTrackRecord("OUT ");
             }
+            i++;
         }else{
             screen.createBold(queen1.getName() + " and " + queen2.getName() + " will lipsync...");
             screen.createBold("The time has come for you to lip-sync... for your lives! Good luck, and don't fuck it up.");
