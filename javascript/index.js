@@ -2519,7 +2519,7 @@ var us_season3 = [alexis, carmen, delta, india, manila, mariah, mimi, phoenix, r
 //SEASON 4:
 var alisa = new Queen("Alisa Summers", 4, 4, 6, 2, 3, 5, 3, "img/US4/AlisaSummersS4Cast.png");
 var chad = new Queen("Chad Michaels", 9, 9, 8, 8, 9, 9, 9, "img/AS1/ChadMichaelsAS1Cast.png");
-var dida = new Queen("Dida Ritz", 6, 7, 7, 5, 7, 7, 11, "img/US4/DiDaRitzS4Cast.jpg");
+var dida = new Queen("Dida Ritz", 6, 7, 7, 5, 7, 7, 11, "img/US4/DidaRitzS4Cast.jpg");
 var jiggly = new Queen("Jiggly Caliente", 6, 4, 7, 3, 3, 6, 10, "img/AS6/JigglyCalienteAS6Cast.png");
 var kenya = new Queen("Kenya Michaels", 5, 6, 6, 6, 4, 7, 6, "img/US4/KenyaMichaelsS4Cast.jpg");
 var leshauwn = new Queen("Lashauwn Beyond", 5, 4, 7, 11, 5, 9, 7, "img/US4/LashauwnBeyondS4Cast.jpg");
