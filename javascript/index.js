@@ -3036,7 +3036,7 @@ function LaLaPaRuZa(){
         if (smack.length == 2) {
             i++;
         }
-        if (smack1.length == 0) {
+        if (smack1.length == 0 && smack.length%2 == 1) {
             var queen3 = smack[i+1];
            //  smack1.splice(smack1.indexOf(queen3), 1);
             screen.createBold(queen1.getName() + ", " + queen2.getName() + " and " + queen3.getName() + " will lipsync...");
