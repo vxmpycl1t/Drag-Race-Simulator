@@ -2851,6 +2851,7 @@ var allQueens = [
     denali, elliott, mik, joey, kahmora, kandym, lala, olivia, rose, symone, tamisha, tina, utica,
     baga, blu, cheryl, crystaluk, divina, gothy, scaredy, sumting, viv, vinegar,
     awhora, asttina, bimini, cherry, ellie, ginny, joe, lawrence, sister, tayce, tia, veronica,
+    anubis, charity, choriza, elektraF, ella, kitty, krystal, river, scarlettH, vanity, victoriaS,
     anastarzia, boa, ilona, jimbo, juice, kiara, kyne, lemon, priyanka, rita, bobo, tynomi,
     adriana, beth, eve, giaM, icesis, kendall, kimoraA, oceane, pythia, stephanie, suki, synthia,
     chelsea, envy, janey, madamem, mama, megan, abby, patty, roem, sederginne,
