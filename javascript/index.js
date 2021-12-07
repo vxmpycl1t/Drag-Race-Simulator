@@ -2679,6 +2679,22 @@ var utica = new Queen("Utica Queen", 7, 4, 4, 13, 4, 10, 10, "img/US13/UticaQuee
 var us_season13 = [denali, elliott, mik, joey, kahmora, kandym, lala, olivia, rose, symone, tamisha, tina, utica];
 //ALL STARS 6
 var allstars_6 = [akeria, eureka, ginger, jan, jiggly, pandora, rajah, scarlet, serena, silky, sonique, trinityk, yara];
+//SEASON 14
+var alyssaH = new Queen("Alyssa Hunter", 7, 7, 7, 7, 7, 7, 7, "img/US14/AlyssaHunterS14Cast.jpg");
+var angeria = new Queen("Angeria Paris VanMicheals", 7, 7, 7, 7, 7, 7, 7, "img/US14/AngeriaParisVanMichealsS14Cast.jpg");
+var bosco = new Queen("Bosco", 7, 7, 7, 7, 7, 7, 7, "img/US14/BoscoS14Cast.jpg");
+var daya = new Queen("Daya Betty", 7, 7, 7, 7, 7, 7, 7, "img/US14/DayaBettyS14Cast.jpg");
+var deja = new Queen("DeJa Skye", 7, 7, 7, 7, 7, 7, 7, "img/US14/DejaSkyeS14Cast.jpg");
+var jasmineK = new Queen("Jasmine Kennedie", 7, 7, 7, 7, 7, 7, 7, "img/US14/JasmineKennedieS14Cast.jpg");
+var jorgeous = new Queen("Jorgeous", 7, 7, 7, 7, 7, 7, 7, "img/US14/JorgeousS14Cast.jpg");
+var june = new Queen("June Jambalaya", 7, 7, 7, 7, 7, 7, 7, "img/US14/JuneJambalayaS14Cast.jpg");
+var kerri = new Queen("Kerri Colby", 7, 7, 7, 7, 7, 7, 7, "img/US14/KerriColbyS14Cast.jpg");
+var kornbread = new Queen("Kornbread Jeté", 7, 7, 7, 7, 7, 7, 7, "img/US14/KornbreadJeteS14Cast.jpg");
+var cadmen = new Queen("Lady Camden", 7, 7, 7, 7, 7, 7, 7, "img/US14/LadyCamdenS14Cast.jpg");
+var maddy = new Queen("Maddy Morphosis", 7, 7, 7, 7, 7, 7, 7, "img/US14/MaddyMorphosisS14Cast.jpg");
+var orion = new Queen("Orion Story", 7, 7, 7, 7, 7, 7, 7, "img/US14/OrionStoryS14Cast.jpg");
+var willow = new Queen("Willow Pill", 7, 7, 7, 7, 7, 7, 7, "img/US14/WillowPillS14Cast.jpg");
+var us_season14 = [alyssaH, angeria, bosco, daya, deja, jasmineK, jorgeous, june, kerri, kornbread, cadmen, maddy, orion, willow];
 //DRUK SEASON 1
 var baga = new Queen("Baga Chipz", 11, 12, 6, 7, 11, 8, 9, "img/UK1/BagaChipzDRUK1Cast.jpg");
 var blu = new Queen("Blu Hydrangea", 5, 8, 3, 9, 9, 11, 8, "img/UK1/BluHydrangeaDRUK1Cast.jpg");
@@ -2849,6 +2865,7 @@ var allQueens = [
     akeria, ariel, brooke, honeyd, kahanna, mercedes, ninaw, plastique, rajah, scarlet, shuga, silky, yvie,
     aiden, brita, crystal, dahlia, gigi, heidi, jackie, jaida, jan, nicky, rock, widow,
     denali, elliott, mik, joey, kahmora, kandym, lala, olivia, rose, symone, tamisha, tina, utica,
+    alyssaH, angeria, bosco, daya, deja, jasmineK, jorgeous, june, kerri, kornbread, cadmen, maddy, orion, willow,
     baga, blu, cheryl, crystaluk, divina, gothy, scaredy, sumting, viv, vinegar,
     awhora, asttina, bimini, cherry, ellie, ginny, joe, lawrence, sister, tayce, tia, veronica,
     anubis, charity, choriza, elektraF, ella, kitty, krystal, river, scarlettH, vanity, victoriaS,
