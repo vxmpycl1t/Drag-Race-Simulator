@@ -4,26 +4,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Drag Race Simulator</title>
-    <link href="icofont/icofont.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.5.5/css/simple-line-icons.min.css" rel="stylesheet" />
-    <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
-    <link rel="icon" type="image/x-icon" href="img/favicon.ico">
+    <title>RuPaul's Drag Race Simulator</title>
+    <link rel="icon" href="image/favicon.ico">
     <link rel="stylesheet" href="css/style.light.css">
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css" />
 </head>
-<body onload="preQueens()">
-    <a class="menu-toggle rounded" href="#"><i class="fas fa-bars"></i></a>
-        <nav id="sidebar-wrapper">
-            <ul class="sidebar-nav">
-                <li class="sidebar-brand">This simulator was created by <a href="https://edssb.github.io/rupauls-drag-race-simulator/index.html" target=_blank>edssb/JustALittleKiller</a></li>
-                <li class="sidebar-nav-item"><a href="index.html">Star your simulation</a></li>
-                <li class="sidebar-nav-item"><a href="predef.html">Predef Casts</a></li>
-                <li class="sidebar-nav-item"><a href="custom.html">Custom</a></li>
-            </ul>
-        </nav>
+
+<h1 id="MainTitle">Custom</h1>
+
+<body onload="customQueenSelectList()">
     <div id="MainBlock">
-        <h1>Custom</h1>
         <big>Go here if you want to create a cast with custom queens or create your own rendition of the show's queens!</big>
         <p>
             <b>Queen name: </b><input type="text" id="queenName">
@@ -33,82 +22,52 @@
         </p>
         <small>(Queens' stats must range from 0 to 15)</small>
         <p>
-            <b>Acting stat: </b> <input type="number"  id="actingStat" class="stats" min="0" max="15">
+            <b>Acting stat: </b> <input type="number"  id="actingStat" class="stats">
         </p>
         <p>
-            <b>Comedy stat: </b> <input type="number"  id="comedyStat" class="stats" min="0" max="15">
+            <b>Comedy stat: </b> <input type="number"  id="comedyStat" class="stats">
         </p>
         <p>
-            <b>Dance stat: </b> <input type="number"  id="danceStat" class="stats" min="0" max="15">
+            <b>Dance stat: </b> <input type="number"  id="danceStat" class="stats">
         </p>
         <p>
-            <b>Design stat: </b> <input type="number"  id="designStat" class="stats" min="0" max="15">
+            <b>Design stat: </b> <input type="number"  id="designStat" class="stats">
         </p>
         <p>
-            <b>Improv stat: </b> <input type="number"  id="improvStat" class="stats" min="0" max="15">
+            <b>Improv stat: </b> <input type="number"  id="improvStat" class="stats">
         </p>
         <p>
-            <b>Runway stat: </b> <input type="number"  id="runwayStat" class="stats" min="0" max="15">
+            <b>Runway stat: </b> <input type="number"  id="runwayStat" class="stats">
         </p>
         <p>
-            <b>Lip-Sync stat: </b> <input type="number"  id="lipsyncStat" class="stats" min="0" max="15">
+            <b>Lip-Sync stat: </b> <input type="number"  id="lipsyncStat" class="stats">
         </p>
         <button onclick="addQueen()">Add queen</button>
-
-        <p><select id="preQueens"></select></p>
-        <p><button id="addthequeen" onclick="addPreQueen()">Add pre-defined queen</button></p>
-
         <p>
-            Your cast:
+            <b id="announce-new"></b>
         </p>
-    
-        <select id="cast" size="10"></select>  
-        <p>
-            <button onclick="removeQueen()">Remove queen</button>  
-        </p> 
+        <hr>
 
-        <p>Select your premiere format: </p>
-        <select id="premiere-format">
-            <option>Normal premiere</option>
-            <option value="s6-premiere">Double Premiere</option>
-            <option value="s12-premiere">Double Premiere (No Elimination)</option>
-            <option value="porkchop">Porkchop Premiere</option>
-        </select>
-        
-        <p>Select your finale format: </p>
-        <select id="format">
-            <option value="top3">Top 3 Format</option>
-            <option value="top4">Lipsync For The Crown</option>
-            <option value="team">Teams Format</option>
-            <option value="all-stars">Lipsync For Your Legacy</option>
-            <option value="lipsync-assassin">Lipsync Assassin Format</option>
-            
-        </select>
-
-        <div>
-            <p><input type="checkbox" id="disableDouble"> Disable double shantays and sashays</p>
-            <p><input type="checkbox" id="disableReturn"> Disable queens returning</p>
-        </div>
+        <h2>Remove custom queen</h2>
+        <big>Go here to remove one of your already created custom queens.</big>
 
         <p>
-            <button onclick="customStartSimulation()">Start simulation!</button>
+        <select id="custom-remove"></select>
         </p>
+
+        <button onclick="removeCustomQueen()">Remove queen</button>
+        <p>
+            <b id="announce-remove"></b>
+        </p>
+
+        <hr>
 
         <div>
             <p>
-                <big><a class="BackMain" href="index.html">Back to main page</a></big>
+                <big><a href="index.html" id="inblock">Save changes and back to main page</a></big>
             </p>
         </div>
     </div>
-    <script src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
-    <script>
-    kofiWidgetOverlay.draw('rupaulssimulator', {
-        'type': 'floating-chat',
-        'floating-chat.donateButton.text': 'Tip edssb',
-        'floating-chat.donateButton.background-color': '#5bc0de',
-        'floating-chat.donateButton.text-color': '#323842'
-    });
-    </script>
 </body>
 <script src="javascript/index.js">
 </script>
