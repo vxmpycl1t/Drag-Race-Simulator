@@ -919,6 +919,7 @@ function reSimulate() {
     ballCounter = false;
     doubleShantay = false;
     doubleSashay = false;
+    returningQueen = false;
     //refill lip-sync songs and lsa
     lsSongs = allLsSongs;
     allQueens = allQueensCopy;
@@ -3000,6 +3001,10 @@ function LaLaPaRUza(){
             smack1.splice(i, 1);
             i--;
         }else if (smack1[i].trackRecord[trds] == "TOP2") {
+            smack1[i].addToTrackRecord("RUN");
+            smack1.splice(i, 1);
+            i--;
+        }else if (smack1[i].trackRecord[trds] == " WIN"){
             smack1[i].addToTrackRecord("RUN");
             smack1.splice(i, 1);
             i--;
