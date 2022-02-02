@@ -510,7 +510,7 @@ function createChallenge(challenges, miniChallengeScreen) {
     else if (premiereCounter <= 2 && (s12Premiere || porkchopPremiere))
         miniChallengeScreen.createButton("Proceed", "rumix()");
     //talent show for all stars
-    else if (currentCast.length == totalCastSize && (all_stars || lipsync_assassin))
+    else if (currentCast.length == totalCastSize && (all_stars || lipsync_assassin) || currentCast == firstCast && s14Premiere || currentCast == secondCast && s14Premiere)
         miniChallengeScreen.createButton("Proceed", "talentshow()");
     //snatch game
     else if (totalCastSize >= 10 && currentCast.length == 9 && !team && snatchCounter == false || totalCastSize >= 6 && currentCast.length == 5 && team)
@@ -709,7 +709,7 @@ let firstCast = [];
 let secondCast = [];
 function doublePremiere() {
     if (premiereCounter == 0)
-        if (s6Premiere || s12Premiere) {
+        if (s6Premiere || s12Premiere || s14Premiere) {
             shuffle(currentCast);
             firstCast = currentCast.splice(0, Math.floor(currentCast.length / 2));
             secondCast = [...currentCast];
@@ -725,6 +725,17 @@ function doublePremiere() {
         currentCast = secondCast;
         for (let i = 0; i < firstCast.length; i++)
             firstCast[i].addToTrackRecord("");
+        premiereCounter++;
+        newEpisode();
+    }
+    else if (premiereCounter == 2 && s14Premiere) {
+        currentCast = [...firstCast, ...secondCast];
+        for (let i = 0; i < eliminatedCast.length; i++){
+            let queen = eliminatedCast[i];
+            currentCast.push(queen);
+            eliminatedCast.splice(eliminatedCast.indexOf(queen), 1);
+            i--;
+        }
         premiereCounter++;
         newEpisode();
     }
@@ -836,6 +847,7 @@ let returningQueen = false;
 let noDouble = false;
 let s6Premiere = false;
 let s12Premiere = false;
+let s14Premiere = false;
 let porkchopPremiere = false;
 let firstPremiere = false;
 let secondPremiere = false;
@@ -849,7 +861,7 @@ function newEpisode() {
     top2 = [];
     episodeCount++;
     let queensRemainingScreen = new Scene();
-    if (episodeCount == 1 || premiereCounter <= 2 && (s12Premiere || porkchopPremiere || s6Premiere) || team) {
+    if (episodeCount == 1 || premiereCounter <= 2 && (s12Premiere || porkchopPremiere || s6Premiere || s14Premiere) || team) {
         queensRemainingScreen.clean();
         queensRemainingScreen.createHeader("Full cast");
         for (let i = 0; i < currentCast.length; i++) {
@@ -923,7 +935,7 @@ function reSimulate() {
     //refill lip-sync songs and lsa
     lsSongs = allLsSongs;
     allQueens = allQueensCopy;
-    if (s6Premiere || s12Premiere)
+    if (s6Premiere || s12Premiere || s14Premiere)
         doublePremiere();
     else if (porkchopPremiere)
         porkchopLipsyncs();
@@ -1543,6 +1555,8 @@ function predefCast(cast, format, premiere = '', returning = '') {
         s6Premiere = true;
     else if (premiere == "s12-premiere")
         s12Premiere = true;
+    else if (premiere == "s14-premiere")
+        s14Premiere = true;
     else if (premiere == "porkchop")
         porkchopPremiere = true;
     if (returning == "return")
@@ -1555,7 +1569,7 @@ function predefCast(cast, format, premiere = '', returning = '') {
         lalaparuza = true;
     if (document.getElementById("disableDouble").checked == true)
         noDouble = true;
-    if (s6Premiere || s12Premiere)
+    if (s6Premiere || s12Premiere || s14Premiere)
         doublePremiere();
     else if (porkchopPremiere)
         porkchopLipsyncs();
@@ -1598,6 +1612,8 @@ function startSimulation(challenge = "") {
             s6Premiere = true;
         else if (select2.options[select2.selectedIndex].value == "s12-premiere")
             s12Premiere = true;
+        else if (select2.options[select2.selectedIndex].value == "s14-premiere")
+            s14Premiere = true;
         else if (select2.options[select2.selectedIndex].value == "porkchop")
             porkchopPremiere = true;
         if (select3.options[select3.selectedIndex].value == "random")
@@ -1621,10 +1637,11 @@ function startSimulation(challenge = "") {
             currentCast = [];
             team = false;
         }
-        else if ((s6Premiere || s12Premiere || porkchopPremiere) && currentCast.length < 10) {
+        else if ((s6Premiere || s12Premiere || porkchopPremiere || s14Premiere) && currentCast.length < 10) {
             window.alert("Double Premiere formats needs at least 10 queens!");
             s6Premiere = false;
             s12Premiere = false;
+            s14Premiere = false;
             porkchopPremiere = false;
             top4 = false;
             top3 = false;
@@ -1632,7 +1649,7 @@ function startSimulation(challenge = "") {
             all_stars = false;
             currentCast = [];
         }
-        else if (team && (smackdown || voteReturn || randomReturn || s6Premiere || rurupalooza || s12Premiere || porkchopPremiere)) {
+        else if (team && (smackdown || voteReturn || randomReturn || s6Premiere || lalaparuza || s12Premiere || porkchopPremiere || s14Premiere)) {
             window.alert("The team format isn't supported with any special premiere or returning formats, sorry!");
             team = false;
             smackdown = false;
@@ -1641,9 +1658,23 @@ function startSimulation(challenge = "") {
             lalaparuza = false;
             s6Premiere = false;
             s12Premiere = false;
+            s14Premiere = false;
             porkchopPremiere = false;
         }
-        else if (s6Premiere || s12Premiere) {
+        else if (smackdown && !noDouble) {
+            window.alert("The Lipsync Smackdown format isn't supported with double shantays or sashays, sorry!");
+            s14Premiere = false;
+            s12Premiere = false;
+            s6Premiere = false;
+            porkchopPremiere = false;
+            currentCast = [];
+            top4 = false;
+            top3 = false;
+            lipsync_assassin = false;
+            smackdown = false;
+            all_stars = false;
+        }
+        else if (s6Premiere || s12Premiere || s14Premiere) {
             doublePremiere();
         }
         else if (porkchopPremiere) {
@@ -2177,7 +2208,7 @@ function lipSync() {
         eliminatedCast.unshift(bottomQueens[1]);
         currentCast.splice(currentCast.indexOf(bottomQueens[1]), 1);
     }
-    if ((s6Premiere || s12Premiere || porkchopPremiere) == true && premiereCounter < 3)
+    if ((s6Premiere || s12Premiere || porkchopPremiere || s14Premiere) == true && premiereCounter < 3)
         screen.createButton("Proceed", "doublePremiere()");
     else if (CheckForReturning() == true)
         screen.createButton("Proceed", "returningQueenScreen()");
@@ -2295,7 +2326,7 @@ function asLipSync() {
             bottomQueens[i].addToTrackRecord("BTM2");
         bottomQueens[i].unfavoritism += 3;
     }
-    if ((s6Premiere || s12Premiere || porkchopPremiere) == true && premiereCounter < 3)
+    if ((s6Premiere || s12Premiere || porkchopPremiere || s14Premiere) == true && premiereCounter < 3)
         screen.createButton("Proceed", "doublePremiere()");
     else if (CheckForReturning() == true)
         screen.createButton("Proceed", "returningQueenScreen()");
@@ -2356,7 +2387,7 @@ function lsaLipSync() {
         bottomQueens[i].unfavoritism += 2;
         bottomQueens[i].votes = 0;
     }
-    if ((s6Premiere || s12Premiere || porkchopPremiere) == true && premiereCounter < 3)
+    if ((s6Premiere || s12Premiere || porkchopPremiere || s14Premiere) == true && premiereCounter < 3)
         screen.createButton("Proceed", "doublePremiere()");
     else if (CheckForReturning() == true)
         screen.createButton("Proceed", "returningQueenScreen()");
@@ -2646,21 +2677,21 @@ let utica = new Queen("Utica Queen", 7, 4, 4, 14, 4, 10, 12, "Utica");
 let us_season13 = [denali, elliott, mik, joey, kahmora, kandym, lala, olivia, rose, symone, tamisha, tina, utica];
 //ALL STARS 6
 let allstars_6 = [akeria, eureka, ginger, jan, jiggly, pandora, rajah, scarlet, serena, silky, sonique, trinityk, yara];
-//SEASON 14: acting, comedy, dance, design, improv, runway, lipsync
-let alyssaH = new Queen("Alyssa Hunter", 7, 7, 7, 7, 7, 7, 7, "AlyssaH");
-let angeria = new Queen("Angeria Paris VanMicheals", 7, 7, 7, 7, 7, 7, 7, "Angeria");
+//SEASON 14:
+let alyssaH = new Queen("Alyssa Hunter", 7, 7, 7, 8, 7, 7, 7, "AlyssaH");
+let angeria = new Queen("Angeria Paris VanMicheals", 7, 7, 7, 10, 7, 7, 7, "Angeria");
 let bosco = new Queen("Bosco", 7, 7, 7, 7, 7, 7, 7, "Bosco");
-let daya = new Queen("Daya Betty", 7, 7, 7, 7, 7, 7, 7, "DayaBetty");
-let deja = new Queen("DeJa Skye", 7, 7, 7, 7, 7, 7, 7, "Deja");
+let daya = new Queen("Daya Betty", 7, 7, 7, 8, 7, 7, 7, "DayaBetty");
+let deja = new Queen("DeJa Skye", 7, 7, 7, 8, 7, 7, 7, "DeJa");
 let jasmineK = new Queen("Jasmine Kennedie", 7, 7, 7, 7, 7, 7, 7, "JasmineK");
 let jorgeous = new Queen("Jorgeous", 7, 7, 7, 7, 7, 7, 7, "Jorgeous");
-let june = new Queen("June Jambalaya", 7, 7, 7, 7, 7, 7, 7, "June");
+let june = new Queen("June Jambalaya", 7, 7, 7, 4, 7, 7, 8, "June");
 let kerri = new Queen("Kerri Colby", 7, 7, 7, 7, 7, 7, 7, "Kerri");
 let kornbread = new Queen("Kornbread Jeté", 7, 7, 7, 7, 7, 7, 7, "Kornbread");
-let cadmen = new Queen("Lady Camden", 7, 7, 7, 7, 7, 7, 7, "LadyCamden");
-let maddy = new Queen("Maddy Morphosis", 7, 7, 7, 7, 7, 7, 7, "Maddy");
-let orion = new Queen("Orion Story", 7, 7, 7, 7, 7, 7, 7, "Orion");
-let willow = new Queen("Willow Pill", 7, 7, 7, 7, 7, 7, 7, "Willow");
+let cadmen = new Queen("Lady Camden", 7, 7, 7, 8, 7, 7, 7, "LadyCamden");
+let maddy = new Queen("Maddy Morphosis", 7, 7, 7, 5, 7, 7, 6, "Maddy");
+let orion = new Queen("Orion Story", 7, 7, 7, 5, 7, 7, 7, "Orion");
+let willow = new Queen("Willow Pill", 7, 7, 7, 10, 7, 7, 7, "Willow");
 let us_season14 = [alyssaH, angeria, bosco, daya, deja, jasmineK, jorgeous, june, kerri, kornbread, cadmen, maddy, orion, willow];
 //DRUK SEASON 1
 let baga = new Queen("Baga Chipz", 11, 12, 6, 7, 11, 8, 9, "Baga");
@@ -2754,32 +2785,32 @@ let vanessaC = new Queen("Vanessa Van Cartier", 7, 8, 8, 10, 9, 11, 10, "Vanessa
 let vivaldi = new Queen("Vivaldi", 8, 9, 7, 7, 9, 9, 9, "Vivaldi");
 let hol_season2 = [ivyelise, juicy, keta, love, mlp, reggy, tabitha, countess, vanessaC, vivaldi];
 //DRT SEASON 1
-let amadiva = new Queen("Amadiva", 9, 6, 7, 9, 3, 13, 6, "Amadiva");
-let annee = new Queen("Anneé Maywong", 9, 9, 7, 13, 4, 14, 9, "Annee");
-let b = new Queen("B Ella", 7, 9, 6, 8, 11, 7, 7, "B");
+let amadiva = new Queen("Amadiva", 9, 6, 7, 9, 3, 9, 6, "Amadiva");
+let annee = new Queen("Anneé Maywong", 9, 9, 7, 10, 4, 10, 9, "Annee");
+let b = new Queen("B Ella", 7, 9, 6, 8, 9, 7, 7, "B");
 let bunny = new Queen("Bunny Be Fly", 7, 5, 5, 8, 5, 8, 6, "Bunny");
-let dearis = new Queen("Dearis Doll", 7, 7, 7, 10, 10, 11, 10, "Dearis");
-let jaja = new Queen("JAJA", 8, 6, 7, 9, 5, 11, 9, "Jaja");
+let dearis = new Queen("Dearis Doll", 7, 7, 7, 8, 8, 8, 8, "Dearis");
+let jaja = new Queen("JAJA", 8, 6, 7, 9, 5, 9, 9, "Jaja");
 let meannie = new Queen("Meannie Minaj", 7, 5, 5, 6, 5, 5, 5, "Meannie");
 let morrigan = new Queen("Morrigan", 5, 6, 7, 5, 7, 7, 7, "Morrigan");
-let natalia = new Queen("Natalia Pliacam", 9, 9, 7, 13, 9, 14, 12, "Natalia");
+let natalia = new Queen("Natalia Pliacam", 9, 9, 7, 9, 9, 10, 9, "Natalia");
 let petchra = new Queen("Petchra", 7, 7, 6, 7, 8, 7, 9, "Petchra");
 let drt_season1 = [amadiva, annee, b, bunny, dearis, jaja, meannie, morrigan, natalia, petchra];
 //DRT SEASON 2
-let angele = new Queen("Angele Anang", 9, 9, 9, 12, 8, 14, 10, "Angele");
-let bandit = new Queen("Bandit", 7, 7, 7, 10, 6, 14, 9, "Bandit");
+let angele = new Queen("Angele Anang", 9, 9, 9, 9, 8, 10, 10, "Angele");
+let bandit = new Queen("Bandit", 7, 7, 7, 8, 6, 8, 9, "Bandit");
 let genie = new Queen("Genie", 9, 8, 9, 9, 7, 9, 8, "Genie");
-let kana = new Queen("Kana Warrior", 8, 8, 8, 7, 7, 9, 13, "Kana");
-let kandyz = new Queen("Kandy Zyanide", 9, 9, 9, 9, 9, 12, 7, "KandyZ");
-let katy = new Queen("Katy Killer", 7, 8, 7, 8, 7, 10, 8, "Katy");
+let kana = new Queen("Kana Warrior", 8, 8, 8, 7, 7, 9, 10, "Kana");
+let kandyz = new Queen("Kandy Zyanide", 9, 9, 9, 9, 9, 9, 7, "KandyZ");
+let katy = new Queen("Katy Killer", 7, 8, 7, 8, 7, 8, 8, "Katy");
 let m = new Queen("M Stranger Fox", 5, 6, 5, 6, 6, 8, 8, "M");
-let maya = new Queen("Maya B'haro", 9, 8, 6, 9, 9, 10, 7, "Maya");
-let mocha = new Queen("Mocha Diva", 9, 9, 6, 10, 9, 7, 9, "Mocha");
-let gimhuay = new Queen("Miss Gimhuay", 8, 9, 7, 11, 10, 12, 8, "Gimhuay");
+let maya = new Queen("Maya B'haro", 9, 8, 6, 9, 9, 8, 7, "Maya");
+let mocha = new Queen("Mocha Diva", 9, 9, 6, 8, 9, 7, 9, "Mocha");
+let gimhuay = new Queen("Miss Gimhuay", 8, 9, 7, 9, 8, 9, 8, "Gimhuay");
 let silver = new Queen("Silver Sonic", 5, 5, 7, 6, 7, 7, 8, "Silver");
-let srimala = new Queen("Srimala", 7, 7, 8, 7, 8, 11, 12, "Srimala");
+let srimala = new Queen("Srimala", 7, 7, 8, 7, 8, 9, 9, "Srimala");
 let tormai = new Queen("Tormai", 8, 8, 7, 7, 6, 8, 9, "Tormai");
-let vanda = new Queen("Vanda Miss Joaquim", 9, 8, 9, 7, 7, 11, 10, "Vanda");
+let vanda = new Queen("Vanda Miss Joaquim", 9, 8, 9, 7, 7, 9, 9, "Vanda");
 let drt_season2 = [angele, bandit, genie, kana, kandyz, katy, m, maya, mocha, gimhuay, silver, srimala, tormai, vanda];
 //DRAG RACE DOWN UNDER
 let anita = new Queen("Anita Wigl'it", 9, 9, 8, 7, 8, 7, 8, "Anita");
@@ -2957,7 +2988,7 @@ function lipsyncSmackdown() {
             if (porkchopPremiere) {
                 lipSync[0].trackRecord[cappork] = " WIN ";
                 lipSync[1].trackRecord[cappork] = "LOSS";
-             }else if(s12Premiere){
+             }else if(s12Premiere || s14Premiere){
                 lipSync[0].trackRecord[caps6] = " WIN ";
                 lipSync[1].trackRecord[caps6] = "LOSS";
              }else{
