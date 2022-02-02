@@ -3108,7 +3108,7 @@ function LaLaPaRUza(){
         if (smack.length == 2) {
             i++;
         }
-        if (smack1.length == 0 && smack.length%2 == 1) {
+        if (smack1.length == 0 && (currentCast-eliminatedCast) != 0) {
             var queen3 = smack[i+1];
             screen.createImage(queen3.image);
             screen.createBold(queen1.getName() + ", " + queen2.getName() + " and " + queen3.getName() + " will lipsync...");
@@ -3131,7 +3131,6 @@ function LaLaPaRUza(){
                 eliminatedCast.unshift(queen2);
                 currentCast.splice(currentCast.indexOf(queen2), 1);
                 queen2.unfavoritism += 5;
-                var back = true;
                 queen3.addToTrackRecord("OUT ");
             }else if(queen3 == lipSync_1[0]){
                 currentCast.push(lipSync_1[0]);
@@ -3141,7 +3140,6 @@ function LaLaPaRUza(){
                 eliminatedCast.unshift(queen2);
                 currentCast.splice(currentCast.indexOf(queen2), 1);
                 queen2.unfavoritism += 5;
-                var back = true;
                 queen1.addToTrackRecord("OUT ");
             }else{
                 lipSync_1[0].addToTrackRecord("SAFE ");
@@ -3169,7 +3167,6 @@ function LaLaPaRUza(){
                 eliminatedCast.splice(eliminatedCast.indexOf(lipSync[0]), 1);
                 lipSync[1].addToTrackRecord("ELIM");
                 eliminatedCast.unshift(lipSync[1]);
-                var back = true;
                 currentCast.splice(currentCast.indexOf(lipSync[1]), 1);
                 lipSync[1].unfavoritism += 5;
             }else{
