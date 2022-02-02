@@ -923,6 +923,7 @@ function reSimulate() {
         currentCast[i].finaleScore = 0;
         currentCast[i].votes = 0;
         currentCast[i].ppe = 0;
+        currentCast[i].episodesOn = 0;
     }
     //clean challenges
     episodeChallenges = [];
