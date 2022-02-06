@@ -1627,7 +1627,8 @@ function startSimulation(challenge = "") {
             team = true;
         else if (select.options[select.selectedIndex].value == "lipsync-assassin") {
             lipsync_assassin = true;
-            allQueens = allQueens.filter(function (queen) { return queen.getLipSyncStat() >= 8; });
+            allQueensCopy2 = [...allQueens];
+            allQueens = allQueens.filter(function (queen) { return queen.getLipSyncStat() >= 9; });
             allQueens = allQueens.filter(function (queen) { return currentCast.indexOf(queen) == -1; });
             allQueensCopy = [...allQueens];
         }
@@ -1690,12 +1691,13 @@ function startSimulation(challenge = "") {
             s12Premiere = false;
             s6Premiere = false;
             porkchopPremiere = false;
-            currentCast = [];
             top4 = false;
             top3 = false;
             lipsync_assassin = false;
             smackdown = false;
             all_stars = false;
+            currentCast = [];
+            allQueens = [...allQueensCopy2];
         }
         else if (s6Premiere || s12Premiere || s14Premiere) {
             doublePremiere();
@@ -2948,6 +2950,7 @@ let allQueens = [
     pangina
 ].concat(allCustomQueens).sort((a, b) => a.getName().toLowerCase().localeCompare(b.getName().toLowerCase()));
 let allQueensCopy = [];
+let allQueensCopy2 = [];
 let randomReturn = false;
 let voteReturn = false;
 let lalaparuza = false;
