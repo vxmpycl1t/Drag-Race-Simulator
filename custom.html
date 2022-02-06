@@ -42,20 +42,22 @@
         <p>
             <b>Lip-Sync stat: </b> <input type="number"  id="lipsyncStat" class="stats">
         </p>
-        <button onclick="addQueen()">Add queen</button>
+        <button id="add" onclick="addQueen()">Add queen</button>
+        <button id="edit" onclick="updateCustomQueen()" hidden>Update queen</button>
         <p>
             <b id="announce-new"></b>
         </p>
         <hr>
 
-        <h2>Remove custom queen</h2>
-        <big>Go here to remove one of your already created custom queens.</big>
+        <h2>Remove or edit a custom queen</h2>
+        <big>Go here to remove or edit one of your already created custom queens.</big>
 
         <p>
         <select id="custom-remove"></select>
         </p>
 
         <button onclick="removeCustomQueen()">Remove queen</button>
+        <button onclick="editCustomQueen()">Edit queen</button>
         <p>
             <b id="announce-remove"></b>
         </p>
