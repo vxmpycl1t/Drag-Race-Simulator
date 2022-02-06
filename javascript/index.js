@@ -962,6 +962,7 @@ function reSimulate() {
     onFinale = false;
     onTop4Finale = false;
     totalCastSize = currentCast.length;
+    disqOrDept = false;
     //clean track records
     for (let i = 0; i < currentCast.length; i++) {
         currentCast[i].trackRecord = [];
@@ -1324,6 +1325,12 @@ function contestantProgress() {
             else if (placement.innerHTML == "DISQ") {
                 placement.setAttribute("style", "font-weight: bold; background-color: black; color: white;");
             }
+            else if (placement.innerHTML == "DEPT") {
+                placement.setAttribute("style", "font-weight: bold; background-color: plum;");
+            }
+            else if (placement.innerHTML == "WIN+QUIT") {
+                placement.setAttribute("style", "font-weight: bold; background-color:#5920d4;");
+            }
             else if (placement.innerHTML == "RTRN") {
                 placement.setAttribute("style", "font-weight: bold; background-color: magenta;");
             }
@@ -1421,6 +1428,12 @@ function contestantProgress() {
                 else if (placement.innerHTML == "DISQ") {
                     placement.setAttribute("style", "font-weight: bold; background-color: black; color: white;");
                 }
+                else if (placement.innerHTML == "DEPT") {
+                    placement.setAttribute("style", "font-weight: bold; background-color: plum;");
+                }
+                else if (placement.innerHTML == "WIN+QUIT") {
+                    placement.setAttribute("style", "font-weight: bold; background-color:#5920d4;");
+                }
                 else if (placement.innerHTML == "RTRN") {
                     placement.setAttribute("style", "font-weight: bold; background-color: magenta;");
                 }
@@ -1517,6 +1530,12 @@ function contestantProgress() {
             }
             else if (placement.innerHTML == "DISQ") {
                 placement.setAttribute("style", "font-weight: bold; background-color: black; color: white;");
+            }
+            else if (placement.innerHTML == "DEPT") {
+                placement.setAttribute("style", "font-weight: bold; background-color: plum;");
+            }
+            else if (placement.innerHTML == "WIN+QUIT") {
+                placement.setAttribute("style", "font-weight: bold; background-color:#5920d4;");
             }
             else if (placement.innerHTML == "RTRN") {
                 placement.setAttribute("style", "font-weight: bold; background-color: magenta;");
@@ -2236,6 +2255,7 @@ function topAndBtm() {
     bottomQueens.sort((a, b) => b.votes - a.votes);
     screen.createButton("Proceed", "lsaLipSync()");
 }
+let disqOrDept = false;
 function lipSync() {
     for (let i = 0; i < bottomQueens.length; i++) {
         bottomQueens[i].getLipsync();
@@ -2276,9 +2296,10 @@ function lipSync() {
         eliminatedCast.unshift(bottomQueens[1]);
         currentCast.splice(currentCast.indexOf(bottomQueens[1]), 1);
     }
-    else if (randomNumber(0, 1000) >= 995) {
+    else if (randomNumber(0, 1000) >= 995 && disqOrDept == false) {
         let disqualifiedQueen = currentCast[randomNumber(0, currentCast.length - 1)];
         screen.createBold(disqualifiedQueen.getName() + ", it has come to my attention that you have broken the rules of this competition. I must ask you to sashay away.");
+        screen.createImage(disqualifiedQueen.image, "red");
         bottomQueens[0].addToTrackRecord("BTM2");
         bottomQueens[0].unfavoritism += 3;
         bottomQueens[0].ppe += 1;
@@ -2289,6 +2310,25 @@ function lipSync() {
         disqualifiedQueen.addToTrackRecord("DISQ");
         eliminatedCast.unshift(disqualifiedQueen);
         currentCast.splice(currentCast.indexOf(disqualifiedQueen), 1);
+        disqOrDept = true;
+    }
+    else if (randomNumber(0, 1000) >= 995 && disqOrDept == false) {
+        let injuredQueen = currentCast[randomNumber(0, currentCast.length - 1)];
+        screen.createBold(injuredQueen.getName() + ", would you please step forward.");
+        screen.createBold("We've been in touch with the doctor. You need time to heal. I cannot allow you to continue in the competition.");
+        screen.createImage(injuredQueen.image, "red");
+        screen.createBold("I must ask you to sashay away.");
+        bottomQueens[0].addToTrackRecord("BTM2");
+        bottomQueens[0].unfavoritism += 3;
+        bottomQueens[0].ppe += 1;
+        bottomQueens[1].addToTrackRecord("BTM2");
+        bottomQueens[1].unfavoritism += 3;
+        bottomQueens[1].ppe += 1;
+        injuredQueen.trackRecord.pop();
+        injuredQueen.addToTrackRecord("DEPT");
+        eliminatedCast.unshift(injuredQueen);
+        currentCast.splice(currentCast.indexOf(injuredQueen), 1);
+        disqOrDept = true;
     }
     else {
         screen.createImage(bottomQueens[0].image, "tomato");
@@ -2397,6 +2437,25 @@ function asLipSync() {
             currentCast.splice(currentCast.indexOf(top2[1].lipstick), 1);
         }
     }
+    else if (randomNumber(0, 1000) >= 995 && disqOrDept == false && currentCast.length > 5) {
+        screen.createImage(top2[0].image, "royalblue");
+        screen.createBold(top2[0].getName() + ", you're a winner, baby!");
+        screen.createImage(top2[1].image, "cyan");
+        screen.createParagraph(top2[1].getName() + ", you are safe.");
+        screen.createHorizontalLine();
+        screen.createBold("Ru, I'm going home.");
+        screen.createImage(top2[0].image, "#5920d4");
+        screen.createBold(top2[0].getName() + ", you will always be an All Star, now, sashay away...");
+        top2[0].addToTrackRecord("WIN+QUIT");
+        top2[0].favoritism += 5;
+        top2[0].ppe += 5;
+        top2[1].addToTrackRecord("TOP2");
+        top2[1].favoritism += 4;
+        top2[1].ppe += 5;
+        eliminatedCast.unshift(top2[0]);
+        currentCast.splice(currentCast.indexOf(top2[0]), 1);
+        disqOrDept = true;
+    }
     else {
         top2[0].favoritism += 5;
         top2[0].ppe += 5;
@@ -2418,9 +2477,9 @@ function asLipSync() {
         currentCast.splice(currentCast.indexOf(top2[0].lipstick), 1);
     }
     for (let i = 0; i < bottomQueens.length; i++) {
-        if (bottomQueens.length == 3)
+        if (bottomQueens.length == 3 && !disqOrDept)
             bottomQueens[i].addToTrackRecord("BTM4");
-        else if (bottomQueens.length == 2)
+        else if (bottomQueens.length == 2 && !disqOrDept)
             bottomQueens[i].addToTrackRecord("BTM3");
         else
             bottomQueens[i].addToTrackRecord("BTM2");
