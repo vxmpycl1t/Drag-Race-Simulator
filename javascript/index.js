@@ -647,7 +647,7 @@ function createRunwayDesc(slay, great, good, bad) {
     }
 }
 function addQueen() {
-    let name = document.getElementById("queenName").value;
+    let name = document.getElementById("queenName").value.trim();
     let acting = document.getElementById("actingStat").valueAsNumber;
     let comedy = document.getElementById("comedyStat").valueAsNumber;
     let dance = document.getElementById("danceStat").valueAsNumber;
@@ -696,6 +696,51 @@ function removeCustomQueen() {
     let announce = document.getElementById("announce-remove");
     announce.innerHTML = `${allCustomQueens[index].getName()} removed from the queen list!`;
     allCustomQueens.splice(index, 1);
+    localStorage.setItem("customQueens", JSON.stringify(allCustomQueens));
+    setTimeout(() => {
+        document.location.reload();
+    }, 1500);
+}
+function editCustomQueen(){
+    let editButton = document.getElementById("edit");
+    let addButton = document.getElementById("add");
+    let select = document.getElementById("custom-remove");
+    let index = parseInt(select.options[select.selectedIndex].value);
+    addButton.setAttribute("hidden", "hidden");
+    editButton.removeAttribute("hidden");
+    document.getElementById("queenName").value = allCustomQueens[index].getName();
+    document.getElementById("actingStat").value = allCustomQueens[index]._actingStat;
+    document.getElementById("comedyStat").value = allCustomQueens[index]._comedyStat;
+    document.getElementById("danceStat").value = allCustomQueens[index]._danceStat;
+    document.getElementById("designStat").value = allCustomQueens[index]._designStat;
+    document.getElementById("improvStat").value = allCustomQueens[index]._improvStat;
+    document.getElementById("runwayStat").value = allCustomQueens[index]._runwayStat;
+    document.getElementById("lipsyncStat").value = allCustomQueens[index]._lipsyncStat;
+}
+function updateCustomQueen(){
+    let select = document.getElementById("custom-remove");
+    let index = parseInt(select.options[select.selectedIndex].value);
+    let name = document.getElementById("queenName").value.trim();
+    let acting = document.getElementById("actingStat").valueAsNumber;
+    let comedy = document.getElementById("comedyStat").valueAsNumber;
+    let dance = document.getElementById("danceStat").valueAsNumber;
+    let design = document.getElementById("designStat").valueAsNumber;
+    let improv = document.getElementById("improvStat").valueAsNumber;
+    let runway = document.getElementById("runwayStat").valueAsNumber;
+    let lipsync = document.getElementById("lipsyncStat").valueAsNumber;
+    if ((acting || comedy || dance || design || improv || runway || lipsync) < 0 || (acting || comedy || dance || design || improv || runway || lipsync) > 15) {
+        window.alert("Queens' stats must be between 0 and 15!");
+        return;
+    }
+    if (name == "" || isNaN((acting || comedy || dance || design || improv || runway || lipsync))) {
+        window.alert("One of the boxes is empty!");
+        return;
+    }
+    let customQueen = new Queen(name, acting, comedy, dance, design, improv, runway, lipsync);
+    allCustomQueens.splice(index, 1);
+    allCustomQueens.push(customQueen);
+    let announce = document.getElementById("announce-new");
+    announce.innerHTML = `${customQueen.getName()} updated!`;
     localStorage.setItem("customQueens", JSON.stringify(allCustomQueens));
     setTimeout(() => {
         document.location.reload();
