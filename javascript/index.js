@@ -525,7 +525,7 @@ function createChallenge(challenges, miniChallengeScreen) {
     else if (currentCast.length == totalCastSize - 4 && (top4 || (all_stars || lipsync_assassin) && randomNumber(0, 100) < 30) && !ballCounter || currentCast.length == 3 && team)
         miniChallengeScreen.createButton("Proceed", "ball()");
     //rusical
-    else if (currentCast.length > 6 && randomNumber(0, 20) == 20 && !rusicalCounter || currentCast.length > 5 && randomNumber(0, 20) == 20 && team && rusicalCounter == false)
+    else if (currentCast.length > 6 && randomNumber(0, 20) >= 18 && !rusicalCounter || currentCast.length > 5 && randomNumber(0, 20) == 20 && team && rusicalCounter == false)
         miniChallengeScreen.createButton("Proceed", "rusical()");
     //makeover
     else if (currentCast.length == 6 && (top3 || top4) && makeoverCounter == false || currentCast.length == 6 && randomNumber(0, 15) == 15 && (all_stars || lipsync_assassin) && makeoverCounter == false)
@@ -1595,13 +1595,25 @@ function generateSpace() {
             img.setAttribute("id", "image" + i.toString());
             let p = document.createElement("p");
             p.appendChild(img);
-            for (let k = 0; k < allQueens.length; k++) {
-                let option = document.createElement("option");
-                option.innerHTML = allQueens[k].getName();
-                option.value = allQueens[k].image;
-                select.add(option);
+            if (document.getElementById("onlyCustomQueens").checked == true){
+                let customy = allQueens.filter(function (queen) { return queen.image == "image/queens/noimage.jpg"; });
+                for (let k = 0; k < customy.length; k++) {
+                    let option = document.createElement("option");
+                    option.innerHTML = customy[k].getName();
+                    option.value = customy[k].image;
+                    select.add(option);
+                }
+                select.selectedIndex = randomNumber(0, customy.length - 1);
             }
-            select.selectedIndex = randomNumber(0, allQueens.length - 1);
+            else{
+                for (let k = 0; k < allQueens.length; k++) {
+                    let option = document.createElement("option");
+                    option.innerHTML = allQueens[k].getName();
+                    option.value = allQueens[k].image;
+                    select.add(option);
+                }
+                select.selectedIndex = randomNumber(0, allQueens.length - 1);
+            }
             let br = document.createElement("br");
             castSelection.appendChild(p);
             castSelection.appendChild(select);
