@@ -3229,7 +3229,7 @@ function LaLaPaRUza(){
         if (smack.length == 2) {
             i++;
         }
-        if (smack1.length == 0 && eliminatedCast.length%2 == 1) {
+        if (smack1.length == 0 && totalCastSize%2 == 1) {
             var queen3 = smack[i+1];
             screen.createImage(queen3.image);
             screen.createBold(queen1.getName() + ", " + queen2.getName() + " and " + queen3.getName() + " will lipsync...");
