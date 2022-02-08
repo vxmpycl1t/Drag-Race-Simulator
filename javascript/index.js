@@ -627,9 +627,9 @@ function createChallenge(challenges, miniChallengeScreen) {
     //first design challenge for normal seasons
     if (currentCast.length == totalCastSize && top3 && s6Premiere == false || currentCast.length == totalCastSize && top4 && s6Premiere == false || currentCast.length == totalCastSize && team || sweatshop || currentCast == firstCast && s6Premiere || currentCast == secondCast && s6Premiere)
         miniChallengeScreen.createButton("Proceed", "designChallenge()");
-    //rumix challenge for s6 or porkchop premiere
+    //girl group challenge for s2 or porkchop premiere
     else if (premiereCounter <= 2 && (s12Premiere || porkchopPremiere))
-        miniChallengeScreen.createButton("Proceed", "rumix()");
+        miniChallengeScreen.createButton("Proceed", "girlgroup()");
     //talent show for all stars
     else if (currentCast.length == totalCastSize && (all_stars || lipsync_assassin) || currentCast == firstCast && s14Premiere || currentCast == secondCast && s14Premiere)
         miniChallengeScreen.createButton("Proceed", "talentshow()");
