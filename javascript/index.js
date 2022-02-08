@@ -77,6 +77,10 @@ function miniChallenge() {
     createChallenge(challenges, miniChallengeScreen);
 }
 //GENERAL CHALLENGES:
+let team1 = [];
+let team2 = [];
+let team3 = [];
+let isTeamChallenge = false;
 class ActingChallenge {
     generateDescription() {
         let description = document.querySelector("p#Description");
@@ -106,6 +110,35 @@ class ActingChallenge {
         }
         sortPerformances(currentCast);
     }
+    teamMaking() {
+        team1 = [];
+        team2 = [];
+        team3 = [];
+        var castTeams = currentCast.slice(); 
+        if (currentCast.length % 2 == 0 || currentCast.length % 2 == 1 && castTeams.length <= 8) {
+            for (let i = 0; i < currentCast.length / 2; i++){
+                let indexA = randomNumber(0, castTeams.length - 1);
+                team1.push(castTeams[indexA]);
+                castTeams.splice(indexA,1);
+                let indexB = randomNumber(0, castTeams.length - 1);
+                team2.push(castTeams[indexB]);
+                castTeams.splice(indexB,1);
+            }
+        }
+        else if (currentCast.length % 2 == 1 && currentCast.length >= 9){
+            for (let i = 0; i < currentCast.length / 3; i++){
+                let indexA = randomNumber(0, castTeams.length - 1);
+                team1.push(castTeams[indexA]);
+                castTeams.splice(indexA,1);
+                let indexB = randomNumber(0, castTeams.length - 1);
+                team2.push(castTeams[indexB]);
+                castTeams.splice(indexB,1);
+                let indexC = randomNumber(0, castTeams.length - 1);
+                team3.push(castTeams[indexC]);
+                castTeams.splice(indexC,1);
+            }
+        }
+    }
 }
 function actingChallenge() {
     let challengeScreen = new Scene();
@@ -114,6 +147,10 @@ function actingChallenge() {
     challengeScreen.createParagraph("", "Description");
     let challenge = new ActingChallenge();
     challenge.generateDescription();
+    if (randomNumber(0, 100) >= 50 && currentCast.length == 11){
+        isTeamChallenge = true;
+        challenge.teamMaking();
+    }
     challenge.rankPerformances();
     queensPerformances();
     actingChallengeCounter++;
@@ -249,8 +286,15 @@ class ImprovChallenge {
             desc1[desc1["late-night TV show."] = 3] = "late-night TV show.";
             desc1[desc1["new Bossy Rossy episode."] = 4] = "new Bossy Rossy episode.";
             desc1[desc1["suggestive kids TV show."] = 5] = "suggestive kids TV show.";
+            desc1[desc1["Bitchelor show."] = 6] = "Bitchelor show.";
+            desc1[desc1["Jersey Justice show."] = 7] = "Jersey Justice show.";
+            desc1[desc1["diva worship talk show."] = 8] = "diva worship talk show.";
+            desc1[desc1["talent show for people with little talent."] = 9] = "talent show for people with little talent.";
+            desc1[desc1["drag queen spoof of the celebrity gossip and drama television show."] = 10] = "drag queen spoof of the celebrity gossip and drama television show.";
+            desc1[desc1["pageant, the Miss Loose Jaw Pageant."] = 11] = "pageant, the Miss Loose Jaw Pageant.";
+            desc1[desc1["intimate chat show called Pink Table Talk."] = 12] = "intimate chat show called Pink Table Talk.";
         })(desc1 || (desc1 = {}));
-        description.innerHTML = "The queens will improvise in a " + desc1[randomNumber(0, 5)];
+        description.innerHTML = "The queens will improvise in a " + desc1[randomNumber(0, 12)];
     }
     rankPerformances() {
         for (let i = 0; i < currentCast.length; i++)
@@ -301,14 +345,26 @@ class Rusical {
         let description = document.querySelector("p#Description");
         let desc;
         (function (desc) {
-            desc[desc["social media."] = 0] = "social media.";
-            desc[desc["a pop celebrity."] = 1] = "a pop celebrity.";
-            desc[desc["a political figure."] = 2] = "a political figure.";
-            desc[desc["past Drag Race contestans."] = 3] = "past Drag Race contestans.";
-            desc[desc["cancel culture."] = 4] = "cancel culture.";
+            desc[desc["Social Media: The Unverified Rusical."] = 0] = "Social Media: The Unverified Rusical.";
+            desc[desc["Halftime Headliners."] = 1] = "Halftime Headliners.";
+            desc[desc["CindeRulla: The Rusical."] = 2] = "CindeRulla: The Rusical.";
+            desc[desc["Under the Big Top."] = 3] = "Under the Big Top.";
+            desc[desc["West End Wendys - The Rusical."] = 4] = "West End Wendys - The Rusical.";
             desc[desc["RuPaul's music carreer."] = 5] = "RuPaul's music carreer.";
+            desc[desc["Shade: The Rusical."] = 6] = "Shade: The Rusical.";
+            desc[desc["Glamazonian Airways."] = 7] = "Glamazonian Airways.";
+            desc[desc["Bitch Perfect."] = 8] = "Bitch Perfect.";
+            desc[desc["HERstory of the World'."] = 9] = "HERstory of the World'.";
+            desc[desc["Kardashians: The Rusical."] = 10] = "Kardashians: The Rusical.";
+            desc[desc["VH1 Divas Live."] = 11] = "VH1 Divas Live.";
+            desc[desc["PharmaRusical."] = 12] = "PharmaRusical.";
+            desc[desc["Cher: The Unauthorized Rusical."] = 13] = "Cher: The Unauthorized Rusical.";
+            desc[desc["Trump: The Rusical."] = 14] = "Trump: The Rusical.";
+            desc[desc["Madonna: The Unauthorized Rusical."] = 15] = "Madonna: The Unauthorized Rusical.";
+            desc[desc["Máxima - The Rusical."] = 16] = "Máxima - The Rusical.";
+            desc[desc["Rats: The Rusical."] = 17] = "Rats: The Rusical.";
         })(desc || (desc = {}));
-        description.innerHTML = "Today's challenge is... THE RUSICAL!! The queens will do a musical about " + desc[randomNumber(0, 5)];
+        description.innerHTML = "Today's challenge is... THE RUSICAL!! The queens were tasked to take part in " + desc[randomNumber(0, 17)];
     }
     rankPerformances() {
         for (let i = 0; i < currentCast.length; i++)
@@ -348,6 +404,7 @@ class Ball {
             desc2[desc2["Space, "] = 3] = "Space, ";
             desc2[desc2["Wild, "] = 4] = "Wild, ";
             desc2[desc2["Water, "] = 5] = "Water, ";
+            desc2[desc2["Swimsuit, "] = 6] = "Swimsuit, ";
         })(desc2 || (desc2 = {}));
         let desc3;
         (function (desc3) {
@@ -356,9 +413,10 @@ class Ball {
             desc3[desc3["Fire."] = 2] = "Fire.";
             desc3[desc3["Princess."] = 3] = "Princess.";
             desc3[desc3["Jewels."] = 4] = "Jewels.";
-            desc3[desc3["Flowers"] = 5] = "Flowers";
+            desc3[desc3["Flowers."] = 5] = "Flowers.";
+            desc3[desc3["Evening Gown Extravaganza."] = 6] = "Evening Gown Extravaganza.";
         })(desc3 || (desc3 = {}));
-        description.innerHTML = "Today's challenge is... THE BALL! The queens will bring three looks to the runway! The themes are: " + desc1[randomNumber(0, 6)] + desc2[randomNumber(0, 5)] + desc3[randomNumber(0, 5)];
+        description.innerHTML = "Today's challenge is... THE BALL! The queens will bring three looks to the runway! The themes are: " + desc1[randomNumber(0, 6)] + desc2[randomNumber(0, 6)] + desc3[randomNumber(0, 6)];
     }
     rankPerformances() {
         for (let i = 0; i < currentCast.length; i++)
@@ -383,10 +441,24 @@ class Rumix {
         let description = document.querySelector("p#Description");
         let desc1;
         (function (desc1) {
-            desc1[desc1["one of RuPaul's singles!"] = 0] = "one of RuPaul's singles!";
-            desc1[desc1["an original song!"] = 1] = "an original song!";
+            desc1[desc1["Read U Wrote U."] = 0] = "Read U Wrote U.";
+            desc1[desc1["Category Is."] = 1] = "Category Is.";
+            desc1[desc1["Kitty Girl."] = 2] = "Kitty Girl.";
+            desc1[desc1["American."] = 3] = "American.";
+            desc1[desc1["Super Queen."] = 4] = "Super Queen.";
+            desc1[desc1["Queens Everywhere."] = 5] = "Queens Everywhere.";
+            desc1[desc1["Rock It (To The Moon)."] = 6] = "Rock It (To The Moon).";
+            desc1[desc1[" I Made It / Mirror Song / Losing is the New Winning."] = 7] = " I Made It / Mirror Song / Losing is the New Winning.";
+            desc1[desc1["Clap Back."] = 8] = "Clap Back.";
+            desc1[desc1["U Wear It Well."] = 9] = "U Wear It Well.";
+            desc1[desc1["A Little Bit of Love."] = 10] = "A Little Bit of Love.";
+            desc1[desc1["Lucky."] = 11] = "Lucky.";
+            desc1[desc1["I'm a Winner, Baby."] = 12] = "I'm a Winner, Baby.";
+            desc1[desc1["This Is Our Country."] = 13] = "This Is Our Country.";
+            desc1[desc1["Hey Sis, It's Christmas."] = 14] = "Hey Sis, It's Christmas.";
+            desc1[desc1["Queen of the North."] = 15] = "Queen of the North.";
         })(desc1 || (desc1 = {}));
-        description.innerHTML = "Today's challenge is... the rumix! The queens will make a verse and a coreography for " + desc1[randomNumber(0, 1)];
+        description.innerHTML = "Today's challenge is... the rumix! The queens will make a verse and a coreography for " + desc1[randomNumber(0, 15)];
     }
     rankPerformances() {
         for (let i = 0; i < currentCast.length; i++)
@@ -404,6 +476,52 @@ function rumix() {
     queensPerformances();
     isDesignChallenge = false;
     episodeChallenges.push("Rumix");
+}
+class GirlGroup {
+    generateDescription() {
+        let description = document.querySelector("p#Description");
+        let desc1;
+        (function (desc1) {
+            desc1[desc1["Break Up (Bye Bye)"] = 0] = "Break Up (Bye Bye)";
+            desc1[desc1["Drag Up Your Life"] = 1] = "Drag Up Your Life";
+            desc1[desc1["Sitting on a Secret"] = 2] = "Sitting on a Secret";
+            desc1[desc1["Don't Funk it Up"] = 3] = "Don't Funk it Up";
+            desc1[desc1["Everybody Say Love"] = 4] = "Everybody Say Love";
+            desc1[desc1["You Don't Know Me"] = 5] = "You Don't Know Me";
+            desc1[desc1["I'm That Bitch"] = 6] = "I'm That Bitch";
+            desc1[desc1["I'm in Love!"] = 7] = "I'm in Love!";
+            desc1[desc1["Not Sorry Aboot It"] = 8] = "Not Sorry Aboot It";
+            desc1[desc1["Condragulations "] = 9] = "Condragulations";
+            desc1[desc1["Phenomenon"] = 10] = "Phenomenon";
+            desc1[desc1["UK Hun?"] = 11] = "UK Hun?";
+            desc1[desc1["Queens Down Under"] = 12] = "Queens Down Under";
+            desc1[desc1["Divas"] = 13] = "Divas";
+            desc1[desc1["Show Up Queen"] = 14] = "Show Up Queen";
+            desc1[desc1["B.D.E (Big Drag Energy)"] = 15] = "B.D.E (Big Drag Energy)";
+            desc1[desc1["Bye Flop"] = 16] = "Bye Flop";
+            desc1[desc1["Superstar"] = 17] = "Superstar";
+            desc1[desc1["So Much Better Than You"] = 18] = "So Much Better Than You";
+            desc1[desc1["Can I Get An Amen?"] = 19] = "Can I Get An Amen?";
+            desc1[desc1["Oh No She Betta Don't!"] = 20] = "Oh No She Betta Don't!";
+        })(desc1 || (desc1 = {}));
+        description.innerHTML = "The remaining queens will record vocals and perform in a Girl Group number for the original song " + desc1[randomNumber(0, 20)] + ".";
+    }
+    rankPerformances() {
+        for (let i = 0; i < currentCast.length; i++)
+            currentCast[i].getRumix();
+    }
+}
+function girlgroup() {
+    let challengeScreen = new Scene();
+    challengeScreen.clean();
+    challengeScreen.createHeader("Maxi-challenge!");
+    challengeScreen.createParagraph("", "Description");
+    let challenge = new GirlGroup();
+    challenge.generateDescription();
+    challenge.rankPerformances();
+    queensPerformances();
+    isDesignChallenge = false;
+    episodeChallenges.push("GGroup");
 }
 class TalentShow {
     generateDescription() {
@@ -524,8 +642,11 @@ function createChallenge(challenges, miniChallengeScreen) {
     //same but if above condition doesn't apply (example: snatch game needs to happen before the ball)
     else if (currentCast.length == totalCastSize - 4 && (top4 || (all_stars || lipsync_assassin) && randomNumber(0, 100) < 30) && !ballCounter || currentCast.length == 3 && team)
         miniChallengeScreen.createButton("Proceed", "ball()");
+    //Girl Group
+    else if (currentCast.length == 8 && (top4 || lipsync_assassin))
+        miniChallengeScreen.createButton("Proceed", "girlgroup()");
     //rusical
-    else if (currentCast.length > 6 && randomNumber(0, 20) >= 18 && !rusicalCounter || currentCast.length > 5 && randomNumber(0, 20) == 20 && team && rusicalCounter == false)
+    else if (currentCast.length > 6 && randomNumber(0, 20) >= 19 && !rusicalCounter || currentCast.length > 5 && randomNumber(0, 20) >= 19 && team && rusicalCounter == false)
         miniChallengeScreen.createButton("Proceed", "rusical()");
     //makeover
     else if (currentCast.length == 6 && (top3 || top4) && makeoverCounter == false || currentCast.length == 6 && randomNumber(0, 15) == 15 && (all_stars || lipsync_assassin) && makeoverCounter == false)
