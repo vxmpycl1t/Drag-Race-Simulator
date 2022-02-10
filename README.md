@@ -3,7 +3,7 @@ Drag Race Simulator based on edssb sim. I'm updating it until they come back.
 
 
 # Working on
-Currently I'm working on team challenges
+Currently I'm working on team challenges (Probably finishing it next week (02/14/2022) )
 
 
 # To do list (not in order)
@@ -15,4 +15,5 @@ Currently I'm working on team challenges
  * Predifined custom cast *
  * Chocolate bar twist *
  * Thailands format *
- * ... *
+ * Mini Challenge winners on track record *
+ * ...
