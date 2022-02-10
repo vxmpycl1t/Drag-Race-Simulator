@@ -7,7 +7,7 @@ Currently I'm working on team challenges
 
 
 # To do list (not in order)
- * UK Premiere *
+ * UK3 Premiere *
  * Untucked *
  * Canada's DR S2 top4 format *
  * Returning challenges as AS2 and AS3) *
