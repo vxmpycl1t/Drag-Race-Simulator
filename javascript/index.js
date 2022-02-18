@@ -3134,14 +3134,14 @@ let sagittaria = new Queen("Sagittaria", 7, 8, 9, 9, 8, 9, 8, "Sagittaria");
 let macarena = new Queen("The Macarena", 6, 7, 6, 5, 5, 7, 7, "Macarena");
 let dres = [arantxa, carmenf, dovima, drag, hugaceo, inti, killer, pupi, sagittaria, macarena];
 //DRAG RACE ITALIA
-let ava = new Queen("Ava Hangar", 6, 6, 5, 5, 5, 6, 6, "Ava");
-let divinity = new Queen("Divinity", 6, 6, 8, 7, 7, 8, 7, "Divinity");
-let elecktra = new Queen("Elecktra Bionic", 7, 7, 7, 7, 7, 7, 7, "Elecktra");
-let enorma = new Queen("Enorma Jean", 7, 7, 6, 6, 5, 7, 6, "Enorma");
-let farida = new Queen("Farida Kant", 7, 7, 7, 7, 7, 7, 7, "Farida");
-let ivana = new Queen("Ivana Vamp", 6, 5, 6, 8, 6, 6, 5, "Ivana");
-let riche = new Queen("Le Riche", 7, 6, 6, 7, 7, 6, 8, "Riche");
-let luquisha = new Queen("Luquisha Lubamba", 6, 6, 7, 8, 7, 8, 9, "Luquisha");
+let ava = new Queen("Ava Hangar", 8, 7, 5, 5, 6, 6, 6, "Ava");
+let divinity = new Queen("Divinity", 9, 6, 8, 7, 6, 8, 7, "Divinity");
+let elecktra = new Queen("Elecktra Bionic", 7, 8, 8, 8, 9, 9, 8, "Elecktra");
+let enorma = new Queen("Enorma Jean", 8, 8, 6, 6, 8, 7, 6, "Enorma");
+let farida = new Queen("Farida Kant", 7, 6, 8, 11, 5, 11, 8, "Farida");
+let ivana = new Queen("Ivana Vamp", 6, 5, 6, 6, 6, 6, 5, "Ivana");
+let riche = new Queen("Le Riche", 6, 8, 6, 8, 9, 8, 7, "Riche");
+let luquisha = new Queen("Luquisha Lubamba", 7, 6, 6, 5, 7, 6, 7, "Luquisha");
 let italia = [ava, divinity, elecktra, enorma, farida, ivana, riche, luquisha];
 //SPECIAL
 let pangina = new Queen("Pangina Heals", 10, 10, 9, 12, 9, 13, 11, "Pangina");
