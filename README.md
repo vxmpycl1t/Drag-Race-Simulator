@@ -16,5 +16,6 @@ Currently I'm working on team challenges (Probably finishing it next week (02/14
  * Chocolate bar twist *
  * Thailands format *
  * Mini Challenge winners on track record *
- * Superstars format
+ * Superstars format *
+ * Interactive format *
  * ...
