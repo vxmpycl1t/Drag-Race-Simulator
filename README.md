@@ -1,9 +1,17 @@
 # Drag-Race-Simulator
 Drag Race Simulator based on edssb sim. I'm updating it until they come back.
 
+#Changelog
+* LaLaPaRUza return challenge.
+* S14 Queens (with basic stats).
+* Edit custom queens.
+* Show only custom queens option.
+* Queens can get injured.
+* Queens can BendelaCreme themselves in Lipsync for your Legacy Format
+
 
 # Working on
-Currently I'm working on team challenges (Probably finishing it next week (02/14/2022) )
+Currently I'm working on team challenges (Having a lot of work in school so it's gonna take some more days)
 
 
 # To do list (not in order)
