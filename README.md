@@ -1,7 +1,7 @@
 # Drag-Race-Simulator
 Drag Race Simulator based on edssb sim. I'm updating it until they come back.
 
-# Changelog
+# Initial Changelog
 * LaLaPaRUza return challenge.
 * S14 Queens (with basic stats).
 * Edit custom queens.
