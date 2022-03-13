@@ -11,6 +11,7 @@ Currently I'm working on UK3 Premiere and Canada's Drag Race S2 Top4 Format
 
 # To do list (not in order)
  * Untucked *
+ * Improve Team Challenges
  * Returning challenges as AS2 and AS3 *
  * Predifined custom cast *
  * Chocolate bar twist *
