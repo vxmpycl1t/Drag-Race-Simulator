@@ -4,6 +4,7 @@ Drag Race Simulator based on edssb sim. I'm updating it until they come back.
 # 03/13/2022
 * Added an advance of Team Challenges for Acting and Improv challenges
 * Double Crowning
+* S14 queens stats updated. Until Snatch Game.
 
 # Working on
 Currently I'm working on UK3 Premiere and Canada's Drag Race S2 Top4 Format
