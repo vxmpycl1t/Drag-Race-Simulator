@@ -15,9 +15,11 @@ Currently I'm working on UK3 Premiere and Canada's Drag Race S2 Top4 Format
  * Predifined custom cast *
  * Chocolate bar twist *
  * Thailands format *
- * Mini Challenge winners on track record *
+ * Lipsync songs on track record table *
+ * Voting Table below the track record table or something like that *
  * Superstars format *
  * Interactive format *
+ * AS3 Finale format
  * ...
 
 # Initial Changelog
