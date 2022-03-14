@@ -233,7 +233,7 @@ class DesignChallenge {
             desc1[desc1["winter items."] = 7] = "winter items.";
             desc1[desc1["summer items."] = 8] = "summer items.";
         })(desc1 || (desc1 = {}));
-        if (currentCast.length == 6 && makeoverCounter == false && team == false && currentCast != firstCast && currentCast != secondCast) {
+        if (currentCast.length == 6 && makeoverCounter == false && team == false && currentCast != firstCast && currentCast != secondCast && !uk3Premiere) {
             description.innerHTML = "It's the makeover challenge! The queens will make everyday people their drag sisters!";
         }
         else if (currentCast.length == totalCastSize && uk3Premiere){
