@@ -3324,7 +3324,7 @@ let river = new Queen("River Medway", 8, 8, 7, 5, 6, 5, 7, "River");
 let scarlett = new Queen("Scarlett Harlett", 8, 7, 8, 8, 5, 8, 8, "ScarlettH");
 let vanity = new Queen("Vanity Milan", 6, 9, 6, 8, 8, 7, 9, "Vanity");
 let victoriaS = new Queen("Victoria Scone", 10, 10, 8, 10, 9, 9, 8, "VictoriaS");
-let uk_season3 = [anubis, charity, choriza, elektraF, ella, kitty, krystal, river, scarlett, vanity, victoriaS];
+let uk_season3 = [anubis, charity, choriza, elektraF, ella, kitty, krystal, river, scarlett, vanity, victoriaS, veronica];
 //CAN SEASON 1
 let anastarzia = new Queen("Anastarzia Anaquway", 7, 7, 6, 10, 8, 9, 11, "Starzy");
 let boa = new Queen("BOA", 6, 9, 6, 7, 6, 8, 8, "BOA");
