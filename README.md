@@ -1,13 +1,18 @@
 # Drag-Race-Simulator
 Drag Race Simulator based on edssb sim. I'm updating it until they come back.
 You can also send me a dm in Discord if you find a bug or something that wasn't cool. Rainbow#4283
+# 03/14/2022
+* Added UK3 Premiere
+* Votes in lipsync assasin format are no longer fully visible (I'll do it for Lipsync for your legacy format too)
+* Lipstick Choices in Contestant Progress for lipsync assasin format (I'll do it for Lipsync for your legacy format too)
+
 # 03/13/2022
 * Added an advance of Team Challenges for Acting and Improv challenges
 * Double Crowning
 * S14 queens stats updated. Until Snatch Game.
 
 # Working on
-Currently I'm working on UK3 Premiere and Canada's Drag Race S2 Top4 Format
+Currently I'm working on Canada's Drag Race S2 Top4 Format
 
 
 # To do list (not in order)
@@ -17,8 +22,6 @@ Currently I'm working on UK3 Premiere and Canada's Drag Race S2 Top4 Format
  * Predifined custom cast *
  * Chocolate bar twist *
  * Thailands format *
- * Lipsync songs on track record table *
- * Voting Table below the track record table or something like that *
  * Superstars format *
  * Interactive format *
  * AS3 Finale format *
