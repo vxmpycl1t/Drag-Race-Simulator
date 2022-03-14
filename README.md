@@ -25,6 +25,7 @@ Currently I'm working on Canada's Drag Race S2 Top4 Format
  * Superstars format *
  * Interactive format *
  * AS3 Finale format *
+ * Episodes where no one wins a challenge and episodes where there are no bottoms
  * ...
 
 # Initial Changelog
