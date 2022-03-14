@@ -1,6 +1,6 @@
 # Drag-Race-Simulator
 Drag Race Simulator based on edssb sim. I'm updating it until they come back.
-
+You can also send me a dm in Discord if you find a bug or something that wasn't cool. Rainbow#4283
 # 03/13/2022
 * Added an advance of Team Challenges for Acting and Improv challenges
 * Double Crowning
