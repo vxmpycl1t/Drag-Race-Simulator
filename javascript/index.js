@@ -2055,6 +2055,15 @@ function startSimulation(challenge = "") {
             all_stars = false;
             currentCast = [];
         }
+        else if (uk3Premiere && currentCast.length < 6) {
+            window.alert("Uk3 Premiere needs at least 6 queens!");
+            uk3Premiere = false;
+            top4 = false;
+            top3 = false;
+            lipsync_assassin = false;
+            all_stars = false;
+            currentCast = [];
+        }
         else if (team && (smackdown || voteReturn || randomReturn || s6Premiere || lalaparuza || s12Premiere || porkchopPremiere || s14Premiere || uk3Premiere)) {
             window.alert("The team format isn't supported with any special premiere or returning formats, sorry!");
             team = false;
