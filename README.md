@@ -28,6 +28,7 @@ Currently I'm working on Canada's Drag Race S2 Top4 Format
  * Episodes where no one wins a challenge and episodes where there are no bottoms *
  * 6-way lipsyncs *
  * Choosing which queen comes back *
+ * Stats tab *
  * ...
 
 # Initial Changelog
