@@ -1290,7 +1290,7 @@ function finalLipSync() {
     for (let i = 0; i < finalLS.length; i++)
         finalLS[i].getFinale();
     finalLS.sort((a, b) => b.finaleScore - a.finaleScore);
-    if (finalLS[0].finaleScore == finalLS[1].finaleScore) {
+    if (finalLS[0].finaleScore == finalLS[1].finaleScore && randomNumber(0, 100) >= 50) {
         screen.createBold("For the FIRST TIME in Drag Race herstory, you are both winners, baby");
         screen.createImage(finalLS[0].image, "yellow");
         screen.createImage(finalLS[1].image, "yellow");
@@ -1393,7 +1393,7 @@ function finaleFinale() {
     screen.clean();
     screen.createHeader("The end.");
     screen.createBold("Ladies, I've made my decision. The Next Drag Superstar is...");
-    if (currentCast[0].finaleScore == currentCast[1].finaleScore) {
+    if (currentCast[0].finaleScore == currentCast[1].finaleScore && randomNumber(0, 100) >= 50) {
         screen.createBold("For the FIRST TIME in Drag Race herstory, you are both winners, baby");
         screen.createImage(currentCast[0].image, "yellow");
         screen.createImage(currentCast[1].image, "yellow");
