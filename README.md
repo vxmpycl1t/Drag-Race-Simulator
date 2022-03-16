@@ -12,7 +12,7 @@ You can also send me a dm in Discord if you find a bug or something that wasn't 
 
 
 # Working on
-Currently I'm working on Canada's Drag Race S2 Top4 Format
+Currently I'm working on Episodes where no one wins a challenge and episodes where there are no bottoms and 6-way lipsyncs
 
 
 # To do list (not in order)
@@ -25,8 +25,6 @@ Currently I'm working on Canada's Drag Race S2 Top4 Format
  * Superstars format *
  * Interactive format *
  * AS3 Finale format *
- * Episodes where no one wins a challenge and episodes where there are no bottoms *
- * 6-way lipsyncs *
  * Choosing which queen comes back *
  * Stats tab *
  * ...
