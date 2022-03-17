@@ -2,7 +2,7 @@
 Drag Race Simulator based on edssb sim. I'm updating it until they come back.
 You can also send me a dm in Discord if you find a bug or something that wasn't cool. Rainbow#4283
 # 03/16/2022
-* Added episodes where no one wins a challenge
+* Added Episodes where no one wins a challenge
 * Added Episodes where there are no bottoms
 * Added 6-way lipsyncs
 * Lipstick Choices in Contestant Progress for Lipsync for your Legacy Format
