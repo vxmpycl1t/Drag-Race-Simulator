@@ -4121,7 +4121,7 @@ function LaLaPaRUza(){
             smack1[i].addToTrackRecord("RUN");
             smack1.splice(i, 1);
             i--;
-        }else if (smack1[i].trackRecord[trds] == "TOP2") {
+        }else if (smack1[i].trackRecord[trds] == "WIN ") {
             smack1[i].addToTrackRecord("RUN");
             smack1.splice(i, 1);
             i--;
