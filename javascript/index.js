@@ -1505,7 +1505,7 @@ function canadaS2Finale() {
     screen.createImage(secondLS[0].image, "darkred");
     screen.createImage(secondLS[1].image, "darkred");
     screen.createBold(secondLS[0].getName() + " vs. " + secondLS[1].getName());
-    episodeChallenges.push("LFTF");
+    episodeChallenges.push("Lipsync for the Finale");
     screen.createButton("Proceed", "canadaS2LipSyncs()");
 }
 function canadaS2LipSyncs() {
@@ -1738,7 +1738,7 @@ function contestantProgress() {
                 else if (placement.innerHTML == "HIGH TEAM") {
                     placement.setAttribute("style", "background-color: aquamarine;");
                 }
-                else if (placement.innerHTML == "BTM2" || placement.innerHTML == "BTM3" || placement.innerHTML == "BTM4" || placement.innerHTML == "BTM5") {
+                else if (placement.innerHTML == "BTM2" || placement.innerHTML == "BTM3" || placement.innerHTML == "BTM4" || placement.innerHTML == "BTM5" || placement.innerHTML == "BTM6") {
                     placement.setAttribute("style", "background-color: tomato;");
                 }
                 else if (placement.innerHTML == "ELIM") {
@@ -1847,7 +1847,7 @@ function contestantProgress() {
             else if (placement.innerHTML == "HIGH TEAM") {
                 placement.setAttribute("style", "background-color: aquamarine;");
             }
-            else if (placement.innerHTML == "BTM2" || placement.innerHTML == "BTM3" || placement.innerHTML == "BTM4" || placement.innerHTML == "BTM5") {
+            else if (placement.innerHTML == "BTM2" || placement.innerHTML == "BTM3" || placement.innerHTML == "BTM4" || placement.innerHTML == "BTM5" || placement.innerHTML == "BTM6") {
                 placement.setAttribute("style", "background-color: tomato;");
             }
             else if (placement.innerHTML == "ELIM") {
