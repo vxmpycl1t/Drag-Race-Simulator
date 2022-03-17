@@ -1,24 +1,20 @@
 # Drag-Race-Simulator
 Drag Race Simulator based on edssb sim. I'm updating it until they come back.
 You can also send me a dm in Discord if you find a bug or something that wasn't cool. Rainbow#4283
+# 03/16/2022
+* Added episodes where no one wins a challenge
+* Added Episodes where there are no bottoms
+* Added 6-way lipsyncs
+* Lipstick Choices in Contestant Progress for Lipsync for your Legacy Format
+
 # 03/15/2022
 * Added Canada's Drag Race Season 2 Finale Format as "Lipsync for the Finale" 
 * Votes in Lipsync for your Legacy format are no longer fully visible 
-# 03/14/2022
-* Added UK3 Premiere
-* Votes in lipsync assasin format are no longer fully visible
-* Lipstick Choices in Contestant Progress for lipsync assasin format (I'll do it for Lipsync for your legacy format too)
-
-
-
 # Working on
-Currently I'm working on Episodes where no one wins a challenge and episodes where there are no bottoms and 6-way lipsyncs
-
-
+Currently I'm working on returning challenges as AS2, AS3 and S7 
 # To do list (not in order)
  * Untucked *
  * Improve Team Challenges *
- * Returning challenges as AS2, AS3 and S7*
  * Predifined custom cast *
  * Chocolate bar twist *
  * Thailands format *
@@ -28,6 +24,11 @@ Currently I'm working on Episodes where no one wins a challenge and episodes whe
  * Choosing which queen comes back *
  * Stats tab *
  * ...
+
+# 03/14/2022
+* Added UK3 Premiere
+* Votes in lipsync assasin format are no longer fully visible
+* Lipstick Choices in Contestant Progress for lipsync assasin format
 # 03/13/2022
 * Added an advance of Team Challenges for Acting and Improv challenges
 * Double Crowning
