@@ -744,12 +744,13 @@ let slayers = false;
 let slayersCheck = false;
 let bottom6WayLipsync = false;
 let bottom6WayLipsyncCheck = false;
+
 function CheckForSpecialEvents(slay, great, flop) {
     if (slay.length === 0 && great.length === 0 && currentCast.length >= 8 && !floppersCheck)
         floppers = true;
     if (slay.length == currentCast.length && !slayersCheck)
         slayers = true;
-    else if (slay.length + great.length == currentCast.length && !slayersCheck)
+    else if (slay.length + great.length == currentCast.length && !slayersCheck && randomNumber(0, 100) >= 50)
         slayers = true;
     if (flop.length === 6 && currentCast.length >= 9 && !bottom6WayLipsyncCheck)
         bottom6WayLipsync = true;
@@ -916,6 +917,7 @@ function doublePremiere() {
             shuffle(currentCast);
             firstCast = currentCast.splice(0, Math.floor(currentCast.length / 2));
             secondCast = [...currentCast];
+            slayersCheck = true;
         }
     if (premiereCounter == 0) {
         currentCast = firstCast;
@@ -940,11 +942,13 @@ function doublePremiere() {
             i--;
         }
         premiereCounter++;
+        slayersCheck = false;
         newEpisode();
     }
     else if (premiereCounter == 2) {
         currentCast = [...firstCast, ...secondCast];
         premiereCounter++;
+        slayersCheck = false;
         newEpisode();
     }
 }
@@ -1925,9 +1929,9 @@ function contestantProgress() {
         trackRecords.appendChild(contestant);
     }
     centering.appendChild(trackRecords);
-
     let br = document.createElement("br");
     centering.appendChild(br);
+
     if (lipsync_assassin || all_stars) {
         var titlea = document.createElement("big");
         titlea.innerHTML = "Lipstick Choices";
@@ -1940,19 +1944,19 @@ function contestantProgress() {
         lipassa.appendChild(headera);
         var tha = document.createElement("th");
         tha.innerHTML = "Winner";
-        tha.setAttribute("style", "background-color: #e9dfe9; font-weight: bold;");
+        tha.setAttribute("style", "background-color: #e9dfe9; font-weight: bold; width: 170px;");
         headera.appendChild(tha);
         var tha1 = document.createElement("th");
         tha1.innerHTML = "Lipstick";
-        tha1.setAttribute("style", "background-color: #e9dfe9; font-weight: bold;");
+        tha1.setAttribute("style", "background-color: #e9dfe9; font-weight: bold; width: 170px;");
         headera.appendChild(tha1);
         var tha2 = document.createElement("th");
         tha2.innerHTML = "Loser";
-        tha2.setAttribute("style", "background-color: #e9dfe9; font-weight: bold;");
+        tha2.setAttribute("style", "background-color: #e9dfe9; font-weight: bold; width: 170px;");
         headera.appendChild(tha2);
         var tha3 = document.createElement("th");
         tha3.innerHTML = "Lipstick";
-        tha3.setAttribute("style", "background-color: #e9dfe9; font-weight: bold;");
+        tha3.setAttribute("style", "background-color: #e9dfe9; font-weight: bold; width: 170px;");
         headera.appendChild(tha3);
         for (var i = 0; i < assasintable.length; i++) {
             var contestanta = document.createElement("tr");
@@ -1969,11 +1973,16 @@ function contestantProgress() {
             namea1.innerHTML = assasintable[i+1];
             lipstickkk.innerHTML = assasinlipstick[i+1];
             i++;
+            if (namea1.innerHTML == " "){
+                namea1.setAttribute("style", "background-color: gray;");
+                lipstickkk.setAttribute("style", "background-color: gray;");
+            }
             contestanta.appendChild(namea);
             contestanta.appendChild(lipstickk);
             contestanta.appendChild(namea1);
             contestanta.appendChild(lipstickkk);
             lipassa.appendChild(contestanta);
+
         }
         centering.appendChild(titlea);
         centering.appendChild(lipassa);
@@ -3315,11 +3324,11 @@ function asLipSync() {
         top2[0].addToTrackRecord(" WIN");
         top2[1].addToTrackRecord(" WIN");
         screen.createHorizontalLine();
-        assasintable.push(top2[0].getName());
-        assasinlipstick.push(top2[0].lipstick.getName());
-        assasintable.push(top2[1].getName());
-        assasinlipstick.push(top2[1].lipstick.getName());
+        assasintable.push(top2[0].getName() + " & " + top2[1].getName());
+        assasintable.push(" ");
         if (top2[0].lipstick == top2[1].lipstick) {
+            assasinlipstick.push(top2[0].lipstick.getName());
+            assasinlipstick.push(" ");
             screen.createImage(top2[0].lipstick.image, "red");
             screen.createBold(`${top2[0].lipstick.getName()}, you will always be an All Star, now, sashay away...`);
             top2[0].lipstick.addToTrackRecord("ELIM");
@@ -3331,6 +3340,8 @@ function asLipSync() {
         else {
             screen.createImage(top2[0].lipstick.image, "red");
             screen.createImage(top2[1].lipstick.image, "red");
+            assasinlipstick.push(top2[0].lipstick.getName() + " & " + top2[1].lipstick.getName());
+            assasinlipstick.push(" ");
             screen.createBold(`${top2[0].lipstick.getName()}, ${top2[1].lipstick.getName()}, you will always be an All Star, now, sashay away...`);
             top2[0].lipstick.addToTrackRecord("ELIM");
             top2[0].lipstick.unfavoritism += 5;
