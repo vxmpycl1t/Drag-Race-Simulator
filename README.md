@@ -23,6 +23,8 @@ Currently I'm working on returning challenges as AS2, AS3 and S7
  * AS3 Finale format *
  * Choosing which queen comes back *
  * Stats tab *
+ * 3 way lipsyncs *
+ * UK vs The World Finale Format *
  * ...
 
 # 03/14/2022
