@@ -652,8 +652,11 @@ function createChallenge(challenges, miniChallengeScreen) {
     //talent show for all stars
     else if (currentCast.length == totalCastSize && (all_stars || lipsync_assassin) || currentCast == firstCast && s14Premiere || currentCast == secondCast && s14Premiere)
         miniChallengeScreen.createButton("Proceed", "talentshow()");
-    //snatch game
+    //snatch game for +10 cast
     else if (totalCastSize >= 10 && currentCast.length == 9 && !team && snatchCounter == false || totalCastSize >= 6 && currentCast.length == 5 && team)
+        miniChallengeScreen.createButton("Proceed", "snatchGame()");
+    //snatch game for -10 cast
+    else if (totalCastSize < 10 && currentCast.length == (totalCastSize - 1) && !team && snatchCounter == false)
         miniChallengeScreen.createButton("Proceed", "snatchGame()");
     //the ball for the third competitive episode for lsftc seasons
     else if (currentCast.length == totalCastSize - 3 && top4 && !ballCounter)
@@ -813,6 +816,7 @@ function addQueen() {
     let improv = document.getElementById("improvStat").valueAsNumber;
     let runway = document.getElementById("runwayStat").valueAsNumber;
     let lipsync = document.getElementById("lipsyncStat").valueAsNumber;
+    let image = document.getElementById("url").value.trim();
     if ((acting || comedy || dance || design || improv || runway || lipsync) < 0 || (acting || comedy || dance || design || improv || runway || lipsync) > 15) {
         window.alert("Queens' stats must be between 0 and 15!");
         return;
@@ -821,7 +825,22 @@ function addQueen() {
         window.alert("One of the boxes is empty!");
         return;
     }
-    let customQueen = new Queen(name, acting, comedy, dance, design, improv, runway, lipsync);
+    let extension = image.substring(image.lastIndexOf(".") + 1).toLowerCase();
+    let noimagemaybe = false;
+    if (extension == "png" || extension == "jpg" || extension == ""){
+        console.log("Good file");
+        if (image == ""){
+            image = "noimage";
+            noimagemaybe = false;
+        }else {
+            noimagemaybe = true;
+        }
+    } else {
+        window.alert("Invalid image extension! Use jpg or png instead!");
+        document.getElementById("url").value = "";
+        return;
+    }
+    let customQueen = new Queen(name, acting, comedy, dance, design, improv, runway, lipsync, image, noimagemaybe);
     let sameName = false;
     for (let i = 0; i < allCustomQueens.length; i++)
         if (allCustomQueens[i].getName() == customQueen.getName()) {
@@ -831,6 +850,7 @@ function addQueen() {
         }
     if (sameName == false) {
         allCustomQueens.push(customQueen);
+        customQueen.customqueen = true;
         let announce = document.getElementById("announce-new");
         announce.innerHTML = `${customQueen.getName()} added to the queen list!`;
         localStorage.setItem("customQueens", JSON.stringify(allCustomQueens));
@@ -874,6 +894,7 @@ function editCustomQueen(){
     document.getElementById("improvStat").value = allCustomQueens[index]._improvStat;
     document.getElementById("runwayStat").value = allCustomQueens[index]._runwayStat;
     document.getElementById("lipsyncStat").value = allCustomQueens[index]._lipsyncStat;
+    document.getElementById("url").value = allCustomQueens[index].image;
 }
 function updateCustomQueen(){
     let select = document.getElementById("custom-remove");
@@ -886,6 +907,7 @@ function updateCustomQueen(){
     let improv = document.getElementById("improvStat").valueAsNumber;
     let runway = document.getElementById("runwayStat").valueAsNumber;
     let lipsync = document.getElementById("lipsyncStat").valueAsNumber;
+    let image = document.getElementById("url").value.trim();
     if ((acting || comedy || dance || design || improv || runway || lipsync) < 0 || (acting || comedy || dance || design || improv || runway || lipsync) > 15) {
         window.alert("Queens' stats must be between 0 and 15!");
         return;
@@ -894,9 +916,26 @@ function updateCustomQueen(){
         window.alert("One of the boxes is empty!");
         return;
     }
-    let customQueen = new Queen(name, acting, comedy, dance, design, improv, runway, lipsync);
+    let extension = image.substring(image.lastIndexOf(".") + 1).toLowerCase();
+    let noimagemaybe = false;
+    if (extension == "png" || extension == "jpg" || extension == ""){
+        console.log("Good file");
+        if (image == ""){
+            image = "noimage";
+            noimagemaybe = false;
+        }else {
+            noimagemaybe = true;
+        }
+    } else {
+        window.alert("Invalid image extension! Use jpg or png instead!");
+        document.getElementById("url").value = "";
+        return;
+    }
+    let customQueen = new Queen(name, acting, comedy, dance, design, improv, runway, lipsync, image, noimagemaybe);
     allCustomQueens.splice(index, 1);
     allCustomQueens.push(customQueen);
+    customQueen.customqueen = true;
+    customQueen.custom = true;
     let announce = document.getElementById("announce-new");
     announce.innerHTML = `${customQueen.getName()} updated!`;
     localStorage.setItem("customQueens", JSON.stringify(allCustomQueens));
@@ -926,6 +965,7 @@ function doublePremiere() {
         for (let i = 0; i < secondCast.length; i++)
             secondCast[i].addToTrackRecord("");
         premiereCounter++;
+        slayersCheck = true;
         newEpisode();
     }
     else if (premiereCounter == 1) {
@@ -933,6 +973,7 @@ function doublePremiere() {
         for (let i = 0; i < firstCast.length; i++)
             firstCast[i].addToTrackRecord("");
         premiereCounter++;
+        slayersCheck = true;
         newEpisode();
     }
     else if (premiereCounter == 2 && s14Premiere) {
@@ -2077,7 +2118,6 @@ function contestantProgress() {
         centering.appendChild(lipassa);
         }
     main.appendChild(centering);
-
     if (onFinale) {
         screen.createButton("Simulate again!", "reSimulate()");
         screen.createHorizontalLine();
@@ -2111,10 +2151,11 @@ function generateSpace() {
             let img = document.createElement("img");
             img.setAttribute("class", "images");
             img.setAttribute("id", "image" + i.toString());
+            img.setAttribute("style", "width: 105px; height: 105px;")
             let p = document.createElement("p");
             p.appendChild(img);
             if (document.getElementById("onlyCustomQueens").checked == true){
-                let customy = allQueens.filter(function (queen) { return queen.image == "image/queens/noimage.jpg"; });
+                let customy = allQueens.filter(function (queen) { return queen.customqueen == true; });
                 for (let k = 0; k < customy.length; k++) {
                     let option = document.createElement("option");
                     option.innerHTML = customy[k].getName();
@@ -2475,7 +2516,7 @@ function judging() {
         bottomQueens.push(team3[team1.length]);
         judgingScreen();
     }
-    else if (currentCast.length >= 10 && bottom6WayLipsync && (top3 || top4)) {
+    else if (currentCast.length >= 10 && bottom6WayLipsync && (top3 || top4) && !bottom6WayLipsyncCheck) {
         //add 3 queens to the top and 6 queens to the bottom
         currentCast.sort((a, b) => (a.performanceScore - b.performanceScore));
         for (let i = 0; i < 3; i++) {
@@ -2487,7 +2528,7 @@ function judging() {
         bottom6WayLipsync = false;
         judging6WayScreen();
     }
-    else if (currentCast.length >= 8 && floppers && (top3 || top4)) {
+    else if (currentCast.length >= 8 && floppers && (top3 || top4) && !floppersCheck) {
         //add 0 queens to the top and 3 queens to the bottom
         currentCast.sort((a, b) => (a.performanceScore - b.performanceScore));
         for (let i = 0; i < 3; i++) {
@@ -2496,7 +2537,7 @@ function judging() {
         floppers = false;
         judgingFloppersScreen();
     }
-    else if (currentCast.length >= 6 && slayers && (top3 || top4)) {
+    else if (currentCast.length >= 6 && slayers && (top3 || top4) && !slayersCheck) {
         //add all the queens to the top and 0 queens to the bottom
         currentCast.sort((a, b) => (a.performanceScore - b.performanceScore));
         for (let i = 0; i < currentCast.length ; i++) {
@@ -3632,7 +3673,7 @@ function lsaLipSync() {
         screen.createButton("Proceed", "newEpisode()");
 }
 class Queen {
-    constructor(name, acting, comedy, dance, design, improv, runway, lipsync, image = "noimage") {
+    constructor(name, acting, comedy, dance, design, improv, runway, lipsync, image = "noimage", custom = false) {
         this.trackRecord = [];
         this.runwayScore = 0;
         this.lipsyncScore = 0;
@@ -3645,6 +3686,7 @@ class Queen {
         this.episodesOn = 0;
         this.votes = 0;
         this.QueenDisqOrDept = false;
+        this.customqueen = false;
         this._name = name;
         this._actingStat = acting;
         this._comedyStat = comedy;
@@ -3655,6 +3697,8 @@ class Queen {
         this._lipsyncStat = lipsync;
         if (image == "noimage")
             this.image = "image/queens/noimage.jpg";
+        else if (custom == true)
+            this.image = image;
         else
             this.image = "image/queens/" + image + ".webp";
     }
@@ -4629,7 +4673,7 @@ class Scene {
     createImage(source, color = "black") {
         let image = document.createElement("img");
         image.src = source;
-        image.setAttribute("style", `border-color: ${color}`);
+        image.setAttribute("style", `border-color: ${color}; width: 105px; height: 105px;`);
         this._MainBlock.appendChild(image);
     }
 }
@@ -4933,7 +4977,7 @@ let allLsSongs = [
     "Shut Up And Drive by Rihanna",
     "Dollhouse by Melanie Martinez",
     "Brick By Boring Brick by Paramore",
-    "How I Feel About You by Miranda Cosgrove",
+    "About You Now by Miranda Cosgrove",
     "Real Love by Clean Bandit & Jess Glyne",
     "Queen Of The Night by Whitney Houston",
     "Lucky Star by Madonna",
