@@ -1502,9 +1502,10 @@ function finaleJuryAS() {
     screen.createHeader("The jury!");
     screen.createParagraph("The eliminated queens are coming back, back, back again!");
     screen.createHorizontalLine();
-    for (let i = 0; i < currentCast.length; i++)
+    for (let i = 0; i < currentCast.length; i++){
         screen.createImage(currentCast[i].image);
         currentCast[i].votes = 0;
+    }
     screen.createBold("After the Top 4 All Stars had their meetings with the eliminated queens... They vote!");
 
     for (let i = 0; i < eliminatedCast.length; i++) {
