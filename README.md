@@ -30,6 +30,7 @@ Currently I'm working on returning challenges (AS3 and S7)
  * Choosing the challenges order *
  * Choosing which queen comes back *
  * Stats tab *
+ * Reveal placements *
  * 3 way lipsyncs *
  * UK vs The World Finale Format *
  * Drag Race Italia Exp lipsync *
