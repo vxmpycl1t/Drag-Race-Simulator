@@ -19,7 +19,7 @@ Currently I'm working on returning challenges (AS3 and S7)
 # To do list (not in order)
  * Untucked *
  * S14 Queens Stats update
- * España S2 Queens Stats update (I know no spoilers _and don't want to_ so I'll wait until the show is over to update their stats
+ * España S2 Queens Stats update (I know no spoilers _and don't want to_ so I'll wait until the show is over to update their stats)
  * Improve Team Challenges *
  * Multiple Wins for Team Challenges *
  * Predifined custom cast *
