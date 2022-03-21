@@ -15,32 +15,35 @@
     <div id="MainBlock">
         <big>Go here if you want to create a cast with custom queens or create your own rendition of the show's queens!</big>
         <p>
-            <b>Queen name: </b><input type="text" id="queenName">
+            <b>Queen name: </b><input type="text" id="queenName" placeholder="Queen name...">
         </p>
         <p>
             <button onclick="randomizeStats()">Randomize Stats</button>
         </p>
         <small>(Queens' stats must range from 0 to 15)</small>
         <p>
-            <b>Acting stat: </b> <input type="number"  id="actingStat" class="stats">
+            <b>Acting stat: </b> <input type="number"  id="actingStat" class="stats" placeholder="0-15..."> 
         </p>
         <p>
-            <b>Comedy stat: </b> <input type="number"  id="comedyStat" class="stats">
+            <b>Comedy stat: </b> <input type="number"  id="comedyStat" class="stats" placeholder="0-15...">
         </p>
         <p>
-            <b>Dance stat: </b> <input type="number"  id="danceStat" class="stats">
+            <b>Dance stat: </b> <input type="number"  id="danceStat" class="stats" placeholder="0-15...">
         </p>
         <p>
-            <b>Design stat: </b> <input type="number"  id="designStat" class="stats">
+            <b>Design stat: </b> <input type="number"  id="designStat" class="stats" placeholder="0-15...">
         </p>
         <p>
-            <b>Improv stat: </b> <input type="number"  id="improvStat" class="stats">
+            <b>Improv stat: </b> <input type="number"  id="improvStat" class="stats" placeholder="0-15...">
         </p>
         <p>
-            <b>Runway stat: </b> <input type="number"  id="runwayStat" class="stats">
+            <b>Runway stat: </b> <input type="number"  id="runwayStat" class="stats" placeholder="0-15...">
         </p>
         <p>
-            <b>Lip-Sync stat: </b> <input type="number"  id="lipsyncStat" class="stats">
+            <b>Lip-Sync stat: </b> <input type="number"  id="lipsyncStat" class="stats" placeholder="0-15...">
+        </p>
+        <p>
+            <b>Image: </b> <input type="text"  id="url" placeholder="Link of your image...">
         </p>
         <button id="add" onclick="addQueen()">Add queen</button>
         <button id="edit" onclick="updateCustomQueen()" hidden>Update queen</button>
