@@ -29,6 +29,7 @@ Currently I'm working on returning challenges (AS3 and S7)
  * 3 way lipsyncs *
  * UK vs The World Finale Format *
  * Drag Race Italia Exp lipsync *
+ * Custom Queens Images
  * ...
 
 # 03/15/2022
