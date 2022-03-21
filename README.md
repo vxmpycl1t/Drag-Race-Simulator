@@ -7,6 +7,7 @@ Drag Race Simulator based on edssb sim. I'm updating it until they come back.
 * Added All Stars 3 Jury Twist Finale
 * Double crownings are less possible to happen that they used to
 * Bottom 6 episode now requires 6 queens that flopped or did bad in the challenge (And at least 9 queens competing at the moment)
+* Added Custom Queens Images (You need to put a link that ends with .png or .jpg)
 
 # 03/16/2022
 * Added Episodes where no one wins a challenge
@@ -34,7 +35,6 @@ Currently I'm working on returning challenges (AS3 and S7)
  * 3 way lipsyncs *
  * UK vs The World Finale Format *
  * Drag Race Italia Exp lipsync *
- * Custom Queens Images *
  * LaLaPaRUza Smackdown from S14 *
  * ...
 
