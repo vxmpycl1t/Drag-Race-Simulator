@@ -15,7 +15,7 @@ Drag Race Simulator based on edssb sim. I'm updating it until they come back.
 * Lipstick Choices in Contestant Progress for Lipsync for your Legacy Format
 
 # Working on
-Currently I'm working on returning challenges as AS2, AS3 and S7 
+Currently I'm working on returning challenges (AS3 and S7)
 # To do list (not in order)
  * Untucked *
  * Improve Team Challenges *
@@ -24,7 +24,6 @@ Currently I'm working on returning challenges as AS2, AS3 and S7
  * Thailands format *
  * Superstars format *
  * Interactive format *
- * AS3 Finale format *
  * Choosing which queen comes back *
  * Stats tab *
  * 3 way lipsyncs *
