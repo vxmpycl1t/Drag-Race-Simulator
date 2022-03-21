@@ -2312,6 +2312,26 @@ function startSimulation(challenge = "") {
             lalaparuza = false;
             currentCast = [];
         }
+        else if (queensOfComedy && currentCast.length < 9) {
+            window.alert("Queens of comedy return challenge needs at least 9 queens!");
+            uk3Premiere = false;
+            s6Premiere = false;
+            s12Premiere = false;
+            s14Premiere = false;
+            porkchopPremiere = false;
+            top4 = false;
+            top3 = false;
+            canFinale = false;
+            lipsync_assassin = false;
+            all_stars = false;
+            allstars3Finale = false;
+            smackdown = false;
+            voteReturn = false;
+            queensOfComedy = false;
+            randomReturn = false;
+            lalaparuza = false;
+            currentCast = [];
+        }
         else if (team && (smackdown || voteReturn || randomReturn || s6Premiere || lalaparuza || queensOfComedy || s12Premiere || porkchopPremiere || s14Premiere || uk3Premiere)) {
             window.alert("The team format isn't supported with any special premiere or returning formats, sorry!");
             team = false;
