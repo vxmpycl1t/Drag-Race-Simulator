@@ -24,7 +24,7 @@ Currently I'm working on returning challenges (AS3 and S7)
  * Thailands format *
  * Superstars format *
  * Interactive format *
- * Choosing the challenges *
+ * Choosing the challenges order *
  * Choosing which queen comes back *
  * Stats tab *
  * 3 way lipsyncs *
