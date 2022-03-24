@@ -1240,6 +1240,11 @@ function reSimulate() {
         finalLS = [];
         firstLS = [];
         secondLS = [];
+    }else if(ukvstwFinale){
+        currentCast.push(finalLS[0]);
+        finalLS = [];
+        firstLS = [];
+        secondLS = [];
     }
     currentCast.sort((a, b) => a.getName().toLowerCase().localeCompare(b.getName().toLowerCase()));
     eliminatedCast = [];
@@ -4913,7 +4918,7 @@ function topKittyWinLipsync(sittingOnASecret) {
             top2[0].lipstick = sittingOnASecret[randomNumber(0, sittingOnASecret.length - 1)];
         screen.createImage(top2[0].image, "cyan");
         screen.createImage(top2[0].lipstick.image, "green");
-        screen.createBold(top2[0].getName() + " chose " + top2[0].lipstick.getName() + "'s to return to the competition!!");
+        screen.createBold(top2[0].getName() + " chose " + top2[0].lipstick.getName() + " to return to the competition!!");
         top2[0].lipstick.addToTrackRecord("RTRN ");
         currentCast.unshift(top2[0].lipstick);
         eliminatedCast.splice(eliminatedCast.indexOf(top2[0].lipstick), 1);
