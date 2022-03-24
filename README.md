@@ -39,6 +39,7 @@ Currently I'm working on returning challenges (AS3 and S7)
  * UK vs The World Finale Format *
  * Drag Race Italia Exp lipsync *
  * LaLaPaRUza Smackdown from S14 *
+ * S1-S5 inmunnity
  * ...
 
 # 03/15/2022
