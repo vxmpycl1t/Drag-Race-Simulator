@@ -1,7 +1,7 @@
-# Drag-Race-Simulator
+# Drag Race Simulator
 Drag Race Simulator based on edssb sim. I'm updating it until they come back.
 <br> You can also send me a dm in Discord if you find a bug or something that wasn't cute. <b>Rainbow#4283</b>
-# Custom Queen Images
+## Custom Queen Images
 * You need to put a link that ends with .jpg or .png
 * For your custom queens that you already have there just update them.
 * **For more questions send me a DM in Discord!**
