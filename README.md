@@ -19,7 +19,7 @@ Drag Race Simulator based on edssb sim. I'm updating it until they come back.
 * Added Custom Queens Images (You need to put a link that ends with .png or .jpg)
 
 # Working on
-Currently I'm working on returning challenges (AS3 and S7)
+Currently I'm working on S7 returning challenge
 # To do list (not in order)
  * Untucked *
  * S14 Queens Stats update
@@ -36,7 +36,6 @@ Currently I'm working on returning challenges (AS3 and S7)
  * Stats tab *
  * Reveal placements *
  * 3 way lipsyncs *
- * UK vs The World Finale Format *
  * Drag Race Italia Exp lipsync *
  * LaLaPaRUza Smackdown from S14 *
  * S1-S5 inmunnity
