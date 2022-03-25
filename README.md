@@ -38,7 +38,8 @@ Currently I'm working on S7 returning challenge
  * 3 way lipsyncs *
  * Drag Race Italia Exp lipsync *
  * LaLaPaRUza Smackdown from S14 *
- * S1-S5 inmunnity
+ * S1-S5 inmunnity *
+ * S9 Premiere *
  * ...
 
 # 03/16/2022
