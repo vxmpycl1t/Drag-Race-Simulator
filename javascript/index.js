@@ -649,7 +649,7 @@ function createChallenge(challenges, miniChallengeScreen) {
     //uk3 premiere
     else if (currentCast.length == totalCastSize && uk3Premiere)
         miniChallengeScreen.createButton("Proceed", "designChallenge()");
-    //talent show for all stars
+    //talent show for all stars and s14 premiere
     else if (currentCast.length == totalCastSize && (all_stars || lipsync_assassin) || currentCast == firstCast && s14Premiere || currentCast == secondCast && s14Premiere)
         miniChallengeScreen.createButton("Proceed", "talentshow()");
     //snatch game for +10 cast
@@ -682,7 +682,7 @@ function createChallenge(challenges, miniChallengeScreen) {
     //if no conditions apply, create random challenge
     else {
         let currentChallenge = challenges[randomNumber(0, challenges.length - 1)];
-        if (currentChallenge === lastChallenge && currentCast.length != totalCastSize) {
+        if (currentChallenge == lastChallenge && currentCast.length != totalCastSize) {
             currentChallenge = challenges[randomNumber(0, challenges.length - 1)];
             lastChallenge = currentChallenge;
             miniChallengeScreen.createButton("Proceed", currentChallenge);
@@ -1612,7 +1612,7 @@ function canadaS2Finale() {
     screen.createImage(secondLS[0].image, "darkred");
     screen.createImage(secondLS[1].image, "darkred");
     screen.createBold(secondLS[0].getName() + " vs. " + secondLS[1].getName());
-    episodeChallenges.push("Lipsync for the Finale");
+    episodeChallenges.push("Lipsync For The Finale");
     screen.createButton("Proceed", "canadaS2LipSyncs()");
 }
 function canadaS2LipSyncs() {
@@ -4718,7 +4718,7 @@ function kittygirlGroup() {
     for (let i = 0; i < sittingOnASecret.length; i++) {
         if (sittingOnASecret[i].QueenDisqOrDept == true){
             sittingOnASecret[i].addToTrackRecord("");
-            sittingOnASecret[i].splice(i, 1);
+            sittingOnASecret.splice(i, 1);
             i--;
         } else {
             sittingOnASecret[i].getRumix();
