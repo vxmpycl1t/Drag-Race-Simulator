@@ -758,13 +758,13 @@ let bottom6WayLipsync = false;
 let bottom6WayLipsyncCheck = false;
 
 function CheckForSpecialEvents(slay, great, bad, flop) {
-    if (slay.length === 0 && great.length === 0 && currentCast.length >= 8 && !floppersCheck)
+    if (slay.length === 0 && great.length === 0 && currentCast.length >= 8 && !floppersCheck && !conjoinedCheck)
         floppers = true;
-    if (slay.length == currentCast.length && !slayersCheck)
+    if (slay.length == currentCast.length && !slayersCheck && !conjoinedCheck)
         slayers = true;
-    else if (slay.length + great.length == currentCast.length && !slayersCheck && randomNumber(0, 100) >= 50)
+    else if (slay.length + great.length == currentCast.length && !slayersCheck && randomNumber(0, 100) >= 50 && !conjoinedCheck)
         slayers = true;
-    if (flop.length + bad.length >= 5 && currentCast.length >= 9 && !bottom6WayLipsyncCheck)
+    if (flop.length + bad.length >= 5 && currentCast.length >= 9 && !bottom6WayLipsyncCheck && !conjoinedCheck)
         bottom6WayLipsync = true;
 }
 function createRunwayDesc(slay, great, good, bad) {
@@ -1727,7 +1727,6 @@ function contestantProgress() {
             winnerQueen = finalLS[0];
         else
             winnerQueen = currentCast[0];
-        console.log(winnerQueen);
         name.innerHTML = winnerQueen.getName();
         winner.appendChild(name);
         let photo = document.createElement("td");
@@ -2403,8 +2402,8 @@ function startSimulation(challenge = "") {
             lalaparuza = false;
             currentCast = [];
         }
-        else if ((queensOfComedy || conjoinedQueens || kittyGirlGroup) && currentCast.length < 9) {
-            window.alert("Queens of comedy, Kitty Girl Group and Conjoined Queens return challenges need at least 9 queens!");
+        else if ((queensOfComedy || conjoinedQueens || kittyGirlGroup) && currentCast.length < 10) {
+            window.alert("Queens of comedy, Kitty Girl Group and Conjoined Queens return challenges need at least 10 queens!");
             uk3Premiere = false;
             s6Premiere = false;
             s9Premiere = false;
@@ -4415,7 +4414,7 @@ function returningQueenScreen() {
     if (kittyGirlGroup)
         kittygirlGroup();
     screen.createButton("Proceed", "newEpisode()");
-    if (randomReturn){
+    if (randomReturn && document.querySelector("button[onclick='fijarReturningQueen()']")){
         let button = document.querySelector("button[onclick='newEpisode()']");
         button.setAttribute("hidden", "hidden");
     }
