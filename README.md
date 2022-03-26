@@ -29,11 +29,21 @@ Currently I'm working on the Chocolate bar twist
  * Interactive format *
  * Choosing the challenges order *
  * Stats tab *
- * Reveal placements *
+ * Reveal placements and lipsync winners*
  * 3 way lipsyncs *
  * Drag Race Italia Exp lipsync *
  * LaLaPaRUza Smackdown from S14 *
  * S1-S5 inmunnity *
+ * Porkchop Votes *
+ * Queens quitting in/prior a lipsync *
+ * Late Entrace *
+ * No one getting eliminated in the finale *
+ * Be RuPaul format *
+ * Miss Congeniality *
+ * Detailed Challenges *
+ * Choose the lipsync assasin for your season *
+ * S6-S8 Top 4 Format *
+ * AS4 Finale Format *
  * ...
 
 # 03/21/2022
