@@ -5,7 +5,7 @@ Drag Race Simulator based on edssb sim. I'm updating it until they come back.
 # 03/25/2022
 * Added the makeover return challenge from S7 
 * Added the Season 9 Premiere
-* Now you can get which queen returns with "Random Queen Return" return format.
+* Now you can decide which queen returns with "Random Queen Return" return format.
 * Fixed some bugs
 
 # 03/24/2022
