@@ -23,7 +23,7 @@ Currently I'm working on the Chocolate bar twist
  * España S2 Queens Stats update (I know no spoilers _and don't want to_ so I'll wait until the show is over to update their stats)
  * Improve Team Challenges *
  * Multiple Wins for Team Challenges *
- * Predifined custom cast *
+ * Predefined custom cast *
  * Thailands format *
  * Superstars format *
  * Interactive format *
@@ -33,15 +33,15 @@ Currently I'm working on the Chocolate bar twist
  * 3 way lipsyncs *
  * Drag Race Italia Exp lipsync *
  * LaLaPaRUza Smackdown from S14 *
- * S1-S5 inmunnity *
+ * S1-S5 immunity *
  * Porkchop Votes *
  * Queens quitting in/prior a lipsync *
- * Late Entrace *
+ * Late Entrance *
  * No one getting eliminated in the finale *
  * Be RuPaul format *
  * Miss Congeniality *
  * Detailed Challenges *
- * Choose the lipsync assasin for your season *
+ * Choose the lipsync assassin for your season *
  * S6-S8 Top 4 Format *
  * AS4 Finale Format *
  * ...
