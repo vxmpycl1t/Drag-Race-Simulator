@@ -2397,7 +2397,10 @@ function predefCast(cast, format, premiere = '', returning = '') {
         noDouble = true;
     if (document.getElementById("chocolateBar").checked == true)
         chocolateBarTwist = true;
-    if (s6Premiere || s12Premiere || s14Premiere)
+    if (chocolateBarTwist) {
+            giveChocolate();
+        }
+    else if (s6Premiere || s12Premiere || s14Premiere)
         doublePremiere();
     else if (porkchopPremiere)
         porkchopLipsyncs();
