@@ -4201,6 +4201,7 @@ function lsaLipSync() {
             top2[0].lipstick.addToTrackRecord("CHOC");
             top2[0].lipstick.unfavoritism += 3;
             top2[0].lipstick.ppe += 1;
+            top2[0].lipstick.votes = 0;
             chocolateBarTwistCheck = true;
             bottomQueens.splice(bottomQueens.indexOf(top2[0].lipstick), 1);
         } else {
