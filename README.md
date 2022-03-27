@@ -1,6 +1,9 @@
 # Drag Race Simulator
 Drag Race Simulator based on edssb sim. I'm updating it until they come back.
 <br> You can also send me a dm in Discord if you find a bug or something that wasn't cute. <b>Rainbow#4283</b>
+# 03/27/2022
+* Added Chocolate Bar Twist
+* Fixed some bugs cause I'm dumb.
 
 # 03/25/2022
 * Added the makeover return challenge from S7 
@@ -8,15 +11,9 @@ Drag Race Simulator based on edssb sim. I'm updating it until they come back.
 * Now you can decide which queen returns with "Random Queen Return" return format. But not always you get to choose. ;)
 * Fixed some bugs
 
-# 03/24/2022
-* Added Drag Race España S2 Queens with basic stats
-* Added UK vs The World Format
-* Added All Stars 3 Returning Format (Kitty Girl Groups)
-* Fixed some bugs with disqualified, injured or quitter queens.
-
 
 # Working on
-Currently I'm working on the Chocolate bar twist 
+Currently I'm working on SCHOOL!
 # To do list (not in order)
  * Untucked *
  * S14 Queens Stats update
@@ -45,6 +42,12 @@ Currently I'm working on the Chocolate bar twist
  * S6-S8 Top 4 Format *
  * AS4 Finale Format *
  * ...
+
+# 03/24/2022
+* Added Drag Race España S2 Queens with basic stats
+* Added UK vs The World Format
+* Added All Stars 3 Returning Format (Kitty Girl Groups)
+* Fixed some bugs with disqualified, injured or quitter queens.
 
 # 03/21/2022
 * Added Queens of Comedy Returning Challenge
