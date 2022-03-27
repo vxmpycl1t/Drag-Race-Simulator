@@ -2554,7 +2554,7 @@ function startSimulation(challenge = "") {
             lalaparuza = false;
             currentCast = [];
         }
-        else if (team && (smackdown || voteReturn || randomReturn || s9Premiere || s6Premiere || lalaparuza || queensOfComedy || kittyGirlGroup || conjoinedQueens || s12Premiere || porkchopPremiere || s14Premiere || uk3Premiere)) {
+        else if (team && (smackdown || voteReturn || randomReturn || chocolateBarTwist || s9Premiere || s6Premiere || lalaparuza || queensOfComedy || kittyGirlGroup || conjoinedQueens || s12Premiere || porkchopPremiere || s14Premiere || uk3Premiere)) {
             window.alert("The team format isn't supported with any special premiere or returning formats, sorry!");
             team = false;
             smackdown = false;
@@ -2570,9 +2570,10 @@ function startSimulation(challenge = "") {
             s14Premiere = false;
             porkchopPremiere = false;
             uk3Premiere = false;
+            chocolateBarTwist = false;
         }
         else if (smackdown && !noDouble && chocolateBarTwist) {
-            window.alert("The Lipsync Smackdown format isn't supported with double shantays or sashays, sorry!");
+            window.alert("The Lipsync Smackdown format isn't supported with double shantays or sashays or the golden chocolate bar twist, sorry!");
             s14Premiere = false;
             s12Premiere = false;
             s9Premiere = false;
@@ -2594,6 +2595,7 @@ function startSimulation(challenge = "") {
             kittyGirlGroup = false;
             randomReturn = false;
             lalaparuza = false;
+            chocolateBarTwist = false;
             allQueens = [...allQueensCopy2];
         }
         else if (chocolateBarTwist) {
