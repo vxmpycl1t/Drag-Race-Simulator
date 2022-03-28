@@ -50,6 +50,7 @@ let improvChallengeCounter = 0;
 var isDesignChallenge = false;
 let rusicalCounter = false;
 let ballCounter = false;
+let talentShowCounter = false;
 let makeoverCounter = false;
 let snatchCounter = false;
 let lastChallenge = '';
@@ -565,6 +566,9 @@ function talentshow() {
     isDesignChallenge = true;
     queensPerformances();
     episodeChallenges.push("Talent Show");
+    if (s14Premiere && episodeCount == 2) {
+        talentShowCounter = true;
+    }
 }
 //performance:
 function queensPerformances() {
@@ -657,7 +661,7 @@ function createChallenge(challenges, miniChallengeScreen) {
     else if (currentCast.length == totalCastSize && (uk3Premiere || s9Premiere) && !s9PremiereCheck && !uk3PremiereCheck)
         miniChallengeScreen.createButton("Proceed", "designChallenge()");
     //talent show for all stars and s14 premiere
-    else if (currentCast.length == totalCastSize && (all_stars || lipsync_assassin) || currentCast == firstCast && s14Premiere || currentCast == secondCast && s14Premiere)
+    else if (currentCast.length == totalCastSize && !talentShowCounter && (all_stars || lipsync_assassin) || currentCast == firstCast && s14Premiere || currentCast == secondCast && s14Premiere)
         miniChallengeScreen.createButton("Proceed", "talentshow()");
     //snatch game for +10 cast
     else if (totalCastSize >= 10 && currentCast.length == 9 && !team && snatchCounter == false || totalCastSize >= 6 && currentCast.length == 5 && team)
@@ -1003,6 +1007,7 @@ function doublePremiere() {
             }
         }
         premiereCounter++;
+        chocolateBarTwistCheck = false;
         slayersCheck = false;
         newEpisode();
     }
@@ -1288,6 +1293,9 @@ function reSimulate() {
     improvChallengeCounter = 0;
     rusicalCounter = false;
     ballCounter = false;
+    talentShowCounter = false;
+    makeoverCounter = false;
+    snatchCounter = false;
     doubleShantay = false;
     doubleSashay = false;
     returningQueen = false;
@@ -1388,6 +1396,7 @@ function finaleLipSyncs() {
 function finalLipSync() {
     onTop4Finale = true;
     onFinale = true;
+    chocolateBarTwistCheck = true;
     let screen = new Scene();
     screen.clean();
     screen.createHeader("The end...");
@@ -1422,6 +1431,7 @@ function finalLipSync() {
             }
         }
     }
+    currentCast.push(finalLS[0]);
     screen.createButton("Proceed", "contestantProgress()");
 }
 function finale() {
@@ -3840,6 +3850,11 @@ function lipSync() {
         eliminatedCast.unshift(disqualifiedQueen);
         currentCast.splice(currentCast.indexOf(disqualifiedQueen), 1);
         disqOrDept = true;
+        if (chocolateBarTwist  && !chocolateBarTwistCheck) {
+            if (chocolateBarCheck(disqualifiedQueen) == true) {
+                chocolateBarTwistCheck = true;
+            }
+        }
     }
     else if (randomNumber(0, 1000) >= 995 && disqOrDept == false) {
         let injuredQueen = currentCast[randomNumber(0, currentCast.length - 1)];
@@ -3859,6 +3874,11 @@ function lipSync() {
         eliminatedCast.unshift(injuredQueen);
         currentCast.splice(currentCast.indexOf(injuredQueen), 1);
         disqOrDept = true;
+        if (chocolateBarTwist  && !chocolateBarTwistCheck) {
+            if (chocolateBarCheck(injuredQueen) == true) {
+                chocolateBarTwistCheck = true;
+            }
+        }
     }
     else {
         screen.createImage(bottomQueens[0].image, "tomato");
@@ -4026,6 +4046,7 @@ function asLipSync() {
                     top2[0].lipstick.addToTrackRecord("CHOC");
                     top2[0].lipstick.unfavoritism += 3;
                     top2[0].lipstick.ppe += 1;
+                    bottomQueens.splice(bottomQueens.indexOf(top2[0].lipstick), 1);
                     chocolateBarTwistCheck = true;
                 } else if (chocolateBarCheck(bottomQueens[0], bottomQueens[1]) == 2) {
                     screen.createImage("image/ChocolateBarWithNoTicket.webp", "brown");
@@ -4041,6 +4062,7 @@ function asLipSync() {
                     top2[1].lipstick.addToTrackRecord("CHOC");
                     top2[1].lipstick.unfavoritism += 3;
                     top2[1].lipstick.ppe += 1;
+                    bottomQueens.splice(bottomQueens.indexOf(top2[1].lipstick), 1);
                     chocolateBarTwistCheck = true;
                 } else {
                     screen.createImage("image/ChocolateBarWithNoTicket.webp", "brown");
@@ -4096,6 +4118,11 @@ function asLipSync() {
         eliminatedCast.unshift(top2[0]);
         currentCast.splice(currentCast.indexOf(top2[0]), 1);
         disqOrDept = true;
+        if (chocolateBarTwist  && !chocolateBarTwistCheck) {
+            if (chocolateBarCheck(top2[0]) == true) {
+                chocolateBarTwistCheck = true;
+            }
+        }
         assasintable.push(top2[0].getName());
         assasinlipstick.push(top2[0].getName());
         assasintable.push(top2[1].getName());
@@ -6146,7 +6173,9 @@ function giveChocolate() {
         currentCast[number].chocolate = true;
         goldenChecker = true;
     }
-
+    if (s14Premiere) {
+        chocolateBarTwistCheck = true;
+    }
     if (s6Premiere || s12Premiere || s14Premiere) {
         screen.createButton("Proceed", "doublePremiere()");
     }
