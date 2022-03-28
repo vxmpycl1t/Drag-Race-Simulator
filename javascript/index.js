@@ -2397,7 +2397,32 @@ function predefCast(cast, format, premiere = '', returning = '') {
         noDouble = true;
     if (document.getElementById("chocolateBar").checked == true)
         chocolateBarTwist = true;
-    if (chocolateBarTwist) {
+    if (smackdown && !noDouble && chocolateBarTwist) {
+        window.alert("The Lipsync Smackdown format isn't supported with double shantays or sashays or the golden chocolate bar twist, sorry!");
+        s14Premiere = false;
+        s12Premiere = false;
+        s9Premiere = false;
+        s6Premiere = false;
+        porkchopPremiere = false;
+        uk3Premiere = false;
+        top4 = false;
+        top3 = false;
+        canFinale = false;
+        lipsync_assassin = false;
+        smackdown = false;
+        all_stars = false;
+        allstars3Finale = false;
+        ukvstwFinale = false;
+        smackdown = false;
+        voteReturn = false;
+        conjoinedQueens = false;
+        queensOfComedy = false;
+        kittyGirlGroup = false;
+        randomReturn = false;
+        lalaparuza = false;
+        chocolateBarTwist = false;
+    }
+    else if (chocolateBarTwist) {
             giveChocolate();
         }
     else if (s6Premiere || s12Premiere || s14Premiere)
