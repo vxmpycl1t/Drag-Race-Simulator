@@ -685,7 +685,7 @@ function createChallenge(challenges, miniChallengeScreen) {
     else if (currentCast.length == 6 && (top3 || top4) && makeoverCounter == false || currentCast.length == 6 && randomNumber(0, 15) == 15 && (all_stars || lipsync_assassin) && makeoverCounter == false)
         miniChallengeScreen.createButton("Proceed", "designChallenge()");
     //rumix
-    else if (currentCast.length == 5 && top4 && (!smackdown || returningQueen == true))
+    else if (currentCast.length == 5 && top4 && (!smackdown || returningQueen == true || chocolateBarTwistCheck))
         miniChallengeScreen.createButton("Proceed", "rumix()");
     //ball for top3 seasons
     else if (currentCast.length == 4 && top3 && !ballCounter)
@@ -1247,7 +1247,6 @@ function reSimulate() {
         currentCast.push(eliminatedCast[i]);
     }
     if (top4) {
-        currentCast.push(finalLS[0]);
         finalLS = [];
         firstLS = [];
         secondLS = [];
@@ -1256,7 +1255,6 @@ function reSimulate() {
         firstLS = [];
         secondLS = [];
     }else if(ukvstwFinale){
-        currentCast.push(finalLS[0]);
         finalLS = [];
         firstLS = [];
         secondLS = [];
