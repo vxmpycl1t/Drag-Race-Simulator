@@ -138,7 +138,7 @@ function actingChallenge() {
     challengeScreen.createParagraph("", "Description");
     let challenge = new ActingChallenge();
     challenge.generateDescription();
-    if (randomNumber(0, 100) >= 50 && currentCast.length >= 6 && currentCast.length <= 15 && !isTeamChallenge && (top3 || top4)){
+    if (randomNumber(0, 100) >= 50 && currentCast.length > 6 && currentCast.length <= 15 && !isTeamChallenge && (top3 || top4)){
         isTeamChallenge = true;
         teamMaking();
         challenge.rankPerformances();
@@ -184,7 +184,7 @@ function comedyChallenge() {
     challengeScreen.createParagraph("", "Description");
     let challenge = new ComedyChallenge();
     challenge.generateDescription();
-    if (randomNumber(0, 100) >= 70 && currentCast.length >= 6 && currentCast.length <= 15 && !isTeamChallenge && (top3 || top4)){
+    if (randomNumber(0, 100) >= 70 && currentCast.length > 6 && currentCast.length <= 15 && !isTeamChallenge && (top3 || top4)){
         isTeamChallenge = true;
         teamMaking();
         challenge.rankPerformances();
@@ -234,7 +234,7 @@ function marketingChallenge() {
     challengeScreen.createParagraph("", "Description");
     let challenge = new MarketingChallenge();
     challenge.generateDescription();
-    if (randomNumber(0, 100) >= 60 && currentCast.length >= 6 && currentCast.length <= 15 && !isTeamChallenge && (top3 || top4)){
+    if (randomNumber(0, 100) >= 60 && currentCast.length > 6 && currentCast.length <= 15 && !isTeamChallenge && (top3 || top4)){
         isTeamChallenge = true;
         teamMaking();
         challenge.rankPerformances();
@@ -276,7 +276,7 @@ function danceChallenge() {
     challengeScreen.createParagraph("", "Description");
     let challenge = new DanceChallenge();
     challenge.generateDescription();
-    if (randomNumber(0, 100) >= 70 && currentCast.length >= 6 && currentCast.length <= 15 && !isTeamChallenge && (top3 || top4)){
+    if (randomNumber(0, 100) >= 70 && currentCast.length > 6 && currentCast.length <= 15 && !isTeamChallenge && (top3 || top4)){
         isTeamChallenge = true;
         teamMaking();
         challenge.rankPerformances();
@@ -340,6 +340,8 @@ function designChallenge() {
     else if (currentCast.length == totalCastSize && (uk3Premiere || s9Premiere) && !s9PremiereCheck && !uk3PremiereCheck){
         episodeChallenges.push("Runway");
     }
+    else if (currentCast.length == totalCastSize - 1 && s9Premiere && !s9PremiereCheck)
+        episodeChallenges.push("Runway");
     else
         episodeChallenges.push("Design");
 }
@@ -377,7 +379,7 @@ function improvChallenge() {
     challengeScreen.createParagraph("", "Description");
     let challenge = new ImprovChallenge();
     challenge.generateDescription();
-    if (randomNumber(0, 100) >= 50 && currentCast.length >= 6 && currentCast.length <= 15 && !isTeamChallenge && (top3 || top4)){
+    if (randomNumber(0, 100) >= 50 && currentCast.length > 6 && currentCast.length <= 15 && !isTeamChallenge && (top3 || top4)){
         isTeamChallenge = true;
         teamMaking();
         challenge.rankPerformances();
@@ -598,7 +600,7 @@ function girlgroup() {
     challengeScreen.createParagraph("", "Description");
     let challenge = new GirlGroup();
     challenge.generateDescription();
-    if (randomNumber(0, 100) >= 60 && currentCast.length >= 6 && currentCast.length <= 15 && !isTeamChallenge && (top3 || top4) && premiereCounter > 2){
+    if (randomNumber(0, 100) >= 60 && currentCast.length > 6 && currentCast.length <= 15 && !isTeamChallenge && (top3 || top4) && premiereCounter > 2){
         isTeamChallenge = true;
         teamMaking();
         challenge.rankPerformances();
@@ -732,11 +734,15 @@ function runway() {
     createRunwayDesc(slay, great, good, bad);
     if (currentCast.length > 4)
         runwayScreen.createButton("Proceed", "judging()");
+    else if (currentCast.length == 4 && porkchopPremiere && premiereCounter < 3)
+        runwayScreen.createButton("Proceed", "judging()");
     else if (currentCast.length == 4 && (top3 || team))
         runwayScreen.createButton("Proceed", "judging()");
     else if (currentCast.length == 3 && team)
         runwayScreen.createButton("Proceed", "judging()");
     else if (currentCast.length == 3 && (top3))
+        runwayScreen.createButton("Proceed", "finaleJudging()");
+    else if (currentCast.length == 2 && (top3))
         runwayScreen.createButton("Proceed", "finaleJudging()");
     else if (currentCast.length == 4 && (allstars3Finale))
         runwayScreen.createButton("Proceed", "finaleJuryAS()");
@@ -758,7 +764,9 @@ function createChallenge(challenges, miniChallengeScreen) {
     else if (premiereCounter <= 2 && (s12Premiere || porkchopPremiere))
         miniChallengeScreen.createButton("Proceed", "girlgroup()");
     //uk3 premiere
-    else if (currentCast.length == totalCastSize && (uk3Premiere || s9Premiere) && !s9PremiereCheck && !uk3PremiereCheck)
+    else if (currentCast.length == totalCastSize && uk3Premiere && !uk3PremiereCheck)
+        miniChallengeScreen.createButton("Proceed", "designChallenge()");
+    else if (currentCast.length == totalCastSize - 1 && s9Premiere && !s9PremiereCheck)
         miniChallengeScreen.createButton("Proceed", "designChallenge()");
     //talent show for all stars and s14 premiere
     else if (currentCast.length == totalCastSize && !talentShowCounter && (all_stars || lipsync_assassin) || currentCast == firstCast && s14Premiere || currentCast == secondCast && s14Premiere)
@@ -1357,6 +1365,8 @@ function newEpisode() {
     if (currentCast.length == totalCastSize && team == true)
         queensRemainingScreen.createButton("Proceed", "teamsScreen()");
     else if (currentCast.length > 4)
+        queensRemainingScreen.createButton("Proceed", "miniChallenge()");
+    else if (currentCast.length == 4 && porkchopPremiere && premiereCounter < 3)
         queensRemainingScreen.createButton("Proceed", "miniChallenge()");
     else if (currentCast.length == 4 && canFinale)
         queensRemainingScreen.createButton("Proceed", "canadaS2Finale()");
@@ -3239,7 +3249,7 @@ function judging() {
         sortPerformances(currentCast);
         judgingScreen();
     }
-    else if (currentCast.length >= 6 && isTeamChallenge) {
+    else if (currentCast.length > 6 && isTeamChallenge) {
         //add winning team to the top and bottom team to the bottom
         let team1Team = new TeamsForChallenges(team1);
         let team2Team = new TeamsForChallenges(team2);
@@ -5499,7 +5509,7 @@ function CheckForReturning() {
         returningQueen = true;
         return true;
     }
-    if (lalaparuza && (currentCast.length - eliminatedCast.length) >= 1 && (currentCast.length - eliminatedCast.length) < 3 && returningQueen == false) {
+    if (lalaparuza && (currentCast.length - eliminatedCast.length) >= 1 && (currentCast.length - eliminatedCast.length) < 3 && returningQueen == false && all_stars) {
         returningQueen = true;
         return true;
     }
