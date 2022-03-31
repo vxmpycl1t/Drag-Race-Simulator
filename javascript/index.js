@@ -1998,7 +1998,7 @@ function canadaS2LipSyncs() {
         finalLS[i].getASLipsync();
     }
     finalLS.sort((a, b) => (b.lipsyncScore - a.lipsyncScore));
-    if (firstLS[1].chocolate) {
+    if (finalLS[1].chocolate) {
         if (chocolateBarTwist  && !chocolateBarTwistCheck) {
             finalLS[1].addToTrackRecord("TOP 3");
             screen.createImage(finalLS[1].image, "silver");
@@ -2012,7 +2012,6 @@ function canadaS2LipSyncs() {
             finalLS[0].addToTrackRecord("ELIM");
             finalLS[0].unfavoritism += 5;
             eliminatedCast.unshift(finalLS[0]);
-            currentCast.splice(currentCast.indexOf(finalLS[0]), 1);
         } else {
             finalLS[1].addToTrackRecord("TOP 3");
             screen.createImage(finalLS[1].image, "silver");
@@ -3890,7 +3889,11 @@ function judgingScreen() {
                 currentCast[i].QueenB.ppe += 3;
             }
         }
-    safeQueens.innerHTML += "you are safe.";
+    if (isTeamChallenge && currentCast <= 8) {
+        safeQueens.innerHTML += "";
+    } else {
+        safeQueens.innerHTML += "you are safe.";
+    }
     if (uk3Premiere && episodeCount == 1)
         judgingScreen.createButton("Proceed", "uk3PremiereJudging()");
     else if (top3 || top4)
@@ -5760,6 +5763,16 @@ function LaLaPaRUza(){
             smack1[i].addToTrackRecord("RUN");
             smack1.splice(i, 1);
             i--;
+        }
+    }
+    if (disqOrDept && smack[0].trackRecord[smack[0].trackRecord.length - 1] == "WIN+QUIT") {
+        for (var i = 0; i < smack1.length; i++){
+            let trds = smack1[i].trackRecord.length - 1;
+            if (smack1[i].trackRecord[trds] == "HIGH") {
+                smack1[i].addToTrackRecord("RUN");
+                smack1.splice(i, 1);
+                i--;
+            }
         }
     }
     for (var i = 0; i < smack.length; i++) {
