@@ -2,14 +2,25 @@
 Drag Race Simulator based on edssb sim. I'm updating it until they come back.
 <br> You can also send me a dm in Discord if you find a bug or something that wasn't cute. <b>Rainbow#4283</b>
 # 03/27/2022
+* Added Choosable Chocolate Bar
+* Added quitters in a lipsync
+* Added the porkchop voting
+* Added double returns in LaLaPaRuZa and Lipsync Smackdown
+* Added late entrance to s9 Premiere
+* Added double shantays in lipsync for the crown
+* Added chocolate bar twist in lipsync for the crown and lipsync for the finale
+* Improved Teams Format (visually)
+* Improved Team Challenges.
+* Added marketing/commercial challenges
+* Added Roast/Stand Up challenges instead of just "comedy"
+* Added Choreo challenges
+* Added secret events 
+* Added new formats for the track record table
+* I don't remember what else I added :(
+
+# 03/27/2022
 * Added Chocolate Bar Twist
 * Fixed some bugs cause I'm dumb.
-
-# 03/25/2022
-* Added the makeover return challenge from S7 
-* Added the Season 9 Premiere
-* Now you can decide which queen returns with "Random Queen Return" return format. But not always you get to choose. ;)
-* Fixed some bugs
 
 
 # Working on
@@ -18,7 +29,6 @@ Currently I'm working on SCHOOL!
  * Untucked *
  * S14 Queens Stats update
  * España S2 Queens Stats update (I know no spoilers _and don't want to_ so I'll wait until the show is over to update their stats)
- * Improve Team Challenges *
  * Multiple Wins for Team Challenges *
  * Predefined custom cast *
  * Thailands format *
@@ -31,17 +41,16 @@ Currently I'm working on SCHOOL!
  * Drag Race Italia Exp lipsync *
  * LaLaPaRUza Smackdown from S14 *
  * S1-S5 immunity *
- * Porkchop Votes *
- * Queens quitting in/prior a lipsync *
- * Late Entrance *
- * No one getting eliminated in the finale *
  * Be RuPaul format *
  * Miss Congeniality *
  * Detailed Challenges *
  * Choose the lipsync assassin for your season *
- * S6-S8 Top 4 Format *
- * AS4 Finale Format *
  * ...
+# 03/25/2022
+* Added the makeover return challenge from S7 
+* Added the Season 9 Premiere
+* Now you can decide which queen returns with "Random Queen Return" return format. But not always you get to choose. ;)
+* Fixed some bugs
 
 # 03/24/2022
 * Added Drag Race España S2 Queens with basic stats
