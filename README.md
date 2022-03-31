@@ -45,6 +45,7 @@ Currently I'm working on SCHOOL!
  * Miss Congeniality *
  * Detailed Challenges *
  * Choose the lipsync assassin for your season *
+ * Improve lipsyncs *
  * ...
 # 03/25/2022
 * Added the makeover return challenge from S7 
