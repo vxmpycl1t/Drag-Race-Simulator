@@ -4,7 +4,10 @@ Drag Race Simulator based on edssb sim. I'm updating it until they come back.
 # 04/13/2022
 * Added the Lipsync LaLaPaRUZa Smackdown from season 14
 * Added Team Wins in Girl Group Challenges
-* Added the "Kandy, wait" double shantay.
+* Added 3-way lipsyncs
+* Added the "Kandy, wait" double shantay
+* Added talent show performances
+* Added basic reasoning to lipstick choices (it will have logic with the Untucked update)
 * Added new secret events
 
 # 03/31/2022
