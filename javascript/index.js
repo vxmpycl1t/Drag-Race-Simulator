@@ -895,7 +895,7 @@ function CheckForSpecialEvents(slay, great, good, bad, flop) {
         slayers = true;
     if (flop.length + bad.length >= 5 && currentCast.length >= 9 && !bottom6WayLipsyncCheck && randomNumber(0, 100) >= 70 && !conjoinedCheck)
         bottom6WayLipsync = true;
-    if (flop.length + bad.length >= 7 && great.length + slay.great == 0 && good.length > 0 && !s14LaLaPaRUZaCheck && randomNumber(0, 100) >= 70 && !conjoinedCheck)
+    if (flop.length + bad.length >= 7 && great.length + slay.length + good.length > 0 && !s14LaLaPaRUZaCheck && randomNumber(0, 100) >= 70 && !conjoinedCheck)
         s14LaLaPaRUZa = true;
 }
 function createRunwayDesc(slay, great, good, bad) {
@@ -1694,7 +1694,17 @@ function finalLipSync() {
                 eliminatedCast.unshift(finalLS[i]);
             }
         }
-        finalLS.splice(1, 3);
+        if (winner == 0) {
+            finalLS.splice(1, 3);
+        } else if (winner == 1) {
+            finalLS.splice(2, 2);
+            finalLS.splice(0, 1);
+        } else if (winner == 2) {
+            finalLS.splice(0, 2);
+            finalLS.splice(1, 1);
+        } else if (winner == 3) {
+            finalLS.splice(0, 3);
+        }
     } else if (isThisA3Way) {
         screen.createBold(finalLS[0].getName() + ", " + finalLS[1].getName() + " and " + finalLS[2].getName() + " will lip-sync for the crown...!");
         screen.createImage(finalLS[0].image);
@@ -1720,7 +1730,14 @@ function finalLipSync() {
                 eliminatedCast.unshift(finalLS[i]);
             }
         }
-        finalLS.splice(1, 2);
+        if (winner == 0) {
+            finalLS.splice(1, 2);
+        } else if (winner == 1) {
+            finalLS.splice(2, 1);
+            finalLS.splice(0, 1);
+        } else if (winner == 2) {
+            finalLS.splice(0, 2);
+        }
     } else {
         screen.createBold(finalLS[0].getName() + " and " + finalLS[1].getName() + " will lip-sync for the crown...!");
         screen.createImage(finalLS[0].image);
@@ -3727,21 +3744,11 @@ function lipsyncs14() {
                 lipSync[i_1].getASLipsync();
             }
             lipSync.sort(function (a, b) { return (b.lipsyncScore - a.lipsyncScore); });
-            if (lipSync[0].lipsyncScore >= lipSync[1].lipsyncScore && lipSync[0].lipsyncScore > 7 && lipSync[1].lipsyncScore > 7) {
-                screen.createImage(lipSync[0].image, "darkblue");
-                screen.createImage(lipSync[1].image, "darkblue");
-                screen.createBold("Shantay, you both stay baby!");
-                queen1.addToTrackRecord("SAFE<br><small>Round 1</small>");
-                queen2.addToTrackRecord("SAFE<br><small>Round 1</small>");
-                lipsyncorder.splice(lipsyncorder.indexOf(queen1), 1);
-                lipsyncorder.splice(lipsyncorder.indexOf(queen2), 1);
-            } else {
-                screen.createImage(lipSync[0].image, "royalblue");
-                screen.createBold(lipSync[0].getName() + ", shantay you stay! ");
-                screen.createBold(lipSync[1].getName() + ", you are still up for eliminaton!! ");
-                lipSync[0].addToTrackRecord("SAFE<br><small>Round 1</small>");
-                lipsyncorder.splice(lipsyncorder.indexOf(lipSync[0]), 1);
-            }
+            screen.createImage(lipSync[0].image, "royalblue");
+            screen.createBold(lipSync[0].getName() + ", shantay you stay! ");
+            screen.createBold(lipSync[1].getName() + ", you are still up for eliminaton!! ");
+            lipSync[0].addToTrackRecord("SAFE<br><small>Round 1</small>");
+            lipsyncorder.splice(lipsyncorder.indexOf(lipSync[0]), 1);
             if (lipsyncorder[i+1] == undefined) {
                 i = bottomQueens.length;
             }
@@ -4502,7 +4509,7 @@ function winAndBtm2() {
         bottomQueens[1].unfavoritism += 1;
         bottomQueens[1].ppe += 2;
         bottomQueens.splice(0, 2);
-    } else if (bottomQueens.length == 3 && bottomQueens[0].performanceScore >= 35) {
+    } else if (bottomQueens.length == 3 && bottomQueens[0].performanceScore >= 35 && currentCast.length > 5) {
         thirdqueen = true;
         screen.createBold("... no one is safe.");
     }
@@ -4879,7 +4886,7 @@ function lipSync() {
     screen.createBold("I've made my decision.");
     let score1 = bottomQueens[0].lipsyncScore - bottomQueens[0].favoritism + bottomQueens[0].unfavoritism;
     let score2 = bottomQueens[1].lipsyncScore - bottomQueens[1].favoritism + bottomQueens[1].unfavoritism;
-    if (thirdqueen) {
+    if (thirdqueen && currentCast.length > 5) {
         thirdqueen = false;
         if (score1 > 7 && score2 > 7 && randomNumber(0, 100) <= 50 && noDouble == false && currentCast.length > 5) {
             screen.createImage(bottomQueens[0].image, "tomato");
@@ -8230,18 +8237,18 @@ let reasoningQueens = [
     "the other queen lend them a shirt.",
     "they couldn't send home their friend.",
     "they think that it's better for the group if they are not there.",
-    "they was annoyed by the other queen.",
-    "they was in the bottom several times.",
+    "they were annoyed by the other queen.",
+    "they were in the bottom several times.",
     "they tried to be fair.",
     "they were competition.",
     "they don't like them.",
     "they wanted to shake the things up.",
-    "they feels they could send them home later.",
+    "they feel they could send them home later.",
     "they saw the fishnets and they were ripped.",
     "they'll never be glamour.",
     "they were the weakest in the challenge.",
     "they were persuaded by other contestants.",
-    "they is a liar.",
+    "they are a liar.",
     "no tea, no shade no pink lemonade… they done fucked up drag.",
     "they had given up on the competition."
 ];
