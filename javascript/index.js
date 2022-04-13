@@ -893,9 +893,9 @@ function CheckForSpecialEvents(slay, great, good, bad, flop) {
         slayers = true;
     else if (slay.length + great.length == currentCast.length && !slayersCheck && randomNumber(0, 100) >= 70 && !conjoinedCheck)
         slayers = true;
-    if (flop.length + bad.length >= 5 && currentCast.length >= 9 && !bottom6WayLipsyncCheck && randomNumber(0, 100) >= 70 && !conjoinedCheck)
+    if (flop.length + bad.length >= 5 && flop.length + bad.length < 7 && currentCast.length >= 9 && !bottom6WayLipsyncCheck && randomNumber(0, 100) >= 70 && !conjoinedCheck)
         bottom6WayLipsync = true;
-    if (flop.length + bad.length >= 7 && great.length + slay.length + good.length > 0 && !s14LaLaPaRUZaCheck && randomNumber(0, 100) >= 70 && !conjoinedCheck)
+    if (flop.length + bad.length >= 7 && great.length + slay.length + good.length > 0 && currentCast.length > 7 && currentCast.length < 10 &&!s14LaLaPaRUZaCheck && randomNumber(0, 100) >= 70 && !conjoinedCheck)
         s14LaLaPaRUZa = true;
 }
 function createRunwayDesc(slay, great, good, bad) {
@@ -3573,7 +3573,7 @@ function judging() {
         slayers = false;
         judgingSlayersScreen();
     }
-    else if (currentCast.length >= 8 && currentCast.length < 10 && s14LaLaPaRUZa && (top3 || top4) && !s14LaLaPaRUZaCheck) {
+    else if (currentCast.length >= 8 && currentCast.length < 10 && s14LaLaPaRUZa && (top3 || top4) && !s14LaLaPaRUZaCheck && !smackdown) {
         //add all the queens to the top and 0 queens to the bottom
         currentCast.sort((a, b) => (a.performanceScore - b.performanceScore));
         topQueens.push(currentCast[0]);
@@ -4742,7 +4742,6 @@ function topAndBtm() {
     if (topQueens.length > 0)
         highs.innerHTML += "good work this week, you're safe.";
     screen.createHorizontalLine();
-    ;
     if (currentCast.length > 5) {
         for (let i = 0; i < bottomQueens.length; i++)
             screen.createImage(bottomQueens[i].image, "tomato");
@@ -5555,7 +5554,11 @@ function lsaLipSync() {
     bottomQueens.sort((a, b) => b.votes - a.votes);
     if (bottomQueens[0].votes == bottomQueens[1].votes) {
         backToWinner = true;
-        assassin.lipstick = top2[0].lipstick;
+        for (let i = 0; i < bottomQueens.length; i++) {
+            if (top2[0].lipstick.getName() == bottomQueens[i].getName()) {
+                assassin.lipstick = bottomQueens[i];
+            }
+        }
     } else {
         assassin.lipstick = bottomQueens[0];
     }
