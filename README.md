@@ -1,6 +1,12 @@
 # Drag Race Simulator
 Drag Race Simulator based on edssb sim. I'm updating it until they come back.
 <br> You can also send me a dm in Discord if you find a bug or something that wasn't cute. <b>Rainbow#4283</b>
+# 04/13/2022
+* Added the Lipsync LaLaPaRUZa Smackdown from season 14
+* Added Team Wins in Girl Group Challenges
+* Added the "Kandy, wait" double shantay.
+* Added new secret events
+
 # 03/31/2022
 * Added Choosable Chocolate Bar
 * Added quitters in a lipsync
@@ -18,35 +24,31 @@ Drag Race Simulator based on edssb sim. I'm updating it until they come back.
 * Added new formats for the track record table
 * I don't remember what else I added :(
 
-# 03/27/2022
-* Added Chocolate Bar Twist
-* Fixed some bugs cause I'm dumb.
 
 
 # Working on
-Currently I'm working on SCHOOL!
+Currently I'm working on Untucked!
 # To do list (not in order)
  * Untucked *
- * S14 Queens Stats update
  * España S2 Queens Stats update (I know no spoilers _and don't want to_ so I'll wait until the show is over to update their stats)
- * Multiple Wins for Team Challenges *
  * Predefined custom cast *
  * Thailands format *
- * Superstars format *
+ * All Stars 7 format *
  * Interactive format *
  * Choosing the challenges order *
  * Stats tab *
  * Reveal placements and lipsync winners*
- * 3 way lipsyncs *
  * Drag Race Italia Exp lipsync *
- * LaLaPaRUza Smackdown from S14 *
  * S1-S5 immunity *
  * Be RuPaul format *
  * Miss Congeniality *
  * Detailed Challenges *
  * Choose the lipsync assassin for your season *
- * Improve lipsyncs *
  * ...
+
+# 03/27/2022
+* Added Chocolate Bar Twist
+* Fixed some bugs cause I'm dumb.
 # 03/25/2022
 * Added the makeover return challenge from S7 
 * Added the Season 9 Premiere
