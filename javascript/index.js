@@ -5170,7 +5170,7 @@ function lipSync() {
             bottomQueens[0].ppe += 1;
             bottomQueens[1].unfavoritism += 3;
             bottomQueens[1].ppe += 1;
-            injuredQueen.addToTrackRecord("DISQ");
+            injuredQueen.addToTrackRecord("DEPT");
             injuredQueen.QueenDisqOrDept = true;
             eliminatedCast.unshift(injuredQueen);
             currentCast.splice(currentCast.indexOf(injuredQueen), 1);
