@@ -2955,8 +2955,10 @@ function predefCast(cast, format, premiere = '', returning = '') {
         team = true;
     else if (format == "lipsync-assassin") {
         lipsync_assassin = true;
+        allQueensCopy2 = [...allQueens];
         allQueens = allQueens.filter(function (queen) { return queen.getLipSyncStat() >= 9; });
         allQueens = allQueens.filter(function (queen) { return currentCast.indexOf(queen) == -1; });
+        allQueensCopy = [...allQueens];
     }
     if (premiere == "s6-premiere")
         s6Premiere = true;
