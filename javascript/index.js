@@ -1115,6 +1115,15 @@ let premiereCounter = 0;
 let firstCast = [];
 let secondCast = [];
 function doublePremiere() {
+    if (episodeCount == 0) {
+        currentCast.forEach((queen) => {
+            for (let i = 0; i < currentCast.length; i++) {
+                if (queen.getName() != currentCast[i].getName()) {
+                    queen.sisters.push({queen: currentCast[i], relation: 0});
+                }
+            }
+        });
+    }
     if (premiereCounter == 0)
         if (s6Premiere || s12Premiere || s14Premiere) {
             shuffle(currentCast);
@@ -1411,7 +1420,7 @@ function newEpisode() {
                     queen.sisters.push({queen: currentCast[i], relation: 0});
                 }
             }
-        })
+        });
     }
     safeQueens = [];
     topQueens = [];
