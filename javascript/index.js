@@ -9495,7 +9495,6 @@ function isFriend(queen1, queen2) {
     if (queen1.friends.find((queen) => {
         return queen == queen2
     }) == queen2) {
-        console.log(queen1.getName()+ " and " + queen2.getName() + " are friends");
         return true;
     } else {
         false
@@ -9505,7 +9504,6 @@ function isEnemy(queen1, queen2) {
     if (queen1.enemies.find((queen) => {
         return queen == queen2
     }) == queen2) {
-        console.log(queen1.getName()+ " and " + queen2.getName() + " are enemies");
         return true;
     } else {
         false
@@ -9519,11 +9517,9 @@ function CheckFriend(queen1, queen2) {
         }
     }
     if (queen1.sisters[index].relation >= 5) {
-        console.log(queen1.getName()+ " and " + queen2.getName() + " are now friends");
         queen1.friends.push(queen2);
         queen2.friends.push(queen1);
     } else if (queen1.sisters[index].relation <= -5) {
-        console.log(queen1.getName()+ " and " + queen2.getName() + " are now enemies");
         queen1.enemies.push(queen2);
         queen2.enemies.push(queen1);
     } else {
@@ -9607,13 +9603,10 @@ function betterSister3 (queen, queen1, queen2, queen3) {
     }
     let nutmies = enemies.concat(nuthing);
     if (randomNumber(0, 100) >= 10 && enemies.length > 0) {
-        console.log("enemy");
         return enemies.sort((a, b) => a.relation - b.relation)[0].queen;
     } else if (nutmies.length > 0 && randomNumber(0 , 100) >= 40) {
-        console.log("not enemy");
         return nutmies.sort((a, b) => a.relation - b.relation)[0].queen;
     } else {
-        console.log("false");
         return false;
     }
 }
@@ -9675,13 +9668,10 @@ function betterSister4 (queen, queen1, queen2, queen3, queen4) {
     }
     let nutmies = enemies.concat(nuthing);
     if (randomNumber(0, 100) >= 10 && enemies.length > 0) {
-        console.log("enemy");
         return enemies.sort((a, b) => a.relation - b.relation)[0].queen;
     } else if (nutmies.length > 0 && randomNumber(0 , 100) >= 40) {
-        console.log("not enemy");
         return nutmies.sort((a, b) => a.relation - b.relation)[0].queen;
     } else {
-        console.log("false");
         return false;
     }
 }
@@ -9756,13 +9746,10 @@ function betterSister5 (queen, queen1, queen2, queen3, queen4, queen5) {
     }
     let nutmies = enemies.concat(nuthing);
     if (randomNumber(0, 100) >= 10 && enemies.length > 0) {
-        console.log("enemy");
         return enemies.sort((a, b) => a.relation - b.relation)[0].queen;
     } else if (nutmies.length > 0 && randomNumber(0 , 100) >= 40) {
-        console.log("not enemy");
         return nutmies.sort((a, b) => a.relation - b.relation)[0].queen;
     } else {
-        console.log("false");
         return false;
     }
 }
