@@ -759,7 +759,7 @@ function runway() {
     })(desc || (desc = {}));
     runwayScreen.createParagraph("The queens will bring it to the runway!");
     if (currentCast.length > 4)
-        runwayScreen.createParagraph("The theme is: " + desc[randomNumber(0, 60)]);
+        runwayScreen.createParagraph("The theme is: " + desc[randomNumber(0, 45)]);
     else if (currentCast.length == 3 && top3 || currentCast.length == 5 && top4 || currentCast.length == 4 && (all_stars || lipsync_assassin) || currentCast.length == 2 && team)
         runwayScreen.createParagraph("The theme is... best drag!");
     for (let i = 0; i < currentCast.length; i++)
