@@ -1,6 +1,16 @@
 # Drag Race Simulator
 Drag Race Simulator based on edssb sim. I'm updating it until they come back.
 <br> You can also send me a dm in Discord if you find a bug or something that wasn't cute. <b>Rainbow#4283</b>
+
+# 07/04/2022
+* Added first version of Untucked
+* Added first version of All Stars 7 format
+* Added Canada's DR S3 and DR France S1 Queens
+* Updated stats of the DR España S2 queens
+* Updated drag names/ names
+* Now in every All Stars format the queens can choose a lipstick based on their relationship with the bottom queens
+
+
 # 04/13/2022
 * Added the Lipsync LaLaPaRUZa Smackdown from season 14
 * Added Team Wins in Girl Group Challenges
@@ -9,24 +19,6 @@ Drag Race Simulator based on edssb sim. I'm updating it until they come back.
 * Added talent show performances
 * Added basic reasoning to lipstick choices (it will have logic with the Untucked update)
 * Added new secret events
-
-# 03/31/2022
-* Added Choosable Chocolate Bar
-* Added quitters in a lipsync
-* Added the porkchop voting
-* Added double returns in LaLaPaRuZa and Lipsync Smackdown
-* Added late entrance to s9 Premiere
-* Added double shantays in lipsync for the crown
-* Added chocolate bar twist in lipsync for the crown and lipsync for the finale
-* Improved Teams Format (visually)
-* Improved Team Challenges.
-* Added marketing/commercial challenges
-* Added Roast/Stand Up challenges instead of just "comedy"
-* Added Choreo challenges
-* Added secret events 
-* Added new formats for the track record table
-* I don't remember what else I added :(
-
 
 
 # Working on
@@ -48,6 +40,23 @@ Currently I'm working on Untucked!
  * Detailed Challenges *
  * Choose the lipsync assassin for your season *
  * ...
+
+# 03/31/2022
+* Added Choosable Chocolate Bar
+* Added quitters in a lipsync
+* Added the porkchop voting
+* Added double returns in LaLaPaRuZa and Lipsync Smackdown
+* Added late entrance to s9 Premiere
+* Added double shantays in lipsync for the crown
+* Added chocolate bar twist in lipsync for the crown and lipsync for the finale
+* Improved Teams Format (visually)
+* Improved Team Challenges.
+* Added marketing/commercial challenges
+* Added Roast/Stand Up challenges instead of just "comedy"
+* Added Choreo challenges
+* Added secret events 
+* Added new formats for the track record table
+* I don't remember what else I added :(
 
 # 03/27/2022
 * Added Chocolate Bar Twist
