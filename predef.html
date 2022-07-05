@@ -7,6 +7,7 @@
     <title>Drag Race Simulator</title>
     <link rel="icon" href="image/favicon.ico">
     <link rel="stylesheet" href="css/style.light.css">
+    <script src="javascript/index.js" defer></script>
 </head>
 <body>
     <h1 id="MainTitle">Predefinitions</h1>
@@ -39,6 +40,7 @@
             <button onclick="predefCast(allstars_4, 'all-stars', '', 'lalaparuza')">All Stars Season 4</button>
             <button onclick="predefCast(allstars_5, 'lipsync-assassin')">All Stars Season 5</button>
             <button onclick="predefCast(allstars_6, 'lipsync-assassin', '', 'smackdown')">All Stars Season 6</button>
+            <button onclick="predefCast(allstars_7, 'all-winners', '', '')">All Stars Season 7</button>
             <button onclick="predefCast(international_as, 'international-allstars')">UK vs The World</button>
         </div>
 
@@ -49,34 +51,44 @@
             <button onclick="predefCast(uk_season3, 'top3', 'uk3-premiere')">UK Season 3</button>
         </div>
 
-        <h2>Drag Race Thailand</h2>
-        <div>
-            <button onclick="predefCast(drt_season1, 'top3')">DRT Season 1</button>
-            <button onclick="predefCast(drt_season2, 'top3' , '' , 'return')">DRT Season 2</button>
-        </div>
-
         <h2>Canada's Drag Race</h2>
         <div>
             <button onclick="predefCast(can_season1, 'top3')">CAN Season 1</button>
             <button onclick="predefCast(can_season2, 'canS2')">CAN Season 2</button>
+            <button onclick="predefCast(can_season3, 'canS2')">CAN Season 3</button>
+        </div>
+
+        <h2>Drag Race Thailand</h2>
+        <div>
+            <button onclick="predefCast(drt_season1, 'top3')">THAI Season 1</button>
+            <button onclick="predefCast(drt_season2, 'top3' , '' , 'return')">THAI Season 2</button>
         </div>
 
         <h2>Drag Race Holland</h2>
         <div>
-            <button onclick="predefCast(hol_season1, 'top3')">HOL Season 1</button>
-            <button onclick="predefCast(hol_season2, 'top3')">HOL Season 2</button>
+            <button onclick="predefCast(hol_season1, 'top3')">HOLL Season 1</button>
+            <button onclick="predefCast(hol_season2, 'top3')">HOLL Season 2</button>
         </div>
 
         <h2>Drag Race España</h2>
         <div>
-            <button onclick="predefCast(dres_season1, 'top3')">ES Season 1</button>
-            <button onclick="predefCast(dres_season2, 'top3')">ES Season 2</button>
+            <button onclick="predefCast(dres_season1, 'top3')">ESP Season 1</button>
+            <button onclick="predefCast(dres_season2, 'top3')">ESP Season 2</button>
+        </div>
+        
+        <h2>Drag Race Italia</h2>
+        <div>
+            <button onclick="predefCast(drita, 'top3')">ITA Season 1</button>
         </div>
 
-        <h2>Other</h2>
+        <h2>Drag Race Down Under</h2>
         <div>
-            <button onclick="predefCast(drdu, 'top3' , '' , 'return')">Drag Race Down Under</button>
-            <button onclick="predefCast(italia, 'top3')">Drag Race Italia</button>
+            <button onclick="predefCast(drdu, 'top3' , '' , 'return')">DU Season 1</button>
+        </div>
+
+        <h2>Drag Race France</h2>
+        <div>
+            <button onclick="predefCast(drfr, 'top3')">FR Season 1</button>
         </div>
 
         <hr>
@@ -97,6 +109,4 @@
         <div id="result"></div>
     </div>
 </body>
-
-<script src="javascript/index.js"></script>
 </html>
