@@ -798,7 +798,7 @@ function createChallenge(challenges, miniChallengeScreen) {
     if (currentCast.length == totalCastSize && top3 && episodeCount == 1 && s6Premiere == false || currentCast.length == totalCastSize && top4 && episodeCount == 1 && s6Premiere == false || currentCast.length == totalCastSize && team || sweatshop || currentCast == firstCast && s6Premiere || currentCast == secondCast && s6Premiere)
         miniChallengeScreen.createButton("Proceed", "designChallenge()");
     //girl group challenge for s12 or porkchop premiere
-    else if (premiereCounter <= 2 && (s12Premiere || porkchopPremiere))
+    else if (premiereCounter <= 2 && (s12Premiere || porkchopPremiere) || all_winners && episodeCount == 6)
         miniChallengeScreen.createButton("Proceed", "girlgroup()");
     //uk3 premiere
     else if (currentCast.length == totalCastSize && uk3Premiere && !uk3PremiereCheck)
@@ -806,16 +806,16 @@ function createChallenge(challenges, miniChallengeScreen) {
     else if (currentCast.length == totalCastSize - 1 && s9Premiere && !s9PremiereCheck)
         miniChallengeScreen.createButton("Proceed", "designChallenge()");
     //talent show for all stars and s14 premiere
-    else if (currentCast.length == totalCastSize && !talentShowCounter && (all_stars || lipsync_assassin) || currentCast == firstCast && s14Premiere || currentCast == secondCast && s14Premiere)
+    else if (currentCast.length == totalCastSize && !talentShowCounter && (all_stars || lipsync_assassin) || currentCast == firstCast && s14Premiere || currentCast == secondCast && s14Premiere || all_winners && currentCast.length <= 10 && episodeCount == 11 || all_winners && currentCast.length > 10 && episodeCount == 15)
         miniChallengeScreen.createButton("Proceed", "talentshow()");
     //snatch game for +10 cast
-    else if (totalCastSize >= 10 && currentCast.length == 9 && !team && snatchCounter == false || totalCastSize >= 6 && currentCast.length == 5 && team)
+    else if (totalCastSize >= 10 && currentCast.length == 9 && !team && snatchCounter == false || totalCastSize >= 6 && currentCast.length == 5 && team || all_winners && currentCast.length > 10 && episodeCount == 2)
         miniChallengeScreen.createButton("Proceed", "snatchGame()");
     //snatch game for -10 cast
-    else if (totalCastSize < 10 && currentCast.length == (totalCastSize - 1) && !team && snatchCounter == false)
+    else if (totalCastSize < 10 && currentCast.length == (totalCastSize - 1) && !team && snatchCounter == false || all_winners && currentCast.length <= 10 && episodeCount == 2)
         miniChallengeScreen.createButton("Proceed", "snatchGame()");
-    //the ball for the third competitive episode for lsftc seasons
-    else if (currentCast.length == totalCastSize - 3 && top4 && !ballCounter)
+    //the ball for the third competitive episode for lsftc or all winners
+    else if (currentCast.length == totalCastSize - 3 && top4 && !ballCounter || all_winners && episodeCount == 3)
         miniChallengeScreen.createButton("Proceed", "ball()");
     //same but if above condition doesn't apply (example: snatch game needs to happen before the ball)
     else if (currentCast.length == totalCastSize - 4 && (top4 || (all_stars || lipsync_assassin) && randomNumber(0, 100) < 30) && !ballCounter || currentCast.length == 3 && team)
@@ -830,7 +830,7 @@ function createChallenge(challenges, miniChallengeScreen) {
     else if (currentCast.length == 6 && (top3 || top4) && makeoverCounter == false || currentCast.length == 6 && randomNumber(0, 15) == 15 && (all_stars || lipsync_assassin) && makeoverCounter == false)
         miniChallengeScreen.createButton("Proceed", "designChallenge()");
     //rumix
-    else if (currentCast.length == 5 && !rumixCounter && top4 && (!smackdown || returningQueen == true || chocolateBarTwistCheck))
+    else if (currentCast.length == 5 && !rumixCounter && top4 && (!smackdown || returningQueen == true || chocolateBarTwistCheck)  || all_winners && episodeCount == 1)
         miniChallengeScreen.createButton("Proceed", "rumix()");
     //ball for top3 seasons
     else if (currentCast.length == 4 && top3 && !ballCounter)
@@ -1490,6 +1490,10 @@ function reSimulate() {
         finalLS = [];
         firstLS = [];
         secondLS = [];
+    } else if (all_winners) {
+        finalLS = [];
+        firstLS = [];
+        secondLS = [];
     }
     currentCast.sort((a, b) => a.getName().toLowerCase().localeCompare(b.getName().toLowerCase()));
     eliminatedCast = [];
@@ -2102,13 +2106,16 @@ function awFinale() {
         screen.createBold(currentCast[i].getName() + " with " + currentCast[i].stars + " stars!");
     }
     screen.createHorizontalLine();
-    for (let i = currentCast.length - 1; i >= 4; i--) {
-        eliminatedCast.push(currentCast[i]);
-        screen.createImage(currentCast[i].image, "sienna");
-        screen.createBold(currentCast[i].getName() + ", sashay away...");
-        currentCast[i].addToTrackRecord("ELIMINATED");
+    let p = currentCast.length - 1
+    while(currentCast.length != 4) {
+        eliminatedCast.push(currentCast[p]);
+        screen.createImage(currentCast[p].image, "sienna");
+        screen.createBold(currentCast[p].getName() + ", sashay away...");
+        currentCast[p].addToTrackRecord("ELIMINATED");
+        currentCast.splice(currentCast.indexOf(currentCast[p], 1));
+        p--;
     }
-    currentCast.splice(4, totalCastSize - 4);
+    eliminatedCast.sort((a, b) => (b.stars - a.stars));
     screen.createButton("Proceed", "finaleLS()");
 }
 function canadaS2Finale() {
@@ -6626,7 +6633,7 @@ let srimala = new Queen("Srimala", 7, 7, 8, 7, 8, 9, 9, "Srimala");
 let tormai = new Queen("Tormai", 8, 8, 7, 7, 6, 8, 9, "Tormai");
 let vanda = new Queen("Vanda Miss Joaquim", 9, 8, 9, 7, 7, 9, 9, "Vanda");
 let drt_season2 = [angele, bandit, genie, kana, kandyz, katy, m, maya, mocha, gimhuay, silver, srimala, tormai, vanda];
-//DRAG RACE DOWN UNDER
+//DRAG RACE DOWN UNDER SEASON 1
 let anita = new Queen("Anita Wigl'it", 6, 10, 8, 6, 10, 8, 5, "Anita");
 let art = new Queen("Art Simone", 6, 4, 5, 8, 4, 10, 4, "Art");
 let cocoj = new Queen("Coco Jumbo", 6, 5, 6, 6, 5, 8, 10, "CocoJ");
@@ -6636,7 +6643,19 @@ let jojo = new Queen("Jojo Zaho", 5, 5, 5, 5, 5, 6, 6, "Jojo");
 let karen = new Queen("Karen From Finance", 5, 6, 5, 5, 7, 7, 5, "Karen");
 let kita = new Queen("Kita Mean", 9, 9, 7, 7, 9, 9, 8, "Kita");
 let maxi = new Queen("Maxi Shield", 6, 6, 5, 9, 7, 8, 8, "Maxi");
-let drdu = [anita, art, cocoj, elektra, etc, jojo, karen, kita, maxi];
+let drdu_season1 = [anita, art, cocoj, elektra, etc, jojo, karen, kita, maxi];
+//DRAG RACE DOWN UNDER SEASON 2
+let aubrey = new Queen("Aubrey Haive", 7, 7, 7, 7, 7, 7, 7, "Aubrey");
+let beverly = new Queen("Beverly Kills", 7, 7, 7, 7, 7, 7, 7, "Beverly");
+let faux = new Queen("Faúx Fúr", 7, 7, 7, 7, 7, 7, 7, "Faux");
+let hannah = new Queen("Hannah Conda", 7, 7, 7, 7, 7, 7, 7, "Hannah");
+let kweenKong = new Queen("Kween Kong", 7, 7, 7, 7, 7, 7, 7, "Kween");
+let minnie = new Queen("Minnie Cooper", 7, 7, 7, 7, 7, 7, 7, "Minnie");
+let molly = new Queen("Molly Poppinz", 7, 7, 7, 7, 7, 7, 7, "Molly");
+let pomara = new Queen("Pomara Fifth", 7, 7, 7, 7, 7, 7, 7, "Pomara");
+let spankie = new Queen("Spankie Jackzon", 7, 7, 7, 7, 7, 7, 7, "Spankie");
+let yuri = new Queen("Yuri Guaii", 7, 7, 7, 7, 7, 7, 7, "Yuri");
+let drdu_season2 = [aubrey, beverly, faux, hannah, kweenKong, minnie, molly, pomara, spankie, yuri];
 //DRAG RACE ESPAÑA 1
 let arantxa = new Queen("Arantxa Castilla La Mancha", 6, 8, 6, 7, 8, 9, 7, "Arantxa");
 let carmenf = new Queen("Carmen Farala", 10, 10, 10, 14, 8, 13, 10, "CarmenF");
@@ -6726,6 +6745,7 @@ let allQueens = [
     amadiva, annee, b, bunny, dearis, jaja, meannie, morrigan, natalia, petchra,
     angele, bandit, genie, kana, kandyz, katy, m, maya, mocha, gimhuay, silver, srimala, tormai, vanda,
     anita, art, cocoj, elektra, etc, jojo, karen, kita, maxi,
+    aubrey, beverly, faux, hannah, kweenKong, minnie, molly, pomara, spankie, yuri,
     arantxa, carmenf, dovima, drag, hugaceo, inti, killer, pupi, sagittaria, macarena,
     arielRec, diamante, sethlas, estrella, jota, juriji, marina, marisa, onyx, samantha, sharonne, venedita,
     ava, divinity, elecktra, enorma, farida, ivana, riche, luquisha,
