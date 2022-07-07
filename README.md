@@ -25,10 +25,8 @@ Drag Race Simulator based on edssb sim. I'm updating it until they come back.
 Currently I'm working on Untucked!
 # To do list (not in order)
  * Untucked *
- * España S2 Queens Stats update (I know no spoilers _and don't want to_ so I'll wait until the show is over to update their stats)
  * Predefined custom cast *
  * Thailands format *
- * All Stars 7 format *
  * Interactive format *
  * Choosing the challenges order *
  * Stats tab *
