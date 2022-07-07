@@ -5,7 +5,7 @@ Drag Race Simulator based on edssb sim. I'm updating it until they come back.
 # 07/04/2022
 * Added first version of Untucked
 * Added first version of All Stars 7 format
-* Added Canada's DR S3 and DR France S1 Queens
+* Added Canada's DR S3, DR France S1 and DR Down Under S2 Queens
 * Updated stats of the DR España S2 queens
 * Updated drag names/ names
 * Now in every All Stars format the queens can choose a lipstick based on their relationship with the bottom queens
