@@ -1514,6 +1514,8 @@ function reSimulate() {
     totalCastSize = currentCast.length;
     disqOrDept = false;
     gsFlag = false;
+    threestars = false;
+    flagThree = false;
     wht = [];
     qonfi = 0;
     //clean track records
@@ -5319,10 +5321,11 @@ function top2AndBlocked() {
         screen.createImage("image/star.webp", "gold");
         screen.createBold("This week the top 2 will give away a star to one of them fellow contestants...");
     }
-    if ((episodeCount == 11 && episodeChallenges[10] == "Talent Show") || (episodeCount == 14 && episodeChallenges[13] == "Talent Show")) {
+    if ((episodeCount == 11 && episodeChallenges[10] == "Talent Show") || (episodeCount == 14 && episodeChallenges[13] == "Talent Show") && !flagThree) {
         screen.createImage("image/star.webp", "gold");
         screen.createBold("This week the top 2 will get 3 stars instead of 1...");
         threestars = true;
+        flagThree = true;
     }
     //sort the top queens now taking runway and favoritism in consideration:
     for (let i = 0; i < topQueens.length; i++)
