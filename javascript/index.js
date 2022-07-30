@@ -5325,7 +5325,6 @@ function top2AndBlocked() {
         screen.createImage("image/star.webp", "gold");
         screen.createBold("This week the top 2 will get 3 stars instead of 1...");
         threestars = true;
-        flagThree = true;
     }
     //sort the top queens now taking runway and favoritism in consideration:
     for (let i = 0; i < topQueens.length; i++)
@@ -5361,6 +5360,7 @@ function top2AndBlocked() {
         screen.createBold(top2[0].getName() + " will not recieve a star because they are blocked. While " + top2[1].getName() + " does get a star!");
         if (threestars && !flagThree) {
             top2[1].stars += 3;
+            flagThree = true;
         } else {
             top2[1].stars++;
         }
@@ -5371,6 +5371,7 @@ function top2AndBlocked() {
         screen.createBold(top2[1].getName() + " will not recieve a star because they are blocked. While " + top2[0].getName() + " does get a star!");
         if (threestars && !flagThree) {
             top2[0].stars += 3;
+            flagThree = true;
         } else {
             top2[0].stars++;
         }
@@ -5382,6 +5383,7 @@ function top2AndBlocked() {
         if (threestars && !flagThree) {
             top2[0].stars += 3;
             top2[1].stars += 3;
+            flagThree = true;
         } else {
             top2[0].stars++;
             top2[1].stars++;
