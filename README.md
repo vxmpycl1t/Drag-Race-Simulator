@@ -2,6 +2,15 @@
 Drag Race Simulator based on edssb sim. I'm updating it until they come back.
 <br> You can also send me a dm in Discord if you find a bug or something that wasn't cute. <b>Rainbow#4283</b>
 
+# 07/30/2022
+* Updated All Winners Format:
+*  Now ties are completed to determine the Top4, now the talent show gives 3 stars
+* Added the cast of Drag Race Philipines 
+* Updated stats of All Stars 7 Queens
+* Updated stats of Drag Race France
+* Fixed problem with Porkchop premiere and Untucked
+* Now the Teams format doesn't have Untucked, but it will be added soon!
+
 # 07/04/2022
 * Added first version of Untucked
 * Added first version of All Stars 7 format
@@ -10,15 +19,6 @@ Drag Race Simulator based on edssb sim. I'm updating it until they come back.
 * Updated drag names/ names
 * Now in every All Stars format the queens can choose a lipstick based on their relationship with the bottom queens
 
-
-# 04/13/2022
-* Added the Lipsync LaLaPaRUZa Smackdown from season 14
-* Added Team Wins in Girl Group Challenges
-* Added 3-way lipsyncs
-* Added the "Kandy, wait" double shantay
-* Added talent show performances
-* Added basic reasoning to lipstick choices (it will have logic with the Untucked update)
-* Added new secret events
 
 
 # Working on
@@ -38,6 +38,15 @@ Currently I'm working on Untucked!
  * Detailed Challenges *
  * Choose the lipsync assassin for your season *
  * ...
+ 
+ # 04/13/2022
+* Added the Lipsync LaLaPaRUZa Smackdown from season 14
+* Added Team Wins in Girl Group Challenges
+* Added 3-way lipsyncs
+* Added the "Kandy, wait" double shantay
+* Added talent show performances
+* Added basic reasoning to lipstick choices (it will have logic with the Untucked update)
+* Added new secret events
 
 # 03/31/2022
 * Added Choosable Chocolate Bar
