@@ -806,7 +806,7 @@ function createChallenge(challenges, miniChallengeScreen) {
     else if (currentCast.length == totalCastSize - 1 && s9Premiere && !s9PremiereCheck)
         miniChallengeScreen.createButton("Proceed", "designChallenge()");
     //talent show for all stars and s14 premiere
-    else if (currentCast.length == totalCastSize && !talentShowCounter && (all_stars || lipsync_assassin) || currentCast == firstCast && s14Premiere || currentCast == secondCast && s14Premiere || all_winners && currentCast.length <= 10 && episodeCount == 11 || all_winners && currentCast.length > 10 && episodeCount == 15)
+    else if (currentCast.length == totalCastSize && !talentShowCounter && (all_stars || lipsync_assassin) || currentCast == firstCast && s14Premiere || currentCast == secondCast && s14Premiere || all_winners && currentCast.length <= 10 && episodeCount == 11 || all_winners && currentCast.length > 10 && episodeCount == 14)
         miniChallengeScreen.createButton("Proceed", "talentshow()");
     //snatch game for +10 cast
     else if (totalCastSize >= 10 && currentCast.length == 9 && !team && snatchCounter == false || totalCastSize >= 6 && currentCast.length == 5 && team || all_winners && currentCast.length > 10 && episodeCount == 2)
@@ -6214,30 +6214,34 @@ function awLipsync(giveAway) {
         top2[0].addToTrackRecord(" WIN");
         top2[1].addToTrackRecord(" WIN");
         screen.createHorizontalLine();
-        screen.createImage(top2[0].image, "darkblue");
-        screen.createImage(dragBlocked.image, "red");
-        screen.createBold(top2[0].getName() + " has given the platinum plunger to... " + dragBlocked.getName());
-        dragBlocked.blocked = true;
-        dragBlocked.editTrackRecord("+BLOCKED");
-        if (randomNumber(0, 100) >= 80) {
-            modRelation(2, 4, top2[0], dragBlocked);
-            screen.createBold(dragBlocked.getName() + " felt very upset.");
+        if (episodeCount == 10 && currentCast.length <= 10 || episodeCount == 11 && currentCast.length <= 10 || episodeCount == 13 && currentCast.length > 10 || episodeCount == 14 && currentCast.length > 10) {
+            screen.createBold("No one is getting blocked tonight!");
         } else {
-            modRelation(2, 3, top2[0], dragBlocked);
-            screen.createBold(dragBlocked.getName() + " took it great, they weren't too mad.");
-        }
-        dragBlocked = who2Block(top2[1], top2[0]);
-        screen.createImage(top2[1].image, "darkblue");
-        screen.createImage(dragBlocked.image, "red");
-        screen.createBold(top2[1].getName() + " has given the platinum plunger to... " + dragBlocked.getName());
-        dragBlocked.blocked = true;
-        dragBlocked.editTrackRecord("+BLOCKED");
-        if (randomNumber(0, 100) >= 80) {
-            modRelation(2, 4, top2[1], dragBlocked);
-            screen.createBold(dragBlocked.getName() + " felt very upset.");
-        } else {
-            modRelation(2, 3, top2[1], dragBlocked);
-            screen.createBold(dragBlocked.getName() + " took it great, they weren't too mad.");
+            screen.createImage(top2[0].image, "darkblue");
+            screen.createImage(dragBlocked.image, "red");
+            screen.createBold(top2[0].getName() + " has given the platinum plunger to... " + dragBlocked.getName());
+            dragBlocked.blocked = true;
+            dragBlocked.editTrackRecord("+BLOCKED");
+            if (randomNumber(0, 100) >= 80) {
+                modRelation(2, 4, top2[0], dragBlocked);
+                screen.createBold(dragBlocked.getName() + " felt very upset.");
+            } else {
+                modRelation(2, 3, top2[0], dragBlocked);
+                screen.createBold(dragBlocked.getName() + " took it great, they weren't too mad.");
+            }
+            dragBlocked = who2Block(top2[1], top2[0]);
+            screen.createImage(top2[1].image, "darkblue");
+            screen.createImage(dragBlocked.image, "red");
+            screen.createBold(top2[1].getName() + " has given the platinum plunger to... " + dragBlocked.getName());
+            dragBlocked.blocked = true;
+            dragBlocked.editTrackRecord("+BLOCKED");
+            if (randomNumber(0, 100) >= 80) {
+                modRelation(2, 4, top2[1], dragBlocked);
+                screen.createBold(dragBlocked.getName() + " felt very upset.");
+            } else {
+                modRelation(2, 3, top2[1], dragBlocked);
+                screen.createBold(dragBlocked.getName() + " took it great, they weren't too mad.");
+            }
         }
     } else {
         dragBlocked = who2Block(top2[0], top2[1]);
@@ -6252,17 +6256,21 @@ function awLipsync(giveAway) {
         screen.createImage(top2[1].image, "cyan");
         screen.createParagraph(top2[1].getName() + ", you are safe.");
         screen.createHorizontalLine();
-        screen.createImage(top2[0].image, "darkblue");
-        screen.createImage(dragBlocked.image, "red");
-        screen.createBold(top2[0].getName() + " has given the platinum plunger to... " + dragBlocked.getName());
-        dragBlocked.blocked = true;
-        dragBlocked.editTrackRecord("+BLOCKED");
-        if (randomNumber(0, 100) >= 80) {
-            modRelation(2, 4, top2[0], dragBlocked);
-            screen.createBold(dragBlocked.getName() + " felt very upset.");
+        if (episodeCount == 10 && currentCast.length <= 10 || episodeCount == 11 && currentCast.length <= 10 || episodeCount == 13 && currentCast.length > 10 || episodeCount == 14 && currentCast.length > 10) {
+            screen.createBold("No one is getting blocked tonight!");
         } else {
-            modRelation(2, 3, top2[0], dragBlocked);
-            screen.createBold(dragBlocked.getName() + " took it great, they weren't too mad.");
+            screen.createImage(top2[0].image, "darkblue");
+            screen.createImage(dragBlocked.image, "red");
+            screen.createBold(top2[0].getName() + " has given the platinum plunger to... " + dragBlocked.getName());
+            dragBlocked.blocked = true;
+            dragBlocked.editTrackRecord("+BLOCKED");
+            if (randomNumber(0, 100) >= 80) {
+                modRelation(2, 4, top2[0], dragBlocked);
+                screen.createBold(dragBlocked.getName() + " felt very upset.");
+            } else {
+                modRelation(2, 3, top2[0], dragBlocked);
+                screen.createBold(dragBlocked.getName() + " took it great, they weren't too mad.");
+            }
         }
     }
     if (giveAway) {
@@ -6875,7 +6883,7 @@ let allQueens = [
     arielRec, diamante, sethlas, estrella, jota, juriji, marina, marisa, onyx, samantha, sharonne, venedita,
     ava, divinity, elecktra, enorma, farida, ivana, riche, luquisha,
     elips, kam, bigbertha, briochee, grandedame, kahena, lolita, lova, paloma, soa,
-    brigiding, corazon, eva, gigi, lady, marina, minty, precious, prince, turing, vinas, xilhouete,
+    brigiding, corazon, eva, gigiEra, lady, marinaSummers, minty, precious, prince, turing, vinas, xilhouete,
     pangina
 ].concat(allCustomQueens).sort((a, b) => a.getName().toLowerCase().localeCompare(b.getName().toLowerCase()));
 let allQueensCopy = [];
@@ -9969,41 +9977,32 @@ function areRelations() {
                     screen.createHorizontalLine();
                     screen.createBigText("Relationships");
                 }
-                screen.createImage(currentCast[i].image, "red");
-                screen.createImage(currentCast[i].sisters[o].queen.image, "red");
-                screen.createBold(currentCast[i].getName() + " and " + currentCast[i].sisters[o].queen.getName() + " are enemies!", "relation");
-                flag = true;
+                let check = document.getElementById(currentCast[i].sisters[o].queen.getName()+currentCast[i].getName());
+                if (check != null) {
+                    //nothing
+                } else {
+                    screen.createImage(currentCast[i].image, "red");
+                    screen.createImage(currentCast[i].sisters[o].queen.image, "red");
+                    screen.createBold(currentCast[i].getName() + " and " + currentCast[i].sisters[o].queen.getName() + " are enemies!", currentCast[i].getName() + currentCast[i].sisters[o].queen.getName());
+                    flag = true;
+                }
             }
             if (isFriend(currentCast[i], currentCast[i].sisters[o].queen)) {
                 if (flag == false) {
                     screen.createHorizontalLine();
                     screen.createBigText("Relationships");
                 }
-                screen.createImage(currentCast[i].image, "green");
-                screen.createImage(currentCast[i].sisters[o].queen.image, "green");
-                screen.createBold(currentCast[i].getName() + " and " + currentCast[i].sisters[o].queen.getName() + " are friends!", "relation");
-                flag = true;
-            }
-        }
-    }
-    return flag;
-}
-//work on this
-function delRepeat() {
-    let bold = [];
-    bold = document.querySelectorAll("#relation");
-    let nodes = [].slice.call(bold, 0); 
-    for (let i = 0; i < currentCast.length; i++) {
-        for (let o = 0; o < currentCast[i].sisters.length; o++) {
-            for (let k = 0; k < bold.length; k++) {
-                if (bold[k].innerHTML == currentCast[i].sisters[o].queen.getName() + " and " + currentCast[i].getName() + " are enemies!") {
-                    bold[k].remove();
-                    nodes.splice(k, 1);
-                } else if (bold[k].innerHTML == currentCast[i].sisters[o].queen.getName() + " and " + currentCast[i].getName() + " are friends!") {
-                    bold[k].remove();
-                    nodes.splice(k, 1);
+                let check = document.getElementById(currentCast[i].sisters[o].queen.getName()+currentCast[i].getName());
+                if (check != null) {
+                    //nothing
+                } else {
+                    screen.createImage(currentCast[i].image, "green");
+                    screen.createImage(currentCast[i].sisters[o].queen.image, "green");
+                    screen.createBold(currentCast[i].getName() + " and " + currentCast[i].sisters[o].queen.getName() + " are friends!", currentCast[i].getName() + currentCast[i].sisters[o].queen.getName());
+                    flag = true;
                 }
             }
         }
     }
+    return flag;
 }
