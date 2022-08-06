@@ -1,6 +1,6 @@
 # Drag Race Simulator
 Drag Race Simulator based on edssb sim.
-<br> You can also send me a dm in Discord if you find a bug or something that wasn't cute. <b> Rainbow#4283 </b>
+<br> You can also send me a dm in Discord if you find a bug or something that wasn't cute. <b> Rainbow#4283</b>
 
 
 # 08/06/2022
