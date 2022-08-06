@@ -6,6 +6,7 @@ Drag Race Simulator based on edssb sim. I'm updating it until they come back.
 # 08/06/2022
 * Added first version of Drag Race Thailand format
 * Added the lipsync for the Finale to Drag Race France
+* Updated stats of Drag Race Thailand queens
 * Fixed some bugs
 
 
