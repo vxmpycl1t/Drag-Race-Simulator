@@ -2,6 +2,13 @@
 Drag Race Simulator based on edssb sim. I'm updating it until they come back.
 <br> You can also send me a dm in Discord if you find a bug or something that wasn't cute. <b>Rainbow#4283</b>
 
+
+# 08/06/2022
+* Added first version of Drag Race Thailand format
+* Added the lipsync for the Finale to Drag Race France
+* Fixed some bugs
+
+
 # 07/30/2022
 * Updated All Winners Format:
 *  Now ties are completed to determine the Top4, now the talent show gives 3 stars
@@ -10,14 +17,6 @@ Drag Race Simulator based on edssb sim. I'm updating it until they come back.
 * Updated stats of Drag Race France
 * Fixed problem with Porkchop premiere and Untucked
 * Now the Teams format doesn't have Untucked, but it will be added soon!
-
-# 07/04/2022
-* Added first version of Untucked
-* Added first version of All Stars 7 format
-* Added Canada's DR S3, DR France S1 and DR Down Under S2 Queens
-* Updated stats of the DR España S2 queens
-* Updated drag names/ names
-* Now in every All Stars format the queens can choose a lipstick based on their relationship with the bottom queens
 
 
 
@@ -38,6 +37,15 @@ Currently I'm working on Untucked!
  * Detailed Challenges *
  * Choose the lipsync assassin for your season *
  * ...
+ 
+ # 07/04/2022
+* Added first version of Untucked
+* Added first version of All Stars 7 format
+* Added Canada's DR S3, DR France S1 and DR Down Under S2 Queens
+* Updated stats of the DR España S2 queens
+* Updated drag names/ names
+* Now in every All Stars format the queens can choose a lipstick based on their relationship with the bottom queens
+ 
  
  # 04/13/2022
 * Added the Lipsync LaLaPaRUZa Smackdown from season 14
