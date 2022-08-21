@@ -72,10 +72,6 @@ big {
     color: #3D0A1F;
 }
 
-select {
-    margin-top: 5px;
-}
-
 button {
     margin-top: 5px;
     margin-bottom: 5px;
@@ -94,13 +90,62 @@ button:hover {
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
+/*
 table, th, td, tr {
     border: black solid 1px;
     border-collapse: collapse;
     text-align: center;
     padding: 3px;
 }
+*/
 
+.trtable {
+    background-color: #f5ebf5;
+    color: #202122;
+    border: 1px solid #a2a9b1;
+    border-collapse: collapse;
+
+}
+
+table {
+    text-indent: initial;
+    border-spacing: 2px;
+    color: #202122;
+    border: 1px solid #a2a9b1;
+    border-collapse: collapse;
+}
+
+tbody {
+    display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+
+tr {
+    display: table-row;
+    vertical-align: middle;
+    border-color: inherit;
+}
+
+th {
+    display: table-cell;
+    font-weight: bold;
+    background-color: #e9dfe9;
+    padding-bottom: 9px;
+    padding-top: 9px;
+    text-align: center;
+    box-sizing: border-box;
+    border: 1px solid #a2a9b1;
+    padding: 0.2em 0.4em;
+}
+
+td {
+    display: table-cell;
+    text-align: center;
+    border: 1px solid #a2a9b1;
+    padding: 0.2em 0.4em;
+    vertical-align: middle;
+}
 select {
     margin-top: 5px;
     text-align-last: center;
@@ -109,7 +154,7 @@ select {
     border-radius: 10px;
     background-color: #f1f1f1;
     cursor: pointer;
-  }
+}
 
 select:focus{
       background-color: black;
