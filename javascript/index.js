@@ -2,7 +2,7 @@
 //mini-challenge stuff:
 class MiniChallenge {
     generateDescription() {
-        let description = document.querySelector("p#Description");
+        let description = document.querySelector("b#Description");
         let desc1;
         (function (desc1) {
             desc1[desc1["wigs with "] = 0] = "wigs with ";
@@ -27,6 +27,7 @@ class MiniChallenge {
         //reading and puppet challenges:
         if (totalCastSize >= 10 && currentCast.length == 7 && !all_stars || currentCast.length == totalCastSize && (all_stars || lipsync_assassin)) {
             description.innerHTML = "The library is open! In today's mini-challenge, the queens will read eachother!";
+            readingChallenge();
         }
         else if (totalCastSize != 5 && currentCast.length == 5) {
             description.innerHTML = "Bring in the puppets! The queens will parody eachother using puppets!";
@@ -37,21 +38,33 @@ class MiniChallenge {
     }
     rankPerformances() {
         let screen = new Scene();
-        if (randomNumber(0, 100) <= 90) {
+        if (team) {
             let winner = currentCast[randomNumber(0, currentCast.length - 1)];
-            screen.createImage(winner.image, "royalblue");
+            screen.createImage(winner.QueenA.image, "royalblue");
+            screen.createImage(winner.QueenB.image, "royalblue");
             screen.createBold(`${winner.getName()} won the mini-challenge!`);
-        }else {
-            let winner = randomNumber(0, currentCast.length - 1);
-            let second;
-            do{
-                second = randomNumber(0, currentCast.length - 1);
-            }while (second == winner);
-            screen.createImage(currentCast[winner].image, "royalblue");
-            screen.createImage(currentCast[second].image, "royalblue");
-            screen.createBold(`${currentCast[winner].getName()} and ${currentCast[second].getName()} won the mini-challenge!`);
+            winner.miniEpisode.push(episodeCount);
+            winner.QueenA.miniEpisode.push(episodeCount);
+            winner.QueenB.miniEpisode.push(episodeCount);
+        } else {
+            if (randomNumber(0, 100) <= 90) {
+                let winner = currentCast[randomNumber(0, currentCast.length - 1)];
+                screen.createImage(winner.image, "royalblue");
+                screen.createBold(`${winner.getName()} won the mini-challenge!`);
+                winner.miniEpisode.push(episodeCount);
+            }else {
+                let winner = randomNumber(0, currentCast.length - 1);
+                let second;
+                do{
+                    second = randomNumber(0, currentCast.length - 1);
+                }while (second == winner);
+                screen.createImage(currentCast[winner].image, "royalblue");
+                screen.createImage(currentCast[second].image, "royalblue");
+                screen.createBold(`${currentCast[winner].getName()} and ${currentCast[second].getName()} won the mini-challenge!`);
+                currentCast[winner].miniEpisode.push(episodeCount);
+                currentCast[second].miniEpisode.push(episodeCount);
+            }
         }
-        
     }
 }
 //challenge modifiers:
@@ -74,7 +87,8 @@ function miniChallenge() {
     let miniChallengeScreen = new Scene();
     miniChallengeScreen.clean();
     miniChallengeScreen.createHeader("Mini-challenge!");
-    miniChallengeScreen.createParagraph("", "Description");
+    miniChallengeScreen.createBold("", "Description");
+    miniChallengeScreen.createHorizontalLine();
     document.body.style.backgroundImage = "url('image/werkroom.webp')";
     let challenge = new MiniChallenge();
     challenge.generateDescription();
@@ -103,7 +117,7 @@ let team3 = [];
 let isTeamChallenge = false;
 class ActingChallenge {
     generateDescription() {
-        let description = document.querySelector("p#Description");
+        let description = document.querySelector("b#Description");
         let desc1;
         (function (desc1) {
             desc1[desc1["theather piece about "] = 0] = "theather piece about ";
@@ -136,7 +150,7 @@ function actingChallenge() {
     let challengeScreen = new Scene();
     challengeScreen.clean();
     challengeScreen.createHeader("Maxi-challenge!");
-    challengeScreen.createParagraph("", "Description");
+    challengeScreen.createBold("", "Description");
     let challenge = new ActingChallenge();
     challenge.generateDescription();
     if (randomNumber(0, 100) >= 50 && currentCast.length > 6 && currentCast.length <= 15 && !isTeamChallenge && (top3 || top4)){
@@ -153,7 +167,7 @@ function actingChallenge() {
 }
 class ComedyChallenge {
     generateDescription() {
-        let description = document.querySelector("p#Description");
+        let description = document.querySelector("b#Description");
         let desc1;
         let whatChallengeIs = randomNumber(0, 1);
         (function (desc1) {
@@ -188,7 +202,7 @@ function comedyChallenge() {
     let challengeScreen = new Scene();
     challengeScreen.clean();
     challengeScreen.createHeader("Maxi-challenge!");
-    challengeScreen.createParagraph("", "Description");
+    challengeScreen.createBold("", "Description");
     let challenge = new ComedyChallenge();
     challenge.generateDescription();
     challenge.rankPerformances();
@@ -198,7 +212,7 @@ function comedyChallenge() {
 }
 class MarketingChallenge {
     generateDescription() {
-        let description = document.querySelector("p#Description");
+        let description = document.querySelector("b#Description");
         let desc1;
         let whatChallengeIs = randomNumber(0, 1);
         (function (desc1) {
@@ -233,7 +247,7 @@ function marketingChallenge() {
     let challengeScreen = new Scene();
     challengeScreen.clean();
     challengeScreen.createHeader("Maxi-challenge!");
-    challengeScreen.createParagraph("", "Description");
+    challengeScreen.createBold("", "Description");
     let challenge = new MarketingChallenge();
     challenge.generateDescription();
     if (randomNumber(0, 100) >= 60 && currentCast.length > 6 && currentCast.length <= 15 && !isTeamChallenge && (top3 || top4)){
@@ -249,7 +263,7 @@ function marketingChallenge() {
 }
 class DanceChallenge {
     generateDescription() {
-        let description = document.querySelector("p#Description");
+        let description = document.querySelector("b#Description");
         let desc1;
         (function (desc1) {
             desc1[desc1["the history of disco."] = 0] = "the history of disco.";
@@ -274,7 +288,7 @@ function danceChallenge() {
     let challengeScreen = new Scene();
     challengeScreen.clean();
     challengeScreen.createHeader("Maxi-challenge!");
-    challengeScreen.createParagraph("", "Description");
+    challengeScreen.createBold("", "Description");
     let challenge = new DanceChallenge();
     challenge.generateDescription();
     if (randomNumber(0, 100) >= 70 && currentCast.length > 6 && currentCast.length <= 15 && !isTeamChallenge && (top3 || top4)){
@@ -290,7 +304,7 @@ function danceChallenge() {
 }
 class DesignChallenge {
     generateDescription() {
-        let description = document.querySelector("p#Description");
+        let description = document.querySelector("b#Description");
         let desc1;
         (function (desc1) {
             desc1[desc1["trash."] = 0] = "trash.";
@@ -322,7 +336,7 @@ function designChallenge() {
     let challengeScreen = new Scene();
     challengeScreen.clean();
     challengeScreen.createHeader("Maxi-challenge!");
-    challengeScreen.createParagraph("", "Description");
+    challengeScreen.createBold("", "Description");
     let challenge = new DesignChallenge();
     challenge.generateDescription();
     challenge.rankPerformances();
@@ -343,7 +357,7 @@ function designChallenge() {
 }
 class RunwayChallenge {
     generateDescription() {
-        let description = document.querySelector("p#Description");
+        let description = document.querySelector("b#Description");
         let desc;
         (function (desc) {
             desc[desc["Feathers."] = 0] = "Feathers.";
@@ -405,7 +419,7 @@ function runwayChallenge() {
     let challengeScreen = new Scene();
     challengeScreen.clean();
     challengeScreen.createHeader("Runway-challenge!");
-    challengeScreen.createParagraph("", "Description");
+    challengeScreen.createBold("", "Description");
     let challenge = new RunwayChallenge();
     challenge.generateDescription();
     challenge.rankPerformances();
@@ -418,7 +432,7 @@ function runwayChallenge() {
 }
 class ImprovChallenge {
     generateDescription() {
-        let description = document.querySelector("p#Description");
+        let description = document.querySelector("b#Description");
         let desc1;
         let whatChallengeIs = randomNumber(0, 12);
         (function (desc1) {
@@ -457,7 +471,7 @@ function improvChallenge() {
     let challengeScreen = new Scene();
     challengeScreen.clean();
     challengeScreen.createHeader("Maxi-challenge!");
-    challengeScreen.createParagraph("", "Description");
+    challengeScreen.createBold("", "Description");
     let challenge = new ImprovChallenge();
     challenge.generateDescription();
     if (randomNumber(0, 100) >= 50 && currentCast.length > 6 && currentCast.length <= 15 && !isTeamChallenge && (top3 || top4)){
@@ -474,7 +488,7 @@ function improvChallenge() {
 //SPECIAL CHALLENGES:
 class SnatchGame {
     generateDescription() {
-        let description = document.querySelector("p#Description");
+        let description = document.querySelector("b#Description");
         description.innerHTML = "Today's challenge is... SNATCH GAME!! The queens will do funny celebrity impersonations!";
         if (randomNumber(0, 100) >= 95) {
             episodeChallenges.push("Snatch Game of Love");
@@ -492,7 +506,7 @@ function snatchGame() {
     let challengeScreen = new Scene();
     challengeScreen.clean();
     challengeScreen.createHeader("Maxi-challenge!");
-    challengeScreen.createParagraph("", "Description");
+    challengeScreen.createBold("", "Description");
     let challenge = new SnatchGame();
     challenge.generateDescription();
     challenge.rankPerformances();
@@ -502,7 +516,7 @@ function snatchGame() {
 }
 class Rusical {
     generateDescription() {
-        let description = document.querySelector("p#Description");
+        let description = document.querySelector("b#Description");
         let desc;
         (function (desc) {
             desc[desc["Social Media: The Unverified Rusical."] = 0] = "Social Media: The Unverified Rusical.";
@@ -536,7 +550,7 @@ function rusical() {
     let challengeScreen = new Scene();
     challengeScreen.clean();
     challengeScreen.createHeader("Maxi-challenge!");
-    challengeScreen.createParagraph("", "Description");
+    challengeScreen.createBold("", "Description");
     let challenge = new Rusical();
     challenge.generateDescription();
     challenge.rankPerformances();
@@ -547,7 +561,7 @@ function rusical() {
 }
 class Ball {
     generateDescription() {
-        let description = document.querySelector("p#Description");
+        let description = document.querySelector("b#Description");
         let desc1;
         (function (desc1) {
             desc1[desc1["Executive realness, "] = 0] = "Executive realness, ";
@@ -590,7 +604,7 @@ function ball() {
     let challengeScreen = new Scene();
     challengeScreen.clean();
     challengeScreen.createHeader("Maxi-challenge!");
-    challengeScreen.createParagraph("", "Description");
+    challengeScreen.createBold("", "Description");
     let challenge = new Ball();
     challenge.generateDescription();
     challenge.rankPerformances();
@@ -601,7 +615,7 @@ function ball() {
 }
 class Rumix {
     generateDescription() {
-        let description = document.querySelector("p#Description");
+        let description = document.querySelector("b#Description");
         let desc1;
         (function (desc1) {
             desc1[desc1["Read U Wrote U."] = 0] = "Read U Wrote U.";
@@ -633,7 +647,7 @@ function rumix() {
     let challengeScreen = new Scene();
     challengeScreen.clean();
     challengeScreen.createHeader("Maxi-challenge!");
-    challengeScreen.createParagraph("", "Description");
+    challengeScreen.createBold("", "Description");
     let challenge = new Rumix();
     challenge.generateDescription();
     challenge.rankPerformances();
@@ -644,7 +658,7 @@ function rumix() {
 }
 class GirlGroup {
     generateDescription() {
-        let description = document.querySelector("p#Description");
+        let description = document.querySelector("b#Description");
         let desc1;
         (function (desc1) {
             desc1[desc1["Break Up (Bye Bye)"] = 0] = "Break Up (Bye Bye)";
@@ -681,7 +695,7 @@ function girlgroup() {
     let challengeScreen = new Scene();
     challengeScreen.clean();
     challengeScreen.createHeader("Maxi-challenge!");
-    challengeScreen.createParagraph("", "Description");
+    challengeScreen.createBold("", "Description");
     let challenge = new GirlGroup();
     challenge.generateDescription();
     if (randomNumber(0, 100) >= 50 && currentCast.length > 6 && currentCast.length <= 15 && !isTeamChallenge && (top3 || top4) && episodeCount > 3) {
@@ -702,7 +716,7 @@ function girlgroup() {
 }
 class TalentShow {
     generateDescription() {
-        let description = document.querySelector("p#Description");
+        let description = document.querySelector("b#Description");
         description.innerHTML = "In this first challenge, the queens will prove themselves in a talent show, where they bring all they've got!";
     }
     rankPerformances() {
@@ -715,7 +729,7 @@ function talentshow() {
     let challengeScreen = new Scene();
     challengeScreen.clean();
     challengeScreen.createHeader("Maxi-challenge!");
-    challengeScreen.createParagraph("", "Description");
+    challengeScreen.createBold("", "Description");
     let challenge = new TalentShow();
     challenge.generateDescription();
     queenTalents();
@@ -759,11 +773,23 @@ function maxiWin() {
     screen.createBold("Based on tonight's performances...");
     document.body.style.backgroundImage = "url('image/werkroom.webp')";
     currentCast.sort((a, b) => (a.performanceScore - b.performanceScore));
-    screen.createImage(currentCast[0].image, "cyan");
-    screen.createBold(currentCast[0].getName() + ", condragulations! You are the winner of this weeks Maxi Challenge!");
-    currentCast[0].addToTrackRecord("WIN");
-    currentCast[0].favoritism += 3;
-    currentCast[0].maxiT = true;
+    if (currentCast[0].performanceScore == currentCast[1].performanceScore && randomNumber(0, 100) < 60) {
+        currentCast[0].addToTrackRecord("WIN");
+        currentCast[1].addToTrackRecord("WIN");
+        currentCast[0].favoritism += 4;
+        currentCast[1].favoritism += 4;
+        currentCast[0].maxiT = true;
+        currentCast[1].maxiT = true;
+        screen.createImage(currentCast[0].image, "darkblue");
+        screen.createImage(currentCast[1].image, "darkblue");
+        screen.createBold(currentCast[0].getName() + ", " + currentCast[1].getName() + ", condragulations, You are the winners of this weeks Maxi Challenge!");
+    } else {
+        screen.createImage(currentCast[0].image, "cyan");
+        screen.createBold(currentCast[0].getName() + ", condragulations! You are the winner of this weeks Maxi Challenge!");
+        currentCast[0].addToTrackRecord("WIN");
+        currentCast[0].favoritism += 4;
+        currentCast[0].maxiT = true;
+    }
     screen.createHorizontalLine();
     screen.createButton("Proceed", "runwayChallenge()");
 }
@@ -1472,7 +1498,7 @@ function uk3PremiereJudging() {
     //do the same, but for the bottom queens:
     if (bottomQueens.length == 3) {
         for (let i = 0; i < topQueens.length; i++)
-            bottomQueens[i].performanceScore -= (bottomQueens[i].runwayScore - bottomQueens[i].favoritism);
+            bottomQueens[i].performanceScore -= (bottomQueens[i].runwayScore);
         bottomQueens.sort((a, b) => (a.performanceScore - b.performanceScore));
         bottomQueens[0].addToTrackRecord("LOW");
         screen.createImage(bottomQueens[0].image, "pink");
@@ -1489,7 +1515,7 @@ function uk3PremiereJudging() {
         btm2.innerHTML += bottomQueens[i].getName() + ", ";
     }
     btm2.innerHTML += "I'm sorry my dears but you are up for elimination.";
-    screen.createButton("Proceed", "lipSync()");
+    screen.createButton("Proceed", "lipsyncDesc()");
 }
 let currentCast = [];
 let eliminatedCast = [];
@@ -1563,19 +1589,19 @@ function newEpisode() {
     else if (currentCast.length == 4 && porkchopPremiere && premiereCounter < 3)
         queensRemainingScreen.createButton("Proceed", "miniChallenge()");
     else if (currentCast.length == 4 && canFinale)
-        queensRemainingScreen.createButton("Proceed", "canadaS2Finale()");
+        queensRemainingScreen.createButton("Proceed", "reunion()");
     else if (currentCast.length == 4 && (top3 || team || thailandFormat))
         queensRemainingScreen.createButton("Proceed", "miniChallenge()");
     else if (currentCast.length == 4 && top4 || ukvstwFinale)
-        queensRemainingScreen.createButton("Proceed", "finaleLS()");
+        queensRemainingScreen.createButton("Proceed", "reunion()");
     else if (currentCast.length == 4 && (all_stars || lipsync_assassin))
-        queensRemainingScreen.createButton("Proceed", "finaleAS()");
+        queensRemainingScreen.createButton("Proceed", "reunion()");
     else if (currentCast.length == 3 && team)
         queensRemainingScreen.createButton("Proceed", "miniChallenge()");
     else if (currentCast.length == 2 && team)
-        queensRemainingScreen.createButton("Proceed", "finaleTeam()");
+        queensRemainingScreen.createButton("Proceed", "reunion()");
     else
-        queensRemainingScreen.createButton("Proceed", "finale()");
+        queensRemainingScreen.createButton("Proceed", "reunion()");
     //add an empty placement on eliminated queen's track records
     for (let i = 0; i < eliminatedCast.length; i++)
         eliminatedCast[i].addToTrackRecord('');
@@ -1617,13 +1643,16 @@ function reSimulate() {
     threestars = false;
     flagThree = false;
     wht = [];
+    teamList = [];
     qonfi = 0;
+    homeTrigger = 0;
     //clean track records
     for (let i = 0; i < currentCast.length; i++) {
         currentCast[i].trackRecord = [];
         currentCast[i].sisters = [];
         currentCast[i].enemies = [];
         currentCast[i].friends = [];
+        currentCast[i].miniEpisode = [];
         currentCast[i].favoritism = 0;
         currentCast[i].unfavoritism = 0;
         currentCast[i].finaleScore = 0;
@@ -1632,6 +1661,7 @@ function reSimulate() {
         currentCast[i].episodesOn = 0;
         currentCast[i].stars = 0;
         currentCast[i].winCount = 0;
+        currentCast[i].rankP = 0;
         currentCast[i].QueenDisqOrDept = false;
         currentCast[i].chocolate = false;
         currentCast[i].blocked = false;
@@ -1720,18 +1750,13 @@ function finaleLS() {
     screen.createImage(secondLS[1].image, "darkred");
     screen.createBold(secondLS[0].getName() + " vs. " + secondLS[1].getName());
     episodeChallenges.push("Finale");
-    screen.createButton("Proceed", "finaleLipSyncs()");
+    screen.createButton("Proceed", "finaleLipSyncsDesc1()");
 }
 let finaleof4gurl = false;
 function finaleLipSyncs() {
     let screen = new Scene();
     screen.clean();
-    screen.createHeader("The Lip-Syncs...");
-    screen.createParagraph(firstLS[0].getName() + " and " + firstLS[1].getName() + " lip-sync...");
-    lsSong();
-    for (let i = 0; i < firstLS.length; i++) {
-        firstLS[i].getLipsync();
-    }
+    screen.createHeader("I've made my decision...");
     firstLS.sort((a, b) => (b.lipsyncScore - a.lipsyncScore));
     if (firstLS[0].lipsyncScore == firstLS[1].lipsyncScore && firstLS[0].lipsyncScore > 6 && firstLS[1].lipsyncScore > 6) {
         screen.createImage(firstLS[0].image, "silver");
@@ -1759,6 +1784,7 @@ function finaleLipSyncs() {
             screen.createImage("image/ChocolateBarWithNoTicket.webp", "brown");
             screen.createBold("It's chocolate.");
             firstLS[1].addToTrackRecord("LOST 1ST ROUND");
+            firstLS[1].rankP = 34;
             eliminatedCast.unshift(firstLS[1]);
             screen.createImage(firstLS[1].image, "sienna");
             screen.createBold(firstLS[1].getName() + ", sashay away...");
@@ -1767,6 +1793,7 @@ function finaleLipSyncs() {
     else {
         finalLS.push(firstLS[0]);
         firstLS[1].addToTrackRecord("LOST 1ST ROUND");
+        firstLS[1].rankP = 34;
         eliminatedCast.unshift(firstLS[1]);
         screen.createImage(firstLS[0].image, "silver");
         screen.createBold(firstLS[0].getName() + ", shantay you stay.");
@@ -1774,11 +1801,12 @@ function finaleLipSyncs() {
         screen.createBold(firstLS[1].getName() + ", sashay away...");
     }
     screen.createHorizontalLine();
-    screen.createParagraph(secondLS[0].getName() + " and " + secondLS[1].getName() + " lip-sync...");
-    lsSong();
-    for (let i = 0; i < secondLS.length; i++) {
-        secondLS[i].getASLipsync();
-    }
+    screen.createButton("Proceed", "finaleLipSyncsDesc2()");
+}
+function finaleLipSyncs2() {
+    let screen = new Scene();
+    screen.clean();
+    screen.createHeader("I've made my decision...");
     secondLS.sort((a, b) => (b.lipsyncScore - a.lipsyncScore));
     if (secondLS[0].lipsyncScore == secondLS[1].lipsyncScore && secondLS[0].lipsyncScore > 6 && secondLS[1].lipsyncScore > 6) {
         screen.createImage(secondLS[0].image, "silver");
@@ -1814,6 +1842,9 @@ function finaleLipSyncs() {
             screen.createImage("image/ChocolateBarWithNoTicket.webp", "brown");
             screen.createBold("It's chocolate.");
             secondLS[1].addToTrackRecord("LOST 2ND ROUND");
+            if (!isThisA3Way) {
+                secondLS[1].rankP = 34;
+            }
             eliminatedCast.unshift(secondLS[1]);
             screen.createImage(secondLS[1].image, "sienna");
             screen.createBold(secondLS[1].getName() + ", sashay away...");
@@ -1822,6 +1853,9 @@ function finaleLipSyncs() {
     else {
         finalLS.push(secondLS[0]);
         secondLS[1].addToTrackRecord("LOST 2ND ROUND");
+        if (!isThisA3Way) {
+            secondLS[1].rankP = 34;
+        }
         eliminatedCast.unshift(secondLS[1]);
         screen.createImage(secondLS[0].image, "silver");
         screen.createBold(secondLS[0].getName() + ", shantay you stay.");
@@ -1860,7 +1894,9 @@ function finalLipSync() {
         for (let i = 0; i < finalLS.length; i++) {
             if (!(finalLS.indexOf(finalLS[i]) == winner)) {
                 finalLS[i].addToTrackRecord("LOST 3RD ROUND");
+                finalLS[i].rankP = 234;
                 eliminatedCast.unshift(finalLS[i]);
+                
             }
         }
         if (winner == 0) {
@@ -1896,6 +1932,7 @@ function finalLipSync() {
         for (let i = 0; i < finalLS.length; i++) {
             if (!(finalLS.indexOf(finalLS[i]) == winner)) {
                 finalLS[i].addToTrackRecord("LOST 3RD ROUND");
+                finalLS[i].rankP = 23;
                 eliminatedCast.unshift(finalLS[i]);
             }
         }
@@ -1925,6 +1962,7 @@ function finalLipSync() {
             screen.createBold("Now prance, my queens!");
             finalLS[0].addToTrackRecord("WINNER");
             finalLS[1].addToTrackRecord("WINNER");
+            finalLS[1].rankP = 1;
             eliminatedCast.unshift(finalLS[1]);
             finalLS.splice(1, 1);
         }else{
@@ -1939,6 +1977,7 @@ function finalLipSync() {
             for (let i = 0; i < finalLS.length; i++) {
                 if (!(finalLS.indexOf(finalLS[i]) == winner)) {
                     finalLS[i].addToTrackRecord("LOST 3RD ROUND");
+                    finalLS[i].rankP = 2;
                     eliminatedCast.unshift(finalLS[i]);
                     finalLS.splice(i, 1);
                 }
@@ -1972,12 +2011,12 @@ function finaleTeam() {
     currentCast.sort((a, b) => (b.finaleScore - a.finaleScore));
     let screen = new Scene();
     screen.clean();
-    screen.createHeader("The grande finale!");
-    screen.createParagraph("Our Top 4 will participate in a music video for RuPaul's newest single!");
+    screen.createHeader("The grand finale!");
     screen.createImage(currentCast[0].QueenB.image, "black");
     screen.createImage(currentCast[1].QueenB.image, "black");
     screen.createImage(currentCast[0].QueenA.image, "black");
     screen.createImage(currentCast[1].QueenA.image, "black");
+    screen.createParagraph("Our Top 4 will participate in a music video for RuPaul's newest single!");
     screen.createButton("Proceed", "runway()", "button2");
 }
 let isThisA3Way = false;
@@ -1986,6 +2025,11 @@ function finaleJudging() {
     screen.clean();
     screen.createHeader("The final minutes...");
     screen.createBold("Ladies, it's time to decide The Next Drag Superstar, and...");
+    if (canFinale) {
+        for (let i = 0; i < eliminatedCast.length; i++) {
+            eliminatedCast[i].trackRecord[eliminatedCast[i].trackRecord.length - 1] = "GUEST";
+        }
+    }
     if (randomNumber(0, 100) <= 90){
         screen.createImage(currentCast[2].image, "sienna");
         screen.createBold(currentCast[2].getName() + ", I'm sorry my dear but it's not your time. I must ask you to sashay away...");
@@ -2014,12 +2058,16 @@ function finaleTeamJudging() {
     screen.clean();
     screen.createHeader("The final minutes...");
     screen.createBold("Ladies, it's time to decide The Next Drag Superstar, and...");
+    screen.createImage(currentCast[1].QueenB.image, "sienna");
+    screen.createImage(currentCast[1].QueenA.image, "sienna");
     screen.createBold(currentCast[1].getName() + ", I'm sorry my dears but it's not your time. I must ask you both to sashay away...");
     screen.createHorizontalLine();
     currentCast[1].QueenA.addToTrackRecord("ELIMINATED");
     currentCast[1].QueenB.addToTrackRecord("ELIMINATED");
     eliminatedCast.unshift(currentCast[1].QueenA);
     eliminatedCast.unshift(currentCast[1].QueenB);
+    screen.createImage(currentCast[0].QueenB.image, "silver");
+    screen.createImage(currentCast[0].QueenA.image, "silver");
     currentCast.splice(1, 1);
     if (randomNumber(0, 100) <= 50) {
         currentCast.push(currentCast[0].QueenA);
@@ -2048,10 +2096,12 @@ function finaleFinale() {
         screen.createBold("For the FIRST TIME in Drag Race herstory, you are both winners, baby");
         screen.createImage(currentCast[0].image, "yellow");
         screen.createImage(currentCast[1].image, "yellow");
+        currentCast[1].rankP = 1;
         screen.createBigText(currentCast[0].getName() + " and " + currentCast[1].getName() + "!!");
         screen.createBold("Now prance, my queens!");
         if (!allstars3Finale && !ukvstwFinale && !top2finaleAS && (all_stars || lipsync_assassin) || isThisA3Way) {
             currentCast[2].addToTrackRecord("RUNNER UP");
+            currentCast[2].rankP = 32;
             eliminatedCast.unshift(currentCast[2]);
             currentCast.splice(2, 1);
         }
@@ -2065,10 +2115,16 @@ function finaleFinale() {
         screen.createBold("Now prance, my queen!");
         currentCast[0].addToTrackRecord("WINNER");
         currentCast[1].addToTrackRecord("RUNNER UP");
+        if (currentCast[2] != null) {
+            currentCast[1].rankP = 23;
+        } else {
+            currentCast[1].rankP = 2;
+        }
         eliminatedCast.unshift(currentCast[1]);
         currentCast.splice(1, 1);
         if (!allstars3Finale && !ukvstwFinale && !top2finaleAS && (all_stars || lipsync_assassin) || isThisA3Way) {
             currentCast[1].addToTrackRecord("RUNNER UP");
+            currentCast[1].rankP = 23;
             eliminatedCast.unshift(currentCast[1]);
             currentCast.splice(1, 1);
         }
@@ -2115,6 +2171,8 @@ function finaleASJudging() {
         screen.createBold(currentCast[2].getName() + ", " + currentCast[3].getName() + ", I'm sorry my dears but it's not your time. I must ask you both to sashay away...");
         currentCast[2].addToTrackRecord("ELIMINATED");
         currentCast[3].addToTrackRecord("ELIMINATED");
+        currentCast[2].rankP = 34;
+        currentCast[3].rankP = 34;
         eliminatedCast.unshift(currentCast[3]);
         eliminatedCast.unshift(currentCast[2]);
         currentCast.splice(2, 2);
@@ -2187,12 +2245,16 @@ function finaleJuryAS() {
     screen.createBold(`${queen.getName()} and ${queen1.getName()} are the Top 2 of the season!!`);
     if (queen1 == currentCast[1]) {
         currentCast[2].addToTrackRecord("ELIMINATED");
+        currentCast[2].rankP = 34;
+        currentCast[3].rankP = 34;
         eliminatedCast.unshift(currentCast[2]);
         currentCast[3].addToTrackRecord("ELIMINATED");
         eliminatedCast.unshift(currentCast[3]);
         currentCast.splice(2, 2);
     } else {
         currentCast[1].addToTrackRecord("ELIMINATED");
+        currentCast[1].rankP = 34;
+        currentCast[3].rankP = 34;
         eliminatedCast.unshift(currentCast[1]);
         currentCast[3].addToTrackRecord("ELIMINATED");
         eliminatedCast.unshift(currentCast[3]);
@@ -2434,38 +2496,61 @@ function contestantProgress() {
     let centering = document.createElement("center");
     let trackRecords = document.createElement("table");
     trackRecords.setAttribute("id", "trackRecord");
+    trackRecords.setAttribute("class", "trtable");
+    trackRecords.setAttribute("border", "2");
     if (totalCastSize >= 12 && totalCastSize < 15)
-        trackRecords.setAttribute("style", "font-size: 85%;");
+        trackRecords.setAttribute("style", "font-size: 85%; text-align: center;");
     if (totalCastSize >= 15)
-        trackRecords.setAttribute("style", "font-size: 75%");
+        trackRecords.setAttribute("style", "font-size: 75%; text-align: center;");
     let header = document.createElement("tr");
     trackRecords.appendChild(header);
+    let thr = document.createElement("th");
+    thr.innerHTML = "Rank";
+    thr.setAttribute("style", "font-weight: bold;");
+    thr.setAttribute("rowspan", "2");
+    header.appendChild(thr);
     let th = document.createElement("th");
-    th.innerHTML = "Queen";
-    th.setAttribute("style", "background-color: #e9dfe9; font-weight: bold; width: 100px;");
+    th.innerHTML = "Contestant";
+    th.setAttribute("style", "font-weight: bold; width: 100px;");
+    th.setAttribute("rowspan", "2");
     header.appendChild(th);
     let th_i = document.createElement("th");
     th_i.innerHTML = "Photo";
-    th_i.setAttribute("style", "background-color: #e9dfe9; font-weight: bold; width: 75px;");
+    th_i.setAttribute("style", "font-weight: bold;");
+    th_i.setAttribute("rowspan", "2");
     header.appendChild(th_i);
     for (let i = 0; i < episodeChallenges.length; i++) {
         let th = document.createElement("th");
-        th.innerHTML = episodeChallenges[i];
-        th.setAttribute("style", "background-color: #e9dfe9; font-weight: bold; width: 75px;");
+        th.innerHTML = "Ep. " + (i+1);
+        th.setAttribute("style", "font-weight: bold;");
         header.appendChild(th);
     }
+    let header1 = document.createElement("tr");
+    for (let i = 0; i < episodeChallenges.length; i++) {
+        let th = document.createElement("th");
+        th.innerHTML = "<small>" + episodeChallenges[i] + "</small>";
+        th.setAttribute("style", "background-color: #e9dfe9; font-weight: bold; width: 75px;");
+        header1.appendChild(th);
+    }
+    trackRecords.appendChild(header1);
     if (all_winners) {
         let th_2 = document.createElement("th");
         th_2.innerHTML = "PPE - Stars";
         th_2.setAttribute("style", "background-color: #e9dfe9; font-weight: bold; width: 150x;");
+        th_2.setAttribute("rowspan", "2");
         header.appendChild(th_2);
     } else {
         let th_2 = document.createElement("th");
         th_2.innerHTML = "PPE";
         th_2.setAttribute("style", "background-color: #e9dfe9; font-weight: bold; width: 35px;");
+        th_2.setAttribute("rowspan", "2");
         header.appendChild(th_2);
     }
     let winner = document.createElement("tr");
+    let rank = document.createElement("td");
+    rank.setAttribute("style", "background-color: #f5ebf5; font-weight: bold; height: 50px;");
+    rank.innerHTML = "1st<br><small>(Winner)</small>"
+    winner.appendChild(rank);
     let name = document.createElement("td");
     name.setAttribute("style", "background-color: #f5ebf5; font-weight: bold; height: 50px;");
     if (onFinale) {
@@ -2484,7 +2569,9 @@ function contestantProgress() {
         name.innerHTML = winnerQueen.getName();
         winner.appendChild(name);
         let photo = document.createElement("td");
-        photo.setAttribute("style", "background: url("+ winnerQueen.image +"); background-size: 102px 102px; background-position: center;");
+        photo.setAttribute("style", "background: url("+ winnerQueen.image +"); background-size: 110px 110px; background-position: center;");
+        photo.setAttribute("width", "80");
+        photo.setAttribute("height", "80");
         winner.appendChild(photo);
         for (let i = 0; i < winnerQueen.trackRecord.length + 1; i++) {
             let placement = document.createElement("td");
@@ -2566,6 +2653,10 @@ function contestantProgress() {
             }
             else if (placement.innerHTML == "WIN ") {
                 placement.setAttribute("style", "font-weight: bold; background-color: deepskyblue;");
+            }
+            else if (placement.innerHTML == "WIN TIE") {
+                placement.setAttribute("style", "font-weight: bold; background-color: steelblue; color: #fff;");
+                placement.innerHTML = "WIN";
             }
             else if (placement.innerHTML == "  WIN") {
                 placement.setAttribute("style", "font-weight: bold; background-color: #2238B4; color: white;");
@@ -2680,6 +2771,12 @@ function contestantProgress() {
             else if (placement.innerHTML == "LOSS ") {
                 placement.setAttribute("style", "background-color: orange;");
             }
+            else if (placement.innerHTML == "GUEST") {
+                placement.setAttribute("style", "background-color: lightgrey;");
+            }
+            else if (placement.innerHTML == "MISS CON") {
+                placement.setAttribute("style", "background-color: aqua; font-weight: bold;");
+            }
             else if (placement.innerHTML == "undefined" && all_winners) {
                 placement.setAttribute("style", "font-weight: bold; background-color: lightgray;");
                 placement.innerHTML = (winnerQueen.ppe / (winnerQueen.episodesOn)).toFixed(2) + " - " + winnerQueen.stars;
@@ -2688,6 +2785,9 @@ function contestantProgress() {
                 placement.setAttribute("style", "font-weight: bold; background-color: lightgray;");
                 placement.innerHTML = (winnerQueen.ppe / (winnerQueen.episodesOn)).toFixed(2);
             }
+            if (winnerQueen.miniEpisode.indexOf((i+1)) != -1) {
+                placement.innerHTML += "<br> <small> <i> Mini Chall. Winner </i> </small>";
+            }
             winner.appendChild(placement);
         }
         trackRecords.appendChild(winner);
@@ -2695,13 +2795,19 @@ function contestantProgress() {
     if (!onFinale) {
         for (let i = 0; i < currentCast.length; i++) {
             let contestant = document.createElement("tr");
+            let rank = document.createElement("td");
+            rank.setAttribute("style", "background-color: #f5ebf5; font-weight: bold; height: 50px;");
+            rank.innerHTML = "TBA"
+            contestant.appendChild(rank);
             let name = document.createElement("td");
             name.setAttribute("style", "font-weight: bold;");
             name.innerHTML = currentCast[i].getName();
             name.setAttribute("style", "background-color: #f5ebf5; font-weight: bold; height: 50px;");
             contestant.appendChild(name);
             let photo = document.createElement("td");
-            photo.setAttribute("style", "background: url("+ currentCast[i].image +"); background-size: 106px 106px; background-position: center;");
+            photo.setAttribute("style", "background: url("+ currentCast[i].image +"); background-size: 110px 110px; background-position: center;");
+            photo.setAttribute("width", "80");
+            photo.setAttribute("height", "80");
             contestant.appendChild(photo);
             for (let k = 0; k < currentCast[i].trackRecord.length + 1; k++) {
                 let placement = document.createElement("td");
@@ -2781,6 +2887,10 @@ function contestantProgress() {
                 }
                 else if (placement.innerHTML == "WIN ") {
                     placement.setAttribute("style", "font-weight: bold; background-color: deepskyblue;");
+                }
+                else if (placement.innerHTML == "WIN TIE") {
+                    placement.setAttribute("style", "font-weight: bold; background-color: steelblue; color: #fff;");
+                    placement.innerHTML = "WIN";
                 }
                 else if (placement.innerHTML == "  WIN") {
                     placement.setAttribute("style", "font-weight: bold; background-color: #2238B4; color: white;");
@@ -2895,6 +3005,12 @@ function contestantProgress() {
                 else if (placement.innerHTML == "LOSS ") {
                     placement.setAttribute("style", "background-color: orange;");
                 }
+                else if (placement.innerHTML == "GUEST") {
+                    placement.setAttribute("style", "background-color: lightgrey;");
+                }
+                else if (placement.innerHTML == "MISS CON") {
+                    placement.setAttribute("style", "background-color: aqua; font-weight: bold;");
+                }
                 else if (placement.innerHTML == "undefined" && all_winners) {
                     placement.setAttribute("style", "font-weight: bold; background-color: lightgray;");
                     placement.innerHTML = (currentCast[i].ppe / (currentCast[i].episodesOn)).toFixed(2) + " - " + currentCast[i].stars;
@@ -2903,20 +3019,51 @@ function contestantProgress() {
                     placement.setAttribute("style", "font-weight: bold; background-color: lightgray;");
                     placement.innerHTML = (currentCast[i].ppe / (currentCast[i].episodesOn)).toFixed(2);
                 }
+                if (currentCast[i].miniEpisode.indexOf(k+1) != -1) {
+                    placement.innerHTML += "<br> <small> <i> Mini Chall. Winner </i> </small>";
+                }
                 contestant.appendChild(placement);
             }
             trackRecords.appendChild(contestant);
         }
     }
+    let rankNumber = currentCast.length;
     for (let i = 0; i < eliminatedCast.length; i++) {
         let contestant = document.createElement("tr");
+        let rank = document.createElement("td");
+        rank.setAttribute("style", "background-color: #f5ebf5; font-weight: bold; height: 50px;");
+        if (eliminatedCast[i].rankP == 0) {
+            rank.innerHTML = (rankNumber+1+i);
+            if (rank.innerHTML == 3) {
+                rank.innerHTML += "rd"
+            } else {
+                rank.innerHTML += "th";
+            }
+        } else if (eliminatedCast[i].rankP == 1) {
+            rank.innerHTML += "1st<br><small>(Winner)</small>";
+        } else if (eliminatedCast[i].rankP == 2) {
+            rank.innerHTML += "2nd<br><small>(Runner-Up)</small>";
+        } else if (eliminatedCast[i].rankP == 3) {
+            rank.innerHTML += "3rd<br><small>(Runner-Up)</small>";
+        } else if (eliminatedCast[i].rankP == 234) {
+            rank.innerHTML += "2nd/3rd/4th<br><small>(Runner-Up)</small>";
+        } else if (eliminatedCast[i].rankP == 23) {
+            rank.innerHTML += "2nd/3rd<br><small>(Runner-Up)</small>";
+        } else if (eliminatedCast[i].rankP == 34) {
+            rank.innerHTML += "3rd/4th";
+        } else if (eliminatedCast[i].rankP == 32) {
+            rank.innerHTML += "3rd<br><small>(Runner-Up)</small>";
+        }
+        contestant.appendChild(rank);
         let name = document.createElement("td");
         name.setAttribute("style", "font-weight: bold;");
         name.innerHTML = eliminatedCast[i].getName();
         name.setAttribute("style", "background-color: #f5ebf5; font-weight: bold; height: 50px;");
         contestant.appendChild(name);
         let photo = document.createElement("td");
-        photo.setAttribute("style", "background: url("+ eliminatedCast[i].image +"); background-size: 106px 106px; background-position: center;");
+        photo.setAttribute("style", "background: url("+ eliminatedCast[i].image +"); background-size: 110px 110px; background-position: center;");
+        photo.setAttribute("width", "80");
+        photo.setAttribute("height", "80");
         contestant.appendChild(photo);
         for (let k = 0; k < eliminatedCast[i].trackRecord.length + 1; k++) {
             let placement = document.createElement("td");
@@ -3000,6 +3147,10 @@ function contestantProgress() {
             }
             else if (placement.innerHTML == "WIN ") {
                 placement.setAttribute("style", "font-weight: bold; background-color: deepskyblue;");
+            }
+            else if (placement.innerHTML == "WIN TIE") {
+                placement.setAttribute("style", "font-weight: bold; background-color: steelblue; color: #fff;");
+                placement.innerHTML = "WIN";
             }
             else if (placement.innerHTML == "  WIN") {
                 placement.setAttribute("style", "font-weight: bold; background-color: #2238B4; color: white;");
@@ -3114,6 +3265,12 @@ function contestantProgress() {
             else if (placement.innerHTML == "LOSS ") {
                 placement.setAttribute("style", "background-color: orange;");
             }
+            else if (placement.innerHTML == "GUEST") {
+                placement.setAttribute("style", "background-color: lightgrey;");
+            }
+            else if (placement.innerHTML == "MISS CON") {
+                placement.setAttribute("style", "background-color: aqua; font-weight: bold;");
+            }
             else if (placement.innerHTML == "undefined" && all_winners) {
                 placement.setAttribute("style", "font-weight: bold; background-color: lightgray;");
                 placement.innerHTML = (eliminatedCast[i].ppe / (eliminatedCast[i].episodesOn)).toFixed(2) + " - " + eliminatedCast[i].stars;
@@ -3121,6 +3278,9 @@ function contestantProgress() {
             else if (placement.innerHTML == "undefined") {
                 placement.setAttribute("style", "font-weight: bold; background-color: lightgray;");
                 placement.innerHTML = (eliminatedCast[i].ppe / (eliminatedCast[i].episodesOn)).toFixed(2);
+            }
+            if (eliminatedCast[i].miniEpisode.indexOf((k+1)) != -1) {
+                placement.innerHTML += "<br> <small> <i> Mini Chall. Winner </i> </small>";
             }
             contestant.appendChild(placement);
         }
@@ -3437,65 +3597,7 @@ function predefCast(cast, format, premiere = '', returning = '') {
         chocolateBarTwist = true;
         chocolateBarTwistChoosable = true;
     }
-    if (smackdown && chocolateBarTwist) {
-        window.alert("The Lipsync Smackdown format isn't supported with the golden chocolate bar twist, sorry!");
-        s14Premiere = false;
-        s12Premiere = false;
-        s9Premiere = false;
-        s6Premiere = false;
-        porkchopPremiere = false;
-        uk3Premiere = false;
-        top4 = false;
-        top3 = false;
-        thailandFormat = false;
-        canFinale = false;
-        lipsync_assassin = false;
-        smackdown = false;
-        all_stars = false;
-        all_winners = false;
-        allstars3Finale = false;
-        ukvstwFinale = false;
-        smackdown = false;
-        voteReturn = false;
-        conjoinedQueens = false;
-        queensOfComedy = false;
-        kittyGirlGroup = false;
-        randomReturn = false;
-        lalaparuza = false;
-        allQueens = [...allQueensCopy2];
-        chocolateBarTwist = false;
-        chocolateBarTwistChoosable = false;
-    }
-    else if (smackdown && !noDouble) {
-        window.alert("The Lipsync Smackdown format isn't supported with double shantays or sashays, sorry!");
-        s14Premiere = false;
-        s12Premiere = false;
-        s9Premiere = false;
-        s6Premiere = false;
-        porkchopPremiere = false;
-        uk3Premiere = false;
-        top4 = false;
-        top3 = false;
-        thailandFormat = false;
-        canFinale = false;
-        lipsync_assassin = false;
-        smackdown = false;
-        all_stars = false;
-        all_winners = false;
-        allstars3Finale = false;
-        ukvstwFinale = false;
-        smackdown = false;
-        voteReturn = false;
-        conjoinedQueens = false;
-        queensOfComedy = false;
-        kittyGirlGroup = false;
-        randomReturn = false;
-        lalaparuza = false;
-        allQueens = [...allQueensCopy2];
-        chocolateBarTwist = false;
-        chocolateBarTwistChoosable = false;
-    }
-    else if (team && chocolateBarTwist) {
+    if (team && chocolateBarTwist) {
         window.alert("The team format isn't supported with the chocolate bar twist, sorry!");
         team = false;
         smackdown = false;
@@ -3759,64 +3861,6 @@ function startSimulation(challenge = "") {
             s14Premiere = false;
             porkchopPremiere = false;
             uk3Premiere = false;
-            chocolateBarTwist = false;
-            chocolateBarTwistChoosable = false;
-        }
-        else if (smackdown && chocolateBarTwist) {
-            window.alert("The Lipsync Smackdown format isn't supported with the golden chocolate bar twist, sorry!");
-            s14Premiere = false;
-            s12Premiere = false;
-            s9Premiere = false;
-            s6Premiere = false;
-            porkchopPremiere = false;
-            uk3Premiere = false;
-            top4 = false;
-            top3 = false;
-            thailandFormat = false;
-            canFinale = false;
-            lipsync_assassin = false;
-            smackdown = false;
-            all_stars = false;
-            all_winners = false;
-            allstars3Finale = false;
-            ukvstwFinale = false;
-            smackdown = false;
-            voteReturn = false;
-            conjoinedQueens = false;
-            queensOfComedy = false;
-            kittyGirlGroup = false;
-            randomReturn = false;
-            lalaparuza = false;
-            allQueens = [...allQueensCopy2];
-            chocolateBarTwist = false;
-            chocolateBarTwistChoosable = false;
-        }
-        else if (smackdown && !noDouble) {
-            window.alert("The Lipsync Smackdown format isn't supported with double shantays or sashays, sorry!");
-            s14Premiere = false;
-            s12Premiere = false;
-            s9Premiere = false;
-            s6Premiere = false;
-            porkchopPremiere = false;
-            uk3Premiere = false;
-            top4 = false;
-            top3 = false;
-            thailandFormat = false;
-            canFinale = false;
-            lipsync_assassin = false;
-            smackdown = false;
-            all_stars = false;
-            all_winners = false;
-            allstars3Finale = false;
-            ukvstwFinale = false;
-            smackdown = false;
-            voteReturn = false;
-            conjoinedQueens = false;
-            queensOfComedy = false;
-            kittyGirlGroup = false;
-            randomReturn = false;
-            lalaparuza = false;
-            allQueens = [...allQueensCopy2];
             chocolateBarTwist = false;
             chocolateBarTwistChoosable = false;
         }
@@ -4286,21 +4330,48 @@ function thaiWinBottom2() {
     screen.createHeader("Bring back my girls!");
     screen.createBold("Ladies, I've made some decisions...");
     document.body.style.backgroundImage = "url('image/stage.webp')";
-    if (topQueens[0].maxiT == true) {
-        topQueens[0].editTrackRecord("WIN");
-        topQueens[0].maxiT = false;
+    if (topQueens[0].performanceScore == topQueens[1].performanceScore && randomNumber(0, 100) < 60) {
+        if (topQueens[0].maxiT == true) {
+            topQueens[0].editTrackRecord("WIN");
+            topQueens[0].maxiT = false;
+        } else {
+            topQueens[0].addToTrackRecord("WIN ");
+        }
+        if (topQueens[1].maxiT == true) {
+            topQueens[1].editTrackRecord("WIN");
+            topQueens[1].maxiT = false;
+        } else {
+            topQueens[1].addToTrackRecord("WIN ");
+        }
+        topQueens[0].favoritism += 5;
+        topQueens[0].ppe += 5;
+        topQueens[1].favoritism += 5;
+        topQueens[1].ppe += 5;
+        screen.createImage(topQueens[0].image, "darkblue");
+        screen.createImage(topQueens[1].image, "darkblue");
+        screen.createBold(topQueens[0].getName() + ", " + topQueens[1].getName() + ", condragulations, you're the winners of today's runway!");
+        if (conjoinedQueens && conjoinedCheck){
+            conjoinedReturn(topQueens[0], topQueens[1]);
+            conjoinedCheck = false;
+        }
+        topQueens.splice(0, 2);
     } else {
-        topQueens[0].addToTrackRecord("WIN ");
+        if (topQueens[0].maxiT == true) {
+            topQueens[0].editTrackRecord("WIN");
+            topQueens[0].maxiT = false;
+        } else {
+            topQueens[0].addToTrackRecord("WIN ");
+        }
+        topQueens[0].favoritism += 5;
+        topQueens[0].ppe += 5;
+        screen.createImage(topQueens[0].image, "royalblue");
+        screen.createBold(topQueens[0].getName() + ", condragulations, you're the winner of today's runway!");
+        if (conjoinedQueens && conjoinedCheck){
+            conjoinedReturn(topQueens[0]);
+            conjoinedCheck = false;
+        }
+        topQueens.splice(0, 1);
     }
-    topQueens[0].favoritism += 5;
-    topQueens[0].ppe += 5;
-    screen.createImage(topQueens[0].image, "royalblue");
-    screen.createBold(topQueens[0].getName() + ", condragulations, you're the winner of today's runway!");
-    if (conjoinedQueens && conjoinedCheck){
-        conjoinedReturn(topQueens[0]);
-        conjoinedCheck = false;
-    }
-    topQueens.splice(0, 1);
     if (topQueens.length > 0) {
         for (let i = 0; i < topQueens.length; i++) {
             screen.createImage(topQueens[i].image, "lightblue");
@@ -4375,7 +4446,7 @@ function thaiWinBottom2() {
         btm2.innerHTML += bottomQueens[i].getName() + ", ";
     }
     btm2.innerHTML += "I'm sorry my dears but you are up for elimination.";
-    screen.createButton("Proceed", "lipSync()");
+    screen.createButton("Proceed", "lipsyncDesc()");
 }
 function judgingS14LaLaPaRUZaScreen() {
     let screen = new Scene();
@@ -4599,7 +4670,7 @@ function s9judgingScreen() {
     safeQueens.innerHTML += "you are safe..";
     screen.createHorizontalLine();
     for (let i = 0; i < topQueens.length; i++)
-        topQueens[i].performanceScore -= (topQueens[i].runwayScore - topQueens[i].favoritism);
+        topQueens[i].performanceScore -= (topQueens[i].runwayScore);
     topQueens.sort((a, b) => (a.performanceScore - b.performanceScore));
     if (topQueens[0].performanceScore == topQueens[1].performanceScore && randomNumber(0, 100) < 60) {
         topQueens[0].addToTrackRecord(" WIN");
@@ -4691,7 +4762,7 @@ function winAndBtm6() {
     document.body.style.backgroundImage = "url('image/stage.webp')";
     //sort the top queens now taking runway and favoritism in consideration:
     for (let i = 0; i < topQueens.length; i++)
-        topQueens[i].performanceScore -= (topQueens[i].runwayScore - topQueens[i].favoritism);
+        topQueens[i].performanceScore -= (topQueens[i].runwayScore);
     topQueens.sort((a, b) => (a.performanceScore - b.performanceScore));
     if (isTeamChallenge) {
         topQueens[0].addToTrackRecord("WIN");
@@ -4811,14 +4882,14 @@ function bottom6() {
                 screen.createImage("image/ChocolateBarWithNoTicket.webp", "brown");
                 screen.createBold("It's chocolate.");
                 screen.createBold(bottomQueens[4].getName() + ", sashay away...");
-                bottomQueens[4].addToTrackRecord("ELIM");
+                bottomQueens[4].addToTrackRecord(" ELIM ");
                 bottomQueens[4].unfavoritism += 5;
                 eliminatedCast.unshift(bottomQueens[4]);
                 currentCast.splice(currentCast.indexOf(bottomQueens[4]), 1);
                 screen.createImage("image/ChocolateBarWithNoTicket.webp", "brown");
                 screen.createBold("It's chocolate.");
                 screen.createBold(bottomQueens[5].getName() + ", sashay away...");
-                bottomQueens[5].addToTrackRecord("ELIM");
+                bottomQueens[5].addToTrackRecord(" ELIM ");
                 bottomQueens[5].unfavoritism += 5;
                 eliminatedCast.unshift(bottomQueens[5]);
                 currentCast.splice(currentCast.indexOf(bottomQueens[5]), 1);
@@ -4827,11 +4898,11 @@ function bottom6() {
         } else {
             screen.createBold("I'm sorry but none of you showed the fire it takes to stay. You must both... sashay away.");
             doubleSashay = true;
-            bottomQueens[4].addToTrackRecord("ELIM");
+            bottomQueens[4].addToTrackRecord(" ELIM ");
             bottomQueens[4].unfavoritism += 5;
             eliminatedCast.unshift(bottomQueens[4]);
             currentCast.splice(currentCast.indexOf(bottomQueens[4]), 1);
-            bottomQueens[5].addToTrackRecord("ELIM");
+            bottomQueens[5].addToTrackRecord(" ELIM ");
             bottomQueens[5].unfavoritism += 5;
             eliminatedCast.unshift(bottomQueens[5]);
             currentCast.splice(currentCast.indexOf(bottomQueens[5]), 1);
@@ -4916,7 +4987,7 @@ function judgingSlayersScreen() {
     screen.createHorizontalLine();
 
     for (let i = 0; i < topQueens.length; i++)
-        topQueens[i].performanceScore -= (topQueens[i].runwayScore - topQueens[i].favoritism);
+        topQueens[i].performanceScore -= (topQueens[i].runwayScore);
     topQueens.sort((a, b) => (a.performanceScore - b.performanceScore));
     top2.push(topQueens[0]);
     top2.push(topQueens[1]);
@@ -4983,7 +5054,7 @@ function judgingFloppersScreen() {
     safeQueens.innerHTML += "you are all safe. And as you step to the back of the stage, keep one thing on mind. STEP YOUR PUSSIES UP.";
     screen.createHorizontalLine();
     for (let i = 0; i < bottomQueens.length; i++)
-        bottomQueens[i].performanceScore -= (bottomQueens[i].runwayScore - bottomQueens[i].favoritism);
+        bottomQueens[i].performanceScore -= (bottomQueens[i].runwayScore);
     bottomQueens.sort((a, b) => (a.performanceScore - b.performanceScore));
     bottomQueens[0].addToTrackRecord("LOW");
     screen.createImage(bottomQueens[0].image, "pink");
@@ -4999,7 +5070,7 @@ function judgingFloppersScreen() {
         btm2.innerHTML += bottomQueens[i].getName() + ", ";
     }
     btm2.innerHTML += "I'm sorry my dears but you are up for elimination.";
-    screen.createButton("Proceed", "lipSync()");
+    screen.createButton("Proceed", "lipsyncDesc()");
 }
 function winnersJudging() {
     let screen = new Scene();
@@ -5025,6 +5096,7 @@ function winnersJudging() {
     }
     screen.createButton("Proceed", "top2AndBlocked()");
 }
+let homeTrigger = 0;
 function judgingScreen() {
     let judgingScreen = new Scene();
     judgingScreen.clean();
@@ -5106,6 +5178,10 @@ function judgingScreen() {
     } else {
         safeQueens.innerHTML += "you are safe.";
     }
+    if (currentCast.length <= 10 && randomNumber(0, 10) == 7 && homeTrigger < 2) {
+        homeTrigger++;
+        whoShouldGoHomeTonight();
+    }
     if (uk3Premiere && episodeCount == 1)
         judgingScreen.createButton("Proceed", "uk3PremiereJudging()");
     else if (top3 || top4)
@@ -5117,6 +5193,51 @@ function judgingScreen() {
     else if (team)
         judgingScreen.createButton("Proceed", "teamWinAndBtm2()");
 }
+function whoShouldGoHomeTonight() {
+    let screen = new Scene();
+    screen.createHorizontalLine();
+    screen.createBold("All right. I wanna hear from you. Who should go home tonight? And why?", "txt");
+    let txt = document.getElementById("txt");
+    txt.setAttribute("style", "font-size: 20px");
+    let whoAll = [...topQueens, ...bottomQueens];
+    shuffle(whoAll);
+    if (team) {
+
+    } else {
+        for (let i = 0; i < whoAll.length; i++) {
+            if (bottomQueens.length == 4) {whoAll[i].lipstick = betterSister4(whoAll[i], bottomQueens[0], bottomQueens[1], bottomQueens[2], bottomQueens[3]);}
+            if (bottomQueens.length == 3) {whoAll[i].lipstick = betterSister3(whoAll[i], bottomQueens[0], bottomQueens[1], bottomQueens[2]);}
+            if (bottomQueens.length == 2) {whoAll[i].lipstick = betterSister2(whoAll[i], bottomQueens[0], bottomQueens[1]);}
+            if (whoAll[i].lipstick == false) {
+                if (randomNumber(0, 100) <= 45 && currentCast.length <= totalCastSize - 2) {
+                    whoAll[i].lipstick = bottomQueens.sort((a, b) => b.unfavoritism - a.unfavoritism)[0];
+                } else {
+                    whoAll[i].lipstick = bottomQueens[randomNumber(0, bottomQueens.length - 1)];
+                }
+            }
+            screen.createImage(whoAll[i].image, "black");
+            screen.createImage(whoAll[i].lipstick.image, "red");
+            screen.createBold(whoAll[i].getName() + " said " + whoAll[i].lipstick.getName() + " because ", whoAll[i].getName(), "whoHomeVP");
+            let reason = document.getElementById(whoAll[i].getName());
+            if (isEnemy(whoAll[i], whoAll[i].lipstick)) {
+                reason.innerHTML += whoWhyRelation[randomNumber(0, whoWhyRelation.length - 1)] + ".";
+            } else if (randomNumber(0, 100) >= 95) {
+                reason.innerHTML += whoWhyRelation[randomNumber(0, whoWhyRelation.length - 1)] + ".";
+            } else {
+                reason.innerHTML += whoWhyCompetition[randomNumber(0, whoWhyCompetition.length - 1)] + ".";
+            }
+            if (whoAll[i].lipstick.getName() != whoAll[i].getName()) {
+                if (randomNumber(0, 100) >= 80) {
+                    modRelation(2, 4, whoAll[i], whoAll[i].lipstick);
+                    screen.createParagraph("<i>" + whoAll[i].lipstick.getName() + " felt very upset. </i>");
+                } else {
+                    modRelation(2, 3, whoAll[i], whoAll[i].lipstick);
+                    screen.createParagraph("<i>" + whoAll[i].lipstick.getName() + " took it great, they weren't too mad.</i>");
+                }
+            }
+        }
+    }
+}
 let thirdqueen = false;
 function winAndBtm2() {
     let screen = new Scene();
@@ -5125,11 +5246,12 @@ function winAndBtm2() {
     screen.createBold("Ladies, I've made some decisions...");
     document.body.style.backgroundImage = "url('image/stage.webp')";
     //sort the top queens now taking runway and favoritism in consideration:
-    for (let i = 0; i < topQueens.length; i++)
-        topQueens[i].performanceScore -= (topQueens[i].runwayScore - topQueens[i].favoritism);
+    for (let i = 0; i < topQueens.length; i++) {
+        topQueens[i].performanceScore -= (topQueens[i].runwayScore);
+    }
     topQueens.sort((a, b) => (a.performanceScore - b.performanceScore));
     if (isTeamChallenge) {
-        if (episodeChallenges[episodeChallenges.length - 1] == "Girl Group" && randomNumber(0, 100) >= 70) {
+        if (episodeChallenges[episodeChallenges.length - 1] == "Girl Group" && randomNumber(0, 100) >= 60) {
             let names = "";
             for (let i = 0; i < topQueens.length; i++) {
                 topQueens[i].addToTrackRecord(" WIN");
@@ -5228,7 +5350,7 @@ function winAndBtm2() {
     }
     //do the same, but for the bottom queens:
     for (let i = 0; i < bottomQueens.length; i++)
-        bottomQueens[i].performanceScore -= (bottomQueens[i].runwayScore - bottomQueens[i].favoritism);
+        bottomQueens[i].performanceScore -= (bottomQueens[i].runwayScore);
     bottomQueens.sort((a, b) => (a.performanceScore - b.performanceScore));
     if (bottomQueens.length == 5) {
         bottomQueens[0].addToTrackRecord("LOW");
@@ -5277,7 +5399,7 @@ function winAndBtm2() {
         btm2.innerHTML += bottomQueens[i].getName() + ", ";
     }
     btm2.innerHTML += "I'm sorry my dears but you are up for elimination.";
-    screen.createButton("Proceed", "lipSync()");
+    screen.createButton("Proceed", "lipsyncDesc()");
 }
 function teamWinAndBtm2() {
     let screen = new Scene();
@@ -5287,7 +5409,7 @@ function teamWinAndBtm2() {
     document.body.style.backgroundImage = "url('image/stage.webp')";
     //sort the top queens now taking runway and favoritism in consideration:
     for (let i = 0; i < topQueens.length; i++)
-        topQueens[i].performanceScore -= (topQueens[i].runwayScore - topQueens[i].favoritism);
+        topQueens[i].performanceScore -= (topQueens[i].runwayScore);
     topQueens.sort((a, b) => (a.performanceScore - b.performanceScore));
     topQueens[0].QueenA.addToTrackRecord("WIN");
     topQueens[0].QueenB.addToTrackRecord("WIN");
@@ -5319,7 +5441,7 @@ function teamWinAndBtm2() {
     if (bottomQueens.length > 2) {
         screen.createParagraph(`${bottomQueens[0].getName()}, ${bottomQueens[1].getName()}, ${bottomQueens[2].getName()}, you're the bottoms of the week...`);
         for (let i = 0; i < topQueens.length; i++)
-            bottomQueens[i].performanceScore -= (bottomQueens[i].runwayScore - bottomQueens[i].favoritism);
+            bottomQueens[i].performanceScore -= (bottomQueens[i].runwayScore);
         bottomQueens.sort((a, b) => (a.performanceScore - b.performanceScore));
         bottomQueens[0].QueenA.addToTrackRecord("LOW");
         bottomQueens[0].QueenB.addToTrackRecord("LOW");
@@ -5350,7 +5472,7 @@ function top2AndBtm() {
     document.body.style.backgroundImage = "url('image/stage.webp')";
     //sort the top queens now taking runway and favoritism in consideration:
     for (let i = 0; i < topQueens.length; i++)
-        topQueens[i].performanceScore -= (topQueens[i].runwayScore - topQueens[i].favoritism);
+        topQueens[i].performanceScore -= (topQueens[i].runwayScore);
     topQueens.sort((a, b) => (a.performanceScore - b.performanceScore));
     top2.push(topQueens[0]);
     top2.push(topQueens[1]);
@@ -5475,7 +5597,7 @@ function top2AndBtm() {
     let br = document.createElement("br");
     main.appendChild(br);
     screen.createButton("Show lipsticks", "showvotes()", "showvotes");
-    screen.createButton("Proceed", "asLipSync()");
+    screen.createButton("Proceed", "asLipsyncDesc()");
 }
 function topAndBtm() {
     let screen = new Scene();
@@ -5485,7 +5607,7 @@ function topAndBtm() {
     document.body.style.backgroundImage = "url('image/stage.webp')";
     //sort the top queens now taking runway and favoritism in consideration:
     for (let i = 0; i < topQueens.length; i++)
-        topQueens[i].performanceScore -= (topQueens[i].runwayScore - topQueens[i].favoritism);
+        topQueens[i].performanceScore -= (topQueens[i].runwayScore);
     topQueens.sort((a, b) => (a.performanceScore - b.performanceScore));
     top2.push(topQueens[0]);
     topQueens.splice(0, 1);
@@ -5681,7 +5803,7 @@ function topAndBtm() {
     bottomQueens.sort((a, b) => b.votes - a.votes);
     let br = document.createElement("br");
     main.appendChild(br);
-    screen.createButton("Proceed", "lsaLipSync()");
+    screen.createButton("Proceed", "lsaLipsyncDesc()");
 }
 let mismovoto = false;
 function showvotes() {
@@ -5750,7 +5872,7 @@ function top2AndBlocked() {
     }
     //sort the top queens now taking runway and favoritism in consideration:
     for (let i = 0; i < topQueens.length; i++)
-        topQueens[i].performanceScore -= (topQueens[i].runwayScore - topQueens[i].favoritism);
+        topQueens[i].performanceScore -= (topQueens[i].runwayScore);
     topQueens.sort((a, b) => (a.performanceScore - b.performanceScore));
     top2.push(topQueens[0]);
     top2.push(topQueens[1]);
@@ -5821,17 +5943,10 @@ function top2AndBlocked() {
 }
 let disqOrDept = false;
 function lipSync() {
-    for (let i = 0; i < bottomQueens.length; i++) {
-        bottomQueens[i].getLipsync();
-    }
-    bottomQueens.sort((a, b) => (b.lipsyncScore - a.lipsyncScore));
     let screen = new Scene();
     screen.clean();
-    screen.createHeader("It's time...");
-    screen.createBold("For you to lip-sync... for your lives! Good luck, and don't fuck it up.");
-    lsSong();
-    screen.createHorizontalLine();
-    screen.createBold("I've made my decision.");
+    bottomQueens.sort((a, b) => (b.lipsyncScore - a.lipsyncScore));
+    screen.createHeader("I've made my decision.");
     let score1 = bottomQueens[0].lipsyncScore - bottomQueens[0].favoritism + bottomQueens[0].unfavoritism;
     let score2 = bottomQueens[1].lipsyncScore - bottomQueens[1].favoritism + bottomQueens[1].unfavoritism;
     if (thirdqueen && currentCast.length > 5) {
@@ -5918,14 +6033,14 @@ function lipSync() {
                     screen.createImage("image/ChocolateBarWithNoTicket.webp", "brown");
                     screen.createBold("It's chocolate.");
                     screen.createBold(bottomQueens[1].getName() + ", sashay away...");
-                    bottomQueens[1].addToTrackRecord("ELIM");
+                    bottomQueens[1].addToTrackRecord(" ELIM ");
                     bottomQueens[1].unfavoritism += 5;
                     eliminatedCast.unshift(bottomQueens[1]);
                     currentCast.splice(currentCast.indexOf(bottomQueens[1]), 1);
                     screen.createImage("image/ChocolateBarWithNoTicket.webp", "brown");
                     screen.createBold("It's chocolate.");
                     screen.createBold(bottomQueens[2].getName() + ", sashay away...");
-                    bottomQueens[2].addToTrackRecord("ELIM");
+                    bottomQueens[2].addToTrackRecord(" ELIM ");
                     bottomQueens[2].unfavoritism += 5;
                     eliminatedCast.unshift(bottomQueens[2]);
                     currentCast.splice(currentCast.indexOf(bottomQueens[2]), 1);
@@ -6016,14 +6131,14 @@ function lipSync() {
                     screen.createImage("image/ChocolateBarWithNoTicket.webp", "brown");
                     screen.createBold("It's chocolate.");
                     screen.createBold(bottomQueens[0].getName() + ", sashay away...");
-                    bottomQueens[0].addToTrackRecord("ELIM");
+                    bottomQueens[0].addToTrackRecord(" ELIM ");
                     bottomQueens[0].unfavoritism += 5;
                     eliminatedCast.unshift(bottomQueens[0]);
                     currentCast.splice(currentCast.indexOf(bottomQueens[0]), 1);
                     screen.createImage("image/ChocolateBarWithNoTicket.webp", "brown");
                     screen.createBold("It's chocolate.");
                     screen.createBold(bottomQueens[1].getName() + ", sashay away...");
-                    bottomQueens[1].addToTrackRecord("ELIM");
+                    bottomQueens[1].addToTrackRecord(" ELIM ");
                     bottomQueens[1].unfavoritism += 5;
                     eliminatedCast.unshift(bottomQueens[1]);
                     currentCast.splice(currentCast.indexOf(bottomQueens[1]), 1);
@@ -6032,11 +6147,11 @@ function lipSync() {
             } else {
                 screen.createBold("I'm sorry but none of you showed the fire it takes to stay. You must both... sashay away.");
                 doubleSashay = true;
-                bottomQueens[0].addToTrackRecord("ELIM");
+                bottomQueens[0].addToTrackRecord(" ELIM ");
                 bottomQueens[0].unfavoritism += 5;
                 eliminatedCast.unshift(bottomQueens[0]);
                 currentCast.splice(currentCast.indexOf(bottomQueens[0]), 1);
-                bottomQueens[1].addToTrackRecord("ELIM");
+                bottomQueens[1].addToTrackRecord(" ELIM ");
                 bottomQueens[1].unfavoritism += 5;
                 eliminatedCast.unshift(bottomQueens[1]);
                 currentCast.splice(currentCast.indexOf(bottomQueens[1]), 1);
@@ -6207,7 +6322,11 @@ function teamLipSync() {
     lsSong();
     bottomQueens[0].lipsyncQueen.getLipsync();
     bottomQueens[1].lipsyncQueen.getLipsync();
-    bottomQueens.sort((a, b) => (a.lipsyncQueen.lipsyncScore - a.lipsyncQueen.favoritism + a.lipsyncQueen.unfavoritism) - (b.lipsyncQueen.lipsyncScore - b.lipsyncQueen.favoritism + b.lipsyncQueen.unfavoritism));
+    bottomQueens[0].lipsyncScore = bottomQueens[0].lipsyncQueen.lipsyncScore
+    bottomQueens[1].lipsyncScore = bottomQueens[1].lipsyncQueen.lipsyncScore
+    bottomQueens[0].lipsyncScore -= (bottomQueens[0].favoritism + bottomQueens[0].unfavoritism);
+    bottomQueens[1].lipsyncScore -= (bottomQueens[1].favoritism + bottomQueens[1].unfavoritism);
+    bottomQueens.sort((a, b) => (b.lipsyncScore - a.lipsyncScore));
     screen.createHorizontalLine();
     if (randomNumber(0, 100) >= 98 && wholipsyncs) {
         screen.createBold("OMG!! " + bottomQueens[0].QueenB.getName() + " hits the she-mergency button and now she is going to lipsync!!");
@@ -6255,17 +6374,10 @@ function teamLipSync() {
         screen.createButton("Proceed", "newEpisode()");
 }
 function asLipSync() {
-    for (let i = 0; i < top2.length; i++) {
-        top2[i].getASLipsync();
-    }
-    top2.sort((a, b) => (b.lipsyncScore - a.lipsyncScore));
     let screen = new Scene();
     screen.clean();
-    screen.createHeader("It's time...");
-    screen.createBold("For you to lip-sync... for your legacy! Good luck, and don't fuck it up.");
-    lsSong();
-    screen.createHorizontalLine();
-    screen.createBold("Ladies, I've made my decision...");
+    top2.sort((a, b) => (b.lipsyncScore - a.lipsyncScore));
+    screen.createHeader("Ladies, I've made my decision...");
     if (top2[0].lipsyncScore == top2[1].lipsyncScore && top2[0].lipsyncScore > 6 && top2[1].lipsyncScore > 6 && currentCast.length > 5) {
         screen.createImage(top2[0].image, "darkblue");
         screen.createImage(top2[1].image, "darkblue");
@@ -6286,8 +6398,6 @@ function asLipSync() {
         if (top2[0].lipstick == top2[1].lipstick) {
             assasinlipstick.push(top2[0].lipstick.getName());
             assasinlipstick.push(" ");
-            chooseReasoning(top2[0].getName(), top2[0].lipstick.getName());
-            chooseReasoning(top2[1].getName(), top2[1].lipstick.getName());
             screen.createImage(top2[0].lipstick.image, "red");
             if (chocolateBarTwist  && !chocolateBarTwistCheck) {
                 screen.createBold(top2[0].lipstick.getName() + ", now your fate rests in the hands of the drag gods.");
@@ -6366,32 +6476,33 @@ function asLipSync() {
                 } else {
                     screen.createImage("image/ChocolateBarWithNoTicket.webp", "brown");
                     screen.createBold("It's chocolate.");
-                    top2[0].lipstick.addToTrackRecord("ELIM");
+                    top2[0].lipstick.addToTrackRecord(" ELIM ");
                     top2[0].lipstick.unfavoritism += 5;
                     eliminatedCast.unshift(top2[0].lipstick);
                     bottomQueens.splice(bottomQueens.indexOf(top2[0].lipstick), 1);
                     currentCast.splice(currentCast.indexOf(top2[0].lipstick), 1);
                     screen.createImage("image/ChocolateBarWithNoTicket.webp", "brown");
                     screen.createBold("It's chocolate.");
-                    top2[1].lipstick.addToTrackRecord("ELIM");
+                    top2[1].lipstick.addToTrackRecord(" ELIM ");
                     top2[1].lipstick.unfavoritism += 5;
                     eliminatedCast.unshift(top2[1].lipstick);
                     bottomQueens.splice(bottomQueens.indexOf(top2[1].lipstick), 1);
                     currentCast.splice(currentCast.indexOf(top2[1].lipstick), 1);
-                    
+                    doubleSashay = true;
                 }
             } else {
                 screen.createBold(`${top2[0].lipstick.getName()}, ${top2[1].lipstick.getName()}, you will always be an All Star, now, sashay away...`);
-                top2[0].lipstick.addToTrackRecord("ELIM");
+                top2[0].lipstick.addToTrackRecord(" ELIM ");
                 top2[0].lipstick.unfavoritism += 5;
                 eliminatedCast.unshift(top2[0].lipstick);
                 bottomQueens.splice(bottomQueens.indexOf(top2[0].lipstick), 1);
                 currentCast.splice(currentCast.indexOf(top2[0].lipstick), 1);
-                top2[1].lipstick.addToTrackRecord("ELIM");
+                top2[1].lipstick.addToTrackRecord(" ELIM ");
                 top2[1].lipstick.unfavoritism += 5;
                 eliminatedCast.unshift(top2[1].lipstick);
                 bottomQueens.splice(bottomQueens.indexOf(top2[1].lipstick), 1);
                 currentCast.splice(currentCast.indexOf(top2[1].lipstick), 1);
+                doubleSashay = true;
             }
         }
     }
@@ -6448,7 +6559,6 @@ function asLipSync() {
         screen.createImage(top2[1].image, "cyan");
         screen.createParagraph(top2[1].getName() + ", you are safe.");
         screen.createHorizontalLine();
-        chooseReasoning(top2[0].getName(), top2[0].lipstick.getName());
         screen.createImage(top2[0].lipstick.image, "red");
         if (chocolateBarTwist  && !chocolateBarTwistCheck) {
             screen.createBold(top2[0].lipstick.getName() + ", now your fate rests in the hands of the drag gods.");
@@ -6504,10 +6614,8 @@ let assasinlipstick = [];
 function lsaLipSync() {
     let screen = new Scene();
     screen.clean();
-    screen.createHeader("It's time to ruveal...");
+    screen.createHeader("Ladies, I've made my decision...");
     let backToWinner = false;
-    let assassin = allQueens[randomNumber(0, allQueens.length - 1)];
-    bottomQueens.sort((a, b) => b.votes - a.votes);
     if (bottomQueens[0].votes == bottomQueens[1].votes) {
         backToWinner = true;
         for (let i = 0; i < bottomQueens.length; i++) {
@@ -6518,84 +6626,198 @@ function lsaLipSync() {
     } else {
         assassin.lipstick = bottomQueens[0];
     }
-    top2.push(assassin);
-    screen.createImage(assassin.image, "royalblue");
-    screen.createBold("The lip-sync assassin is... " + assassin.getName() + "!");
-    screen.createParagraph("Now, it's time for you to lip-sync... for your legacy!");
-    lsSong();
-    screen.createHorizontalLine();
-    for (let i = 0; i < top2.length; i++) {
-        top2[i].getASLipsync();
-    }
     top2.sort((a, b) => (b.lipsyncScore - a.lipsyncScore));
-    screen.createImage(top2[0].image, "darkblue");
-    screen.createBold(top2[0].getName() + ", you're a winner baby!");
-    if (top2[0] == assassin) {
-        screen.createImage(top2[1].image, "cyan");
-        screen.createParagraph(top2[1].getName() + ", you're safe.");
-        top2[1].addToTrackRecord("WIN ");
-        top2[1].favoritism += 5;
-        top2[1].ppe += 5;
-        assasintable.push(top2[0].getName());
-        assasinlipstick.push(top2[0].lipstick.getName());
-        assasintable.push(top2[1].getName());
-        assasinlipstick.push(top2[1].lipstick.getName());
-    }
-    else {
-        screen.createImage(top2[1].image, "cyan");
-        screen.createParagraph(top2[1].getName() + ", thanks for participating.");
-        top2[0].addToTrackRecord("WIN");
+    if (top2[0].lipsyncScore == top2[1].lipsyncScore && top2[0].lipsyncScore > 6 && top2[1].lipsyncScore > 6 && currentCast.length > 5) {
+        backToWinner = false;
+        screen.createImage(top2[0].image, "darkblue");
+        screen.createImage(top2[1].image, "darkblue");
+        screen.createBold("Condragulations, you're both winners baby!");
         top2[0].favoritism += 5;
         top2[0].ppe += 5;
-        assasintable.push(top2[0].getName());
-        assasinlipstick.push(top2[0].lipstick.getName());
-        assasintable.push(top2[1].getName());
-        assasinlipstick.push(top2[1].lipstick.getName());
-    }
-    allQueens.splice(allQueens.indexOf(assassin), 1);
-    screen.createHorizontalLine();
-    if (backToWinner && top2[0].getName() == assassin.getName()) {
-        screen.createBold("As there was a tie in the voting, the power returns to the challenge winner!");
-        chooseReasoning(top2[1].getName(), top2[1].lipstick.getName());
-    }
-    if (top2[1].getName() == assassin.getName()) {
-        chooseReasoning(top2[0].getName(), top2[0].lipstick.getName());
-    }
-    screen.createImage(top2[0].lipstick.image, "red");
-    if (chocolateBarTwist  && !chocolateBarTwistCheck) {
-        screen.createBold(top2[0].lipstick.getName() + ", now your fate rests in the hands of the drag gods.");
-        screen.createBold("If you have the golden chocolate bar, you will be safe.");
-        if (chocolateBarCheck(top2[0].lipstick) == true) {
-            screen.createImage("image/ChocolateBarWithTicket.webp", "gold");
-            screen.createBold("You've got the GOLD BAR!!!! The gods have spoken!");
-            screen.createBold(top2[0].lipstick.getName() + "!! Condragtulations, you are safe to slay another day!");
-            top2[0].lipstick.addToTrackRecord("CHOC");
-            top2[0].lipstick.unfavoritism += 3;
-            top2[0].lipstick.ppe += 1;
-            top2[0].lipstick.votes = 0;
-            chocolateBarTwistCheck = true;
-            bottomQueens.splice(bottomQueens.indexOf(top2[0].lipstick), 1);
-            
+        top2[1].favoritism += 5;
+        top2[1].ppe += 5;
+        top2[0].addToTrackRecord(" WIN");
+        top2[1].addToTrackRecord(" WIN");
+        screen.createHorizontalLine();
+        assasintable.push(top2[0].getName() + " & " + top2[1].getName());
+        assasintable.push(" ");
+        if (conjoinedQueens && conjoinedCheck){
+            conjoinedReturn(top2[0], top2[1]);
+            conjoinedCheck = false;
+        }
+        if (top2[0].lipstick == top2[1].lipstick) {
+            assasinlipstick.push(top2[0].lipstick.getName());
+            assasinlipstick.push(" ");
+            screen.createImage(top2[0].lipstick.image, "red");
+            if (chocolateBarTwist  && !chocolateBarTwistCheck) {
+                screen.createBold(top2[0].lipstick.getName() + ", now your fate rests in the hands of the drag gods.");
+                screen.createBold("If you have the golden chocolate bar, you will be safe.");
+                if (chocolateBarCheck(top2[0].lipstick) == true) {
+                    screen.createImage("image/ChocolateBarWithTicket.webp", "gold");
+                    screen.createBold("You've got the GOLD BAR!!!! The gods have spoken!");
+                    screen.createBold(top2[0].lipstick.getName() + "!! Condragulations, you are safe to slay another day!");
+                    top2[0].lipstick.addToTrackRecord("CHOC");
+                    top2[0].lipstick.unfavoritism += 3;
+                    top2[0].lipstick.ppe += 1;
+                    chocolateBarTwistCheck = true;
+                    bottomQueens.splice(bottomQueens.indexOf(top2[0].lipstick), 1);
+                } else {
+                    screen.createImage("image/ChocolateBarWithNoTicket.webp", "brown");
+                    screen.createBold("It's chocolate.");
+                    screen.createBold(`${top2[0].lipstick.getName()}, you will always be an All Star, now, sashay away...`);
+                    top2[0].lipstick.addToTrackRecord("ELIM");
+                    top2[0].lipstick.unfavoritism += 5;
+                    eliminatedCast.unshift(top2[0].lipstick);
+                    bottomQueens.splice(bottomQueens.indexOf(top2[0].lipstick), 1);
+                    currentCast.splice(currentCast.indexOf(top2[0].lipstick), 1);
+                }
+            } else {
+                screen.createBold(`${top2[0].lipstick.getName()}, you will always be an All Star, now, sashay away...`);
+                top2[0].lipstick.addToTrackRecord("ELIM");
+                top2[0].lipstick.unfavoritism += 5;
+                eliminatedCast.unshift(top2[0].lipstick);
+                bottomQueens.splice(bottomQueens.indexOf(top2[0].lipstick), 1);
+                currentCast.splice(currentCast.indexOf(top2[0].lipstick), 1);
+            }
         } else {
-            screen.createImage("image/ChocolateBarWithNoTicket.webp", "brown");
-            screen.createBold("It's chocolate.");
-            screen.createBold(`${top2[0].lipstick.getName()}, you will always be an All Star, now, sashay away...`);
+            screen.createImage(top2[0].lipstick.image, "red");
+            screen.createImage(top2[1].lipstick.image, "red");
+            assasinlipstick.push(top2[0].lipstick.getName() + " & " + top2[1].lipstick.getName());
+            assasinlipstick.push(" ");
+            if (chocolateBarTwist  && !chocolateBarTwistCheck) {
+                screen.createBold(top2[0].lipstick.getName() + ", " + top2[1].lipstick.getName() + ", now your fates rests in the hands of the drag gods.");
+                screen.createBold("If one of you have the golden chocolate bar, that queen will be safe.");
+                if (chocolateBarCheck(top2[0].lipstick, top2[1].lipstick) == 1) {
+                    screen.createImage("image/ChocolateBarWithNoTicket.webp", "brown");
+                    screen.createBold("It's chocolate.");
+                    top2[1].lipstick.addToTrackRecord("ELIM");
+                    top2[1].lipstick.unfavoritism += 5;
+                    eliminatedCast.unshift(top2[1].lipstick);
+                    bottomQueens.splice(bottomQueens.indexOf(top2[1].lipstick), 1);
+                    currentCast.splice(currentCast.indexOf(top2[1].lipstick), 1);
+                    screen.createImage("image/ChocolateBarWithTicket.webp", "gold");
+                    screen.createBold("You've got the GOLD BAR!!!! The gods have spoken!");
+                    screen.createBold(top2[0].lipstick.getName() + "!! Condragulations, you are safe to slay another day!");
+                    top2[0].lipstick.addToTrackRecord("CHOC");
+                    top2[0].lipstick.unfavoritism += 3;
+                    top2[0].lipstick.ppe += 1;
+                    bottomQueens.splice(bottomQueens.indexOf(top2[0].lipstick), 1);
+                    chocolateBarTwistCheck = true;
+                } else if (chocolateBarCheck(top2[0].lipstick, top2[1].lipstick) == 2) {
+                    screen.createImage("image/ChocolateBarWithNoTicket.webp", "brown");
+                    screen.createBold("It's chocolate.");
+                    top2[0].lipstick.addToTrackRecord("ELIM");
+                    top2[0].lipstick.unfavoritism += 5;
+                    eliminatedCast.unshift(top2[0].lipstick);
+                    bottomQueens.splice(bottomQueens.indexOf(top2[0].lipstick), 1);
+                    currentCast.splice(currentCast.indexOf(top2[0].lipstick), 1);
+                    screen.createImage("image/ChocolateBarWithTicket.webp", "gold");
+                    screen.createBold("You've got the GOLD BAR!!!! The gods have spoken!");
+                    screen.createBold(top2[1].lipstick.getName() + "!! Condragulations, you are safe to slay another day!");
+                    top2[1].lipstick.addToTrackRecord("CHOC");
+                    top2[1].lipstick.unfavoritism += 3;
+                    top2[1].lipstick.ppe += 1;
+                    bottomQueens.splice(bottomQueens.indexOf(top2[1].lipstick), 1);
+                    chocolateBarTwistCheck = true;
+                } else {
+                    screen.createImage("image/ChocolateBarWithNoTicket.webp", "brown");
+                    screen.createBold("It's chocolate.");
+                    top2[0].lipstick.addToTrackRecord(" ELIM ");
+                    top2[0].lipstick.unfavoritism += 5;
+                    eliminatedCast.unshift(top2[0].lipstick);
+                    bottomQueens.splice(bottomQueens.indexOf(top2[0].lipstick), 1);
+                    currentCast.splice(currentCast.indexOf(top2[0].lipstick), 1);
+                    screen.createImage("image/ChocolateBarWithNoTicket.webp", "brown");
+                    screen.createBold("It's chocolate.");
+                    top2[1].lipstick.addToTrackRecord(" ELIM ");
+                    top2[1].lipstick.unfavoritism += 5;
+                    eliminatedCast.unshift(top2[1].lipstick);
+                    bottomQueens.splice(bottomQueens.indexOf(top2[1].lipstick), 1);
+                    currentCast.splice(currentCast.indexOf(top2[1].lipstick), 1);
+                    doubleSashay = true;
+                }
+            } else {
+                screen.createBold(`${top2[0].lipstick.getName()}, ${top2[1].lipstick.getName()}, you will always be an All Star, now, sashay away...`);
+                top2[0].lipstick.addToTrackRecord(" ELIM ");
+                top2[0].lipstick.unfavoritism += 5;
+                eliminatedCast.unshift(top2[0].lipstick);
+                bottomQueens.splice(bottomQueens.indexOf(top2[0].lipstick), 1);
+                currentCast.splice(currentCast.indexOf(top2[0].lipstick), 1);
+                top2[1].lipstick.addToTrackRecord(" ELIM ");
+                top2[1].lipstick.unfavoritism += 5;
+                eliminatedCast.unshift(top2[1].lipstick);
+                bottomQueens.splice(bottomQueens.indexOf(top2[1].lipstick), 1);
+                currentCast.splice(currentCast.indexOf(top2[1].lipstick), 1);
+                doubleSashay = true;
+            }
+        }
+    } else {
+        screen.createImage(top2[0].image, "darkblue");
+        screen.createBold(top2[0].getName() + ", you're a winner baby!");
+        if (top2[0] == assassin) {
+            screen.createImage(top2[1].image, "cyan");
+            screen.createParagraph(top2[1].getName() + ", you're safe.");
+            top2[1].addToTrackRecord("WIN ");
+            top2[1].favoritism += 5;
+            top2[1].ppe += 5;
+            assasintable.push(top2[0].getName());
+            assasinlipstick.push(top2[0].lipstick.getName());
+            assasintable.push(top2[1].getName());
+            assasinlipstick.push(top2[1].lipstick.getName());
+        }
+        else {
+            screen.createImage(top2[1].image, "cyan");
+            screen.createParagraph(top2[1].getName() + ", thanks for participating.");
+            top2[0].addToTrackRecord("WIN");
+            top2[0].favoritism += 5;
+            top2[0].ppe += 5;
+            assasintable.push(top2[0].getName());
+            assasinlipstick.push(top2[0].lipstick.getName());
+            assasintable.push(top2[1].getName());
+            assasinlipstick.push(top2[1].lipstick.getName());
+        }
+        if (backToWinner && top2[0].getName() == assassin.getName()) {
+            screen.createBold("As there was a tie in the voting, the power returns to the challenge winner!");
+            top2[1].editTrackRecord("TIE");
+        }
+        allQueens.splice(allQueens.indexOf(assassin), 1);
+        screen.createHorizontalLine();
+        screen.createImage(top2[0].lipstick.image, "red");
+        if (chocolateBarTwist  && !chocolateBarTwistCheck) {
+            screen.createBold(top2[0].lipstick.getName() + ", now your fate rests in the hands of the drag gods.");
+            screen.createBold("If you have the golden chocolate bar, you will be safe.");
+            if (chocolateBarCheck(top2[0].lipstick) == true) {
+                screen.createImage("image/ChocolateBarWithTicket.webp", "gold");
+                screen.createBold("You've got the GOLD BAR!!!! The gods have spoken!");
+                screen.createBold(top2[0].lipstick.getName() + "!! Condragtulations, you are safe to slay another day!");
+                top2[0].lipstick.addToTrackRecord("CHOC");
+                top2[0].lipstick.unfavoritism += 3;
+                top2[0].lipstick.ppe += 1;
+                top2[0].lipstick.votes = 0;
+                chocolateBarTwistCheck = true;
+                bottomQueens.splice(bottomQueens.indexOf(top2[0].lipstick), 1);
+                
+            } else {
+                screen.createImage("image/ChocolateBarWithNoTicket.webp", "brown");
+                screen.createBold("It's chocolate.");
+                screen.createBold(`${top2[0].lipstick.getName()}, you will always be an All Star, now, sashay away...`);
+                top2[0].lipstick.addToTrackRecord("ELIM");
+                top2[0].lipstick.unfavoritism += 5;
+                top2[0].lipstick.votes = 0;
+                eliminatedCast.unshift(top2[0].lipstick);
+                bottomQueens.splice(bottomQueens.indexOf(top2[0].lipstick), 1);
+                currentCast.splice(currentCast.indexOf(top2[0].lipstick), 1);
+                
+            }
+        } else {
+            screen.createBold(top2[0].lipstick.getName() + ", you will always be an All Star, now, sashay away...");
             top2[0].lipstick.addToTrackRecord("ELIM");
             top2[0].lipstick.unfavoritism += 5;
             top2[0].lipstick.votes = 0;
             eliminatedCast.unshift(top2[0].lipstick);
             bottomQueens.splice(bottomQueens.indexOf(top2[0].lipstick), 1);
-            currentCast.splice(currentCast.indexOf(top2[0].lipstick), 1);
-            
+            currentCast.splice(currentCast.indexOf(top2[0].lipstick), 1); 
         }
-    } else {
-        screen.createBold(top2[0].lipstick.getName() + ", you will always be an All Star, now, sashay away...");
-        top2[0].lipstick.addToTrackRecord("ELIM");
-        top2[0].lipstick.unfavoritism += 5;
-        top2[0].lipstick.votes = 0;
-        eliminatedCast.unshift(top2[0].lipstick);
-        bottomQueens.splice(bottomQueens.indexOf(top2[0].lipstick), 1);
-        currentCast.splice(currentCast.indexOf(top2[0].lipstick), 1); 
     }
     for (let i = 0; i < bottomQueens.length; i++) {
         if (bottomQueens.length == 4)
@@ -6737,6 +6959,7 @@ class Queen {
         this.friends = [];
         this.enemies = [];
         this.sisters = [];
+        this.miniEpisode = [];
         this.runwayScore = 0;
         this.lipsyncScore = 0;
         this.performanceScore = 0;
@@ -6747,6 +6970,7 @@ class Queen {
         this.stars = 0;
         this.episodesOn = 0;
         this.votes = 0;
+        this.rankP = 0;
         this.blocked = false;
         this.QueenDisqOrDept = false;
         this.customqueen = false;
@@ -6812,7 +7036,7 @@ class Queen {
         this.performanceScore = this._calculateScores(25, 45, this._danceStat + this._improvStat);
     }
     getTalentShow() {
-        this.performanceScore = this._calculateScores(40, 70, this._actingStat + this._comedyStat + this._danceStat + this._designStat + this._improvStat + this._lipsyncStat);
+        this.performanceScore = this._calculateScores(15, 35, randomNumber(15, 35));
     }
     getFinale() {
         this.finaleScore = this.favoritism - this.unfavoritism;
@@ -7340,7 +7564,7 @@ function CheckForReturning() {
         returningQueen = true;
         return true;
     }
-    if (lalaparuza && (currentCast.length - eliminatedCast.length) >= 1 && (currentCast.length - eliminatedCast.length) < 3 && returningQueen == false && all_stars) {
+    if (lalaparuza && (currentCast.length - eliminatedCast.length) >= 1 && (currentCast.length - eliminatedCast.length) < 3 && returningQueen == false) {
         returningQueen = true;
         return true;
     }
@@ -7472,26 +7696,30 @@ function queenReturnsVote() {
     eliminatedCast.splice(eliminatedCast.indexOf(queen), 1);
 }
 function lipsyncSmackdown() {
-    var screen = new Scene();
+    let screen = new Scene();
     screen.clean();
     document.body.style.backgroundImage = "url('image/smackdown.webp')";
     screen.createHeader("Let the Lipsync Smackdown begin!!");
     screen.createParagraph("The eliminated queens are back to compete in an epic Lipsync Smackdown and a chance to return to the competition.");
-    var smack = eliminatedCast.slice();
-    var capitulo = 2;
+    let smack = eliminatedCast.slice();
+    let capitulo = 2;
     let caps9 = 3;
-    var cappork = 5;
-    var caps6 = 4;
+    let cappork = 5;
+    let caps6 = 4;
     let done = false;
     let double = false;
-    for (var i = 0; i < eliminatedCast.length - 1; i++) {
+    let first = false;
+    let queen1;
+    let queen2;
+    let lipSync = [];
+    for (let i = 0; i < eliminatedCast.length - 1; i++) {
         screen.createHorizontalLine();
         if (smack.length == 2) {
-            var queen1 = smack[0];
-            var queen2 = smack[1];
+            queen1 = smack[0];
+            queen2 = smack[1];
         }else{
-            var queen1 = smack[smack.length - 1];
-            var queen2 = smack[smack.length - 2];
+            queen1 = smack[smack.length - 1];
+            queen2 = smack[smack.length - 2];
         }
         screen.createImage(queen1.image);
         screen.createImage(queen2.image);
@@ -7499,8 +7727,8 @@ function lipsyncSmackdown() {
         screen.createBold("The time has come for you to lip-sync... for your rudemption! Good luck, and don't fuck it up.");
         lsSong();
         screen.createBold("I've made my decision.");
-        var lipSync = [queen1, queen2];
-        for (var i_1 = 0; i_1 < lipSync.length; i_1++) {
+        lipSync = [queen1, queen2];
+        for (let i_1 = 0; i_1 < lipSync.length; i_1++) {
             lipSync[i_1].getASLipsync();
         }
         lipSync.sort(function (a, b) { return (b.lipsyncScore - a.lipsyncScore); });
@@ -7512,7 +7740,24 @@ function lipsyncSmackdown() {
         } else {
             screen.createImage(lipSync[0].image, "royalblue");
             screen.createBold(lipSync[0].getName() + ", shantay you stay! ");
-            if (eliminatedCast.length - i != 2) {
+                let index = lipSync[0].trackRecord.findLastIndex((track) => {
+                    return track == " ELIM " || track == "WINELIM" || track == "ELIM" || track == "LOSS" || track == " WIN "
+                });
+                if (lipSync[0].getName() == eliminatedCast[eliminatedCast.length - 1].getName() && i == 0) {
+                    index++;
+                }
+                console.log(index);
+                lipSync[0].trackRecord[index+1] = " WIN ";
+                let index1 = lipSync[1].trackRecord.findLastIndex((track) => {
+                    return track == " ELIM " || track == "WINELIM" || track == "ELIM" || track == "LOSS" || track == " WIN "
+                });
+                if (lipSync[1].getName() == eliminatedCast[eliminatedCast.length - 1].getName() && i == 0) {
+                    index1++;
+                }
+                console.log(index1);
+                lipSync[1].trackRecord[index1+1] = "LOSS";
+                first = true;
+            /*if (eliminatedCast.length - i != 2) {
                 if (porkchopPremiere) {
                     lipSync[0].trackRecord[cappork] = " WIN ";
                     lipSync[1].trackRecord[cappork] = "LOSS";
@@ -7522,11 +7767,13 @@ function lipsyncSmackdown() {
                 }else if (s9Premiere) {
                     lipSync[0].trackRecord[caps9] = " WIN ";
                     lipSync[1].trackRecord[caps9] = "LOSS";
+                }else if (doubleSashay) {
+                    
                 }else{
                 lipSync[0].trackRecord[capitulo] = " WIN ";
                 lipSync[1].trackRecord[capitulo] = "LOSS";
                 }
-            }
+            }*/
             screen.createBold(lipSync[1].getName() + ", sashay away. ");
         }
         capitulo++;
@@ -7546,7 +7793,7 @@ function lipsyncSmackdown() {
             smack.splice(smack.indexOf(queen1), 1);
         }
     }
-    for (var o = 0; o <= currentCast.length - 1; o++) {
+    for (let o = 0; o <= currentCast.length - 1; o++) {
         currentCast[o].addToTrackRecord("RUN ");
     }
     if (double) {
@@ -7556,18 +7803,21 @@ function lipsyncSmackdown() {
         lipSync[1].addToTrackRecord("RTRN");
         eliminatedCast.splice(eliminatedCast.indexOf(lipSync[0]), 1);
         eliminatedCast.splice(eliminatedCast.indexOf(lipSync[1]), 1);
-        for (var i = 0; i <= eliminatedCast.length - 1; i++) {
+        for (let i = 0; i <= eliminatedCast.length - 1; i++) {
             eliminatedCast[i].addToTrackRecord("OUT ");
         }
     } else {
-        lipSync[0].addToTrackRecord("RTRN");
+        lipSync[0].trackRecord[lipSync[0].trackRecord.length - 1]  = "RTRN";
         currentCast.push(lipSync[0]);
         eliminatedCast.splice(eliminatedCast.indexOf(lipSync[0]), 1);
-        for (var i = 0; i <= eliminatedCast.length - 1; i++) {
+        for (let i = 0; i <= eliminatedCast.length - 1; i++) {
             eliminatedCast[i].addToTrackRecord("OUT ");
         }
+        lipSync[1].trackRecord.splice(lipSync[1].trackRecord.length - 1, 1);
+        lipSync[1].trackRecord[lipSync[1].trackRecord.length - 1]  = "OUT ";
     }
     episodeChallenges.push("Lipsync Smackdown");
+    episodeCount++;
 }
 function LaLaPaRUza(){
     var screen = new Scene();
@@ -7603,7 +7853,7 @@ function LaLaPaRUza(){
             }
         }
     }
-    for (var i = 0; i < smack.length; i++) {
+    for (var i = 0; i < eliminatedCast.length; i++) {
         screen.createHorizontalLine();
         var queen1 = smack[i];
         var queen2 = smack1[randomNumber(0,smack1.length-1)];
@@ -7613,7 +7863,7 @@ function LaLaPaRUza(){
         if (smack.length == 2) {
             i++;
         }
-        if (smack1.length == 0 && totalCastSize%2 == 1) {
+        if (smack1.length == 0 && totalCastSize%2 == 1 && all_stars) {
             var queen3 = smack[i+1];
             screen.createImage(queen3.image);
             screen.createBold(queen1.getName() + ", " + queen2.getName() + " and " + queen3.getName() + " will lipsync...");
@@ -7652,7 +7902,40 @@ function LaLaPaRUza(){
                 queen3.addToTrackRecord("OUT ");
             }
             i++;
-        }else{
+        }else if(!all_stars && smack1.length == 1 && totalCastSize%2 == 0) {
+            var queen3 = smack1[0];
+            screen.createImage(queen3.image);
+            screen.createBold(queen1.getName() + ", " + queen2.getName() + " and " + queen3.getName() + " will lipsync...");
+            lsSong();
+            var lipSync_1 = [queen1, queen2, queen3];
+            for (var i_1 = 0; i_1 < lipSync_1.length; i_1++) {
+                lipSync_1[i_1].getASLipsync();
+            }
+            queen1.lipsyncScore -= 4;
+            lipSync_1.sort(function (a, b) { return (b.lipsyncScore - a.lipsyncScore); });
+            screen.createImage(lipSync_1[0].image, "royalblue");
+            if (queen1 == lipSync_1[0]) {
+                screen.createBold(lipSync_1[0].getName() + ", shantay you stay!");
+                screen.createBold(lipSync_1[1].getName() + " and " + lipSync_1[2].getName() + ", sashay away...");
+                currentCast.push(lipSync_1[0]);
+                lipSync_1[0].addToTrackRecord("RTRN ");
+                eliminatedCast.splice(eliminatedCast.indexOf(lipSync_1[0]), 1);
+                queen2.addToTrackRecord(" ELIM ");
+                eliminatedCast.unshift(queen2);
+                currentCast.splice(currentCast.indexOf(queen2), 1);
+                queen2.unfavoritism += 5;
+                queen3.addToTrackRecord(" ELIM ");
+                eliminatedCast.unshift(queen3);
+                currentCast.splice(currentCast.indexOf(queen3), 1);
+                queen3.unfavoritism += 5;
+            } else {
+                screen.createBold(queen2.getName() + " and " + queen3.getName() + ", shantay you stay!");
+                screen.createBold(queen1.getName() + ", sashay away... ");
+                queen2.addToTrackRecord("SAFE ");
+                queen1.addToTrackRecord("OUT ");
+                queen3.addToTrackRecord("SAFE ");
+            }
+        } else{
             screen.createBold(queen1.getName() + " and " + queen2.getName() + " will lipsync...");
             screen.createBold("The time has come for you to lip-sync... for your lives! Good luck, and don't fuck it up.");
             lsSong();
@@ -7720,6 +8003,7 @@ function LaLaPaRUza(){
         }
     }
     episodeChallenges.push("LaLaPaRUza");
+    episodeCount++;
 }
 function queensofComedy() {
     episodeCount++;
@@ -9277,33 +9561,116 @@ class Team extends Queen {
         this.QueenB = QueenB;
     }
 }
+let teamList = [];
 function teamsScreen() {
     let screen = new Scene();
     screen.clean();
     screen.createHeader("Pair time!");
     screen.createParagraph("After all the queens enter the werkroom, they now have to choose their pairs!");
     screen.createHorizontalLine();
-    let teamList = [];
-    for (let i = 0; i < totalCastSize / 2; i++) {
-        let indexA = randomNumber(0, currentCast.length - 1);
-        let indexB = randomNumber(0, currentCast.length - 1);
-        while (indexB == indexA)
-            indexB = randomNumber(0, currentCast.length - 1);
-        let QueenA = currentCast[indexA];
-        let QueenB = currentCast[indexB];
-        let team = new Team(QueenA, QueenB);
-        screen.createImage(QueenA.image);
-        screen.createImage(QueenB.image);
-        screen.createBold(`${QueenA.getName()} and ${QueenB.getName()} formed ${team.getName()}!`);
-        teamList.push(team);
-        currentCast.splice(currentCast.indexOf(QueenA), 1);
-        currentCast.splice(currentCast.indexOf(QueenB), 1);
+    let main = document.querySelector("div#MainBlock");
+    let centering = document.createElement("center");
+    let select = document.createElement("select");
+    select.setAttribute("class", "queenList");
+    select.setAttribute("id", "0");
+    select.setAttribute("onchange", "setImage()");
+    let img = document.createElement("img");
+    img.setAttribute("class", "images");
+    img.setAttribute("id", "image0");
+    img.setAttribute("style", "width: 105px; height: 105px;")
+    let p = document.createElement("p");
+    p.appendChild(img);
+    for (let k = 0; k < currentCast.length; k++) {
+        let option = document.createElement("option");
+        option.innerHTML = currentCast[k].getName();
+        option.value = currentCast[k].image;
+        select.add(option);
     }
-    currentCast = [...teamList];
-    totalCastSize = currentCast.length;
-    screen.createButton("Proceed", "miniChallenge()");
-}
+    select.selectedIndex = randomNumber(0, currentCast.length - 1);
+    let br = document.createElement("br");
+    centering.appendChild(p);
+    centering.appendChild(select);
 
+    let select1 = document.createElement("select");
+    select1.setAttribute("class", "queenList");
+    select1.setAttribute("id", "1");
+    select1.setAttribute("onchange", "setImage()");
+    let img1 = document.createElement("img");
+    img1.setAttribute("class", "images");
+    img1.setAttribute("id", "image1");
+    img1.setAttribute("style", "width: 105px; height: 105px;")
+    let p1 = document.createElement("p");
+    p1.appendChild(img1);
+    for (let k = 0; k < currentCast.length; k++) {
+        let option1 = document.createElement("option");
+        option1.innerHTML = currentCast[k].getName();
+        option1.value = currentCast[k].image;
+        select1.add(option1);
+    }
+    select1.selectedIndex = randomNumber(0, currentCast.length - 1);
+    centering.appendChild(p1);
+    centering.appendChild(select1);
+    centering.appendChild(br);
+    centering.appendChild(br);
+    main.appendChild(centering);
+    main.appendChild(br);
+    setImage();
+    if (currentCast.length != 2) {
+        screen.createButton("Team Up","", "createTeam");
+        let createTeam = document.getElementById("createTeam");
+        createTeam.addEventListener("click", () => {
+        let value = select.options[select.selectedIndex].text;
+        let value1 = select1.options[select1.selectedIndex].text;
+        let QueenA;
+        let QueenB;
+        for (let k = 0; k < currentCast.length; k++) {
+            if (value == currentCast[k].getName()) {
+                QueenA = currentCast[k];
+            }
+            if (value1 == currentCast[k].getName()) {
+                QueenB = currentCast[k];
+            }
+        }
+        if (QueenA.getName() == QueenB.getName()) {
+            window.alert("Choose different contestants.");
+        } else {
+            let team = new Team(QueenA, QueenB);
+            teamList.push(team);
+            currentCast.splice(currentCast.indexOf(QueenA), 1);
+            currentCast.splice(currentCast.indexOf(QueenB), 1);
+            teamsScreen()
+        }
+    });
+    } else if (currentCast.length == 2) {
+        screen.createButton("Proceed", "", "createTeam");
+        let createTeam = document.getElementById("createTeam");
+        createTeam.addEventListener("click", () => {
+        let value = select.options[select.selectedIndex].text;
+        let value1 = select1.options[select1.selectedIndex].text;
+        let QueenA;
+        let QueenB;
+        for (let k = 0; k < currentCast.length; k++) {
+            if (value == currentCast[k].getName()) {
+                QueenA = currentCast[k];
+            }
+            if (value1 == currentCast[k].getName()) {
+                QueenB = currentCast[k];
+            }
+        }
+        if (QueenA.getName() == QueenB.getName()) {
+            window.alert("Choose different contestants.");
+        } else {
+            let team = new Team(QueenA, QueenB);
+            teamList.push(team);
+            currentCast.splice(currentCast.indexOf(QueenA), 1);
+            currentCast.splice(currentCast.indexOf(QueenB), 1);
+            currentCast = [...teamList];
+            totalCastSize = currentCast.length;
+            miniChallenge()
+        }
+    });
+    }
+}
 class TeamsForChallenges extends Queen {
     constructor (Queens){
         super(Queens[0].getName(), Queens[0]._actingStat, Queens[0]._comedyStat, Queens[0]._danceStat, Queens[0]._designStat, Queens[0]._improvStat, Queens[0]._runwayStat, 0);
@@ -10146,9 +10513,9 @@ function betterSister2 (queen, queen1, queen2) {
             index2 = i;
         }
     }
-    if (queen.sisters[index1].relation > queen.sisters[index2].relation) {
+    if (queen.sisters[index1].relation < queen.sisters[index2].relation) {
         return queen1;
-    } else if (queen.sisters[index1].relation < queen.sisters[index2].relation) {
+    } else if (queen.sisters[index1].relation > queen.sisters[index2].relation) {
         return queen2;
     } else {
         return false; 
@@ -10400,6 +10767,64 @@ function who2Give(queen, queenTop) {
     }
     return dragGive;
 }
+function chooseMsCong4(queen, fin1, fin2, fin3, fin4) {
+    let friends = [];
+    let nuthing = [];
+    let flag = false;
+    for (let i = 0; i < queen.sisters.length; i++) {
+        if (queen.sisters[i].queen.getName() == fin1.getName()) {
+            flag = true;
+        } else if (queen.sisters[i].queen.getName() == fin2.getName()) {
+            flag = true; 
+        } else if (queen.sisters[i].queen.getName() == fin3.getName()) {
+            flag = true; 
+        } else if (queen.sisters[i].queen.getName() == fin4.getName()) {
+            flag = true;
+        } else if (isFriend(queen, queen.sisters[i].queen)) {
+            friends.push(queen.sisters[i].queen);
+        } else {
+            nuthing.push(queen.sisters[i].queen);
+        }
+    }
+    let nutends = friends.concat(nuthing);
+    if (randomNumber(0, 100) >= 10 && friends.length > 0) {
+        dragGive = friends[randomNumber(0, friends.length - 1)];
+    } else if (nutends.length > 0 && randomNumber(0 , 100) >= 50) {
+        dragGive = nutends[randomNumber(0, nutends.length - 1)];
+    } else {
+        dragGive = nutends[randomNumber(0, nutends.length - 1)];
+    }
+    return dragGive;
+}
+
+function chooseMsCong3(queen, fin1, fin2, fin3) {
+    let friends = [];
+    let nuthing = [];
+    let flag = false;
+    for (let i = 0; i < queen.sisters.length; i++) {
+        if (queen.sisters[i].queen.getName() == fin1.getName()) {
+            flag = true;
+        } else if (queen.sisters[i].queen.getName() == fin2.getName()) {
+            flag = true; 
+        } else if (queen.sisters[i].queen.getName() == fin3.getName()) {
+            flag = true; 
+        } else if (isFriend(queen, queen.sisters[i].queen)) {
+            friends.push(queen.sisters[i].queen);
+        } else {
+            nuthing.push(queen.sisters[i].queen);
+        }
+    }
+    let nutends = friends.concat(nuthing);
+    if (randomNumber(0, 100) >= 10 && friends.length > 0) {
+        dragGive = friends[randomNumber(0, friends.length - 1)];
+    } else if (nutends.length > 0 && randomNumber(0 , 100) >= 50) {
+        dragGive = nutends[randomNumber(0, nutends.length - 1)];
+    } else {
+        dragGive = nutends[randomNumber(0, nutends.length - 1)];
+    }
+    return dragGive;
+}
+
 function areRelations() {
     let screen = new Scene();
     let flag = false;
@@ -10439,3 +10864,609 @@ function areRelations() {
     }
     return flag;
 }
+
+function missCong() {
+    let screen = new Scene();
+    screen.createBigText("The contestants will vote for Miss Congeniality!");
+    let wholeCast = [...currentCast, ...eliminatedCast];
+    shuffle(wholeCast);
+    for (let i = 0; i < eliminatedCast.length; i++) {
+        eliminatedCast[i].votes = 0;
+        eliminatedCast[i].trackRecord[eliminatedCast[i].trackRecord.length - 1] = "GUEST";
+    }
+    for (let i = 0; i < wholeCast.length; i++) {
+            let flag = 0;
+            if (currentCast.length == 4) {
+                wholeCast[i].lipstick = chooseMsCong4(wholeCast[i], currentCast[0], currentCast[1], currentCast[2], currentCast[3]);
+                if (wholeCast[i].lipstick == false) {
+                    //nada
+                } else {
+                    while (wholeCast[i].lipstick.getName() == wholeCast[i].getName()) {
+                        flag++;
+                        wholeCast[i].lipstick = chooseMsCong4(wholeCast[i], currentCast[0], currentCast[1], currentCast[2], currentCast[3]);
+                        if (flag >= 10) {
+                            wholeCast[i].lipstick = eliminatedCast[randomNumber(0, eliminatedCast.length - 1)];
+                        }
+                    }
+                }
+            }
+            if (currentCast.length == 3) {
+                wholeCast[i].lipstick = chooseMsCong3(wholeCast[i], currentCast[0], currentCast[1], currentCast[2]);
+                if (wholeCast[i].lipstick == false) {
+                    //nada
+                } else {
+                    while (wholeCast[i].lipstick.getName() == wholeCast[i].getName()) {
+                        flag++;
+                        wholeCast[i].lipstick = chooseMsCong3(wholeCast[i], currentCast[0], currentCast[1], currentCast[2]);
+                        if (flag >= 10) {
+                            wholeCast[i].lipstick = eliminatedCast[randomNumber(0, eliminatedCast.length - 1)];
+                        }
+                    }
+                }
+            }
+            if (wholeCast[i].lipstick == false) {
+                wholeCast[i].lipstick = eliminatedCast[randomNumber(0, eliminatedCast.length - 1)];
+                while (wholeCast[i].lipstick.getName() == wholeCast[i].getName()) {
+                    wholeCast[i].lipstick = eliminatedCast[randomNumber(0, eliminatedCast.length - 1)];
+                }
+            }
+            screen.createImage(wholeCast[i].image, "black");
+            screen.createImage(wholeCast[i].lipstick.image, "aqua");
+            screen.createBold(wholeCast[i].getName() + " voted for " + wholeCast[i].lipstick.getName() + " to be Miss Congeniality!", "votes", "votesP");
+            wholeCast[i].lipstick.votes++; 
+    }
+    screen.createHorizontalLine();
+    wholeCast.sort((a, b) => (b.votes - a.votes));
+    screen.createImage(wholeCast[0].image, "aqua");
+    screen.createBold("The winner of this season's Miss Congeniality is... " + wholeCast[0].getName() + "!!!");
+    wholeCast[0].trackRecord[wholeCast[0].trackRecord.length - 1] = "MISS CON";
+    screen.createHorizontalLine();
+}
+//MEJORAR EL CODIGO, QUE NO LEAN A LA MISMA PERSONA
+function readingChallenge() {
+    let screen = new Scene();
+    for (let a = 0; a < currentCast.length; a++) {
+        if (a == 0) {
+            screen.createImage(currentCast[0].image, "black");
+            screen.createBold("First up... " + currentCast[0].getName() + "!!");
+        } else if (a == currentCast.length - 1) {
+            screen.createImage(currentCast[a].image, "black");
+            screen.createBold("And last but not least... " + currentCast[a].getName() + "!!");
+        } else {
+            screen.createImage(currentCast[a].image, "black");
+            screen.createBold("Next is... " + currentCast[a].getName() + "!!");
+        }
+        let firstOne;
+        let queenReaded;
+        for (let i = 0; i < 2; i++) {
+            if (firstOne == undefined) {
+                queenReaded = currentCast[randomNumber(0, currentCast.length - 1)];
+                while (currentCast[a].getName() == queenReaded.getName()) {
+                    queenReaded = currentCast[randomNumber(0, currentCast.length - 1)];
+                }
+            } else {
+                queenReaded = currentCast[randomNumber(0, currentCast.length - 1)];
+                while (currentCast[a].getName() == queenReaded.getName() || queenReaded.getName() == firstOne.getName()) {
+                    queenReaded = currentCast[randomNumber(0, currentCast.length - 1)];
+                }
+            }
+            screen.createImage(queenReaded.image, "lightgreen");
+            screen.createBold("to: " + queenReaded.getName());
+            if (i == 0) {
+                firstOne = queenReaded;
+            }
+            let read = queensReads.find((queens) => {
+                return queens.queen == queenReaded.getName()
+            });
+            let readNumber = 0
+            if (read != undefined) {
+                if (read.reads.length < 1) {
+                    read = queensReads.find((queens) => {
+                        return queens.queen == "General"
+                    });
+                    readNumber = randomNumber(0, read.reads.length - 1);
+                    screen.createBold(read.reads[readNumber]);
+                } else {
+                    readNumber = randomNumber(0, read.reads.length - 1);
+                    screen.createBold(read.reads[readNumber]);
+                }
+            } else {
+                read = queensReads.find((queens) => {
+                    return queens.queen == "General"
+                });
+                readNumber = randomNumber(0, read.reads.length - 1);
+                screen.createBold(read.reads[readNumber]);
+            }
+            read.reads.splice(readNumber, 1);
+            if (randomNumber(0, 100) >= 99) {
+                i--;
+            }
+        }
+        screen.createHorizontalLine();
+    }
+}
+
+let queensReads = [
+    {queen: "BeBe Zahara Benet", reads: ["Heavy is the head that wears the crown. And heavier is the body.", "BeBe Zahara Benet, you look like an overweight Naomi Campbell.", "BeBe, I hear that this is the year that you might get two crowns. Which is really not a lot of dental work as far as those early seasons are concerned."]},
+    {queen: "Ongina", reads: ["Ongina, I can't wait to put you on top of my Christmas tree.", "Oooooon-gina, is there an off-gina button?", "Ongina, thank you so much for taking time out of your busy schedule of auditioning to finally join us."]},
+    {queen: "James Ross", reads: ["Smile for me. Don't smile.", "Mister James, was your barbecue cancelled? Your grill is fucked up.", "James Ross, if you are America's Sweetheart, America needs a heart transplant.", "You got a grill that could put Black & Decker out of business."]},
+    {queen: "Raven", reads: ["And the one on the end, oh just look at her, are you going swimming, or are you doing drag, mama, what is that?", "And you! Legendary, you think you are. Legendary? Looks like leg AND dairy", "Raven, the Frosty Bitch. I think I see penguins circling that pole.", "Raven, Raven, slow and sleek, you're so boring, I fall sleep!"]},
+    {queen: "Jujubee", reads: ["Oh mama, is this Jujubee? Darling, let me get to your level. We have an undergrown orangutan!", "Jujubee, with that gaping thing you call an asshole, I think I could go spelunking in there.", "Honey, don't you know a thing about doing a manicure and a pedicure? Fix them hooves, honey.", "Jujubee, I can't wait to see your clearance retail store collection you brought.", "Jujubee, this is determination. You've been here how many times? I've watched this girl crack open chicken bones and suck out the marrow. Makes me wonder, what is she willing to do this time?", "Jujubee? More like Juju-has-been."]},
+    {queen: "Tatianna", reads: ["Oh, wow. We have Eminem doing drag, mama.", "Miss Tatianna, Miss Honey. You think you're so soft. Not by the hairs of your chiny chin chin.", "Tatianna, all I hear when I put my ear up to yours is the ocean.", "Everyone thinks you're pretty. I do think you're pretty. I think you have a beautiful face... for radio.", "Sweetie, I'm sorry! If you don't have a wrist band you can't be in here for the meet and greet!", "Tatianna, thank you... For letting the PA's know who to pack up first.", "Tatianna, really?"]},
+    {queen: "Pandora Boxx", reads: ["Oh, darling how old are you?", "Pandora, can we talk about sun tanning?", "Pandora, by the looks of you, you're going through the change of life, honey.", "Pandora Boxx, when the CDC said that there should be no gatherings more than 10 people, Pandora was like, 'my show should be fine.'", "Pandora Boxx, oh! This bitch is so old her wigs have osteoporosis.", "Pandora's Box, now you're supposed to be the box that unleashes all the evil on Earth. Is bitterness one of 'em?", ]},
+    {queen: "Jessica Wild", reads: ["Oh, wow. Is that Dumbo Flying in?", "Do you pick up satellite with those big ones?", "Jessica Wild. Those drag clothes looks like a donkey fucked a piñata and threw up." ]},
+    {queen: "Morgan McMichaels", reads: ["Morgan McMichaels, sister I know you love to perform Hard Rock music. And that's good, because that face is also a hard rock.", "Morgan McMichaels, I would take the 'A' out of your name and replace it with an 'O', because I'm pretty sure we'd all like you 'Morgon'.", "Phoenix. Oh, I'm sorry, Nicole Paige Bro... Uh... Pass.", "You know, I'm not going to read Morgan McMichaels, life already has.."]},
+    {queen: "Kylie Sonique Love", reads: ["Sonique, as Lady Gaga once said, there can be a hundred people in the room, and 99 have no idea who you are."]},
+    {queen: "Shangela", reads: ["Miss Shangela, girl, can we have some water? Her hair is thirsty, baby.", "Shangela, I hope you still have your phone card to middle earth, 'cause the hobbits are calling!", "Shangela's the most annoying thing I've ever met in my life. She's like a pull-up toy that says 'Halleloo'. Just my opinion.", "Shangela, halleloo! The only queen I know that can make epilepsy on stage look good.", "Shangela! I always thought her name was Angela and people were just telling her to shut up.", "Shangela! From the Haus of Concreta; you are a brick!", "Shangela. What if this season, we put you IN a box? Cos you're gonna halle-lose.", "Shangela! You have come so far! Initially, your makeup was kind of busted and your outfits were a mess and your personality was super grating, but look how far you've come now. You are much older."]},
+    {queen: "Raja", reads: ["Raja, you think you're fashion? You should go to OOOOOOLLLLLLD SCHOOL.", "Girl, don't go to an antique shop, they just might keep you there.", "Raja, when you're on the runway, do you keep the 800 number for suicide? Because those toes are ready to jump.", "Raja, should I call you Raja or Grandma?", "Raja, I know you call yourself top model, but I think Tyra Banks and I would agree you're just fashion roadkill.", "Raja Gemini. Oh, you are such a legend, and I'm just so excited that all it took to get you here was the promise of free wine.", "Raja, you're so old, you make Jinkx's drag feel fresh.", "Raja. Boot.", "Roger. You've always been like a sis- You've always been like a mo- You've always been like a grandmother to me. You know they say Geminis have two faces. Have you been putting the good makeup on the other face?"]},
+    {queen: "Manila Luzon", reads: ["Manila Luzon, Asian role model. Well, I hope you were referring to the rolls all over your body.", "Manila Luzon. Emphasis on lose. Twice.", "Manila Luzon, I loved you so much on your season. But who's a booger now, bitch?", "Manila Luzon. You remind me of a Mound and Almond Joy. Sometimes you feel like a nut, sometimes you don't."]},
+    {queen: "Alexis Mateo", reads: ["WHO CARES?", "Alexis, girl, I been thinking about you all day. I was at the zoo", " Alexis Potato, I mean- I'm so sorry, girl. Look, I know you've been here before, hopefully you bring actual talent this time... ", "So... Miss Alexis Mateo,it's really nice to have you back competing for the third time, maybe this time you won't be so overshadowed by Yara Sofia.", "Alexis Mateo. I don't wanna be shady, so I'm not gonna bring up your weight. But when you work, do they pay you in pounds?", " Alexis Mateo, you actually have a really good chance of winning this competition, because they've never had a Puerto Rican or a big girl winner."]},
+    {queen: "Yara Sofia", reads: ["Oh, Yara. Your blue contacts are so creepy that it makes my skin itchy, itchy, itchy... pa'lante.", "Yara, isn't it interesting that when your flight came into town the sightings of chupacabras increased?", "Yara, WHAT THE FUCK are you saying, girl?"]},
+    {queen: "Carmen Carrera", reads: ["SYPHILIS.", "And, aw, Carmen Carrera. Honey, just go jump in the ocean. You won't drown. Silicone floats."]},
+    {queen: "Delta Work", reads: ["Delta Work, is that your tits or your feet?", "Delta, just grow a neck, honey.", "Mimi Imfurst."]},
+    {queen: "Mariah Paris Balenciaga", reads: ["My dear friend and beautiful, Mariah Paris Balenciaga, they say you have mug for days, but with shoulders like that you need to be thug for days", "Let's see, Mariah, Paris, Balenciaga. Three iconic names that are all known worldwide... yet you remain completely unknown.", "Mariah Paris Balenciaga. Great, you're here, so we have to change the name to RuPaul's Drag Race 'Some Stars'.", "Mariah Paris Balenciaga, you look like what would happen if Will Smith absorbed Jada Pinkett.", "Mariah, girl I love you, but your career only has movement because the earth has to spin on its axis."]},
+    {queen: "India Ferrah", reads: ["India Ferrah, this shade is all real. It's no wonder you work in a place called Piranha in Las Vegas, because with those teeth, you're a walking billboard for them. And also, I'm really surprised to see you, because I thought you had retired, and now I just see that you're tired.", "Miss India Ferrah. What happens in Vegas stays in Vegas, don't unpack, go back. Okay?", "India Ferrah. I'm not gonna read you 'cause I'd never kick a man... while he's down.", "India Ferrah... Oh! I'm pausing so we can all Google who you are."]},
+    {queen: "Chad Michaels", reads: ["Mama Chad, it's called forever 21 not forever 41!", "Chad Michaels, you so old, you're still on Myspace.com Chad Michaels!", "Chad, Chad, my little Consuela, you so old, you look like my abuela!"]},
+    {queen: "Jaremi Carey", reads: ["Jaremi, you are gorgeous, you catch the camera's eye from the right, but from the left, you snag it!", "Jaremi Carey, although reading is fundamental darling, you want to spell first, you illiterate!", "Jaremi Carey, what brand of makeup do you wear? Sherman Williams?", "Jaremi Carey, since you've fixed your snaggletooth, I'll just talk about your face. You're ugly.", "Jaremi Carey? Gila monster.", "Jaremy Carey, you hand make all of your outfits, and I love them. My favorite one was that, um, one that was like a jumpsuit, it was all orange. ... So good."]},
+    {queen: "Latrice Royale", reads: ["Latrice Royale, you're free now you don't have to rock the yard sandals anymore!", "Did you know that Latrice is actually Mo Heart's bigger sister?.. Enlarged Heart.", "Mystique was a mistake", "Latrice Royale. You are my sister, bitch. I liked it better when you was my bodyguard."]},
+    {queen: "Dida Ritz", reads: ["Dida let me start with you boo, there's some lotion in my purse, you need to use it on your elbows and your knees, you look like you've been galloping through flour baby.", "Dida Ritz, I don't know if that's Hot Couture or Hot Cou-torn 'cause there's holes in that shirt!", "Ladies and Gentleman, welcome to the RuPaul ball, tonight, in the category of BUTCH QUEEN: DIDA RITZ!", "Dida Ritz, a lot of you girls like to clock me for painting my skin on the gray side, but I was inspired by your knees"]},
+    {queen: "Willam", reads: ["Willam, honey, your face is made out of marbles, s*** don't move!", "Willam, I know you're talented at you know, buying shoes, but you're talented at you know, drag?", "Willam Belli, Willam Belli loves to live his life and think he's Carrie Bradshaw, but in the sequel she'll be playing Scary Radshaw.", "Willam, Miss Industry, congratulations on your new role as the Big Bad Wolf, by the hair on your chinny chin chin!"]},
+    {queen: "Jiggly Caliente", reads: ["Jiggly Caliente, you should feel honored! You're the first contestant in Drag Race history with child!", "Oh Jujubee, you know helium is for balloons, not your stomach", "Jiggly, I love you, come to me, come, come to me, come, I won't hurt you... here's my dentist card. Use it", "Jiggly Caliente, BMW... Body Made Wrong!", "Alright, Jiggly Caliente, may I call you... stupid?", "Jiggly Cali... Cali... I just can't bring myself to lie already. It's nothing hot about this bitch but that wig."]},
+    {queen: "Jinkx Monsoon", reads: ["Jinkx Monsoon, with a name like a meteorologists', the only weather you're serving up is the weather storm of bad taste.", "Jinkx Monsoon, ashes to ashes, dust to dust, you're great at the challenges, but on the runway, you're a bust!", "Jinkx Monsoon, Boy George called. He wants his hat back.", "Jinkx-I'm-a-Man-Monsoon, that's you. Hair, makeup rotted gutted.", "Jinkx Monsoon. I finally realized where the last name comes from. I have never seen anyone that can blow quite like you.", "Jinkx Monsoon. You know, looking at you, your teeth really represent the cast here. Some are big, some are small, two of them are white. No, three of them are white, yeah.", "Now, Jinkx Monsoon, in order to read you, I'm going to imagine you naked... Oh, that's how I lost that weight."]},
+    {queen: "Alaska", reads: ["Miss Alaska, I think you should wear a mask for every challenge.", "Alaska the finale of the Rolaskatox. Start over.", "Alaska, I'm sure Katya can see you from her backyard.", "Alaska? Gutted.", "Alaska, I finally got to listen to Anus, and I get it. 'Cause it sounds like what my anus does after eating Mexican.", "Alaska, shut the fuck up.", "Alaska, like her outfit, trash.", ]},
+    {queen: "Roxxxy Andrews", reads: ["Roxxxy Andrews, condragulations on the weight loss, but to me, you're still Boxxxy, Mandrews.", "Roxxxy Andrews, there are two types of peanut butter: creamy (points to legs) and crunchy (points to face).", "Roxxxy Andrews, your idea of a wardrobe is a swimsuit in a different color.", "Roxxxy Andrews, the reason why you rely on your body so much is to distract everyone from your face.", "Roxxxy Andrews, I think about you all the time. Especially in the morning, at the bus stop.", "Boxy Andrews? Rotted.", "Roxxxy Andrews, It's good to see a filler bitch this season, and I'm not talking about that ass.", "Roxxxy Andrews, obviously a diet consisting of nothing but hatred for Jinkx Monsoon does a body good!"]},
+    {queen: "Detox", reads: ["Detox, you won the challenge, you can take the chicken mask off now.", "Detox, is Amanda Lepore your mother? 'Cause there's a lot of silicone going on there.", "Detoxic! Honey, I know you're thinking you're serving body and look, but the only thing I'm getting is The Hills Have Eyes.", "Detox, you're so seductive, but unfortunately it's illegal to do it with you because most of your parts are under 18 years of age.", "Detox, when you walk down the runway, I do expect for the credits to start running for Gorillas in the Mist.", "and Venus D-Lite.", "Detox, no really, I mean that. This is actually your intervention, you should really stop... this."]},
+    {queen: "Coco Montrese", reads: ["Coco Montrese, you are a fierce lip syncer. But when you're done, I don't know whether to clap or warm up the defibrillator.", "Coco Montrese, for someone who calls themselves a top, you sure do like being on the bottom.", "Miss Coco, you must be blind because it looks like you're using Tang for your highlight.", "Coco Montrese, I don't know why everyone keeps calling you old. How old are you? I'd say you look somewhere between 40 and death!", "Ornacia... Oh, I'm sorry. This is the first time I've seen you, Coco, without a filter.", "Janet Hagson, oh, I'm sorry, Coco Montrese. How exciting for you that Janet has a new album out, you can both come out of retirement.", "Coco Montrese, I've always wanted to know what the female Gremlin would look like in twenty five years.", "Coco, thank you for proving in season five that orange is the new black.",  "Coco, way too old."]},
+    {queen: "Alyssa Edwards", reads: ["Alyssa Edwards, overbites are very in this season. Too bad your performance here is so underwhelming.", "Alyssa Edwards, your performance as Katy Perry was less than satisfactory. When you go home, get on wikipedia.com and look the bitch up, do you know anything about her!?", "Alyssa Edwards, you can't sing worth a damn, but you dance a great ballet. Darling with only one skill, it's time you sashay away.", "Alyssa Edwards, never mind.", "Alyssa Edwards, Miss US- oh wait.", "Alyssa, you are like the Abby Lee Miller of drag. Except when Abby Lee Miller dresses her body, she can cover her backrolls.", "Alyssa Edwards, my darling dear. I can't stand it when you're near.", "Alyssa Edwards, you've often been referred to as the dancing fool. I just wanna know, when did the dancing part get added?", "Alyssa Edwards, you are so talented and you haven't let it go to your head. Nothing has changed you, or your overbite!", "Alyssa Edwards, whoever said everything's bigger in Texas has obviously never seen your D. But you know what they have seen? Your body."]},
+    {queen: "Ivy Winters", reads: ["I-veeeee Wintersss! You're very soft and beautiful...for a hard clown.", "Ivy Winters, you got read down for your performance in Snatch Game, but I however thought your impression of Mrs. Doubtfire was spot on.", "Ivy Winters, you're such a cute twink, but as a drag queen, you stink.", "Ivy Winters... I can't do it, because reading you is like reading a Walt Disney book, it's simply too easy.", ]},
+    {queen: "Serena ChaCha", reads: ["And to my dear, dear Serena: I would read you but it does appear life already has.", "Serena ChaCha, who cancelled and you booked this gig?"]},
+    {queen: "Bianca Del Rio", reads: ["Miss Bianca, you're such an old c*** if I fisted you, I would bring out some cobwebs and dust on my hand.", "Bianca Del Taco Trio, your style is as old and bitter as you. You've even got the crypt keeper crying 'BOO HOO HOO!'"]},
+    {queen: "Adore Delano", reads: ["Then we have Adore. I know what you got on your SAT's. Ketchup.", "Adore, I wish someone would show you a door. Any door.", "Adore, you know you're from the west coast because it's a three hour delay before you finally get a joke.",  "A-bore De-lameo, is that a hog on your body, or are you excited to see me?", "Do you know what Adore and the value menu have in common? They're both cheap and full of fat.", "Adore Delano, do you know what makes you the number one fan favorite of all the time? Neither do I.", "And Adore Delano, uhm... really?", "Adore Delano, these other girls are gonna say you have terrible makeup skills, you have no fashion sense, and you're dumb as a rock. But they're wrong! You don't have terrible makeup skills."]},
+    {queen: "Courtney Act", reads: ["Courtney Act, what were you caught in the act of? Putting your face on, because you always look unfinished.", "Pretty little Courtney Act, her real beauty is on the inside. I guess that's why you've let so many men inside you. Courtney Act, Australian for whore."]},
+    {queen: "Darienne Lake", reads: ["MIss Darienne Lake, you should be arrested for animal cruelty. The way you abused those kitten heels on the runway is absolutely criminal!", "Darienne Lake, this is the girl who probably sits reverse cowgirl on the toilet just so she has a flat surface to eat off of.", "Miss Darienne Lake, you have a lot of jokes, but to me, they're more like UFO's. I mean, they are way out there and I've never seen one land."]},
+    {queen: "BenDeLaCreme", reads: ["Miss BenDeLaCreme, after seeing you in drag, I realize now why Seattle has a high suicide rate.", "BenDeLaCreme, the cream always rises to the top, but then again, so does the scum.", "BenDeLaCreme, or more like has-been DeLa Creme.", "You remind me of a Russian doll, full of yourself.", "BenDeLaCreme, where you been? Like, literally, where you been?", "The low-rent Michelle Visage. Sister, it's nice to see you here."]},
+    {queen: "Joslyn Fox", reads: ["Joslyn Fox, she's so gay, even her asshole has a lisp.", "Joslyn Fox, you may not be all that smart, and you may not be all that pretty... I guess that's it.", "Miss Joslyn Fox, when we need a lower rate version of Courtney Act, we'll let you know.", "Joslyn, you have some really comforting old fashioned qualities like how you paint in sepia tone and your voice sounds like a dial-up modem."]},
+    {queen: "Trinity K. Bonet", reads: ["Oh Trinity. She thinks she looks like Beyoncé from Destiny's Child. On second glance, you look more like Rosemary's Baby.", "Trinity, I believe your smile belongs on Season 4. Every day is shark week with your grill.", "Trinity K. Bonet, the Holy Trinity: bad teeth, bad personality and bad attitude!"]},
+    {queen: "Laganja Estranja", reads: ["Miss Laganja Estranja, next time you death drop, reverse that and drop dead.", "Laganja, ladies and gentlemen, is a cover model. I saw her on the cover of a magazine just last month; Horse and Hound Quarterly.", "Laganja you're still here?"]},
+    {queen: "Milk", reads: ["Milk, your beauty and fashion is listed right on the side of your carton under 'Missing.'", "Big and Milky! Girl, just like the drink, you give me the shits.", "Milk? No. Cottage cheese? Yes.", "Wow Milk, you put a lot into this look. What, two percent?"]},
+    {queen: "Gia Gunn", reads: ["G-G-G-Gia Gunn. I guess you can buy a gun at Walmart."]},
+    {queen: "Violet Chachki", reads: ["Violet Chachki, you keep training those corsets girl. Pretty soon your waist size will be lower than your IQ.", "Oh look it's a giraffe, no it's a horse. Oh, it's just Miss Violet serving neigh realness.", "Violet, I don't believe the rumors. I don't believe that you took the season 4 winner crown. I don't believe you're taking this one either."]},
+    {queen: "Ginjer Minj", reads: ["Ginger Minj, I disagree with the judges. I think you should bring your black hairspray down further. Full coverage.", "Ginger Minj, girl did you ever save Carol Anne from the poltergeist in the TV?", "Ginger Minj, in my eyes, the true winner of season seven... of TLC's I Didn't Know I Was Pregnant.", "Peg Bundy ate Kelly and Bud. Party!", "Ginger Minj, you're so full of shit, you should change your name to ginger rectum.", "Ginger Minj, bitch you are shaped like a deep breath.", "Ginger Minj, oh my god, I love your husband CJ. He's a top, you know what that makes Ginger? Rock bottom.", "Ginger Minj, the actor of the group. Can you finally act like you have some taste?"]},
+    {queen: "Pearl", reads: ["Pearl, your razor burn is so bad the only way I can read you is by braille.", "Pearl, now that you come out of your shell, maybe you could use that as a butt pad?"]},
+    {queen: "Kennedy Davenport", reads: ["Kennedy Davenport, you've got your eye on the prize and your other eye on the crown.", "Kennedy Davenport. Kennedy? Kennedy, I'm over here! I'm over here! Girl, that one eye confusing me girl.", "Kennedy Davenport; the only queen that doesn't have to turn to look both ways before crossing the street.", "Kennedy Davenport, you seem a little offended by our jokes. We weren't offended by your parents' little joke.", "Kennedy, I realise that your reads today weren't that great, but in fairness, I don't expect you to be a good reader because you always talk like you're sounding everything out."]},
+    {queen: "Katya", reads: ["Katya, at this point you really should just make like your hair line and recede.", "Katya, now you get to increase your hooking fee. Thank you, RuPaul's Drag Race.", "Katya, where do you get your outfits, girl? American Apparently Not?", "Katya, are you confused? The saying is young, dumb and full of cum.", "I'm a big fan of Katya. Very manly arms. I mean, can you blame her though? After carrying the weight of season 7 on your shoulders..."]},
+    {queen: "Trixie Mattel", reads: ["Trixie Mattel, making fun of you is like shooting clownfish in a barrel. Unfortunately, that's about as fishy as you'll ever be.", "Trixie Mattel, haute couture? More like haute glue.", "Is that Ben Affleck? Girl, I must be hungry for the dick if I think this thirsty bitch is her.", "Miss Trixie. Girl, I am waiting for you to change that lip color, 'cause your face looks like the back of a baboon's ass", "Trixie Mattel, she's a fashion doll, she's beautiful... She's the personification of FUPA.", "Trixie Mattel; so pretty. A year ago, she was pretty fat.", "Trixie Mattel, bitch, you call yourself the lifesize Barbie. But actually, you look like a disgruntled Ken that ate Barbie and put on her wig and costume.", "Trixie, you look like a Lisa Frank serial killer.", "Trixie, now, a lot of people clock your makeup, but I totally get it. You know, you're just painting for the back of the room, which makes sense because that's where your audience collects if you remember to lock the door."]},
+    {queen: "Miss Fame", reads: ["Miss Fame, I think everything about you is so original, except for those lips, those cheeks and everything you present to the judges on the runway.", "Miss Fame, you are such a talented make-up artist. I have never met anybody whose able to shove their head so far up their own ass without smudging their eye liner."]},
+    {queen: "Jasmine Masters", reads: ["Jasmine Masters, you know what--oh! (looking at the ground) Oh, my God. I'm sorry. I was just looking for her talent.", "Jasmine Masters. So boxy. I don't know whether to do my laundry on your teeth or your abs."]},
+    {queen: "Bob The Drag Queen", reads: ["Bob The Drag Queen. You may be from New York, but honey, those feet are still from Mississippi.", "Bob The Drag Queen, Michelle Visage said to punch up your highlights. Your makeup makes me want to punch you in the highlights.", "Bob. Please shut up.", "Bob The Drag Queen. I had no idea that there are different shades of ashy.", "...and Bob The Drag Queen. I don't blame you for not being a great makeup artist. There's not many things you can do with coffee grounds and gasoline.", "Bob The Drag Queen. Bob, you're like the napalm of drag. Your drag is so good from afar, but far from good.", "And Bob The Drag Queen is so dark, she sits in a tub of hot water, and makes coffee."]},
+    {queen: "Kim Chi", reads: ["Uh... Teletubby.", "Kim Chi. You are stomping for the gods on the runway. I just wish your drag would get raptured.", "Kim Queef. How would I describe your teeth? 'Thuthpicious.'"]},
+    {queen: "Naomi Smalls", reads: ["Naomi Smalls... bitch, eat a sandwich.",  "Naomi Smalls. Your wardrobe reminds me of a legendary Drag Race queen: Nicole Paige Brooks.", "Naomi Smalls, I loved you in Bambi. As Bambi. When you came out all thin. But I loved you even more as Jack Skellington in The Nightmare Before Christmas.", "Naomi, no one knows whether to call you 'nigh-o-mi' or 'nay-o-mi,' but judging from your runway looks, no one's gonna be calling you at all.", "Naomi, I'm gonna give you some advice, darling. No one's gonna take you seriously if you were born after 'Windows 95' came out.", "Naomi Shambles. I find it amazing you have eleven brothers and sisters and no one loved you enough to tell you not to wear those shoes on national TV.", "She's so skinny, she has to run around in the shower just to get wet.", "She's so skinny she can look through the peep hole with both eyes.", "Naomi Smalls, you know you remind me ofone of those things that, the little car dealerships. Just kidding, those things make people laugh, you don't.", "Naomi Smalls, legs you are known for. However, you should be known for toes, 'cause they're always hanging out.", "Naomi Smalls, legs, legs, legs. Could we get a side of brains with that?"]},
+    {queen: "Chi Chi DeVayne", reads: ["Chi Chi, your drag is just like turkey neck: cheap, and no one wants it.", "Chi Chi, you know, I fell in love with you. You have this wonderful boyfriend back home, and she was telling us stories about how she has to—he sounds really attractive—you have to remind him to shower, you tell him to clean up after himself, and then you also cook dinner. You just open up a can of beans with those teeth.", "Chi Chi, the day I met you, you sad you weren't a comedy queen. Yet you were wearing a trash bag. That was very comedic. Still, after six episodes: Your most expensive look.", "Chi Chi, your drag reminds me of my elementary school project: hot-glued together and cheap.", "Chi Chi, your drag is amazing. ...considering you look like you got dressed in hurricane forced winds.", "Chi Chi DeVayne. We all know she's poor and cheap, in fact you ring her doorbell, the toilet flushes.", "Why is everyone so shocked she can do backflips? Her teeth have been doing somersaults since she got here.", "Chi Chi DeVayne. Girl, with that mouth, you could put Black & Decker out of business, because you've got a mouth full of tools honey.", "Chi Chi DeVayne! Started from the bottom, now y... Nope, you're still on the bottom."]},
+    {queen: "Derrick Barry", reads: ["Simple—I mean Derrick—I mean Britney. You know, you are pretty attractive. I'd hit that baby one more time.", "Derrick Barry. You say it takes you an hour to do your face. Why does it look like five minutes?", "Derrick Barry. It is so nice to be as pretty as homemade soap.", "It is a known fact that Derrick Barry is not very smart. When she heard Britney Spears, she said, 'Does she? I prefer fencing.'", "Derrick Barry, girl, Britney again? You're tired, moving on...", "Oh, my dear friend, Derrick Barry. You are a Las Vegas showgirl. And you're also a lost Vegas showgirl.", "Derrick Barry. You give us Britney like it's always 2008. Now, can we go ahead and open the door and #FreeBritney?", "Derrick Barry. you know, the girls in your season said you weren't a real drag queen because you couldn't paint and you could only do Britney, but I completely disagree. I don't really think you can do Britney."]},
+    {queen: "Thorgy Thor", reads: ["Thorgy Thor. Girl, I love you so much, I don't know whether to give you a hug, or put some change in a cup.", "Thorgy Thor, I would read you but I wouldn't want you to worry about it.", "Thorgy Thor. You know how the kids are saying 'Brows on fleek?' Yours are on 'hide and seek.'", "Thorgy Thor—if that's your Christian name—your hair is reaching for the heavens, but your bangs are praying for release.", "Thorgy Thor! You know, I love clowns! And I never met an unfunny one until I heard you reading.", "Thorgy Thor! Oh, girl, your drinking has affected me in the following ways.", "Thorgy Thor. Mother, she looks homeless."]},
+    {queen: "Robbie Turner", reads: ["Robbie 'snaggletooth' Turner, girl, you the first person I've ever seen whose teeth had a kickstand.", "Robbie Turner, Jinkx Monsoon and BenDeLaCreme shined with their Snatch Game characters, but I guess this is a trilogy I won't finish reading.", "Robbie Turner. 'Let me tell you something for free.' Why don't you borrow some Ru dollars, and go buy a new quote.", "Robbie Turner, we know you're a vintage queen, but do you have to smell like mothballs too?", "Robbie Turnter. I know you're a huge fan of classic movies and television. May I recommend one of my favorite classic movies and TV shows: Flipper."]},
+    {queen: "Sasha Velour", reads: ["Sasha. You and Ru have a lot in common. He bald, you bald, he wear glasses, you wear glasses, he's rich, you- never mind."]},
+    {queen: "Peppermint", reads: ["Peppermint, you assassinated Cynthia in the lipsync but, did you have to practice on your wardrobe?", " Peppermint. You need one."]},
+    {queen: "Shea Couleé", reads: ["Shea Couleé, you remind me of my favorite movies. Your fashion is Coming To America, and your smile, Jurassic Park.", "Shea Shea Couleé, you sure are a scene stealer. I guess gnawing on set pieces explains those teef.", "Ladies, we're gonna do an exercise. Everybody raise your arms up to the sky, and Shea this is for you, one word. Deodorant, bitch.", "Shea Couleé. Why so emotional, baby?", "Shea Couleé. I'm very glad that Sasha could not be here, because we don't have to hear her talk about roses, but we do have to look out for that rosebud of yours."]},
+    {queen: "Trinity The Tuck", reads: ["I'm so happy that we have on loan from Madam Tussauds, RuPaul's statue and miss Trinity The Tuck.", "Trinity The Tuck, I once told you that you're so beautiful inside and out, I lied you ugly stripper.", "Trinity swears she's so fishy bitch, all she's serving is Fisher-Price.", "Bitch, I thought there was some big girls 'til your nose walked in, bitch.", "Tiffany The Tuck, you've had so much plastic in you, you won't be buried in a coffin, you'll probably be buried in a recycling bin.", "Trinity The Tuck. Since you got beat by a peppermint, why does your breath still smell like shit?", "Trinity The Tuck, was that legal or illegal silicone, and whose kitchen table did you get done on?", "Trinity The Tuck. She's had so much plastic surgery, I went to her Instagram and it looks like somebody face-tuned a chicken.", "Trinity The Tuck. You on this season is just like what's in your face. Filler.", "Trinity The Tuck, okay. I don't have no read for you, bitch. You are the realist bitch in this season, from the knees down, okay?", "Trinity The Tuck. Always known as the body, but never the face."]},
+    {queen: "Alexis Michelle", reads: ["Alexis Michelle, Broadway is calling. In this case, it's the one in Brooklyn where the whores work.", "Alexis Michelle, you're oh so BROOOAADWAAAY, but you're also very broad.", "Alexis, you're like a BMW. Body made wrong.", "Alexis Michelle, Pillsbury called, they want their rolls back.",  "Alexis, I love your costume. You look just like a honeybaked ham."]},
+    {queen: "Nina Bo'nina Brown", reads: ["Nina Bo'nina Brown, your pads are so big, you bent down to pick something up off the street, and the garbage man said Who let this raggity couch here? Goodwill pickup is on Sunday.", "Nina Bo'nina Brown Jurassica Parker, you've had some ups and downs in this competition and I can't wait to read it all in your biography, 50 Shades Of Ashy.", ]},
+    {queen: "Valentina", reads: ["Valentina, your wardrobe sure does look expensive, but money can't buy talent.", "Valentina, you think you're Miss Venezuela, but you're more like Miss Quinceañera.", "Oh yeah, I had a really good read for Valentina but I can't remember the words...", "Valentina, take that thing off your face. Oh. It is your face. Your other one.", "Valentina, have you ever tried eating your makeup? So you'll be pretty on the inside, too?"]},
+    {queen: "Farrah Moan", reads: ["Farrah Moan, all those mans that buy you fancy designer shoes, they're not your boyfriends, they're called Jons and they're your employers.", "Farrah, you really are the social media queen, too bad you can't get a filter for that personality.", "Farrah Moan. the highlight of Season 9. Just like that makeup trend, you're probably out next week.", "What's up, Farrah Moan? Farrah Moan is so dumb, she thought Valentina was her best friend.", "Miss Farrah Moan. Sweets, if I was as untalented and unoriginal as you are, I too would invest everything I had in looking like somebody more famous than I.", "Farrah Moan. You're just like cotton candy. Pink, so sweet and all hot air."]},
+    {queen: "Aja LaBeija", reads: ["Aja, I love your costumes. That's why I call you the Joan of Arc of drag. Great ideas, badly executed.", "Aja! Welcome to the big leagues, where Charlotte Russe and Forever 21 won't cut it little girl.", "Aja, are you from outer space? Because your ass is out of this world and your face is cratered as fuck.", "Aja, always representing Brooklyn. Honey, by the look of them clothes, you should be representing 'Broke-lyn'", "Aja, you're beautiful, you're gorgeous, you look like Seal.", "Aja, girl, if you lose this season you can move on to your true destiny; which is killing teenagers in their dreams on Elm Street.", "Aja, I feel like people didn't really get your whole thing. I mean, you do amazing special FX makeup; everybody in the room can look like they're brightly lit, but you still somehow look like you're under that one flickering light in a haunted hospital."]},
+    {queen: "Eureka!", reads: ["Eureka, we found it. Girl, how could we miss it?", "Eureka O'Hara, I know you've probably seen 'Dumbo' like a thousand times. But it doesn't matter how big you paint these wings. You are staying on the ground, bitch.", "Eureka O'Hara, stop relying on that body fat.", "Eureka, they say 'Eureka! I found it', right? But when you gonna find out when to shut the fuck up sometimes?", "Eureka O'Hara, from HBO's We're Here. We wish you weren't.", "Miss Eureka O'Hara. The only thing thinning on you is your hairline."]},
+    {queen: "Aquaria", reads: ["Aquaria, God's gift to makeup. So sorry God didn't bless you with the gift of a personality.", "Aquaria, I love your confidence. You're always telling yourself how you're beautiful, how you're talented, how you're gonna win. You're also a pathological liar.", "Aquaria, people don't appreciate how much money you have to spend on makeup when you covering two faces."]},
+    {queen: "Kameron Michaels", reads: ["Kameron Michaels, I don't really have a read for you. Please, just fuck me. Please, just fuck me!", "Kameron Michaels, I think I speak for all the girls here when I say we're really gonna miss you next week."]},
+    {queen: "Asia O'Hara", reads: ["Asia O'Hara, you are the Amazon queen. You get your tights from Amazon, you get some of your outfits from Amazon, and apparently, they sell teeth, too."]},
+    {queen: "Miz Cracker", reads: ["And Miz Cracker. You coin yourself as thin, white, and salty bout you forgetting bitter. Bitter that you are a New York City queen that had to fuck Bob the Drag Queen to get to the top.", "Aquaria! Oh sorry, it's just Miz Cracker.", "Oh, Miz Cracker, you remind me of my childhood, picking Adam's apples."]},
+    {queen: "Monét X Change", reads: ["Miss Monét X Change. Just an exchange? I would have asked for a full refund.", "Monét X Change, girl, you know better to be black using hotel lotion.", "Monét X Change. The sponge queen. Too bad you couldn't soak up a win.", "Monét X Change, you look like Steve Harvey without the mustache. Or the money.", "Monét X Change. Now I know why you have your name. You look so cheap, it looks like you've broken your piggy bank for some change.", "Monét X Change. Girl put some goddamn makeup on. You in full drag and you look like Bob The Drag Queen out of drag.", "Monét X Change. Or shall I call you Sponge Bob Square shape?", "Oh Monét, people are always comparing Monét to Bob The Drag Queen, and I don't think that's right, and I don't think that's fair. Bob is very talented.", "Monét X Change. Now not a lot of people know, Monét is a very talented singer. That's because she's not."]},
+    {queen: "The Vixen", reads: ["The Villain. I mean, The Vixen. I really think it's so fierce that back in Chicago you have that show called 'Black Girl Magic.' Now can you show me a magic trick and just disappear?", "The Vixen, you told us from day one you are here to fight. Sweetheart, why don't you fight some of those wigs with some soap and water?", "The Vixen, do you have a housekeeper, girl? Your kitchen is a mess.", "Miss The Vixen, though your tumbles are stunning, your hair gives me tumbleweed."]},
+    {queen: "Mo Heart", reads: ["Mo Heart, you've got a heart of gold, the voice of an angel, and a hairline that looks like it's been fucked with a weedwhacker.", "Mo Heart, you brag so much about how you make your own clothes, but your dresses are so ugly, they hang themselves.", "Her name's Monica, right?", "Mo Heart, do you remove your makeup with flushable toilet wipes? Because you're an ass and your makeup is shit.", "Mo Heart, you've been passed around more than the donation basket on Sunday. And had gotten less change."]},
+    {queen: "Blair St. Clair", reads: [" Blair St. Clair, bitch, you look hungry. Eat a burger.", "And here's my sister, Blair St. Clair. Winning the crown is like your hit song 'Now or Ever'. Not now, and probably never.", "Okay, Blair St. Clair. You know me. I don't read somebody unless I have a genuine respect for them... so I think we're done here."]},
+    {queen: "Mayhem Miller", reads: ["Mayhem, girl, it is what it is. It is what it is", "Mayhem Miller. I think maybe you should switch out the Miller for Coors Light.", "Mayhem Filler. I'm sorry, I'm sorry, I'm sorry. I mean, Meh-hem Miller.", "Mayhem Miller. Every time I look at your face, I'm always reminded it's 5:00 somewhere."]},
+    {queen: "Yvie Oddly", reads: ["Girl, you're so skinny, you got people in Somalia sending you food.", " Babe, Frodo Baggins called. Girl, he wants his ring back.", "Yvie Oddly, I am so glad, bitch, that I was able to work with you this summer to see for myself that you don't stink. It's just your drag, bitch.", "Yvie Oddly. Your dad is so hot. What happened?"]},
+    {queen: "Brooke Lynn Hytes", reads: ["You 80s-looking porn star. Roses are red, Violets are blue. Your Celine Dion was shit boo boo.", "You can take the girl out of L.A., but it takes three to six months for the L.A. to dissolve out of the girl."]},
+    {queen: "A'keria C. Davenport", reads: ["A'keria C. Davenport. The resting bitch face of the season. Are you sure you just haven't been resting?", "A'keria C. Davenport. You know, I'm actually really excited to hit the road with you. It wasn't until I saw that ass that I truly understood the meaning of a drug mule.", "A'keria- I'm scared of her, so I can't do it.", "A'keria C. Davenport, ass almighty. That ass is magical. It reminds me of a genie's lamp. Because it's cold, dark, and when men rub it, they wish for something better.", "A'Keria Davenport, I just know you're going to carry on that notorious tradition of the Davenports, and go home without the crown.", " A'keria Davenport, my sister, my sister. Ass almighty, ankles all tiny.", "A'keria C. Davenport, one of the realest bitches I know from the waist up.", ]},
+    {queen: "Silky Nutmeg Ganache", reads: ["Silky's drag transformation is incredible. She goes from a busted-looking man, and to just busted-looking!", "Silky! You gave me electric chair that hair, bitch you always comin' here reckless.", "Silk, with the good milk. The only good thing about your milk is that it has an expiration date.", "Silky Nutmeg Ganache. Isn't she precious? No really, isn't that Precious?", "Miss Silky Nasty Nutmeg Ganache. I don't know what flaps more, your lips, your body, or those shoes.", "It's so funny you use a sharpie on your face girl, that's permanent. Unlike your career.", "Oh, she was in such a hurry to get here she put her ass on backwards today.", "Silky! I remember when you were dressed up as a cockroach on the runway. That's the closest you can get to cock.", ]},
+    {queen: "Nina West", reads: ["Nina West. Miami Dolphin called! They wanted their shoulders back."]},
+    {queen: "Shuga Cain", reads: ["Ah Shuga Cain, Shuga Cain. More like novocaine, coz' that mug ain't for sippin, sweetie.", "Shuga, Shuga, Shuga, what can I say? Fossilized, pre-historic drag, I'mma send to see you to retirement home, grandma.", "Shuga Cain. I'm redoing my fireplace and I'm short of brick. Can I borrow your face?"]},
+    {queen: "Plastique Tiara", reads: ["Plastique Tiara. That's exactly what you're gonna need when they send you home.", "Plastique Tiara. Thank God you named yourself for your beauty and not for your personality, cause Plastique Bag just doesn't have the same ring to it!", "Plastique Tiara. I'm looking for a new apartment, how much are you charging for the vacant space between your ears?", "Plastique Tiara. Girl, your drag is beautiful, I must admit, but what is it worth when it's all rented?", "Miss Plastiiique Tiara! I'm truly surprised that you're still here booboo, but I think for us all your elimination need to come."]},
+    {queen: "Ra'Jah O'Hara", reads: ["Ra'Jah, I think I can speak for everybody when I say, what the hell are you doing here? M'kay."]},
+    {queen: "Scarlet Envy", reads: ["Scarlet Envy, is that you? I almost didn't recognize you without the beard."]},
+    {queen: "Ariel Versace", reads: ["You should read up on my new article 'How to not fall in front of RuPaul', bitch."]},
+    {queen: "Crystal Methyd", reads: ["Crystal. Now, I know the judges are always saying that your make up is just, um... terrible. So I got you the season one filter, okay? It's just a towel that you put over the lens of the camera.", "Crystal Methyd, you're the prettiest girl on the planet... of the apes."]},
+    {queen: "Jaida Essence Hall", reads: ["Jaida Essence Hall, the only queen to win Drag Race on a fucking Zoom call.", "Jaida Essence Hall. Look over there! It's the exit.", ]},
+    {queen: "Dahlia Sin", reads: ["Dahlia. You sure do talk a big game for someone who came in 13th place on a 12-person season."]},
+    {queen: "Brita", reads: ["Brita, you really do need the filter with all that spit coming out of your mouth. But, you know, if being a drag queen doesn't work out, you can always find a career as a sprinkler system."]},
+    {queen: "Jackie Cox", reads: ["Miss Jackie Cox. You are so supportive, I can always count on you for a shoulder to cry on and a face to file my nails on."]},
+    {queen: "Jan", reads: ["Jan, do you have a condom I can borrow? I know you're always safe.", "Jan Backpack, Jan is so uptight she doesn't need tape to tuck.", "Jan, in the middle of a global pandemic, we should stay safe every week. Do you have any advice?"]},
+    {queen: "Heidi N Closet", reads: ["Heidi, you have got to be loving this social distancing, because you look best from at least six feet away."]},
+    {queen: "Symone", reads: ["Symone, you're so oily I could definitely see you in a dawn commercial."]},
+    {queen: "Kandy Muse", reads: ["Kandy, you have eaten tons of it.", "Kandy Muse, it is so amazing how we represent such different communities here, gay, trans, pug.", "Kandy Ho, I meant Kandy Muse is a hoe. The only time you're not talking is when you're getting plowed, Joey told me that.",  "Miss Kandy Muse, you're one of those girls that loves to be mad sis. Well I actually have something for, here's a cape now you can be super mad and fly the hell outta here girl."]},
+    {queen: "Gottmik", reads: ["Gottmik, so you are so LA, even your farts have a vocal fry", "Gottmik, you are so known for your mug sis but I really think you mean mugshot because- your having a face like that is criminal."]},
+    {queen: "Rosé", reads: ["Scottish Rosé, you are like a wine, you're everything a basic white girl would want, every time I'm around you I get a headache, and every time I look at your face I just see sour grapes.", "Rosé, when I think of Rosé, I think of expensive beautiful champagne but when I look at you I think of, tap water.", "Miss Rosé, your personality reminds me of a piece of Purdue chicken, white, bland, and unseasoned."]},
+    {queen: "Utica Queen", reads: ["Utica, bitch you're fucking weird, RuPaul could walk up in here in cargo shorts and I would still vote you most confusing thing in the room.", "Miss Utica, you are weird, you are creepy, and for those reasons my dear, I want you to suffocate me with your big dick.", "Utica, the new Dorian Corey of drag race, I mean where are those bodies hidden you fricking freak."]},
+    {queen: "Tina Burner", reads: ["Tina, if this whole drag thing doesn't work out for you, you and those shoulders have a gorgeous career in the NFL.", "TINTA BURNTER, How much Tina have you actually burned bitch? WE ALL WANNA KNOW!"]},
+    {queen: "Denali", reads: ["Denali, meh forgettable.", "Denali! You do got a fat ass, bitch. And that's great cause you're going to need something to land on when she sends you home.", "Dahlia, uh uh, Dina, uh ah bitch I can never remember your name."]},
+    {queen: "LaLa Ri", reads: ["LaLa Ri, bitch this look is sickening girl, is something nobody said to you in the ball challenge."]},
+    {queen: "Willow Pill", reads: ["Miss Willow Pill. I'm a lady, but you, you are a dame. A little dame, a little Hunchback of Notre Dame."]},
+    {queen: "Lady Camden", reads: ["Lady Cameltoe. Next time you wanna be masculine on the runway, leave the mustache at home. Your jawline is enough.", "Lady Camden. I've learned so much from Lady Camden. Did you know in British, 'f**' means cigarette? So could somebody send this cigarette home?", "Miss Lady Camden. I'm really happy for you. I'm glad you made the till this week, and I am so impressed that you managed to do it without wearing a lip for half the season."]},
+    {queen: "Angeria Paris VanMicheals", reads: ["What shape is that, Wendy Williams gotta pee?", "Miss Angeria VanWinkle Bower-Chapman III. Bitch, your name is longer than a CVS receipt, ho."]},
+    {queen: "Bosco", reads: ["Miss Bosco, in drag, you're really this gorgeous, beautiful burlesque woman. Outside of drag, you give me greaseball."]},
+    {queen: "Daya Betty", reads: ["Daya Betty, condragulations, my dear. You are American's next... Crystal Methyd.", "Daya Betty. I'm surprised you're not a Gemini, 'cause the whole two face act you got going on could have fooled me."]},
+    {queen: "DeJa Skye", reads: ["DeJa Skye, we know you're always telling bad dad jokes in the werkroom. Though you may not be a comedy queen, you certainly have the face for it.", "DeJa Skye. You're like a really good pair of socks. Soft, supportive, full of cum.", "DeJa Skye. Everyone in the season said you're helpful. You do everything for them. You remind them of Jesus. You and Jesus have something in common. You both have 12 followers."]},
+    {queen: "Jorgeous", reads: ["Little Miss Jorgeous. The tiniest little waist... of time.", "Serena ChaCha.."]},
+    {queen: "Jasmine Kennedie", reads: ["Miss Jasmine Mouth Almighty. You know, I am so glad that on this whole journey, you have found... your silence.", "Jasmine Kennedie, why do you look so old, but you are so young? You are the definition of white do crack.", "Jasmine. Was your inspiration behind your outfit COVID-19? Because it was tired and had a lack of taste.", "Jasmine. You are one brain dead slut. You put the bottom in lobotomy.", "Jasmine Kennedie. My lip sync assassin. More like assassinated by three non-dancers at once."]},
+    {queen: "Kerri Colby", reads: ["Miss Kerri Colby, the face of a superstar... for podcasting.", "Kerri Colby. You are beautiful, just like your mother. Too bad she didn't pass down those dancing skills. It must have skipped a generation.", "Kerri Colby. Your face is so frozen hat it just asked me, do you wanna build a snowman?"]},
+    {queen: "June Jambalaya", reads: ["Miss June Jambalaya. As short as your time was, maybe you should change your name to February", "June Jambalaya, you know, I know you said that you were top, but you're really good at being in the bottom."]},
+    {queen: "Maddy Morphosis", reads: ["Maddy Morphosis, when I look at you, I just think, oh, man."]},
+    {queen: "Orion Story", reads: ["Orion Story. You clearly are a story, a bedtime story.", "Orion, how's your last name gonna be Story? You can't even read."]},
+    {queen: "Kornbread Jeté", reads: ["And my good sis Kornbread. I know you love the Mayflower because you always wear them Pilgrim pumps.", "Kornbread, the snack that smiles back. You know, a little known fact about-- an unknown fact about Kornbread actually is that she's the only person in history to ever out-pizza the Hut."]},
+    {queen: "Dearis Doll", reads: ["Dearis Doll. I don't think you would create a fanpage for Dearis Doll. You should start the Shrimp Farmers Association page instead.", "Dearis Doll... You're talented... But I think you're better off raising shrimp because it fits your country image."]},
+    {queen: "Amadiva", reads: ["I love the way you do all your characters because you're an actor, but putting up an act all the time must be tiring.", "Well, from listening to you all speak, I really do agree with the hashtag. Amadiva, you really are the lowest of the low. Simply speaking, a single cell organism."]},
+    {queen: "Natalia Pliacam", reads: ["Natalia, I'm so happy that you're still here with me, because if you leave, I'd be the only asshole left on this show.", "Someone left a column here!", "Uncle Natalia. You're not fat, you just haven't taken a shit yet."]},
+    {queen: "Année Maywong", reads: ["Année Maywong! Your makeup is beautiful, but you have a twink body, you know.", "Année Maywong... I'll come back later, this bitch is too pretty."]},
+    {queen: "Petchra", reads: ["Petchra, I thought an Uber Man came to visit us. If I wanted something I'll start a chat with you.", "Petchra. Do tou wanna know why she's always wearing a cap? Because if you lift that up, we'd be witnessing a second sun."]},
+    {queen: "JAJA", reads: ["Pit Crew! You know, JAJA is really happy that you're here. You're like, tall, smart, handsome, clever and it seems like you're really funny. Something she'll never be.", "Hi, JAJA. You look great today. You'll look even better when you're selling water filters."]},
+    {queen: "B Ella", reads: ["Oh! This is a big studio, who left a gas tank here?! What if it explodes?!"]},
+    {queen: "Tormai", reads: ["Tormai! Your face changes every week. Your chin is serving us stalactite realness. It's growing everyday", "Tormai. Now I know why you don't talk much when you're here. Because when you speak, you'd lie. And when you lie, your nose would grow. That's why you don't talk."]},
+    {queen: "Vanda Miss Joaquim", reads: ["VANDA! You have a gorgeous face. But you really need to wash your hair. That chicken hairstyle can't help control all those oils", "Vanda Miss Joaquim. You are a natural born actress. The expressions on both your faces are beautiful.", "Vanda. Everybody was like... 'Oh, you look gorgeous. Your outfit is stunning. When are you going to show your skin?' But actually I'm wondering, when are you going to show your true colors?"]},
+    {queen: "Angele Anang", reads: ["Angele, Thailand's very own Beyonce. I don't think she should keep being Beyonce. She should keep looking like that crazy homeless runway she did. Because she is actually filthy as she looked that day, thank you.", "Angele Anang. Beyoncé? You think? You're beyond hope.", "Angele, you're a pretty woman. You never forget to dress up. You never forget to put on makeup. But you always forget to shave your face."]},
+    {queen: "Bandit", reads: ["Bandit. If gluing things to fabric was a talent, you'll have ONE talent.", "Bandit. Since you have health issues because of your age, I think you should go get some rest.", "Bandit. It's unfortunate that you're a designer. Because with that cloth around your waist, you'd look like another Chinese grocery store owner."]},
+    {queen: "Pangina Heals", reads: ["Pangina. Couture and homemade aren't the same thing, bitch.", "Pangina, I would love to read you but, like most international pop stars, you didn't make it big in the States.", "Pangina, okay, so RuPaul was looking for the most beautiful, talented drag queen from Thailand. Was she busy?"]},
+    {queen: "Miss Gimhuay", reads: ["Oh, hello, Uncle Natalia Pliacam! Never mind, you're not her, I thought you were her.", "Miss Gimhuay, darling. Exactly, you look like Natalia Pliacam. It's just the difference is that, she won. You're not going to win, darling.", "Miss Gimhuay, I may have gotten filler injections, but you're the one who needs insulin injections."]},
+    {queen: "Genie", reads: ["Genie. You know? You might want to start polishing your lamp. It's starting to lose its shine. Just like your challenges.", "Genie, Genie, Genie. You got the most fabulous outfit. The only thing that's bigger than your costume is your ego."]},
+    {queen: "Mocha Diva", reads: ["Mocha Diva, I got something to tell you again. Sashay away.", "Mocha Diva, I have a gift for you, it's a Thai book named Sombat Phudi.", "Mocha Diva. Some say 'You're not wearing nails, you're not doing drag'. Even if you're wearing nails, you're also not doing drag also. I see nothing but hell."]},
+    {queen: "Srimala", reads: ["Srimala? I don't know if you've run out of jokes this week. But after we're done filming, Mic Mod Nee can help you."]},
+    {queen: "The Vivienne", reads: ["The Vivienne! Queen of the Mersey. It's time you got on that ferry and fucked off!", "The Vivienne... proof you can polish a turd!", "The Vivienne, those lips are so big, when you floss your teeth it looks like my ass wearing a thong."]},
+    {queen: "Divina De Campo", reads: ["Divina de Campo. Now, I love your work on the telly, but my favourite show you've done already is... The Grand National! NEIGHS"]},
+    {queen: "Baga Chipz", reads: ["Baga Chipz... More like Baga Shite! She's like class in a glass... without the glass or the class!", "Baga Shitz... How many times are we gonna have to flush to get rid of you?", "Baga Chipz, I think you took the wrong stage door. They're filming Botched next door.", "Baga Chipz, more like Jabba the Hut! We can tell you are the filler queen.", "And of course, the people's love, Baga Chipz. You walked into the room as Princess Di, but I just saw Princess Di-arrhea."]},
+    {queen: "Cheryl Hole", reads: ["Oh, Cheryl, you dumb, raggety-ass bitch! 'I'm in the bottom! I'm in the bottom! I'm in the bottom!' We know you're a bottom! You could use the Eiffel Tower as a marital aid, you slack bitch!", "Cheryl Hole... Or as you're more affectionately known, Cheryl Baggy, Battered, Thirsty Hole!", "Cheryl Hole, we know your biggest drag inspiration is Alyssa Edwards. You've got the dancing, the outrageous personality, the overbite and the back rolls!"]},
+    {queen: "Blu Hydrangea", reads: ["And Blu... If the Milky Bar Kid and Casper The Friendly Ghost had a rent boy baby. Awww!", "Blu Hydrangea! My babe. Now, you're known as the make-up girl, but your best make-up job you've done is painting on that innocent look every single week.", "And Blu, in the immortal words of Madonna, I loathe hydrangeas.", "Blu Hydrangea, feels like we've got to keep the reading safe, cause that's very on-brand for you.", "Blu Hydrangea, you are such a horny little devil. When you took the A-Levels, you got an STD.", "Blu Hydrangea, more like a dead funeral wreath"]},
+    {queen: "Crystal", reads: ["Crystal, my darling. How aptly named. Just like crystals, you are lifeless, stiff, and I can see you right through you!"]},
+    {queen: "Lawrence Chaney", reads: ["Lawrence Chaney, I go to bed at night and I just lay there and wonder how you're getting on... getting on the bed without breaking it, you big bitch!", "Lawrence Chaney, the Lady Bunny of Glasgow. Much like Lady Bunny, you're known for your big wigs, those terrible white go-go boots, and maybe one day you'll find a personality.", "Lawrence Chaney, look at you, a well-rounded queen, and I do mean well-rounded, and the number one reason to stay away from Glasgow."]},
+    {queen: "Bimini", reads: ["Bimini is so stupid, when she heard the government were putting chips in people, she asked for a side of vegan mayo.", "Bimini, you know, you're known for your iconic tricks on the chair. But the next time, how about you do us all a favor and make sure it's an electric one."]},
+    {queen: "Tayce", reads: ["Tayce! Queen, look at you. Your runways are unsurpassed, baby girl, I must say. But I would love to see you slip into something long and flowy... like the Thames.", "Tayce, the queen of face. But the last time I remember you served me face, you was laid on your back with your tongue out, and I was sat on it."]},
+    {queen: "Ellie Diamond", reads: ["Ellie Diamond, you are so stupid, you studied for your COVID test.", "Ellie Diamond, oh my God, look at you. But you're kind of lackluster. You should change that last name to Ellie Zirconia."]},
+    {queen: "A'Whora", reads: ["A'Whora, I heard you've been doing some soul-searching recently. I hope you find one.", "A'Whora. I wanna give you a big squeeze, but I'm worried you'll pop and there'll be filler everywhere."]},
+    {queen: "Sister Sister", reads: ["Sister Sister, I like how you do a double word play, the same way you like to double-up on people's runways when you hit the stage.", "Sister Sister, you know, you've got such a kind face... the kind you throw bricks at!"]},
+    {queen: "Ella Vaday.", reads: ["Uncle Nick-- I mean, Ella Vaday. You look like such a beautiful man when you're in drag.", "Veronica Green-- Sorry, I meant Ella Vaday. Do you know what you remind me of? Unseasoned chicken.", "Ella Vaday, you are the trade of the season, but it's just a shame you can't trade that for a personality."]},
+    {queen: "Kitty Scott-Claus", reads: ["Kitty Scott-Claus, more like Kitty's Scott no wins.", "Kitty-Scott Pores.", "Kitty Scott-Claus. She's described herself as having the body of a Greek goddess, but am I the one who has to tell you the Buddha is not Greek."]},
+    {queen: "Scarlett Harlett", reads: ["Scarlett Harlett. How many, like, times, like, do you need, like, to say 'like' before, like, you get, like, the sentence out, like?", "Scarlett Harlett... ... Sorry. I don't want say anything, in case you interrupt me.", "Scarlett Harlett. I wanna say Starlet Harlett, but she's nothing of the sort."]},
+    {queen: "Choriza May", reads: ["Choriza May, you're the horniest bitch I've ever met. Sometimes when I hug you, I can feel your chorizo.", "Chorrriza May. Proof that in every good gene pool there is a shallow end.", "Choriza May. I know we're in a pandemic, but, girl, do you and your fashion sense have to be two meters apart every fucking week?"]},
+    {queen: "River Medway.", reads: ["River Meh-way.", "Jeez, River, I didn't see you there. You make absolutely no impression at all.", "River Medway. I would make a joke about the fact your name's a river and you are coasting, but there's no more time left."]},
+    {queen: "Vanity Milan", reads: ["Vanity Milan. It's ironic that you call yourself Vanity, because someone who's vain might know how to do their makeup.", "Vanity Milan, the judges say you're coming to the competition slowly but surely. Now I just can't wait for your wardrobe arrive."]},
+    {queen: "Priyanka", reads: ["Priyanka, it's so crazy how you can paint so fast. We paint on face, and you paint two faces.", "Priyanka, you talk about having sex a lot, but the only thing you're 'fucking' is stupid.", "Priyanka, so, apparently, you are a DTF, but to me, you're more QTL: questionable taste level."]},
+    {queen: "Rita Baga", reads: ["Rita Baga, you're only in your 30's, but you paint like you're trying to get the seniors' discount at the supermarket.", "Rita Baga, the only thing worse than your drag closet is your piss-poor attitude!", "Rita Baga, last week, I saw you playing with the plastics, and I saw that there was a slinky there, and you really remind me of a slinky 'cause I don't know what you're good at, but I'd love to push you down the stairs.", "Rita Baga, you think you're all that and a bag of chips, but I'm getting more 'bag of garbage...'"]},
+    {queen: "Scarlett BoBo", reads: ["Scarlett BoBo, your face is like your spot in this competition: filler.", "BoBo, you should really change your last name 'HoBo', 'cause your drag is more than pedestrian."]},
+    {queen: "Jimbo", reads: ["Jimbo, I was so excited to finally see you out of drag first time, but really it's all the same: mediocre.", "Ms Jimbo, Canadian, just like Celine Dion. That explains when you do the lip-sync, you go down like the Titanic.", "Jimbo, Jimbo, Jimbo, do you know why you haven't won a lip-sync? Because there isn't a ring to, 'You're a Winner, Grandad'"]},
+    {queen: "Lemon", reads: ["Lemon, can you hold my drink? I always love putting it on a 'coaster.'", "Lemon, you're so full of yourself, you could be a lemon meringue pie: light and fluffy on top with a crusty little bottom."]},
+    {queen: "Ilona Verley", reads: ["Ilona Verley, in drag, you give us Morticia Addams. Out of drag, Uncle Fester.", "Okay, can we just embrace the fact that Ilona wasn't complaining for five seconds? Thanks!"]},
+    {queen: "BOA", reads: ["BOA, 'Bitch On Arrival.' When are you gonna show up girl?", "BOA, I'd love do take you to the gym, not to work out with you, but to use you as my exercise ball."]},
+    {queen: "Kiara", reads: ["Kiara, you just finally understanding how to speak English. But now, when will you finally understand how to do drag!?", "Kiara, I never understood the term 'loose lips' until I met you. You get moved more than a revolving door during rush hour!", "Kiara, are you a bird? 'Cause all your runways are 'cheep-cheep-cheep-cheep-cheap'", "Kiara, was your mom a bird? 'Cause you pigeon-toed, bitch!"]},
+    {queen: "Adriana", reads: ["Don't say anything, because the guy who does your subtitles, honey, he's off today."]},
+    {queen: "Eve 6000", reads: ["Eve 6000.  The only thing more wrecked than your emotional state is your hole. #hemorrhoids.", "Eve, getting to know you is like going to the movie theater. I'll sit back, relax, and watch as you project all of your scripted emotion over the entire room.", "Eve 6000. Sister to sister, let me give you some advice. Don't ever be ashamed of who you are. That's your parents' job."]},
+    {queen: "Pythia", reads: ["Pythia, girl, with a nose like that, you remind me of Pinocchio. I'm just shocked it didn't grow nine inches when you said you had fashion taste."]},
+    {queen: "Kimora Amour", reads: ["Kimora, we can tell that you're from the ball scene. I mean, your lashes love voguing.", "Kimora, I almost sat on you last time. I thought you were the toilet seat. You got so much shit coming out of that mouth."]},
+    {queen: "Gia Metric", reads: ["And Gia. Or should I say Gigi not as good?", "Gia Metric, I see where you got your name. Your head is a square, your silhouette is a straight line, and your track record is a circle.", "Gia Metric, you're definitely one of the most talented queens here. That talent will take you so far, and I hope you stay there."]},
+    {queen: "Suki Doll", reads: ["Suki Doll, oh, my God. The spirit is giving me a message. It says... you're a little bitch.", "Suki Doll, your name is very fitting. 'Doll' because you're the Asian version of Annabelle."]},
+    {queen: "Icesis Couture", reads: ["Icesis Couture. Or as I like to say, Icesis H&M."]},
+    {queen: "Kendall Gender", reads: ["Kendall, you have the greatest-- sorry, grayest breasts I've ever seen.", "Kendall Gender, in drag, Beyoncé, sure, out of drag, Jay-Z."]},
+    {queen: "Vivian Vanderpuss", reads: ["Vivian Vanderpuss. My parents always taught me that two wrongs never make a right. For example, your parents.", "Miss Vivian Vanderpuss, darling. Listen, when I told you that you were filler queen, darling, it wasn't an insult; it was a recommendation.", "Vivian Vanderpuss, when they were casting for the season your name was on the top of the list. That list was, 'worst-case scenario.'"]},
+    {queen: "Jada Shada Hudson.", reads: ["Jada Shayda Hudson. Jada is always saying, what's goodie? What's goodie? And after seeing her drag, I think she's actually asking what good is?", "And, Jada, I can't say nothing bad about you, I mean, that's the judges' job."]},
+    {queen: "Miss Fiercalicious", reads: ["Miss Fiercalicious, if complaining was a talent, you'd finally be talented.", "Fierce. You're like a beautiful cupcake made of shit, you're really pretty, but you're still made of shit."]},
+    {queen: "Irma Gerd", reads: ["Irma Gerd. Last week you dressed up as a clown, but you doing drag will always be the biggest joke for me."]},
+    {queen: "Gisèle Lullaby", reads: ["Gisèle Lullaby, I love that your face is just like the city of Montreal; I can always see Mount Royal right in the center of town.", "Miss Gisele Lullaby, body shape Coca-Cola... in can."]},
+    {queen: "Lady Boom Boom", reads: ["Lady Boom Boom… Like the Great North American squirrel, you're graceful, petite, and you're able to fit an alarming amount of nuts in your mouth.", "Miss Lady Boom Boom, I know what you've got in your bags. Cucumber."]},
+    {queen: "Kita Mean", reads: ["It is ssssso good to have you here in the competition. Now, ♪ dun-dun da-dun-dun ♪... fuck off.", "Kita Mean. I never knew why they filmed The Hobbit in New Zealand, and now I know.", "Kita Mean! No, you know, Kita's gone through a fantastic weight-loss journey. You've got enough leftover skin to make a family resemblance costume."]},
+    {queen: "Art Simone", reads: ["Art Simone, you're a brilliant drag queen and an amazing makeup artist. You can paint pretty much anything, except a win."]},
+    {queen: "Karen From Finance", reads: ["You look like the kind of person who enjoys hemorrhoids.", "Karen From Finance, if I threw a stick, would you leave?", "Karen From Finance, you're in for a very big payday soon, yeah, when I hire you to do the tax on my prize money."]},
+    {queen: "Elektra Shock", reads: ["I finally understand your name, 'cause it's a shock to me that you're still in the competition.", "Elektra Shock, man...", "Elektra Shock, hello. I was so excited when I found out we were coming to the COVID-free haven that is New Zealand, but if I was you, I would get a COVID test 'cause you've clearly lost your sense of taste."]},
+    {queen: "Maxi Shield", reads: ["Now, I don't want to call Maxi old, but uh, the calculator on her first phone was an abacus."]},
+    {queen: "Etcetera Etcetera", reads: ["You know, this competition is full of fierce talent, hilarious people, Etcetera Etcetera... It's kind of interesting, for someone that is so woke, I'm wondering when you're gonna wake the fuck up.", "Etcetera Etcetera. Now, just a recap on pronouns for the room here, now, out of drag, Etcetera uses they/them pronouns, so for example: 'They' haven't been in the top, so we won't be seeing 'them' in the final."]},
+    {queen: "Carmen Farala", reads: ["Miss Carmen Farala... or Carmen de Mairena?", "I love it. You are an eternal artist. When you'll die... your remains will stay floating in the Pacific."]},
+    {queen: "Sagittaria", reads: ["Aquaria. I mean, Sagittaria. How does the blood get to your brain after you take off that belt? Because I don't notice a difference.", "Sagittaria... your body says woman... but your face, Man Project."]},
+    {queen: "Pupi Poisson", reads: ["Uhhhmm... Pupi Poisson. You're so, so, so, so, so old... period.", "This, the girl is ... Pupi Poisson, this is your show. This will finally lead you to stardom. Let's hope you don't do any more, and that this one catapults you, but far away.", "From here you can be seen... it happens.", "I would talk about Pupi Poisson, but my mother taught me not to disrespect the elders, so..."]},
+    {queen: "Dovima Nurmi", reads: ["Dovima. I have to work a little to get something good out of you, but with how slow you walk the runway, when you walk out the door, two episodes will have passed.", "Uhhhmm... Dovima... Normi? She, for those who don't know her, has a problem for every solution.", "Dovima Nurmi. No, no, don't move, the filter will go away."]},
+    {queen: "Hugáceo Crujiente", reads: ["Hugáceo Crujiente. The curtain opens, you appear, with a look that can be understood. The curtain closes. What's the movie called? The Impossible."]},
+    {queen: "Arantxa Castilla La Mancha", reads: ["Your power to imitate Hannah Montana should change to Hannah Slut. Please take off your hat now and brush that hair."]},
+    {queen: "Sharonne", reads: ["Sharonne, you're like Sharon Stone: a star, a legend. And old, like Sharon Stone", "Let's see, Sharonne. We've found a performance of yours when you started, the beginning. I'd like to see it, it's a pity that VHS Players got discontinued", "Sharonne Shimai, the other day I entered dressed like a Flinstone, I was coming back from watching your first performances in Cave of Altamira"]},
+    {queen: "Estrella Xtravaganza", reads: ["Estrella, darling, I'm really sorry you had COVID, because you still haven't recovered your taste", "Ok, Estrella, let's come for you. Do you know Showgirls's quote that says 'There's always someone younger and hungrier coming down the stairs after you'? That's what I feel every day we go breakfast, bitch!", "Estrella, my dear, I love you. I just can say that watching you perform and model is like watching kebab's meat spinning"]},
+    {queen: "Venedita Von Däsh", reads: ["Vene, darling, you're divine, girl, divine, divine, to decor my living room"]},
+    {queen: "Marina", reads: ["Marina. You are so happy about being negative on your COVID test, we didn't dare to tell you it was about your personality test"]},
+    {queen: "Drag Sethlas", reads: ["Sethlas, my dear, I just want to tell you one thing: Get up"]},
+    {queen: "Diamante Merybrown", reads: ["Let's see, Diamante, darling, I wanted to tell you something but... you don't inspire myself at all", "Diamante Merybrown, you have a name like an expensive 5th Avenue brownie, but in reality, dear, reality is that you're a cheap brownie of a generic brand in any neighborhood of Carabanchel"]},
+    {queen: "Jota Carajota", reads: ["Jota Carajota. I love your fashion sense, it's a mix between pretty and unnecesary"]},
+    {queen: "Samantha Ballentines", reads: ["Samantha, dear, when we go out of here we have to do a show together. I can be Hagrid and you Voldemort!", "Samantha Ballentines. I love to go out with you, because you're a painting. Velázquez's. Oh, no, from Picasso's"]},
+    {queen: "Ariel Rec", reads: ["Ariel ShReck. Oop! sorry."]},
+    {queen: "Elecktra Bionic", reads: ["Elecktra. Well, you're known as the pretty queen, beauty, in fact when you won all those beauty pagean-... Oh, it wasn't you? Dirtbag.", "Elecktra, your looks on the runway and your creativity can be summed up in one word: thong.", "Elecktra, you are known for being beautiful, you have an amazing body, you are very tall. They say 'height is half the beauty', but where's the other half?"]},
+    {queen: "Farida Kant", reads: ["Farida Kant! You're beautiful, great, you strut like a diva, you can sew. Honey, you'd be perfect, too bad this show is not Project Runway.", " Well, Farida, I always see you in the dressing room with your little case, you pull out needles, threads, fabrics... but when are you gonna pull out some personality?", "Farida Kant. She, on the runway, is always the most beautiful and always the best. Too bad that in the challenges, singing, dance and impersonator, sweetie, in my opinion, come make me a hem and take me away."]},
+    {queen: "Le Riche", reads: ["Le Riche, when are you starting to work in the disco as a teleprompter? 'Cause as a drag queen you're not great."]},
+    {queen: "Luquisha Lubamba", reads: ["Luquisha Lubamba! Like Samuele Bersani would say, you're just the copy of a thousand summaries.", "Luquisha Lubamba. Having you here makes me understand that sometimes, in life, making people pity you can save your ass."]},
+    {queen: "Paloma", reads: ["Paloma! We call her Palo, we call her Papita... She's a great director, really. But fortunately there is drag otherwise you would spend your life as an extra", "You look tired right now. You really have an ass head that the last time they did you a PCR test, they diagnosed you with colorectal cancer"]},
+    {queen: "La Grande Dame", reads: ["La Grande Dame, she's tall, she's slender, she's beautiful and she parades. How beautiful it is to be a coat hanger", "Dame. 1m10 of legs. After the Eiffel Tower, the most visited monument in Ile-De-France"]},
+    {queen: "Lolita Banana", reads: ["It was daring, to take a retired Lady Gaga transformist into the program"]},
+    {queen: "La Big Bertha", reads: ["Lova Ladiva... Euh... La Big Bertha... Sorry. Drag is in your blood! It's a pity that there is bad circulation", "Bertha, I'm not going to tease at you, I'm not going to do some weird fatphobia thing and all that... Just, please, can you pay back the sofa you broke me while sitting down on?"]},
+    {queen: "Elips", reads: ["Elips, it's like a furtive little fart, it's silent, but it's violent"]},
+    {queen: "Kam Hugh", reads: ["Kam. You are so cute, darling! I really want to prick her, but her surgeon has already taken so much care..."]},
+    {queen: "Envy Peru", reads: ["Miss Envy Peru, the jury would like more surprises from you. I disagree. I was surprised that you made it through."]},
+    {queen: "Janey Jacké", reads: ["Miss JJ, we all know you from 'All Together Now,' and I don't mean the show, but last month's bukkake.", "Miss Janey Jacké, the proud OG Miss Fish. Sadly, this will be your only title.", "JJ, I would love to read you but, like most international pop stars, you didn't make it big in the States.", "You put the ho in holland. Now, I hear that tulips are the biggest export. Is that what happened to yours."]},
+    {queen: "Ma'Ma Queen", reads: ["Ma'Ma Queen. If you ever wondered what happened to Lurch from the Addams Family, here he is.", "Ma'Ma Queen reminds me of my very first pet: a stick insect. But I never saw a stick insect with roots so dark even pigeon's won't shit on them."]},
+    {queen: "Miss Abby OMG", reads: ["Even though a drag wears a gold ring, it's still a trav from AliExpress.", "Abby OMG, she speaks five languages and still doesn't make sense.", "Dear Abby OMG, you look like a little bird: cheap, cheap, cheap."]},
+    {queen: "ChelseaBoy", reads: ["ChelseaBoy. There's only one thing safer than PrEP. Chelsea's look."]},
+    {queen: "Sederginne", reads: ["Miss Aubergine- Uh, Sederginne. Uhm, I think you're a great-looking man. That's all.", "Sederginne steam machine, it still breaks my heart they're testing make-up on animals."]},
+    {queen: "Madame Madness", reads: ["Madame Madness, you're not only a queen with a beard, you're also one without a personality", "Madame Madness, I don't have a roast for you. I didn't expect you in this episode."]},
+    {queen: "Ivy-Elyse Monroe", reads: ["Ivy-Elyse Monroe. Corona hit you hard, darling.", "Ivy-Elyse Monroe. "]},
+    {queen: "Vivaldi", reads: ["Vivaldi. You look like one a Picasso. Nice from far, but far from nice.", "Vivaldi. It's so good that the 'Make A Wish' foundation has given you the opportunity to be here today.", "valdi. Your name sounds like music, but you look like an unfinished symphony."]},
+    {queen: "The Countess", reads: ["Countess. You're beautiful, young, chic. A pity your sugar daddies couldn't buy you any talent.", "Your name's the Countess, but you can't count."]},
+    {queen: "Tabitha", reads: ["Mister Potato Head. You're like an Egyptian goddess. But you've got a face like a bloodhound. And your body looks like it's been decomposing for decades.", "Tabitha, we know you look like a mocro boy but they don't eat pork, do they?", "Tabitha. You're always talking tight, but all I see is a wide neck."]},
+    {queen: "My Little Puny", reads: ["My Little Puny. That Puny isn't that small girl, you're so wide I could taste your ulcer when I ate your ass."]},
+    {queen: "Vanessa van Cartier", reads: ["Vanessa van Cartier.  Are you still under warranty?"]},
+    {queen: "Keta Minaj", reads: ["Keta Minaj. You should've been in a gay circus, and it would be cheap of me to call you a clown, because circus dogs have feelings too.", "Keta Minaj. The only k-hole every gay wants to avoid."]},
+    {queen: "General", reads: ["Smile for me. Don't smile.", 
+    "You got a grill that could put Black & Decker out of business.", 
+    "And the one on the end, oh just look at her, are you going swimming, or are you doing drag, mama, what is that?",
+    "Honey, don't you know a thing about doing a manicure and a pedicure? Fix them hooves, honey.",
+    "Everyone thinks you're pretty. I do think you're pretty. I think you have a beautiful face... for radio.",
+    "Sweetie, I'm sorry! If you don't have a wrist band you can't be in here for the meet and greet!",
+    "Oh, wow. Is that Dumbo Flying in?",
+    "Oh, darling how old are you?",
+    "Do you pick up satellite with those big ones?",
+    "As Lady Gaga once said, there can be a hundred people in the room, and 99 have no idea who you are.",
+    "WHO CARES?",
+    "You know, looking at you, your teeth really represent the cast here. Some are big, some are small, two of them are white.",
+    "Your idea of a wardrobe is a swimsuit in a different color.",
+    "Rotted.",
+    "Never mind.",
+    "You're still here?",
+    "At this point you really should just make like your hair line and recede.",
+    "Haute couture? More like haute glue.",
+    "I don't blame you for not being a great makeup artist. There's not many things you can do with coffee grounds and gasoline.",
+    "Have you ever tried eating your makeup? So you'll be pretty on the inside, too?",
+    "People don't appreciate how much money you have to spend on makeup when you covering two faces.",
+    "I don't read somebody unless I have a genuine respect for them... so I think we're done here.",
+    "Girl, you're so skinny, you got people in Somalia sending you food.",
+    "I remember when you were dressed up as a cockroach on the runway. That's the closest you can get to cock.",
+    "I'm looking for a new apartment, how much are you charging for the vacant space between your ears?",
+    "I bet R. Kelly wouldn't even piss on you.",
+    "Meh forgettable.",
+    "You're like a really good pair of socks. Soft, supportive, full of cum.",
+    "You are so stupid, you studied for your COVID test.", 
+    "It's so crazy how you can paint so fast. We paint on face, and you paint two faces.",
+    "The face of a superstar... for podcasting.",
+    "You talk about having sex a lot, but the only thing you're 'fucking' is stupid.",
+    "We can tell that you're from the ball scene. I mean, your lashes love voguing.",
+    "Sister to sister, let me give you some advice. Don't ever be ashamed of who you are. That's your parents' job.",
+    "You look like the kind of person who enjoys hemorrhoids.",
+    "If I threw a stick, would you leave?",
+    "Man...",
+    "I don't have a roast for you. I didn't expect you in this episode.",
+    "ah yes... wait... who is that again?"
+    ]}
+];
+
+let whoWhyCompetition = [
+    "they are lacking experience to be the winner",
+    "working with them was frustrating and they were not in the same level as the other contestants",
+    "they were the weakest person in the group",
+    "they are comfortable being a beautiful girl",
+    "of their runway look",
+    "of their runway looks throughout the season",
+    "of their performance throughout the season",
+    "they are resting on being pretty",
+    "of their lack of improvement throughout the season",
+    "they are not on the same level as the other contestants",
+    "of their performance in the competition",
+    "is not really a school for kids, its a competition for the best of the best.",
+    "of their delusion about their performance throughout the season",
+    "of their performance in the challenge",
+    "the struggle was real",
+    "they doesn't have anything else to offer",
+    "of their performance in the challenge and their runway look",
+    "of the critiques given by the judges",
+    "of their performance in the challenge and overall competition",
+    "they has done well so far, so bombing looked worse.",
+    "of their runways not having variation",
+    "they are not ready for the competition."
+];
+
+let whoWhyRelation = [
+    "they are annoying",
+    "their attitude doesn't represent the values of a winner",
+    "they are lacking maturity",
+    "of their delusion about their performance throughout the season",
+    "they lacked maturity to be on the season",
+    "of their lack of professionalism and immaturity",
+    "of their lack of growth",
+    "they doesn't think they are a star",
+    "of their lack of growth, polish, and refusal to listen to the judges critiques throughout the competition",
+    "their are lacking kindness to be a winner",
+    "their drag is not in the same level as the other queens",
+    "of their lack of versatility",
+    "they can't understand their words as they speak Spanish",
+    "of their attitude in the challenge",
+    "of their excuses in the competition",
+    "they doesn't deserve the crown",
+    "of their lack of drag maturity",
+    "their personality doesn't live up to the others"
+];
+
+function lipsyncDesc() {
+    let screen = new Scene();
+    screen.clean();
+    for (let i = 0; i < bottomQueens.length; i++) {
+        bottomQueens[i].getLipsync();
+        bottomQueens[i].lipsyncScore = (bottomQueens[i].lipsyncScore - bottomQueens[i].favoritism) + bottomQueens[i].unfavoritism;
+    }
+    screen.createHeader("It's time...");
+    screen.createBold("For you to lip-sync... for your lives! Good luck, and don't fuck it up.");
+    lsSong();
+    screen.createHorizontalLine();
+    let slay = bottomQueens.filter(function (queen) { return queen.lipsyncScore > 11; });
+    let great = bottomQueens.filter(function (queen) { return queen.lipsyncScore >= 8 && queen.lipsyncScore < 12; });
+    let good = bottomQueens.filter(function (queen) { return queen.lipsyncScore >= 4 && queen.lipsyncScore < 8; });
+    let bad = bottomQueens.filter(function (queen) { return queen.lipsyncScore >= 2 && queen.lipsyncScore < 4; });
+    let flop = bottomQueens.filter(function (queen) { return queen.lipsyncScore >= 0 && queen.lipsyncScore < 2; });
+    for (let i = 0; i < bottomQueens.length; i++) {
+        bottomQueens[i].lipsyncScore = (bottomQueens[i].lipsyncScore + bottomQueens[i].favoritism) - bottomQueens[i].unfavoritism;
+    }
+    createLipsyncDesc(slay, great, good, bad, flop);
+    screen.createButton("Show result", "lipSync()");
+}
+
+function asLipsyncDesc() {
+    let screen = new Scene();
+    screen.clean();
+    for (let i = 0; i < top2.length; i++) {
+        top2[i].getASLipsync();
+    }
+    screen.createHeader("It's time...");
+    screen.createBold("For you to lip-sync... for your legacy! Good luck, and don't fuck it up.");
+    lsSong();
+    screen.createHorizontalLine();
+    let slay = top2.filter(function (queen) { return queen.lipsyncScore > 11; });
+    let great = top2.filter(function (queen) { return queen.lipsyncScore >= 8 && queen.lipsyncScore < 12; });
+    let good = top2.filter(function (queen) { return queen.lipsyncScore >= 4 && queen.lipsyncScore < 8; });
+    let bad = top2.filter(function (queen) { return queen.lipsyncScore >= 2 && queen.lipsyncScore < 4; });
+    let flop = top2.filter(function (queen) { return queen.lipsyncScore >= 0 && queen.lipsyncScore < 2; });
+    createLipsyncDesc(slay, great, good, bad, flop);
+    screen.createButton("Show result", "asLipSync()");
+}
+let assassin;
+function lsaLipsyncDesc() {
+    let screen = new Scene();
+    screen.clean();
+    screen.createHeader("It's time to ruveal...");
+    assassin = allQueens[randomNumber(0, allQueens.length - 1)];
+    bottomQueens.sort((a, b) => b.votes - a.votes);
+    top2.push(assassin);
+    screen.createImage(assassin.image, "royalblue");
+    screen.createBold("The lip-sync assassin is... " + assassin.getName() + "!");
+    screen.createParagraph("Now, it's time for you to lip-sync... for your legacy!");
+    lsSong();
+    for (let i = 0; i < top2.length; i++) {
+        top2[i].getASLipsync();
+    }
+    screen.createHorizontalLine();
+    let slay = top2.filter(function (queen) { return queen.lipsyncScore > 11; });
+    let great = top2.filter(function (queen) { return queen.lipsyncScore >= 8 && queen.lipsyncScore < 12; });
+    let good = top2.filter(function (queen) { return queen.lipsyncScore >= 4 && queen.lipsyncScore < 8; });
+    let bad = top2.filter(function (queen) { return queen.lipsyncScore >= 2 && queen.lipsyncScore < 4; });
+    let flop = top2.filter(function (queen) { return queen.lipsyncScore >= 0 && queen.lipsyncScore < 2; });
+    createLipsyncDesc(slay, great, good, bad, flop);
+    screen.createButton("Show result", "lsaLipSync()");
+}
+
+function finaleLipSyncsDesc1() {
+    let screen = new Scene();
+    screen.clean();
+    for (let i = 0; i < firstLS.length; i++) {
+        firstLS[i].getLipsync();
+        firstLS[i].lipsyncScore = (firstLS[i].lipsyncScore - firstLS[i].favoritism) + firstLS[i].unfavoritism;
+    }
+    screen.createHeader("The Lip-Syncs...");
+    screen.createBold(firstLS[0].getName() + " and " + firstLS[1].getName() + " lip-sync...");
+    lsSong();
+    screen.createHorizontalLine();
+    let slay = firstLS.filter(function (queen) { return queen.lipsyncScore > 11; });
+    let great = firstLS.filter(function (queen) { return queen.lipsyncScore >= 8 && queen.lipsyncScore < 12; });
+    let good = firstLS.filter(function (queen) { return queen.lipsyncScore >= 4 && queen.lipsyncScore < 8; });
+    let bad = firstLS.filter(function (queen) { return queen.lipsyncScore >= 2 && queen.lipsyncScore < 4; });
+    let flop = firstLS.filter(function (queen) { return queen.lipsyncScore >= 0 && queen.lipsyncScore < 2; });
+    for (let i = 0; i < firstLS.length; i++) {
+        firstLS[i].lipsyncScore = (firstLS[i].lipsyncScore + firstLS[i].favoritism) - firstLS[i].unfavoritism;
+    }
+    createLipsyncDesc(slay, great, good, bad, flop);
+    screen.createButton("Show result", "finaleLipSyncs()");
+}
+
+function finaleLipSyncsDesc2() {
+    let screen = new Scene();
+    screen.clean();
+    for (let i = 0; i < secondLS.length; i++) {
+        secondLS[i].getLipsync();
+        secondLS[i].lipsyncScore = (secondLS[i].lipsyncScore - secondLS[i].favoritism) + secondLS[i].unfavoritism;
+    }
+    screen.createHeader("The Lip-Syncs...");
+    screen.createBold(secondLS[0].getName() + " and " + secondLS[1].getName() + " lip-sync...");
+    lsSong();
+    screen.createHorizontalLine();
+    let slay = secondLS.filter(function (queen) { return queen.lipsyncScore > 11; });
+    let great = secondLS.filter(function (queen) { return queen.lipsyncScore >= 8 && queen.lipsyncScore < 12; });
+    let good = secondLS.filter(function (queen) { return queen.lipsyncScore >= 4 && queen.lipsyncScore < 8; });
+    let bad = secondLS.filter(function (queen) { return queen.lipsyncScore >= 2 && queen.lipsyncScore < 4; });
+    let flop = secondLS.filter(function (queen) { return queen.lipsyncScore >= 0 && queen.lipsyncScore < 2; });
+    for (let i = 0; i < secondLS.length; i++) {
+        secondLS[i].lipsyncScore = (secondLS[i].lipsyncScore + secondLS[i].favoritism) - secondLS[i].unfavoritism;
+    }
+    createLipsyncDesc(slay, great, good, bad, flop);
+    screen.createButton("Show result", "finaleLipSyncs2()");
+}
+
+function createLipsyncDesc(slay, great, good, bad, flop) {
+    let screen = new Scene();
+    if (slay.length !== 0) {
+        for (let i = 0; i < slay.length; i++)
+            screen.createImage(slay[i].image);
+        screen.createBold("", "slay");
+        let slayText = document.getElementById("slay");
+        for (let i = 0; i < slay.length; i++)
+            slayText.innerHTML += `${slay[i].getName()}, `;
+        slayText.innerHTML += "slayed the lipsync!";
+    }
+    if (great.length !== 0) {
+        for (let i = 0; i < great.length; i++)
+            screen.createImage(great[i].image);
+        screen.createBold("", "great");
+        let greatText = document.getElementById("great");
+        for (let i = 0; i < great.length; i++)
+            greatText.innerHTML += `${great[i].getName()}, `;
+        greatText.innerHTML += "had a great lipsync!";
+    }
+    if (good.length !== 0) {
+        for (let i = 0; i < good.length; i++)
+            screen.createImage(good[i].image);
+        screen.createBold("", "good");
+        let goodText = document.getElementById("good");
+        for (let i = 0; i < good.length; i++)
+            goodText.innerHTML += `${good[i].getName()}, `;
+        goodText.innerHTML += "had a good lipsync.";
+    }
+    if (bad.length !== 0) {
+        for (let i = 0; i < bad.length; i++)
+            screen.createImage(bad[i].image);
+        screen.createBold("", "bad");
+        let badText = document.getElementById("bad");
+        for (let i = 0; i < bad.length; i++)
+            badText.innerHTML += `${bad[i].getName()}, `;
+        badText.innerHTML += "had a bad lipsync...";
+    }
+    if (flop.length !== 0) {
+        for (let i = 0; i < flop.length; i++)
+            screen.createImage(flop[i].image);
+        screen.createBold("", "flop");
+        let flopText = document.getElementById("flop");
+        for (let i = 0; i < flop.length; i++)
+            flopText.innerHTML += `${flop[i].getName()}, `;
+        flopText.innerHTML += "flopped the lipsync...";
+    }
+}
+
+function reunion() {
+    let screen = new Scene();
+    screen.clean();
+    screen.createHeader("The Reunion!");
+    missCong();
+    if (currentCast.length == 4 && canFinale)
+        screen.createButton("Proceed", "canadaS2Finale()");
+    else if (currentCast.length == 4 && top4 || ukvstwFinale)
+        screen.createButton("Proceed", "finaleLS()");
+    else if (currentCast.length == 4 && (all_stars || lipsync_assassin))
+        screen.createButton("Proceed", "finaleAS()");
+    else if (currentCast.length == 2 && team)
+        screen.createButton("Proceed", "finaleTeam()");
+    else
+        screen.createButton("Proceed", "finale()");
+}
+///// AGREGAR INMUNIDAD. AGREGAR LA FINAL DE LA S14, DE LA S7 Y S8. SEPARAR FORMATO Y FINAL.
+///// REUNION. ARREGLAR LAS TABLAS DE LIPSTICKS Y CHOCOLATE
