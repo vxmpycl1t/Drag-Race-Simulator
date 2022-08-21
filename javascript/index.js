@@ -51,7 +51,11 @@ class MiniChallenge {
                 let winner = currentCast[randomNumber(0, currentCast.length - 1)];
                 screen.createImage(winner.image, "royalblue");
                 screen.createBold(`${winner.getName()} won the mini-challenge!`);
-                winner.miniEpisode.push(episodeCount);
+                if (porkchopPremiere && episodeCount < 4) {
+                    winner.miniEpisode.push(episodeCount+1);
+                } else {
+                    winner.miniEpisode.push(episodeCount);
+                }
             }else {
                 let winner = randomNumber(0, currentCast.length - 1);
                 let second;
@@ -61,8 +65,13 @@ class MiniChallenge {
                 screen.createImage(currentCast[winner].image, "royalblue");
                 screen.createImage(currentCast[second].image, "royalblue");
                 screen.createBold(`${currentCast[winner].getName()} and ${currentCast[second].getName()} won the mini-challenge!`);
-                currentCast[winner].miniEpisode.push(episodeCount);
-                currentCast[second].miniEpisode.push(episodeCount);
+                if (porkchopPremiere && episodeCount < 4) {
+                    currentCast[winner].miniEpisode.push(episodeCount+1);
+                    currentCast[second].miniEpisode.push(episodeCount+1);;
+                } else {
+                    currentCast[winner].miniEpisode.push(episodeCount);
+                    currentCast[second].miniEpisode.push(episodeCount);
+                }
             }
         }
     }
