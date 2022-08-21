@@ -3,6 +3,7 @@ Drag Race Simulator based on edssb sim.
 <br> You can also send me a dm in Discord if you find a bug or something that wasn't cute. <b> Rainbow#4283</b>
 
 # 08/21/2022
+* Added mini challenges wins to the track record table
 * Added Miss Congeniality
 * Added first version of a Reunion
 * Added how the contestants did in the lipsync
@@ -13,6 +14,7 @@ Drag Race Simulator based on edssb sim.
 * The LaLaPaRUZa returning challenge is now avaliable with all the formats
 * The Lipsync Smackdown returning challenge is now avaliable with double sashays and shantays.
 * Updated the track record table
+* The Contestant with the LOW LOW LOW LOW LOW bug is fixed 
 * I don't remember what else I added :(
 
 # 08/06/2022
