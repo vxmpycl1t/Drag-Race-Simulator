@@ -2,23 +2,24 @@
 Drag Race Simulator based on edssb sim.
 <br> You can also send me a dm in Discord if you find a bug or something that wasn't cute. <b> Rainbow#4283</b>
 
+# 08/21/2022
+* Added Miss Congeniality
+* Added first version of a Reunion
+* Added how the contestants did in the lipsync
+* Added reads and the read minichallenge
+* Added Who Should Go Home Tonight and Why? question
+* Now for Teams Format you get to choose the pairs
+* Now double wins can happen in the lipsync assasin format
+* The LaLaPaRUZa returning challenge is now avaliable with all the formats
+* The Lipsync Smackdown returning challenge is now avaliable with double sashays and shantays.
+* Updated the track record table
+* I don't remember what else I added :(
 
 # 08/06/2022
 * Added first version of Drag Race Thailand format
 * Added the lipsync for the Finale to Drag Race France
 * Updated stats of Drag Race Thailand queens
 * Fixed some bugs
-
-
-# 07/30/2022
-* Updated All Winners Format:
-*  Now ties are completed to determine the Top4, now the talent show gives 3 stars
-* Added the cast of Drag Race Philipines 
-* Updated stats of All Stars 7 Queens
-* Updated stats of Drag Race France
-* Fixed problem with Porkchop premiere and Untucked
-* Now the Teams format doesn't have Untucked, but it will be added soon!
-
 
 
 # Working on
@@ -38,6 +39,15 @@ Currently I'm working on Untucked!
  * Detailed Challenges *
  * Choose the lipsync assassin for your season *
  * ...
+ 
+ # 07/30/2022
+* Updated All Winners Format:
+*  Now ties are completed to determine the Top4, now the talent show gives 3 stars
+* Added the cast of Drag Race Philipines 
+* Updated stats of All Stars 7 Queens
+* Updated stats of Drag Race France
+* Fixed problem with Porkchop premiere and Untucked
+* Now the Teams format doesn't have Untucked, but it will be added soon!
  
  # 07/04/2022
 * Added first version of Untucked
