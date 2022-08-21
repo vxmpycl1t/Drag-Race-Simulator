@@ -1599,7 +1599,7 @@ function newEpisode() {
     else if (currentCast.length == 3 && team)
         queensRemainingScreen.createButton("Proceed", "miniChallenge()");
     else if (currentCast.length == 2 && team)
-        queensRemainingScreen.createButton("Proceed", "reunion()");
+        queensRemainingScreen.createButton("Proceed", "finaleTeam()()");
     else
         queensRemainingScreen.createButton("Proceed", "reunion()");
     //add an empty placement on eliminated queen's track records
@@ -5178,7 +5178,7 @@ function judgingScreen() {
     } else {
         safeQueens.innerHTML += "you are safe.";
     }
-    if (currentCast.length <= 10 && randomNumber(0, 10) == 7 && homeTrigger < 2) {
+    if (currentCast.length <= 10 && randomNumber(0, 10) == 7 && homeTrigger < 2 && !team) {
         homeTrigger++;
         whoShouldGoHomeTonight();
     }
