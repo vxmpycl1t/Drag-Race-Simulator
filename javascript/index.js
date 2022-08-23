@@ -2557,11 +2557,11 @@ function contestantProgress() {
     }
     let winner = document.createElement("tr");
     let rank = document.createElement("td");
-    rank.setAttribute("style", "background-color: #f5ebf5; font-weight: bold; height: 50px;");
+    rank.setAttribute("style", "background-color: #f5ebf5; font-weight: bold; 50px;");
     rank.innerHTML = "1st<br><small>(Winner)</small>"
     winner.appendChild(rank);
     let name = document.createElement("td");
-    name.setAttribute("style", "background-color: #f5ebf5; font-weight: bold; height: 50px;");
+    name.setAttribute("style", "background-color: #f5ebf5; font-weight: bold; 50px;");
     if (onFinale) {
         let winnerQueen;
         if (!top4) {
@@ -2578,7 +2578,7 @@ function contestantProgress() {
         name.innerHTML = winnerQueen.getName();
         winner.appendChild(name);
         let photo = document.createElement("td");
-        photo.setAttribute("style", "background: url("+ winnerQueen.image +"); background-size: 110px 110px; background-position: center;");
+        photo.setAttribute("style", "background: url("+ winnerQueen.image +"); background-size: cover; background-position: center; background-repeat: no-repeat;");
         photo.setAttribute("width", "80");
         photo.setAttribute("height", "80");
         winner.appendChild(photo);
@@ -2805,16 +2805,16 @@ function contestantProgress() {
         for (let i = 0; i < currentCast.length; i++) {
             let contestant = document.createElement("tr");
             let rank = document.createElement("td");
-            rank.setAttribute("style", "background-color: #f5ebf5; font-weight: bold; height: 50px;");
+            rank.setAttribute("style", "background-color: #f5ebf5; font-weight: bold; 50px;");
             rank.innerHTML = "TBA"
             contestant.appendChild(rank);
             let name = document.createElement("td");
             name.setAttribute("style", "font-weight: bold;");
             name.innerHTML = currentCast[i].getName();
-            name.setAttribute("style", "background-color: #f5ebf5; font-weight: bold; height: 50px;");
+            name.setAttribute("style", "background-color: #f5ebf5; font-weight: bold; 50px;");
             contestant.appendChild(name);
             let photo = document.createElement("td");
-            photo.setAttribute("style", "background: url("+ currentCast[i].image +"); background-size: 110px 110px; background-position: center;");
+            photo.setAttribute("style", "background: url("+ currentCast[i].image +"); background-size: cover; background-position: center; background-repeat: no-repeat;");
             photo.setAttribute("width", "80");
             photo.setAttribute("height", "80");
             contestant.appendChild(photo);
@@ -3040,7 +3040,7 @@ function contestantProgress() {
     for (let i = 0; i < eliminatedCast.length; i++) {
         let contestant = document.createElement("tr");
         let rank = document.createElement("td");
-        rank.setAttribute("style", "background-color: #f5ebf5; font-weight: bold; height: 50px;");
+        rank.setAttribute("style", "background-color: #f5ebf5; font-weight: bold; 50px;");
         if (eliminatedCast[i].rankP == 0) {
             rank.innerHTML = (rankNumber+1+i);
             if (rank.innerHTML == 3) {
@@ -3067,10 +3067,10 @@ function contestantProgress() {
         let name = document.createElement("td");
         name.setAttribute("style", "font-weight: bold;");
         name.innerHTML = eliminatedCast[i].getName();
-        name.setAttribute("style", "background-color: #f5ebf5; font-weight: bold; height: 50px;");
+        name.setAttribute("style", "background-color: #f5ebf5; font-weight: bold; 50px;");
         contestant.appendChild(name);
         let photo = document.createElement("td");
-        photo.setAttribute("style", "background: url("+ eliminatedCast[i].image +"); background-size: 110px 110px; background-position: center;");
+        photo.setAttribute("style", "background: url("+ eliminatedCast[i].image +"); background-size: cover; background-position: center; background-repeat: no-repeat;");
         photo.setAttribute("width", "80");
         photo.setAttribute("height", "80");
         contestant.appendChild(photo);
@@ -3606,7 +3606,65 @@ function predefCast(cast, format, premiere = '', returning = '') {
         chocolateBarTwist = true;
         chocolateBarTwistChoosable = true;
     }
-    if (team && chocolateBarTwist) {
+    if (smackdown && chocolateBarTwist) {
+        window.alert("The Lipsync Smackdown format isn't supported with the golden chocolate bar twist, sorry!");
+        s14Premiere = false;
+        s12Premiere = false;
+        s9Premiere = false;
+        s6Premiere = false;
+        porkchopPremiere = false;
+        uk3Premiere = false;
+        top4 = false;
+        top3 = false;
+        thailandFormat = false;
+        canFinale = false;
+        lipsync_assassin = false;
+        smackdown = false;
+        all_stars = false;
+        all_winners = false;
+        allstars3Finale = false;
+        ukvstwFinale = false;
+        smackdown = false;
+        voteReturn = false;
+        conjoinedQueens = false;
+        queensOfComedy = false;
+        kittyGirlGroup = false;
+        randomReturn = false;
+        lalaparuza = false;
+        allQueens = [...allQueensCopy2];
+        chocolateBarTwist = false;
+        chocolateBarTwistChoosable = false;
+    }
+    else if (smackdown && !noDouble) {
+        window.alert("The Lipsync Smackdown format isn't supported with double shantays or sashays, sorry!");
+        s14Premiere = false;
+        s12Premiere = false;
+        s9Premiere = false;
+        s6Premiere = false;
+        porkchopPremiere = false;
+        uk3Premiere = false;
+        top4 = false;
+        top3 = false;
+        thailandFormat = false;
+        canFinale = false;
+        lipsync_assassin = false;
+        smackdown = false;
+        all_stars = false;
+        all_winners = false;
+        allstars3Finale = false;
+        ukvstwFinale = false;
+        smackdown = false;
+        voteReturn = false;
+        conjoinedQueens = false;
+        queensOfComedy = false;
+        kittyGirlGroup = false;
+        randomReturn = false;
+        lalaparuza = false;
+        allQueens = [...allQueensCopy2];
+        chocolateBarTwist = false;
+        chocolateBarTwistChoosable = false;
+    }
+    else if (team && chocolateBarTwist) {
         window.alert("The team format isn't supported with the chocolate bar twist, sorry!");
         team = false;
         smackdown = false;
@@ -3870,6 +3928,92 @@ function startSimulation(challenge = "") {
             s14Premiere = false;
             porkchopPremiere = false;
             uk3Premiere = false;
+            chocolateBarTwist = false;
+            chocolateBarTwistChoosable = false;
+        }
+        else if (lalaparuza && !all_stars) {
+            window.alert("The LaLaPaRUZa returning challenge is only supported with the Lipsync for your legacy, Jury All Stars and UK vs The World Formats, sorry!");
+            s14Premiere = false;
+            s12Premiere = false;
+            s9Premiere = false;
+            s6Premiere = false;
+            porkchopPremiere = false;
+            uk3Premiere = false;
+            top4 = false;
+            top3 = false;
+            thailandFormat = false;
+            canFinale = false;
+            lipsync_assassin = false;
+            smackdown = false;
+            all_stars = false;
+            all_winners = false;
+            allstars3Finale = false;
+            ukvstwFinale = false;
+            voteReturn = false;
+            conjoinedQueens = false;
+            queensOfComedy = false;
+            kittyGirlGroup = false;
+            randomReturn = false;
+            lalaparuza = false;
+            allQueens = [...allQueensCopy2];
+            chocolateBarTwist = false;
+            chocolateBarTwistChoosable = false;
+        }
+        else if (smackdown && chocolateBarTwist) {
+            window.alert("The Lipsync Smackdown format isn't supported with the golden chocolate bar twist, sorry!");
+            s14Premiere = false;
+            s12Premiere = false;
+            s9Premiere = false;
+            s6Premiere = false;
+            porkchopPremiere = false;
+            uk3Premiere = false;
+            top4 = false;
+            top3 = false;
+            thailandFormat = false;
+            canFinale = false;
+            lipsync_assassin = false;
+            smackdown = false;
+            all_stars = false;
+            all_winners = false;
+            allstars3Finale = false;
+            ukvstwFinale = false;
+            smackdown = false;
+            voteReturn = false;
+            conjoinedQueens = false;
+            queensOfComedy = false;
+            kittyGirlGroup = false;
+            randomReturn = false;
+            lalaparuza = false;
+            allQueens = [...allQueensCopy2];
+            chocolateBarTwist = false;
+            chocolateBarTwistChoosable = false;
+        }
+        else if (smackdown && !noDouble) {
+            window.alert("The Lipsync Smackdown format isn't supported with double shantays or sashays, sorry!");
+            s14Premiere = false;
+            s12Premiere = false;
+            s9Premiere = false;
+            s6Premiere = false;
+            porkchopPremiere = false;
+            uk3Premiere = false;
+            top4 = false;
+            top3 = false;
+            thailandFormat = false;
+            canFinale = false;
+            lipsync_assassin = false;
+            smackdown = false;
+            all_stars = false;
+            all_winners = false;
+            allstars3Finale = false;
+            ukvstwFinale = false;
+            smackdown = false;
+            voteReturn = false;
+            conjoinedQueens = false;
+            queensOfComedy = false;
+            kittyGirlGroup = false;
+            randomReturn = false;
+            lalaparuza = false;
+            allQueens = [...allQueensCopy2];
             chocolateBarTwist = false;
             chocolateBarTwistChoosable = false;
         }
@@ -5187,9 +5331,11 @@ function judgingScreen() {
     } else {
         safeQueens.innerHTML += "you are safe.";
     }
-    if (currentCast.length <= 10 && randomNumber(0, 10) == 7 && homeTrigger < 2 && !team) {
-        homeTrigger++;
-        whoShouldGoHomeTonight();
+    if (currentCast.length <= 10 && episodeCount > 3&& (top3 || top4 || thailandFormat) || currentCast.length <= 10 && (all_stars || lipsync_assassin)) {
+        if (currentCast.length <= 10 && randomNumber(0, 10) == 7 && homeTrigger < 2 && !team || homeTrigger == 0) {
+            homeTrigger++;
+            whoShouldGoHomeTonight();
+        }
     }
     if (uk3Premiere && episodeCount == 1)
         judgingScreen.createButton("Proceed", "uk3PremiereJudging()");
@@ -6387,7 +6533,7 @@ function asLipSync() {
     screen.clean();
     top2.sort((a, b) => (b.lipsyncScore - a.lipsyncScore));
     screen.createHeader("Ladies, I've made my decision...");
-    if (top2[0].lipsyncScore == top2[1].lipsyncScore && top2[0].lipsyncScore > 6 && top2[1].lipsyncScore > 6 && currentCast.length > 5) {
+    if (top2[0].lipsyncScore == top2[1].lipsyncScore && top2[0].lipsyncScore > 6 && top2[1].lipsyncScore > 6 && currentCast.length > 5 && !noDouble) {
         screen.createImage(top2[0].image, "darkblue");
         screen.createImage(top2[1].image, "darkblue");
         screen.createBold("Condragulations, you're both winners baby!");
@@ -6636,7 +6782,7 @@ function lsaLipSync() {
         assassin.lipstick = bottomQueens[0];
     }
     top2.sort((a, b) => (b.lipsyncScore - a.lipsyncScore));
-    if (top2[0].lipsyncScore == top2[1].lipsyncScore && top2[0].lipsyncScore > 6 && top2[1].lipsyncScore > 6 && currentCast.length > 5) {
+    if (top2[0].lipsyncScore == top2[1].lipsyncScore && top2[0].lipsyncScore > 6 && top2[1].lipsyncScore > 6 && currentCast.length > 5 && !noDouble) {
         backToWinner = false;
         screen.createImage(top2[0].image, "darkblue");
         screen.createImage(top2[1].image, "darkblue");
@@ -7573,7 +7719,7 @@ function CheckForReturning() {
         returningQueen = true;
         return true;
     }
-    if (lalaparuza && (currentCast.length - eliminatedCast.length) >= 1 && (currentCast.length - eliminatedCast.length) < 3 && returningQueen == false) {
+    if (lalaparuza && (currentCast.length - eliminatedCast.length) >= 1 && (currentCast.length - eliminatedCast.length) < 3 && returningQueen == false && all_stars) {
         returningQueen = true;
         return true;
     }
@@ -7705,30 +7851,26 @@ function queenReturnsVote() {
     eliminatedCast.splice(eliminatedCast.indexOf(queen), 1);
 }
 function lipsyncSmackdown() {
-    let screen = new Scene();
+    var screen = new Scene();
     screen.clean();
     document.body.style.backgroundImage = "url('image/smackdown.webp')";
     screen.createHeader("Let the Lipsync Smackdown begin!!");
     screen.createParagraph("The eliminated queens are back to compete in an epic Lipsync Smackdown and a chance to return to the competition.");
-    let smack = eliminatedCast.slice();
-    let capitulo = 2;
+    var smack = eliminatedCast.slice();
+    var capitulo = 2;
     let caps9 = 3;
-    let cappork = 5;
-    let caps6 = 4;
+    var cappork = 5;
+    var caps6 = 4;
     let done = false;
     let double = false;
-    let first = false;
-    let queen1;
-    let queen2;
-    let lipSync = [];
-    for (let i = 0; i < eliminatedCast.length - 1; i++) {
+    for (var i = 0; i < eliminatedCast.length - 1; i++) {
         screen.createHorizontalLine();
         if (smack.length == 2) {
-            queen1 = smack[0];
-            queen2 = smack[1];
+            var queen1 = smack[0];
+            var queen2 = smack[1];
         }else{
-            queen1 = smack[smack.length - 1];
-            queen2 = smack[smack.length - 2];
+            var queen1 = smack[smack.length - 1];
+            var queen2 = smack[smack.length - 2];
         }
         screen.createImage(queen1.image);
         screen.createImage(queen2.image);
@@ -7736,8 +7878,8 @@ function lipsyncSmackdown() {
         screen.createBold("The time has come for you to lip-sync... for your rudemption! Good luck, and don't fuck it up.");
         lsSong();
         screen.createBold("I've made my decision.");
-        lipSync = [queen1, queen2];
-        for (let i_1 = 0; i_1 < lipSync.length; i_1++) {
+        var lipSync = [queen1, queen2];
+        for (var i_1 = 0; i_1 < lipSync.length; i_1++) {
             lipSync[i_1].getASLipsync();
         }
         lipSync.sort(function (a, b) { return (b.lipsyncScore - a.lipsyncScore); });
@@ -7749,24 +7891,7 @@ function lipsyncSmackdown() {
         } else {
             screen.createImage(lipSync[0].image, "royalblue");
             screen.createBold(lipSync[0].getName() + ", shantay you stay! ");
-                let index = lipSync[0].trackRecord.findLastIndex((track) => {
-                    return track == " ELIM " || track == "WINELIM" || track == "ELIM" || track == "LOSS" || track == " WIN "
-                });
-                if (lipSync[0].getName() == eliminatedCast[eliminatedCast.length - 1].getName() && i == 0) {
-                    index++;
-                }
-                console.log(index);
-                lipSync[0].trackRecord[index+1] = " WIN ";
-                let index1 = lipSync[1].trackRecord.findLastIndex((track) => {
-                    return track == " ELIM " || track == "WINELIM" || track == "ELIM" || track == "LOSS" || track == " WIN "
-                });
-                if (lipSync[1].getName() == eliminatedCast[eliminatedCast.length - 1].getName() && i == 0) {
-                    index1++;
-                }
-                console.log(index1);
-                lipSync[1].trackRecord[index1+1] = "LOSS";
-                first = true;
-            /*if (eliminatedCast.length - i != 2) {
+            if (eliminatedCast.length - i != 2) {
                 if (porkchopPremiere) {
                     lipSync[0].trackRecord[cappork] = " WIN ";
                     lipSync[1].trackRecord[cappork] = "LOSS";
@@ -7776,13 +7901,11 @@ function lipsyncSmackdown() {
                 }else if (s9Premiere) {
                     lipSync[0].trackRecord[caps9] = " WIN ";
                     lipSync[1].trackRecord[caps9] = "LOSS";
-                }else if (doubleSashay) {
-                    
                 }else{
                 lipSync[0].trackRecord[capitulo] = " WIN ";
                 lipSync[1].trackRecord[capitulo] = "LOSS";
                 }
-            }*/
+            }
             screen.createBold(lipSync[1].getName() + ", sashay away. ");
         }
         capitulo++;
@@ -7802,7 +7925,7 @@ function lipsyncSmackdown() {
             smack.splice(smack.indexOf(queen1), 1);
         }
     }
-    for (let o = 0; o <= currentCast.length - 1; o++) {
+    for (var o = 0; o <= currentCast.length - 1; o++) {
         currentCast[o].addToTrackRecord("RUN ");
     }
     if (double) {
@@ -7812,18 +7935,16 @@ function lipsyncSmackdown() {
         lipSync[1].addToTrackRecord("RTRN");
         eliminatedCast.splice(eliminatedCast.indexOf(lipSync[0]), 1);
         eliminatedCast.splice(eliminatedCast.indexOf(lipSync[1]), 1);
-        for (let i = 0; i <= eliminatedCast.length - 1; i++) {
+        for (var i = 0; i <= eliminatedCast.length - 1; i++) {
             eliminatedCast[i].addToTrackRecord("OUT ");
         }
     } else {
-        lipSync[0].trackRecord[lipSync[0].trackRecord.length - 1]  = "RTRN";
+        lipSync[0].addToTrackRecord("RTRN");
         currentCast.push(lipSync[0]);
         eliminatedCast.splice(eliminatedCast.indexOf(lipSync[0]), 1);
-        for (let i = 0; i <= eliminatedCast.length - 1; i++) {
+        for (var i = 0; i <= eliminatedCast.length - 1; i++) {
             eliminatedCast[i].addToTrackRecord("OUT ");
         }
-        lipSync[1].trackRecord.splice(lipSync[1].trackRecord.length - 1, 1);
-        lipSync[1].trackRecord[lipSync[1].trackRecord.length - 1]  = "OUT ";
     }
     episodeChallenges.push("Lipsync Smackdown");
     episodeCount++;
@@ -7862,7 +7983,7 @@ function LaLaPaRUza(){
             }
         }
     }
-    for (var i = 0; i < eliminatedCast.length; i++) {
+    for (var i = 0; i < smack.length; i++) {
         screen.createHorizontalLine();
         var queen1 = smack[i];
         var queen2 = smack1[randomNumber(0,smack1.length-1)];
@@ -7872,7 +7993,7 @@ function LaLaPaRUza(){
         if (smack.length == 2) {
             i++;
         }
-        if (smack1.length == 0 && totalCastSize%2 == 1 && all_stars) {
+        if (smack1.length == 0 && totalCastSize%2 == 1) {
             var queen3 = smack[i+1];
             screen.createImage(queen3.image);
             screen.createBold(queen1.getName() + ", " + queen2.getName() + " and " + queen3.getName() + " will lipsync...");
@@ -7911,40 +8032,7 @@ function LaLaPaRUza(){
                 queen3.addToTrackRecord("OUT ");
             }
             i++;
-        }else if(!all_stars && smack1.length == 1 && totalCastSize%2 == 0) {
-            var queen3 = smack1[0];
-            screen.createImage(queen3.image);
-            screen.createBold(queen1.getName() + ", " + queen2.getName() + " and " + queen3.getName() + " will lipsync...");
-            lsSong();
-            var lipSync_1 = [queen1, queen2, queen3];
-            for (var i_1 = 0; i_1 < lipSync_1.length; i_1++) {
-                lipSync_1[i_1].getASLipsync();
-            }
-            queen1.lipsyncScore -= 4;
-            lipSync_1.sort(function (a, b) { return (b.lipsyncScore - a.lipsyncScore); });
-            screen.createImage(lipSync_1[0].image, "royalblue");
-            if (queen1 == lipSync_1[0]) {
-                screen.createBold(lipSync_1[0].getName() + ", shantay you stay!");
-                screen.createBold(lipSync_1[1].getName() + " and " + lipSync_1[2].getName() + ", sashay away...");
-                currentCast.push(lipSync_1[0]);
-                lipSync_1[0].addToTrackRecord("RTRN ");
-                eliminatedCast.splice(eliminatedCast.indexOf(lipSync_1[0]), 1);
-                queen2.addToTrackRecord(" ELIM ");
-                eliminatedCast.unshift(queen2);
-                currentCast.splice(currentCast.indexOf(queen2), 1);
-                queen2.unfavoritism += 5;
-                queen3.addToTrackRecord(" ELIM ");
-                eliminatedCast.unshift(queen3);
-                currentCast.splice(currentCast.indexOf(queen3), 1);
-                queen3.unfavoritism += 5;
-            } else {
-                screen.createBold(queen2.getName() + " and " + queen3.getName() + ", shantay you stay!");
-                screen.createBold(queen1.getName() + ", sashay away... ");
-                queen2.addToTrackRecord("SAFE ");
-                queen1.addToTrackRecord("OUT ");
-                queen3.addToTrackRecord("SAFE ");
-            }
-        } else{
+        }else{
             screen.createBold(queen1.getName() + " and " + queen2.getName() + " will lipsync...");
             screen.createBold("The time has come for you to lip-sync... for your lives! Good luck, and don't fuck it up.");
             lsSong();
