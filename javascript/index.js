@@ -1540,6 +1540,7 @@ let episodeChallenges = [];
 let episodeCount = 0;
 let returningQueen = false;
 let noDouble = false;
+let riggory = false;
 let chocolateBarTwist = false;
 let chocolateBarTwistCheck = false;
 let chocolateBarTwistChoosable = false;
@@ -3600,6 +3601,8 @@ function predefCast(cast, format, premiere = '', returning = '') {
         kittyGirlGroup = true;
     if (document.getElementById("disableDouble").checked == true)
         noDouble = true;
+    if (document.getElementById("riggory").checked == true)
+            riggory = true;
     if (document.getElementById("chocolateBar").checked == true)
         chocolateBarTwist = true;
     else if (document.getElementById("chocolateBarChoosable").checked == true){
@@ -3807,6 +3810,8 @@ function startSimulation(challenge = "") {
             slayersCheck = true;
         if (document.getElementById("disableDouble").checked == true)
             noDouble = true;
+        if (document.getElementById("riggory").checked == true)
+            riggory = true;
         if (document.getElementById("chocolateBar").checked == true)
             chocolateBarTwist = true;
         else if (document.getElementById("chocolateBarChoosable").checked == true){
@@ -4822,8 +4827,14 @@ function s9judgingScreen() {
     }
     safeQueens.innerHTML += "you are safe..";
     screen.createHorizontalLine();
-    for (let i = 0; i < topQueens.length; i++)
-        topQueens[i].performanceScore -= (topQueens[i].runwayScore);
+    if (riggory) {
+        for (let i = 0; i < topQueens.length; i++) {
+            topQueens[i].performanceScore -= (topQueens[i].runwayScore);
+        }
+    } else {
+        for (let i = 0; i < topQueens.length; i++)
+            topQueens[i].performanceScore -= (topQueens[i].runwayScore - topQueens[i].favoritism);
+    }
     topQueens.sort((a, b) => (a.performanceScore - b.performanceScore));
     if (topQueens[0].performanceScore == topQueens[1].performanceScore && randomNumber(0, 100) < 60) {
         topQueens[0].addToTrackRecord(" WIN");
@@ -4914,8 +4925,13 @@ function winAndBtm6() {
     screen.createBold("Ladies, I've made some decisions...");
     document.body.style.backgroundImage = "url('image/stage.webp')";
     //sort the top queens now taking runway and favoritism in consideration:
-    for (let i = 0; i < topQueens.length; i++)
-        topQueens[i].performanceScore -= (topQueens[i].runwayScore);
+    if (riggory) {
+        for (let i = 0; i < topQueens.length; i++)
+            topQueens[i].performanceScore -= (topQueens[i].runwayScore);
+    } else {
+        for (let i = 0; i < topQueens.length; i++)
+            topQueens[i].performanceScore -= (topQueens[i].runwayScore - topQueens[i].favoritism);
+    }
     topQueens.sort((a, b) => (a.performanceScore - b.performanceScore));
     if (isTeamChallenge) {
         topQueens[0].addToTrackRecord("WIN");
@@ -5401,8 +5417,13 @@ function winAndBtm2() {
     screen.createBold("Ladies, I've made some decisions...");
     document.body.style.backgroundImage = "url('image/stage.webp')";
     //sort the top queens now taking runway and favoritism in consideration:
-    for (let i = 0; i < topQueens.length; i++) {
-        topQueens[i].performanceScore -= (topQueens[i].runwayScore);
+    if (riggory) {
+        for (let i = 0; i < topQueens.length; i++) {
+            topQueens[i].performanceScore -= (topQueens[i].runwayScore);
+        }
+    } else {
+        for (let i = 0; i < topQueens.length; i++)
+            topQueens[i].performanceScore -= (topQueens[i].runwayScore - topQueens[i].favoritism);
     }
     topQueens.sort((a, b) => (a.performanceScore - b.performanceScore));
     if (isTeamChallenge) {
@@ -5563,8 +5584,14 @@ function teamWinAndBtm2() {
     screen.createBold("Ladies, I've made some decisions...");
     document.body.style.backgroundImage = "url('image/stage.webp')";
     //sort the top queens now taking runway and favoritism in consideration:
-    for (let i = 0; i < topQueens.length; i++)
-        topQueens[i].performanceScore -= (topQueens[i].runwayScore);
+    if (riggory) {
+        for (let i = 0; i < topQueens.length; i++) {
+            topQueens[i].performanceScore -= (topQueens[i].runwayScore);
+        }
+    } else {
+        for (let i = 0; i < topQueens.length; i++)
+            topQueens[i].performanceScore -= (topQueens[i].runwayScore - topQueens[i].favoritism);
+    }
     topQueens.sort((a, b) => (a.performanceScore - b.performanceScore));
     topQueens[0].QueenA.addToTrackRecord("WIN");
     topQueens[0].QueenB.addToTrackRecord("WIN");
@@ -5626,8 +5653,14 @@ function top2AndBtm() {
     screen.createBold("Ladies, I've made some decisions...");
     document.body.style.backgroundImage = "url('image/stage.webp')";
     //sort the top queens now taking runway and favoritism in consideration:
-    for (let i = 0; i < topQueens.length; i++)
-        topQueens[i].performanceScore -= (topQueens[i].runwayScore);
+    if (riggory) {
+        for (let i = 0; i < topQueens.length; i++) {
+            topQueens[i].performanceScore -= (topQueens[i].runwayScore);
+        }
+    } else {
+        for (let i = 0; i < topQueens.length; i++)
+            topQueens[i].performanceScore -= (topQueens[i].runwayScore - topQueens[i].favoritism);
+    }
     topQueens.sort((a, b) => (a.performanceScore - b.performanceScore));
     top2.push(topQueens[0]);
     top2.push(topQueens[1]);
@@ -5761,8 +5794,14 @@ function topAndBtm() {
     screen.createBold("Ladies, I've made some decisions...");
     document.body.style.backgroundImage = "url('image/stage.webp')";
     //sort the top queens now taking runway and favoritism in consideration:
-    for (let i = 0; i < topQueens.length; i++)
-        topQueens[i].performanceScore -= (topQueens[i].runwayScore);
+    if (riggory) {
+        for (let i = 0; i < topQueens.length; i++) {
+            topQueens[i].performanceScore -= (topQueens[i].runwayScore);
+        }
+    } else {
+        for (let i = 0; i < topQueens.length; i++)
+            topQueens[i].performanceScore -= (topQueens[i].runwayScore - topQueens[i].favoritism);
+    }
     topQueens.sort((a, b) => (a.performanceScore - b.performanceScore));
     top2.push(topQueens[0]);
     topQueens.splice(0, 1);
@@ -6026,8 +6065,14 @@ function top2AndBlocked() {
         threestars = true;
     }
     //sort the top queens now taking runway and favoritism in consideration:
-    for (let i = 0; i < topQueens.length; i++)
-        topQueens[i].performanceScore -= (topQueens[i].runwayScore);
+    if (riggory) {
+        for (let i = 0; i < topQueens.length; i++) {
+            topQueens[i].performanceScore -= (topQueens[i].runwayScore);
+        }
+    } else {
+        for (let i = 0; i < topQueens.length; i++)
+            topQueens[i].performanceScore -= (topQueens[i].runwayScore - topQueens[i].favoritism);
+    }
     topQueens.sort((a, b) => (a.performanceScore - b.performanceScore));
     top2.push(topQueens[0]);
     top2.push(topQueens[1]);
