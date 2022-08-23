@@ -25,7 +25,7 @@ class MiniChallenge {
             desc2[desc2["a celebrity."] = 6] = "a celebrity.";
         })(desc2 || (desc2 = {}));
         //reading and puppet challenges:
-        if (totalCastSize >= 10 && currentCast.length == 7 && !all_stars || currentCast.length == totalCastSize && (all_stars || lipsync_assassin)) {
+        if (totalCastSize >= 10 && currentCast.length == 7 && !all_stars && episodeCount > 3 || currentCast.length == totalCastSize && (all_stars || lipsync_assassin)) {
             description.innerHTML = "The library is open! In today's mini-challenge, the queens will read eachother!";
             readingChallenge();
         }
@@ -51,11 +51,7 @@ class MiniChallenge {
                 let winner = currentCast[randomNumber(0, currentCast.length - 1)];
                 screen.createImage(winner.image, "royalblue");
                 screen.createBold(`${winner.getName()} won the mini-challenge!`);
-                if (porkchopPremiere && episodeCount < 4) {
-                    winner.miniEpisode.push(episodeCount+1);
-                } else {
-                    winner.miniEpisode.push(episodeCount);
-                }
+                winner.miniEpisode.push(episodeCount);
             }else {
                 let winner = randomNumber(0, currentCast.length - 1);
                 let second;
@@ -65,13 +61,8 @@ class MiniChallenge {
                 screen.createImage(currentCast[winner].image, "royalblue");
                 screen.createImage(currentCast[second].image, "royalblue");
                 screen.createBold(`${currentCast[winner].getName()} and ${currentCast[second].getName()} won the mini-challenge!`);
-                if (porkchopPremiere && episodeCount < 4) {
-                    currentCast[winner].miniEpisode.push(episodeCount+1);
-                    currentCast[second].miniEpisode.push(episodeCount+1);;
-                } else {
-                    currentCast[winner].miniEpisode.push(episodeCount);
-                    currentCast[second].miniEpisode.push(episodeCount);
-                }
+                currentCast[winner].miniEpisode.push(episodeCount);
+                currentCast[second].miniEpisode.push(episodeCount);
             }
         }
     }
@@ -1431,6 +1422,7 @@ function porkchopLipsyncs() {
         secondCast[i].votes = 0;
     }
     screen.createButton("Proceed", "doublePremiere()");
+    episodeCount++;
 }
 function doublePremiereJudging() {
     let screen = new Scene();
@@ -1587,6 +1579,7 @@ function newEpisode() {
     }
     else {
         contestantProgress();
+        queensRemainingScreen.createHorizontalLine();
     }
     if (currentCast.length == totalCastSize && team == true)
         queensRemainingScreen.createButton("Proceed", "teamsScreen()");
@@ -1872,28 +1865,15 @@ function finaleLipSyncs2() {
         screen.createImage(secondLS[1].image, "sienna");
         screen.createBold(secondLS[1].getName() + ", sashay away...");
     }
-    screen.createButton("Proceed", "finalLipSync()");
+    screen.createButton("Proceed", "finaleLipSyncsDesc3()");
 }
 function finalLipSync() {
-    onTop4Finale = true;
-    onFinale = true;
-    chocolateBarTwistCheck = true;
     let screen = new Scene();
     screen.clean();
-    screen.createHeader("The end...");
+    screen.createHeader("Ladies, I've made my decision. The Next Drag Superstar is...");
+    finalLS.sort((a, b) => b.finaleScore - a.finaleScore);
+    let winner = 0;
     if (finaleof4gurl) {
-        screen.createBold(finalLS[0].getName() + ", " + finalLS[1].getName() + ", " + finalLS[2].getName() + " and " + finalLS[3].getName() + " will lip-sync for the crown...!");
-        screen.createImage(finalLS[0].image);
-        screen.createImage(finalLS[1].image);
-        screen.createImage(finalLS[2].image);
-        screen.createImage(finalLS[3].image);
-        lsSong();
-        screen.createHorizontalLine();
-        screen.createBold("Ladies, I've made my decision. The Next Drag Superstar is...");
-        for (let i = 0; i < finalLS.length; i++)
-            finalLS[i].getFinale();
-        finalLS.sort((a, b) => b.finaleScore - a.finaleScore);
-        let winner = 0;
         if (randomNumber(0, 100) >= 95) {
             winner = randomNumber(1, 3);
         }
@@ -1920,18 +1900,8 @@ function finalLipSync() {
         } else if (winner == 3) {
             finalLS.splice(0, 3);
         }
-    } else if (isThisA3Way) {
-        screen.createBold(finalLS[0].getName() + ", " + finalLS[1].getName() + " and " + finalLS[2].getName() + " will lip-sync for the crown...!");
-        screen.createImage(finalLS[0].image);
-        screen.createImage(finalLS[1].image);
-        screen.createImage(finalLS[2].image);
-        lsSong();
-        screen.createHorizontalLine();
-        screen.createBold("Ladies, I've made my decision. The Next Drag Superstar is...");
-        for (let i = 0; i < finalLS.length; i++)
-            finalLS[i].getFinale();
-        finalLS.sort((a, b) => b.finaleScore - a.finaleScore);
-        let winner = 0;
+    }
+    else if (isThisA3Way) {
         if (randomNumber(0, 100) >= 95) {
             winner = randomNumber(1, 2);
         }
@@ -1955,15 +1925,6 @@ function finalLipSync() {
             finalLS.splice(0, 2);
         }
     } else {
-        screen.createBold(finalLS[0].getName() + " and " + finalLS[1].getName() + " will lip-sync for the crown...!");
-        screen.createImage(finalLS[0].image);
-        screen.createImage(finalLS[1].image);
-        lsSong();
-        screen.createHorizontalLine();
-        screen.createBold("Ladies, I've made my decision. The Next Drag Superstar is...");
-        for (let i = 0; i < finalLS.length; i++)
-            finalLS[i].getFinale();
-        finalLS.sort((a, b) => b.finaleScore - a.finaleScore);
         if (finalLS[0].finaleScore == finalLS[1].finaleScore && randomNumber(0, 100) >= 50) {
             screen.createBold("For the FIRST TIME in Drag Race herstory, you are both winners, baby");
             screen.createImage(finalLS[0].image, "yellow");
@@ -1976,7 +1937,6 @@ function finalLipSync() {
             eliminatedCast.unshift(finalLS[1]);
             finalLS.splice(1, 1);
         }else{
-            let winner = 0;
             if (randomNumber(0, 100) >= 95) {
                 winner = 1;
             }
@@ -11504,7 +11464,6 @@ function finaleLipSyncsDesc1() {
     screen.clean();
     for (let i = 0; i < firstLS.length; i++) {
         firstLS[i].getLipsync();
-        firstLS[i].lipsyncScore = (firstLS[i].lipsyncScore - firstLS[i].favoritism) + firstLS[i].unfavoritism;
     }
     screen.createHeader("The Lip-Syncs...");
     screen.createBold(firstLS[0].getName() + " and " + firstLS[1].getName() + " lip-sync...");
@@ -11515,9 +11474,6 @@ function finaleLipSyncsDesc1() {
     let good = firstLS.filter(function (queen) { return queen.lipsyncScore >= 4 && queen.lipsyncScore < 8; });
     let bad = firstLS.filter(function (queen) { return queen.lipsyncScore >= 2 && queen.lipsyncScore < 4; });
     let flop = firstLS.filter(function (queen) { return queen.lipsyncScore >= 0 && queen.lipsyncScore < 2; });
-    for (let i = 0; i < firstLS.length; i++) {
-        firstLS[i].lipsyncScore = (firstLS[i].lipsyncScore + firstLS[i].favoritism) - firstLS[i].unfavoritism;
-    }
     createLipsyncDesc(slay, great, good, bad, flop);
     screen.createButton("Show result", "finaleLipSyncs()");
 }
@@ -11527,7 +11483,6 @@ function finaleLipSyncsDesc2() {
     screen.clean();
     for (let i = 0; i < secondLS.length; i++) {
         secondLS[i].getLipsync();
-        secondLS[i].lipsyncScore = (secondLS[i].lipsyncScore - secondLS[i].favoritism) + secondLS[i].unfavoritism;
     }
     screen.createHeader("The Lip-Syncs...");
     screen.createBold(secondLS[0].getName() + " and " + secondLS[1].getName() + " lip-sync...");
@@ -11538,11 +11493,48 @@ function finaleLipSyncsDesc2() {
     let good = secondLS.filter(function (queen) { return queen.lipsyncScore >= 4 && queen.lipsyncScore < 8; });
     let bad = secondLS.filter(function (queen) { return queen.lipsyncScore >= 2 && queen.lipsyncScore < 4; });
     let flop = secondLS.filter(function (queen) { return queen.lipsyncScore >= 0 && queen.lipsyncScore < 2; });
-    for (let i = 0; i < secondLS.length; i++) {
-        secondLS[i].lipsyncScore = (secondLS[i].lipsyncScore + secondLS[i].favoritism) - secondLS[i].unfavoritism;
-    }
     createLipsyncDesc(slay, great, good, bad, flop);
     screen.createButton("Show result", "finaleLipSyncs2()");
+}
+
+function finaleLipSyncsDesc3() {
+    let screen = new Scene();
+    screen.clean();
+    onTop4Finale = true;
+    onFinale = true;
+    chocolateBarTwistCheck = true;
+    screen.createHeader("The end...");
+    for (let i = 0; i < finalLS.length; i++) {
+        finalLS[i].getASLipsync();
+    }
+    if (finaleof4gurl) {
+        screen.createBold(finalLS[0].getName() + ", " + finalLS[1].getName() + ", " + finalLS[2].getName() + " and " + finalLS[3].getName() + " will lip-sync for the crown...!");
+        screen.createImage(finalLS[0].image);
+        screen.createImage(finalLS[1].image);
+        screen.createImage(finalLS[2].image);
+        screen.createImage(finalLS[3].image);
+    } else if (isThisA3Way) {
+        screen.createBold(finalLS[0].getName() + ", " + finalLS[1].getName() + " and " + finalLS[2].getName() + " will lip-sync for the crown...!");
+        screen.createImage(finalLS[0].image);
+        screen.createImage(finalLS[1].image);
+        screen.createImage(finalLS[2].image);
+    } else {
+        screen.createBold(finalLS[0].getName() + " and " + finalLS[1].getName() + " will lip-sync for the crown...!");
+        screen.createImage(finalLS[0].image);
+        screen.createImage(finalLS[1].image);
+    }
+    lsSong();
+    screen.createHorizontalLine();
+    let slay = finalLS.filter(function (queen) { return queen.lipsyncScore > 11; });
+    let great = finalLS.filter(function (queen) { return queen.lipsyncScore >= 8 && queen.lipsyncScore < 12; });
+    let good = finalLS.filter(function (queen) { return queen.lipsyncScore >= 4 && queen.lipsyncScore < 8; });
+    let bad = finalLS.filter(function (queen) { return queen.lipsyncScore >= 2 && queen.lipsyncScore < 4; });
+    let flop = finalLS.filter(function (queen) { return queen.lipsyncScore >= 0 && queen.lipsyncScore < 2; });
+    createLipsyncDesc(slay, great, good, bad, flop);
+    for (let i = 0; i < finalLS.length; i++) {
+        finalLS[i].getFinale();
+    }
+    screen.createButton("Show result", "finalLipSync()");
 }
 
 function createLipsyncDesc(slay, great, good, bad, flop) {
