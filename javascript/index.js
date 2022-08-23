@@ -755,7 +755,7 @@ function queensPerformances() {
     if (isDesignChallenge == true || episodeChallenges[episodeChallenges.length - 1] == "Design") {
         performanceScreen.createButton("Proceed", "judging()");
     } else if (thailandFormat && isDesignChallenge == false) {
-        if ((s12Premiere || porkchopPremiere) && episodeCount < 3) {
+        if (s12Premiere && episodeCount < 3 || porkchopPremiere && episodeCount < 4) {
             performanceScreen.createButton("Proceed", "runway()", "button2");
         } else {
             performanceScreen.createButton("Proceed", "maxiWin()");
@@ -1281,14 +1281,14 @@ function doublePremiere() {
                 if (queen.QueenDisqOrDept){
                     //do nothing
                 }else{
-                    queen.trackRecord.splice(queen.trackRecord.indexOf("ELIM"), 1, " ELIM");
+                    queen.trackRecord.splice(queen.trackRecord.indexOf("ELIM" || " ELIM "), 1, " ELIM");
                     currentCast.push(queen);
                     eliminatedCast.splice(eliminatedCast.indexOf(queen), 1);
                     i--;
                 }
             }
             else{
-                queen.trackRecord.splice(queen.trackRecord.indexOf("ELIM"), 1, " ELIM");
+                queen.trackRecord.splice(queen.trackRecord.indexOf("ELIM" || " ELIM "), 1, " ELIM");
                 currentCast.push(queen);
                 eliminatedCast.splice(eliminatedCast.indexOf(queen), 1);
                 i--;
@@ -11617,4 +11617,4 @@ function reunion() {
         screen.createButton("Proceed", "finale()");
 }
 ///// AGREGAR INMUNIDAD. AGREGAR LA FINAL DE LA S14, DE LA S7 Y S8. SEPARAR FORMATO Y FINAL.
-///// REUNION. ARREGLAR LAS TABLAS DE LIPSTICKS Y CHOCOLATE
+///// REUNION.
