@@ -75,6 +75,7 @@ big {
 button {
     margin-top: 5px;
     margin-bottom: 5px;
+    margin-left: 5px;
     font-size: 20px;
     color: #fff;
     background-color: #3D0A1F;
@@ -191,4 +192,3 @@ input[type=checkbox]:hover input ~ .checkmark{
 input[type=checkbox] input:checked {
     background-color: #2196F3;
 }
-  
