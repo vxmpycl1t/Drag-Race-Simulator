@@ -1580,6 +1580,7 @@ function newEpisode() {
     else {
         contestantProgress();
         queensRemainingScreen.createHorizontalLine();
+        queensRemainingScreen.createButton("Download", "downloadTR()");
     }
     if (currentCast.length == totalCastSize && team == true)
         queensRemainingScreen.createButton("Proceed", "teamsScreen()");
@@ -3417,6 +3418,7 @@ function contestantProgress() {
     main.appendChild(centering);
     if (onFinale) {
         screen.createButton("Simulate again!", "reSimulate()");
+        screen.createButton("Download!", "downloadTR()");
         screen.createHorizontalLine();
         screen.createButton("Back to main page", "location.reload()");
         
@@ -11086,6 +11088,18 @@ function readingChallenge() {
         }
         screen.createHorizontalLine();
     }
+}
+
+function downloadTR() {
+    let table = document.getElementById("trackRecord");
+    html2canvas(table).then((canvas) => {
+        let img = canvas.toDataURL("image/png");
+        let a = document.createElement('a');
+        a.setAttribute("href", img);
+        a.setAttribute("download","TrackRecord.png");
+        a.click();
+        a.remove();
+    });
 }
 
 let queensReads = [
