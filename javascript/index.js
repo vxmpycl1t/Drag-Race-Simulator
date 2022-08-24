@@ -811,19 +811,40 @@ function teamMaking() {
         team3 = [...castTeams];
         twoOrThree = true;
     }
+    let names = "";
     screen.createBigText("Team 1");
     for (let i = 0; i < team1.length; i++) {
         screen.createImage(team1[i].image, "blue");
+        if (i == team1.length - 1) {
+            names += team1[i].getName() + ".";
+        } else {
+            names += team1[i].getName() + ", ";
+        }
     }
+    screen.createBold(names +" You are team 1!");
+    names = "";
     screen.createBigText("Team 2");
     for (let i = 0; i < team2.length; i++) {
         screen.createImage(team2[i].image, "pink");
+        if (i == team2.length - 1) {
+            names += team2[i].getName() + ".";
+        } else {
+            names += team2[i].getName() + ", ";
+        }
     }
+    screen.createBold(names +" You are team 2!");
+    names = "";
     if (twoOrThree) {
         screen.createBigText("Team 3");
         for (let i = 0; i < team3.length; i++) {
             screen.createImage(team3[i].image, "green");
+            if (i == team3.length - 1) {
+                names += team3[i].getName() + ".";
+            } else {
+                names += team3[i].getName() + ", ";
+            }
         }
+        screen.createBold(names +" You are team 3!");
     }
 }
 //runway:
@@ -5402,7 +5423,7 @@ function winAndBtm2() {
                     names += topQueens[i].getName() + ", ";
                 }
             }
-            screen.createBold(names +"Condragulations, you're the winning team of today's challenge!");
+            screen.createBold(names +" Condragulations, you're the winning team of today's challenge!");
             topQueens.splice(0);
             isTeamChallenge = false;
         } else if (topQueens[0].performanceScore == topQueens[1].performanceScore && randomNumber(0, 100) < 60) {
@@ -10977,6 +10998,9 @@ function missCong() {
     for (let i = 0; i < eliminatedCast.length; i++) {
         eliminatedCast[i].votes = 0;
         eliminatedCast[i].trackRecord[eliminatedCast[i].trackRecord.length - 1] = "GUEST";
+    }
+    for (let i = 0; i < currentCast.length; i++) {
+        currentCast[i].votes = 0;
     }
     for (let i = 0; i < wholeCast.length; i++) {
             let flag = 0;
