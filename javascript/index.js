@@ -7499,6 +7499,20 @@ let scarlett = new Queen("Scarlett Harlett", 7, 7, 8, 8, 6, 8, 7, "ScarlettH");
 let vanity = new Queen("Vanity Milan", 8, 7, 11, 5, 8, 8, 12, "Vanity");
 let victoriaS = new Queen("Victoria Scone", 8, 10, 8, 7, 9, 9, 8, "VictoriaS");
 let uk_season3 = [anubis, charity, choriza, elektraF, ella, kitty, krystal, river, scarlett, vanity, victoriaS, veronica];
+//DRUK SEASON 4
+let baby = new Queen("Baby", 7, 7, 7, 7, 7, 7, 7, "Baby");
+let black = new Queen("Black Peppa", 7, 7, 7, 7, 7, 7, 7, "BlackPeppa");
+let cheddar = new Queen("Cheddar Gorgeous", 7, 7, 7, 7, 7, 7, 7, "Cheddar");
+let copper = new Queen("Copper Topp", 7, 7, 7, 7, 7, 7, 7, "Copper");
+let dakota = new Queen("Dakota Schiffer", 7, 7, 7, 7, 7, 7, 7, "Dakota");
+let danny = new Queen("Danny Beard", 7, 7, 7, 7, 7, 7, 7, "Danny");
+let jonbers = new Queen("Jonbers Blonde", 7, 7, 7, 7, 7, 7, 7, "Jonbers");
+let just = new Queen("Just May", 7, 7, 7, 7, 7, 7, 7, "JustMay");
+let leFil = new Queen("Le Fil", 7, 7, 7, 7, 7, 7, 7, "LeFil");
+let pixie = new Queen("Pixie Polite", 7, 7, 7, 7, 7, 7, 7, "PixiePolite");
+let sminty = new Queen("Sminty Drop", 7, 7, 7, 7, 7, 7, 7, "Sminty");
+let starlet = new Queen("Starlet", 7, 7, 7, 7, 7, 7, 7, "Starlet");
+let uk_season4 = [baby, black, cheddar, copper, dakota, danny, jonbers, just, leFil, pixie, sminty, starlet];
 //CAN SEASON 1 
 let anastarzia = new Queen("Anastarzia Anaquway", 7, 6, 4, 12, 6, 8, 7, "Starzy");
 let boa = new Queen("BOA", 6, 6, 5, 5, 6, 7, 7, "BOA");
