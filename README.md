@@ -2,6 +2,10 @@
 Drag Race Simulator based on edssb sim.
 <br> You can also send me a dm in Discord if you find a bug or something that wasn't cute. <b> Rainbow#4283</b>
 
+# 09/24/2022
+* Updated Down Under S2 Queens stats
+* Updated Canada's Drag Race S3 Queens stats
+
 # 08/21/2022
 * Added mini challenges wins to the track record table
 * Added Miss Congeniality
