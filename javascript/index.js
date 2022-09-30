@@ -7264,7 +7264,7 @@ let sahara = new Queen("Sahara Davenport", 6, 6, 10, 4, 6, 7, 10, "Sahara");
 let shangela = new Queen("Shangela", 14, 13, 10, 3, 9, 9, 12, "Shangela");
 let sonique = new Queen("Kylie Sonique Love", 11, 9, 10, 9, 8, 11, 11, "Kylie");
 let tatianna = new Queen("Tatianna", 8, 11, 8, 8, 10, 8, 10, "Tatianna");
-let tyra = new Queen("James Ross", 11, 7, 8, 11, 8, 9, 10, "Tyra");
+let tyra = new Queen("King Tyra", 11, 7, 8, 11, 8, 9, 10, "Tyra");
 let us_season2 = [jessica, jujubee, morgan, mystique, nicole, pandora, raven, sahara, shangela, sonique, tatianna, tyra];
 //SEASON 3:
 let alexis = new Queen("Alexis Mateo", 14, 12, 9, 7, 10, 8, 12, "Alexis");
