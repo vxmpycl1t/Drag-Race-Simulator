@@ -7691,19 +7691,19 @@ let paloma = new Queen("Paloma", 11, 11, 6, 7, 9, 9, 8, "Paloma");
 let soa = new Queen("Soa de Muse", 9, 10, 10, 8, 8, 9, 10, "Soa");
 let drfr = [elips, kam, bigbertha, briochee, grandedame, kahena, lolita, lova, paloma, soa];
 //DRAG RACE PHILIPPINES
-let brigiding = new Queen("Brigiding", 7, 7, 7, 7, 7, 7, 7, "Brigiding");
-let corazon = new Queen("Corazon", 7, 7, 7, 7, 7, 7, 7, "Corazon");
-let eva = new Queen("Eva Le Queen", 7, 7, 7, 7, 7, 7, 7, "EvaLeQueen");
-let gigiEra = new Queen("Gigi Era", 7, 7, 7, 7, 7, 7, 7, "GigiEra");
-let lady = new Queen("Lady Morgana", 7, 7, 7, 7, 7, 7, 7, "LadyMorgana");
-let marinaSummers = new Queen("Marina Summers", 7, 7, 7, 7, 7, 7, 7, "MarinaSummers");
-let minty = new Queen("Minty Fresh", 7, 7, 7, 7, 7, 7, 7, "MintyFresh");
-let precious = new Queen("Precious Paula Nicole", 7, 7, 7, 7, 7, 7, 7, "PreciousPaulaNicole");
-let prince = new Queen("Prince", 7, 7, 7, 7, 7, 7, 7, "Prince");
-let turing = new Queen("Turing", 7, 7, 7, 7, 7, 7, 7, "Turing");
-let vinas = new Queen("Viñas DeLuxe", 7, 7, 7, 7, 7, 7, 7, "VinasDeLuxe");
-let xilhouete = new Queen("Xilhouete", 7, 7, 7, 7, 7, 7, 7, "Xilhouete");
-let drph = [brigiding, corazon, eva, gigiEra, lady, marinaSummers, minty, precious, prince, turing, vinas, xilhouete];
+let brigiding = new Queen("Brigiding", 6, 5, 8, 8, 4, 9, 10, "Brigiding");
+let corazon = new Queen("Corazon", 4, 5, 4, 3, 4, 7, 5, "Corazon");
+let eva = new Queen("Eva Le Queen", 6, 9, 8, 7, 8, 10, 8, "EvaLeQueen");
+let gigiEra = new Queen("Gigi Era", 5, 5, 4, 5, 5, 6, 7, "GigiEra");
+let morgana = new Queen("Lady Morgana", 6, 6, 7, 7, 5, 8, 11, "LadyMorgana");
+let marinaSummers = new Queen("Marina Summers", 6, 9, 12, 9, 10, 12, 10, "MarinaSummers");
+let minty = new Queen("Minty Fresh", 6, 5, 4, 12, 4, 11, 9, "MintyFresh");
+let precious = new Queen("Precious Paula Nicole", 7, 7, 9, 7, 9, 8, 9, "PreciousPaulaNicole");
+let prince = new Queen("Prince", 4, 4, 4, 4, 4, 7, 4, "Prince");
+let turing = new Queen("Turing", 6, 6, 9, 6, 6, 7, 9, "Turing");
+let vinas = new Queen("Viñas DeLuxe", 6, 8, 8, 10, 8, 11, 7, "VinasDeLuxe");
+let xilhouete = new Queen("Xilhouete", 6, 10, 6, 8, 11, 10, 8, "Xilhouete");
+let drph = [brigiding, corazon, eva, gigiEra, morgana, marinaSummers, minty, precious, prince, turing, vinas, xilhouete];
 //SPECIAL 
 let pangina = new Queen("Pangina Heals", 9, 7, 14, 11, 8, 13, 14, "Pangina");
 let international_as = [baga, blu, cheryl, janey, jimbo, jujubee, lemon, monique, pangina];
@@ -7751,7 +7751,7 @@ let allQueens = [
     ava, divinity, elecktra, enorma, farida, ivana, riche, luquisha,
     aura, gioffre, diamond, petite, narciso, nehellenia, obama, panthera, skandalove, tanissa,
     elips, kam, bigbertha, briochee, grandedame, kahena, lolita, lova, paloma, soa,
-    brigiding, corazon, eva, gigiEra, lady, marinaSummers, minty, precious, prince, turing, vinas, xilhouete,
+    brigiding, corazon, eva, gigiEra, morgana, marinaSummers, minty, precious, prince, turing, vinas, xilhouete,
     pangina
 ].concat(allCustomQueens).sort((a, b) => a.getName().toLowerCase().localeCompare(b.getName().toLowerCase()));
 let allQueensCopy = [];
